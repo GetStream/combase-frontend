@@ -1,0 +1,77 @@
+import { gql } from '@apollo/client';
+
+export const GET_CURRENT_USER = gql`
+    {
+        isSmViewport: media(bp: "sm") @client
+
+        me {
+            _id
+            name {
+                full
+                display
+            }
+            avatar
+            streamToken
+        }
+
+        organization {
+            _id
+            name
+            stream {
+                key
+            }
+            theme
+        }
+    }
+`;
+
+export const GET_ORGANIZATION = gql`
+    {
+        organization {
+            _id
+            name
+            stream {
+                key
+            }
+            theme
+        }
+    }
+`;
+
+export const GET_ORGANIZATION_PROFILE = gql`
+    {
+        organization {
+            _id
+            name
+            stream {
+                key
+            }
+            faqs {
+                count
+            }
+            groups {
+                count
+            }
+            agents {
+                count
+            }
+            theme
+        }
+    }
+`;
+
+export const GET_MY_PROFILE = gql`
+    query getMyProfile {
+        me {
+            _id
+            name {
+                full
+                display
+            }
+            avatar
+            email
+            role
+            timezone
+        }
+    }
+`;

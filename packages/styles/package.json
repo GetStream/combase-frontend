@@ -1,0 +1,13 @@
+{
+  "name": "@combase.app/styles",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "lodash.range": "^3.2.0",
+    "styled-components": "^5.2.3",
+    "styled-system": "^5.1.5",
+    "tinycolor2": "^1.4.2"
+  }
+}
