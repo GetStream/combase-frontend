@@ -67,6 +67,13 @@ const Initials = styled(Text)`
     align-self: center;
     letter-spacing: 0;
 	pointer-events: none;
+	${system({
+		size: {
+			properties: ['font-size', 'line-height'],
+			scale: 'fontSizes',
+			transform: (value, scale) => scale[Math.max(value - 2, 0)]
+		},
+	})}
 	${
 		({ color, invert }) => variant({
 			variants: {
@@ -103,7 +110,7 @@ const IconBubble = memo(({ emoji, icon, name, ...props }) => (
 	<Root as={!icon && !name && !emoji ? Placeholder : 'div'} {...props}>
 		{emoji || icon  ? <Icon as={emoji ? Emoji : icon} emoji={emoji} color={props.color} invert={props.invert} variant={props.variant} size={props.size} /> : null}
 		{!icon && !emoji && name ? (
-			<Initials color={props.color} fontSize={props.size - 1} fontWeight="700" lineHeight={props.size} variant={props.variant}>
+			<Initials color={props.color} size={props.size} fontWeight="700"  variant={props.variant}>
 				{name.charAt(0)}
 			</Initials>
 		) : null}

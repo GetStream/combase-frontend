@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
@@ -18,21 +18,22 @@ const Wrapper = styled(Box)`
     }
 `;
 
-export const Primary = () => (
-    <Grid>
-        <Wrapper gapTop={4}>
-            <SelectButton label="Language">
-				<MenuItem label="JavaScript" />
-				<MenuItem label="Java" />
-				<MenuItem label="Swift" />
-				<MenuItem label="Dart" />
-				<MenuItem label="Python" />
-				<MenuItem label="Go" />
-				<MenuItem label="Kotlin" />
+export const Primary = () => {
+	const [value, setValue] = useState("");
+	return <Grid>
+		<Wrapper gapTop={4}>
+			<SelectButton label="Language" value={value} onChange={({ target }) => setValue(target.value)}>
+				<MenuItem label="JavaScript" value="js" />
+				<MenuItem label="Java" value="java" />
+				<MenuItem label="Swift" value="swift" />
+				<MenuItem label="Dart" value="dart" />
+				<MenuItem label="Python" value="python" />
+				<MenuItem label="Go" value="go" />
+				<MenuItem label="Kotlin" value="kotlin" />
 			</SelectButton>
-        </Wrapper>
-    </Grid>
-);
+		</Wrapper>
+	</Grid>;
+}
 
 export default {
     component: SelectButton,

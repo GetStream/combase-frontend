@@ -95,7 +95,7 @@ IconButton.defaultProps = {
     as: 'button',
     color: 'text',
     interaction: 'bubble',
-    size: 3,
+    size: 4,
 };
 
 export default IconButton;

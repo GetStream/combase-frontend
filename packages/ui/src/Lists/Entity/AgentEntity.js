@@ -4,7 +4,7 @@ import { Text } from '../../Text';
 import { Entity } from './Entity';
 
 export const AgentEntity = ({ avatar, name, meta }) => (
-    <Entity icon={<Avatar name={name} size={7} src={avatar} />}>
+    <Entity icon={<Avatar name={name} size={6} src={avatar} />}>
         <Text fontSize={4} lineHeight={4}>
             {name}
         </Text>

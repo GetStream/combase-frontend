@@ -8,7 +8,7 @@ import IconButton from "./IconButton";
 export const Default = () => <IconButton icon={CloseIcon} />;
 export const Toggle = () => {
 	const [on, toggle] = useToggle();
-	return <IconButton color={on ? 'yellow' : 'border'} icon={StarIcon} onClick={() => toggle(!on)} />
+	return <IconButton color={on ? 'yellow' : 'gray'} icon={StarIcon} onClick={() => toggle()} />
 };
 
 export default {

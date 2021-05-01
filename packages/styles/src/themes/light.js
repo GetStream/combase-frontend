@@ -4,7 +4,7 @@ const light = createTheme(({ colors, utils }) => ({
 	colors: {
 		primary: colors.blue,
 		background: colors.offWhite,
-		border: utils.colors.lighten(colors.gray, .075),
+		border:colors.gray,
 		disabled: colors.lightGray,
 		shadow: utils.colors.darken(colors.gray, .24),
 		surface: colors.white,

@@ -8,7 +8,7 @@ import { Text } from '../../Text';
 import { AgentEntity, Entity, GroupEntity, TagEntity } from '.';
 
 export const User = () => (
-    <Entity icon={<Avatar name="Luke" size={5} />}>
+    <Entity icon={<Avatar name="Luke" size={6} />}>
         <Text fontSize={3} lineHeight={3}>
             {'Luke'}
         </Text>
@@ -30,7 +30,7 @@ export const Group = () => <GroupEntity color="purple" name="Sales" memberCount=
 export const Tag = () => <TagEntity />;
 
 export const Organization = () => (
-    <Entity icon={<Avatar name="Luke" size={5} src="https://pbs.twimg.com/profile_images/735113666891128833/mBSAJI_h_400x400.jpg" />}>
+    <Entity icon={<Avatar name="Luke" size={6} src="https://pbs.twimg.com/profile_images/735113666891128833/mBSAJI_h_400x400.jpg" />}>
         <Text fontSize={3} lineHeight={3}>
             {'Stream'}
         </Text>
