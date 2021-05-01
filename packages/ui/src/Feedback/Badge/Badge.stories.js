@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Badge from '.';
+import Badge from './Badge';
 
 export const New = () => <Badge />;
 export const Active = () => <Badge color="green" />;

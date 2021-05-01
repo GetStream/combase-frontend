@@ -1,7 +1,7 @@
-import { forwardRef, memo } from 'react';
+import React, { forwardRef, memo } from 'react';
 import PropTypes from 'prop-types';
-import styled, { useTheme } from 'styled-components';
-import { color, layout } from '@combase.app/styles';
+import styled from 'styled-components';
+import { color, layout, system } from '@combase.app/styles';
 
 import { Box } from '../Layout';
 import { Placeholder } from '../Placeholder';
@@ -30,6 +30,13 @@ const Initials = styled(Text)`
     align-self: center;
     letter-spacing: 0;
 	pointer-events: none;
+	${system({
+		size: {
+			properties: ['font-size', 'line-height'],
+			scale: 'fontSizes',
+			transform: (value, scale) => scale[Math.max(value - 2, 0)]
+		},
+	})}
 `;
 
 export const Avatar = forwardRef(({ avatarStyle, backgroundColor, name, size, src, variant, ...props }, ref) => (
@@ -45,7 +52,7 @@ export const Avatar = forwardRef(({ avatarStyle, backgroundColor, name, size, sr
 		{src ? (
 			<img alt={name} src={src} />
 		) : (
-			<Initials color="white" fontSize={size - 1} fontWeight="700" lineHeight={size}>
+			<Initials color="white" fontWeight="700" size={size}>
 				{name?.charAt(0) || ''}
 			</Initials>
 		)}
@@ -63,6 +70,6 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
     backgroundColor: 'primary',
-    size: 7,
+    size: 8,
     variant: 'squircle',
 };

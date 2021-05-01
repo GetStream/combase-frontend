@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { system } from '@combase.app/styles';
@@ -27,6 +28,7 @@ Badge.propTypes = {
 
 Badge.defaultProps = {
     color: 'primary',
+	'data-testid': 'badge',
     size: 0,
 };
 

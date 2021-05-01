@@ -25,18 +25,12 @@ export const Primary = () => (
             <Button>
                 <Text variant="label">{'Click Me!'}</Text>
             </Button>
-            <Button size="sm">
-                <Text variant="label">{'Click Me!'}</Text>
-            </Button>
             <Button size="xs">
                 <Text variant="label">{'Click Me!'}</Text>
             </Button>
         </Wrapper>
         <Wrapper gapTop={4}>
             <Button variant="flat">
-                <Text variant="label">{'Click Me!'}</Text>
-            </Button>
-            <Button size="sm" variant="flat">
                 <Text variant="label">{'Click Me!'}</Text>
             </Button>
             <Button size="xs" variant="flat">
@@ -53,10 +47,6 @@ export const PrefixedIcon = () => (
                 <TagIcon />
                 <Text variant="label">{'Create Tag'}</Text>
             </Button>
-            <Button size="sm">
-                <TagIcon />
-                <Text variant="label">{'Create Tag'}</Text>
-            </Button>
             <Button size="xs">
                 <TagIcon />
                 <Text variant="label">{'Create Tag'}</Text>
@@ -64,10 +54,6 @@ export const PrefixedIcon = () => (
         </Wrapper>
         <Wrapper gapTop={4}>
             <Button variant="flat">
-                <TagIcon />
-                <Text variant="label">{'Create Tag'}</Text>
-            </Button>
-            <Button size="sm" variant="flat">
                 <TagIcon />
                 <Text variant="label">{'Create Tag'}</Text>
             </Button>
@@ -86,10 +72,6 @@ export const SuffixedIcon = () => (
                 <CheckIcon />
                 <Text variant="label">{'Done'}</Text>
             </Button>
-            <Button color="text" reverseLabel size="sm">
-                <CheckIcon />
-                <Text variant="label">{'Done'}</Text>
-            </Button>
             <Button color="text" reverseLabel size="xs">
                 <CheckIcon />
                 <Text variant="label">{'Done'}</Text>
@@ -97,10 +79,6 @@ export const SuffixedIcon = () => (
         </Wrapper>
         <Wrapper gapTop={4}>
             <Button color="green" reverseLabel variant="flat">
-                <CheckIcon />
-                <Text variant="label">{'Done'}</Text>
-            </Button>
-            <Button color="green" reverseLabel size="sm" variant="flat">
                 <CheckIcon />
                 <Text variant="label">{'Done'}</Text>
             </Button>

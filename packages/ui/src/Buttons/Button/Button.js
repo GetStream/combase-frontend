@@ -1,5 +1,5 @@
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
-import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { interactions, layout, shadow, variant } from '@combase.app/styles';
 
@@ -12,8 +12,8 @@ import { buttonSizeVariants, buttonVisualVariants } from './variants';
 const Root = styled(Box).attrs(props => ({
     as: props?.as || 'button',
     borderRadius: 3,
-    minHeight: 7,
-    paddingX: 5,
+    minHeight: 8,
+    paddingX: 4,
     paddingY: 0,
 }))`
     ${shadow.boxShadow};

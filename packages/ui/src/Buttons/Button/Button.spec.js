@@ -7,7 +7,7 @@ import Button from "./Button";
 describe("Button", () => {
   const buttonLabel = "Test";
   
-  test("renders correctly", () => {
+  test("renders child text as the label", () => {
     const { queryByText } = render(<Button>{buttonLabel}</Button>);
 
     expect(queryByText(buttonLabel)).toBeInTheDocument();

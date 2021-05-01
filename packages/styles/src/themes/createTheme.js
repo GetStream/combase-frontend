@@ -12,16 +12,14 @@ import initialBaseTheme from './base';
  */
 const createTheme = (overrides) => {
 	const base = deepmerge(initialBaseTheme, typeof overrides === 'function' ? overrides(initialBaseTheme) : overrides);
-	return deepmerge(base, {
-		shadows: base.utils.createShadows(base.colors.shadow),
+	return {
+		...base,
 		colors: {
+			...base.colors,
 			...base.utils.createColorVariations(base.colors),
 		},
-		radii: {
-			squircle: '33.33333333333%',
-			circle: '50%',
-		}
-	});
+		shadows: base.utils.createShadows(base.colors.shadow),
+	};
 };
 
 export default createTheme;

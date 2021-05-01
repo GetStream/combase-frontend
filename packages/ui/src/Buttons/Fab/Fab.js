@@ -1,9 +1,9 @@
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { interactions, layout, position, system, zIndex } from '@combase.app/styles';
 
 import { Box } from '../../Layout';
-import { forwardRef } from 'react';
 
 const Root = styled(Box).attrs({
     as: 'button',

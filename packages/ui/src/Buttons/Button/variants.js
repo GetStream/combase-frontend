@@ -5,17 +5,10 @@ import { IconLabel } from '../../IconLabel';
 export const buttonSizeVariants = variant({
     prop: 'size',
     variants: {
-        sm: {
-            borderRadius: 2,
-            minHeight: 6,
-            paddingX: 4,
-            paddingY: 0,
-        },
         xs: {
-            borderRadius: 2,
-            minHeight: 3,
+            minHeight: 7,
             paddingX: 3,
-            paddingY: 2,
+            paddingY: 0,
         },
     },
 });

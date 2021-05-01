@@ -6,7 +6,7 @@ const light = createTheme(({ colors, utils }) => ({
 		background: colors.offWhite,
 		border: utils.colors.lighten(colors.gray, .075),
 		disabled: colors.lightGray,
-		shadow: utils.colors.darken(colors.border, .4),
+		shadow: utils.colors.darken(colors.gray, .24),
 		surface: colors.white,
 		text: colors.slate,
 		altText: colors.lavender,

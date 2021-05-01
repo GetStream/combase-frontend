@@ -1,3 +1,4 @@
+import React from 'react';
 import { layout } from '@combase.app/styles';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';

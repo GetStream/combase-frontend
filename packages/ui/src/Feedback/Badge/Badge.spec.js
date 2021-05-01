@@ -1,9 +1,9 @@
 import React from 'react';
 import { themes } from '@combase.app/styles';
 
-import { render } from '../../../../../config/test-utils';
+import { render } from '@conf/test-utils';
 
-import { Badge } from '.';
+import Badge from './Badge';
 
 describe('Badge', () => {
     test('renders correctly', () => {
@@ -15,8 +15,8 @@ describe('Badge', () => {
 
         const { queryByTestId } = render(<Badge color={colorName} />);
 
-        expect(queryByTestId('statusdot')).toHaveStyleRule({
-            backgroundColor: themes.light.color.red,
+        expect(queryByTestId('badge')).toHaveStyleRule({
+            backgroundColor: themes.light.colors.red,
         });
     });
 });

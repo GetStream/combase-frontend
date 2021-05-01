@@ -6,8 +6,6 @@ import { sizes } from './sizes';
 import { space } from './space';
 import { zIndices } from './zIndex';
 
-console.log(radii);
-
 export {
 	borderWidths,
 	breakpoints,

@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { fill, opacity, system } from '@combase.app/styles';
@@ -36,7 +36,7 @@ const Icon = forwardRef(({ as, children, color, ...props }, ref) => (
 
 Icon.propTypes = {
     color: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
+    size: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]).isRequired,
     viewBox: PropTypes.string,
 };
 
