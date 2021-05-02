@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useToggle } from 'react-use';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';

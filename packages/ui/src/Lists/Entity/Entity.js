@@ -24,7 +24,10 @@ export const Entity = ({ icon, children, className, gapTop }) => {
 
 Entity.propTypes = {
     icon: PropTypes.node,
-    gapTop: PropTypes.number,
+    gapTop: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	]),
 };
 
 Entity.defaultProps = {

@@ -4,6 +4,9 @@
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
+    "@combase.app/apollo": "*",
+    "@combase.app/styles": "*",
+    "@juggle/resize-observer": "^3.3.1",
     "@popperjs/core": "^2.9.2",
     "@udecode/slate-plugins": "^1.0.0-alpha.25",
     "@vvo/tzdb": "^6.7.0",

@@ -17,8 +17,8 @@ const Root = styled(Box).attrs({
     text-transform: capitalize;
 `;
 
-const CardHeader = forwardRef(({ action, children, gap, icon, subtext, ...rest }) => (
-    <Root {...rest} hasAction={Boolean(action)}>
+const CardHeader = forwardRef(({ action, children, gap, icon, subtext, ...rest }, ref) => (
+    <Root {...rest} ref={ref} hasAction={Boolean(action)}>
         <IconLabel gap={gap}>
             {icon || null}
             <TextGroup gapTop={1}>

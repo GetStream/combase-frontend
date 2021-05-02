@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo } from 'react';
+import React, { forwardRef, useEffect, useMemo } from 'react';
 import { Editable as SlateEditable, Slate } from 'slate-react';
 import {
     createBoldPlugin,

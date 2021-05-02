@@ -1,11 +1,11 @@
-import React from './react';
+import React from 'react';
 
 import { render } from '@conf/test-utils';
 
-import { Checkbox } from '.';
+import { TicketLabelToggle } from '.';
 
-describe('Checkbox', () => {
+describe('TicketLabelToggle', () => {
     test('renders correctly', () => {
-        render(<Checkbox />);
+        render(<TicketLabelToggle />);
     });
 });

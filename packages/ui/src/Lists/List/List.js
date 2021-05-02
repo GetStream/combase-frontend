@@ -1,5 +1,6 @@
 import React, { Children, cloneElement, createElement, forwardRef, useCallback, useState } from 'react';
 import useMeasure from 'react-use-measure';
+import { ResizeObserver } from '@juggle/resize-observer';
 import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { usePreviousDistinct } from 'react-use';
@@ -22,7 +23,7 @@ const Sublist = forwardRef(({ innerStyle, style, ...props }, ref) => (
 export const List = forwardRef((props, ref) => {
     const [open, setOpen] = useState(false);
     const previous = usePreviousDistinct(open);
-    const [sublistRef, bounds] = useMeasure();
+    const [sublistRef, bounds] = useMeasure({ polyfill: ResizeObserver });
 
     const { height, rotation } = useSpring({
         config: {

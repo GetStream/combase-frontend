@@ -1,4 +1,4 @@
-import { Children, cloneElement, forwardRef, useRef } from 'react';
+import React, { Children, cloneElement, forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -119,14 +119,15 @@ export const ToggleBase = forwardRef((props, ref) => {
 
 ToggleBase.propTypes = {
     checked: PropTypes.bool,
-    checkedIcon: PropTypes.node.isRequired,
+    checkedIcon: PropTypes.func,
     className: PropTypes.string,
     color: PropTypes.string,
     defaultChecked: PropTypes.bool,
     disabled: PropTypes.bool,
-    icon: PropTypes.node.isRequired,
+    icon: PropTypes.func,
     id: PropTypes.string,
     indeterminate: PropTypes.bool,
+    indeterminateIcon: PropTypes.func,
     inputProps: PropTypes.object,
     name: PropTypes.string,
     onBlur: PropTypes.func,
@@ -136,9 +137,10 @@ ToggleBase.propTypes = {
     required: PropTypes.bool,
     size: PropTypes.number,
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    type: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['button']),
 };
 
 ToggleBase.defaultProps = {
     color: 'primary',
+	type: 'button',
 };

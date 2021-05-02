@@ -1,6 +1,6 @@
 import React from "react";
-
-import { render } from '../../../../config/test-utils';
+import '@conf/matchMedia.mock';
+import { render } from '@conf/test-utils';
 
 import { ListItem } from ".";
 
