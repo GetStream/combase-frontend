@@ -8,7 +8,6 @@ import { Text } from '../../Text';
 
 import { Helper } from '../shared/Helper';
 import InputBase from '../shared/InputBase';
-import { Labels } from '../shared/Labels';
 import { useInput } from '../shared/useInput';
 
 const Root = styled(Box)`
@@ -45,7 +44,7 @@ const Label = styled(Text)`
     ${Root}:focus-within > & {
         opacity: 1;
         color: ${({ $active, $error, theme }) => theme.colors[$error ? 'error' : 'primary']};
-        transform: ${({ $active }) => `translate3d(0, -10px, 0) scale(0.625)`};
+        transform: ${({ $active }) => `translate3d(0, -8px, 0) scale(0.75)`};
     }
 `;
 

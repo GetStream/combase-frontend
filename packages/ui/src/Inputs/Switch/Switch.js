@@ -28,7 +28,7 @@ const Track = styled.div`
     width: ${getTrackWidth}rem;
     height: ${({ size }) => size}rem;
     border-radius: 8rem;
-    background-color: ${({ checked, theme }) => (checked ? theme.colors.green : theme.utils.colors.fade(theme.colors.text, 0.04))};
+    background-color: ${({ checked, theme }) => (checked ? theme.colors.green : theme.utils.colors.fade(theme.colors.text, 0.08))};
     overflow: hidden;
     display: flex;
     justify-content: center;

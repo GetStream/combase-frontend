@@ -12,7 +12,6 @@ const Root = styled(Box)`
 
 const Wrapper = styled(Box)`
     ${interactions};
-
     display: grid;
     align-items: center;
     grid-template-columns: ${({ $columnTemplate, $selectable }) => ($selectable ? `max-content ${$columnTemplate}` : $columnTemplate)};
@@ -44,14 +43,12 @@ export const ListItem = ({ active, alignCheckbox, columnTemplate, children, inte
                 color="text"
                 interaction={interaction}
                 paddingX={selectable ? 2 : 3}
-                paddingY={3}
+                paddingY={4}
             >
                 {selectable ? (
                     <CheckboxInput
                         $alignCheckbox={alignCheckbox}
-                        onChange={e => {
-                            onSelect?.(value);
-                        }}
+                        onChange={onSelect}
                         value={isSelected}
                     />
                 ) : null}

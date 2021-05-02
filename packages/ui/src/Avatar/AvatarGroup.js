@@ -8,7 +8,7 @@ export const AvatarGroup = styled(Box)`
     grid-template-columns: ${({ children }) => `repeat(${children?.length || 1}, min-content)`};
     & > * {
         box-sizing: content-box;
-        border: ${({ theme }) => theme.borderWidths[1]} solid ${({ theme }) => theme.colors.background};
+        border: ${({ theme }) => theme.borderWidths[1]} solid ${({ bgColor = 'background', theme }) => theme.colors[bgColor]};
     }
 
     & > *:not(:first-child) {

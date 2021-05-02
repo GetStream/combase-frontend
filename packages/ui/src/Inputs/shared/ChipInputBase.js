@@ -12,8 +12,9 @@ import InputBase from './InputBase';
 
 const Root = styled(Box)`
     ${layout};
-    display: flex;
-    flex-flow: row wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
     align-items: center;
     flex: 1;
 `;
@@ -22,7 +23,8 @@ const Input = styled(InputBase)`
     white-space: nowrap;
     text-overflow: ellipsis;
     flex: 1 1 auto;
-    width: unset;
+    width: auto;
+	min-width: ${({ theme }) => theme.sizes[6]};
 `;
 
 const defaultChip = (label, actions, i, cursor) => (
@@ -118,7 +120,7 @@ export const ChipInputBase = forwardRef(
                     paddingLeft={0}
                     paddingY={0}
                     paddingBottom={2}
-                    minHeight={4}
+                    minHeight={9}
                     onBackspace={onBackspace}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}

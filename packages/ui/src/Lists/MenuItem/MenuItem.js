@@ -72,20 +72,20 @@ export const MenuItem = ({
         <Root as={as}>
             <Wrapper
                 active={active}
-                borderRadius={2}
+                borderRadius={1}
                 className={className}
                 color="text"
                 interaction={onClick ? 'highlight' : undefined}
-                minHeight={sm ? 5 : [5, 5, 5, 5, 6]}
+                minHeight={sm ? 6 : [7, 7, 7, 7, 8]}
                 onClick={handleClick}
             >
                 <IconLabel iconColor={iconColor || color} color={color} gap={sm ? 2 : [2, 2, 2, 2, 3]} size={iconSize}>
-                    {Icon ? <Icon {...iconProps} color={iconColor || color} size={iconSize || sm ? 3 : [2, 2, 2, 2, 3]} /> : null}
+                    {Icon ? <Icon {...iconProps} color={iconColor || color} size={iconSize || sm ? 3 : [3, 3, 3, 3, 4]} /> : null}
                     <Text fontSize={sm ? 3 : [3, 3, 3, 3, 4]} lineHeight={sm ? 3 : [3, 3, 3, 3, 4]}>
                         {label}
                     </Text>
                 </IconLabel>
-                {actions?.length ? <Actions gap={3}>{actions}</Actions> : null}
+                {actions?.length ? <Actions gapLeft={3}>{actions}</Actions> : null}
             </Wrapper>
         </Root>
     );

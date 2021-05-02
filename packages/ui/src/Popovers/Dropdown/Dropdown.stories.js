@@ -200,34 +200,34 @@ export const InboxMenu = () => {
                 <Root marginX="auto" padding={4}>
                     <Popover anchor={anchorRef} as={Dropdown} onClose={() => setAnchorRef(false)} placement="bottom-end" subheading="Inboxes">
                         <MenuItem
-                            actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                            actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                             icon={AllInboxesIcon}
                             label="All"
                             onClick={noop}
                         />
                         <MenuItem
-                            actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                            actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                             icon={InboxIcon}
                             iconColor="blue"
                             label="Inbox"
                             onClick={noop}
                         />
                         <MenuItem
-                            actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                            actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                             icon={UnassignedIcon}
                             iconColor="lavender"
                             label="Unassigned"
                             onClick={noop}
                         />
                         <MenuItem
-                            actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                            actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                             icon={PriorityIcon}
                             iconColor="red"
                             label="Priority"
                             onClick={noop}
                         />
                         <MenuItem
-                            actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                            actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                             icon={StarIcon}
                             iconColor="yellow"
                             label="Starred"

@@ -15,4 +15,8 @@ const Box = styled.div`
     ${zIndex};
 `;
 
+Box.defaultProps = {
+	backgroundColor: 'transparent'
+}
+
 export default Box;

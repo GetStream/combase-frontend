@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { interactions, layout } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import { ButtonBase } from '../shared';
 
-const Root = styled(Box).attrs(({ as }) => ({
-    as,
-    backgroundColor: 'transparent',
-}))`
+const Root = styled(ButtonBase)`
     ${layout};
     border: 0;
     padding: 0;
@@ -33,8 +30,8 @@ const Root = styled(Box).attrs(({ as }) => ({
         ${({ color, interaction, theme }) =>
             interaction === 'bubble'
                 ? `
-		width: 125%;
-		height: 125%;
+		width: 150%;
+		height: 150%;
 		position: absolute;
 		background-color: ${theme.colors[`${color}A`][color === 'border' ? 16 : 8]};
 		border-radius: 50%;
@@ -84,6 +81,7 @@ const IconButton = forwardRef(({ as, className, color, disabled, icon: Icon, onC
 });
 
 IconButton.propTypes = {
+    as: PropTypes.string,
     color: PropTypes.string,
     size: PropTypes.number,
     disabled: PropTypes.bool,
@@ -92,7 +90,6 @@ IconButton.propTypes = {
 };
 
 IconButton.defaultProps = {
-    as: 'button',
     color: 'text',
     interaction: 'bubble',
     size: 4,

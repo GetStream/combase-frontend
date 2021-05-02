@@ -68,7 +68,7 @@ export const SearchToolbar = forwardRef(
         },
         ref
     ) => {
-        const [inputProps, { focused, hasValue }] = useInput({
+        const [inputProps, { hasValue }] = useInput({
             name,
             onBlur,
             onChange,
@@ -78,9 +78,9 @@ export const SearchToolbar = forwardRef(
         });
 
         return (
-            <Box className={className} paddingBottom={1} paddingX={3} ref={ref}>
-                <Root borderRadius={2}>
-                    <Icon width={7}>
+            <Box className={className} paddingBottom={2} ref={ref}>
+                <Root borderRadius={1}>
+                    <Icon width={8}>
                         <SearchIcon color="altText" size={4} />
                     </Icon>
                     <InputComponent
@@ -88,8 +88,8 @@ export const SearchToolbar = forwardRef(
                         {...rest}
                         ref={inputRef}
                         $hasValue={hasValue}
-                        minHeight={5}
-                        paddingX={7}
+                        minHeight={8}
+                        paddingX={8}
                         placeholder="Search"
                     />
                 </Root>

@@ -34,8 +34,7 @@ const initialChips = ['Important'];
 const renderChip = (label, actions, i, cursor) => (
     <Chip
         action={CloseCircleIcon}
-        backgroundColor="yellow"
-        color="white"
+        color="yellow"
         icon={TagIcon}
         key={label}
         label={label}
@@ -171,7 +170,7 @@ export const AutocompleteExample = () => {
     const handleFocus = () => {
         toggleDropdown(true);
     };
-
+	console.log(open)
     return (
         <>
             <TextInput
@@ -186,11 +185,10 @@ export const AutocompleteExample = () => {
                 <DropdownButton icon={DropdownIcon} onClick={toggleDropdown} open={open} />
             </TextInput>
             <Popover
-                anchor={anchorRef}
+                anchor={open && anchorRef}
                 as={Dropdown}
                 modifiers={dropdownModifiers}
                 onClose={handleClose}
-                open={open}
                 placement="bottom"
                 subheading="Suggestions"
             >

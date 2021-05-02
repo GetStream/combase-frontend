@@ -37,5 +37,5 @@ export const Primary = () => {
 
 export default {
     component: SelectButton,
-    title: 'Buttons/SelectButton',
+    title: 'Inputs/SelectButton',
 };

@@ -8,9 +8,11 @@ const Global = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    body {
+    html, body {
         margin: 0;
         padding: 0;
+		height: 100%;
+		width: 100%;
         background-color: ${({ theme }) => theme.colors.background};
     }
 
@@ -18,6 +20,18 @@ const Global = createGlobalStyle`
         outline: 0;
         border: 0;
     }
+
+	.sb-show-main.sb-main-padded {
+		padding: .5rem;
+		height: 100%;
+
+		& > #root {
+			border-radius: ${({ theme }) => theme.radii[2]};
+			padding: 1rem;
+			background-color: ${({ theme }) => theme.colors.surface};
+			height: 100%;
+		}
+	}
 `;
 
 

@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { interactions, layout, shadow, variant } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
 import { Spinner } from '../../Feedback';
 import { IconLabel } from '../../IconLabel';
 
+import { ButtonBase } from '../shared';
 import { buttonSizeVariants, buttonVisualVariants } from './variants';
 
-const Root = styled(Box).attrs(props => ({
-    as: props?.as || 'button',
+const Root = styled(ButtonBase).attrs(() => ({
     borderRadius: 3,
     minHeight: 8,
     paddingX: 4,

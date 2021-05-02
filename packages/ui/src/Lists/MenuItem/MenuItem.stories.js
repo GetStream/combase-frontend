@@ -12,30 +12,30 @@ const noop = () => null;
 export const MenuItems = () => (
     <Box>
         <Menu subheading="Conversations">
-            <MenuItem actions={[<ChevronRightIcon color="border" key={0} size={1} />]} icon={AllInboxesIcon} label="All" onClick={noop} />
+            <MenuItem actions={[<ChevronRightIcon color="border" key={0} size={4} />]} icon={AllInboxesIcon} label="All" onClick={noop} />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={InboxIcon}
                 iconColor="blue"
                 label="Inbox"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={UnassignedIcon}
                 iconColor="lavender"
                 label="Unassigned"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={PriorityIcon}
                 iconColor="red"
                 label="Priority"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={StarIcon}
                 iconColor="yellow"
                 label="Starred"
@@ -44,35 +44,35 @@ export const MenuItems = () => (
         </Menu>
         <Menu>
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={TagIcon}
                 iconColor="altTextA.40"
                 label="All"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={TagIcon}
                 iconColor="altTextA.40"
                 label="Inbox"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={TagIcon}
                 iconColor="altTextA.40"
                 label="Unassigned"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={TagIcon}
                 iconColor="altTextA.40"
                 label="Priority"
                 onClick={noop}
             />
             <MenuItem
-                actions={[<ChevronRightIcon color="border" key={0} size={1} />]}
+                actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                 icon={TagIcon}
                 iconColor="altTextA.40"
                 label="Starred"
@@ -85,16 +85,16 @@ export const Display = () => <MenuItem icon={StarIcon} iconColor="yellow" label=
 
 export const WithActions = () => (
     <MenuItem
-        actions={[<IconButton color="text" icon={SearchIcon} key={0} size={1} />, <IconButton color="text" icon={AddIcon} key={1} size={1} />]}
+        actions={[<IconButton color="text" icon={SearchIcon} key={0} size={4} />, <IconButton color="text" icon={AddIcon} key={1} size={4} />]}
         icon={StarIcon}
         iconColor="yellow"
         label="Label"
         onClick={noop}
     />
 );
-export const NoIcon = () => <MenuItem actions={[<ChevronRightIcon color="border" key={0} size={1} />]} label="Label" onClick={noop} />;
+export const NoIcon = () => <MenuItem actions={[<ChevronRightIcon color="border" key={0} size={4} />]} label="Label" onClick={noop} />;
 export const Default = () => (
-    <MenuItem actions={[<IconButton color="text" icon={SearchIcon} key={0} size={1} />]} icon={InboxIcon} label="Inbox" onClick={noop} />
+    <MenuItem actions={[<IconButton color="text" icon={SearchIcon} key={0} size={4} />]} icon={InboxIcon} label="Inbox" onClick={noop} />
 );
 
 export default {
