@@ -48,7 +48,9 @@ export const ListItem = ({ active, alignCheckbox, columnTemplate, children, inte
                 {selectable ? (
                     <CheckboxInput
                         $alignCheckbox={alignCheckbox}
-                        onChange={onSelect}
+                        onChange={val => {
+                            onSelect?.(val);
+                        }}
                         value={isSelected}
                     />
                 ) : null}

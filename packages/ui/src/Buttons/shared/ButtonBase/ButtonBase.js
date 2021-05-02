@@ -1,17 +1,20 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, forwardRef } from 'react';
 import styled from 'styled-components';
 
 import { Box } from '../../../Layout';
 
-const Root = styled(Box)``;
+const Root = styled(Box)`
+	margin: 0;
+	border: 0;
+`;
 
-const ButtonBase = ({ as, children, className, onClick, type, value, ...rest }) => {
+const ButtonBase = forwardRef(({ as, children, className, onClick, type, value, ...rest }, ref) => {
 	const handleClick = useCallback((e) => {
-		onClick(e, value);
+		onClick(value, e);
 	}, [onClick, value]);
 
-	return <Root {...rest} data-testid="button-base" as={as} children={children} className={className} onClick={handleClick} type={type} />;
-}
+	return <Root {...rest} data-testid="button-base" as={as} children={children} className={className} onClick={handleClick} ref={ref} type={type} />;
+})
 
 ButtonBase.defaultProps = {
 	as: 'button',

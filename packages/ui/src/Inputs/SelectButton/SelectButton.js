@@ -77,7 +77,7 @@ export const SelectButton = forwardRef(
         return (
             <>
                 <InputBase type="hidden" ref={inputRef} {...inputProps} />
-                <Button {...props} onClick={e => setAnchorRef(e.nativeEvent.target)} reverseLabel>
+                <Button {...props} onClick={(v, e) => setAnchorRef(e.nativeEvent.target)} reverseLabel>
                     <DropdownIcon />
                     <Text>{label}</Text>
                 </Button>

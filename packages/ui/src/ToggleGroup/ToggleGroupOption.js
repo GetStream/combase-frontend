@@ -3,19 +3,22 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space } from '@combase.app/styles';
 
+import { ButtonBase } from '../Buttons/shared';
 import { Text } from '../Text';
 
-const Root = styled(Text)`
+const Root = styled(ButtonBase)`
     ${space};
     flex: 1;
     height: 100%;
     width: 100%;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     user-select: none;
     opacity: ${({ active }) => (active ? 1 : 0.48)};
+	&, & > ${Text} {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 const ToggleGroupOption = ({ active, children, index, onClick, reportActive, value }) => {
@@ -29,7 +32,7 @@ const ToggleGroupOption = ({ active, children, index, onClick, reportActive, val
 
     return (
         <Root color={active ? 'slate' : 'text'} active={active} fontWeight="500" margin={0} onClick={handleClick} paddingX={3} variant="label">
-            {children}
+            <Text>{children}</Text>
         </Root>
     );
 };
