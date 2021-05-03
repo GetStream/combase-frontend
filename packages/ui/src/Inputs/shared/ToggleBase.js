@@ -37,7 +37,7 @@ export const ToggleBase = forwardRef((props, ref) => {
         indeterminate,
         indeterminateIcon,
         name,
-		onClick,
+        onClick,
         onBlur,
         onChange,
         onFocus,
@@ -52,18 +52,18 @@ export const ToggleBase = forwardRef((props, ref) => {
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
 
-	const handleClick = (e) => {
-		e.stopPropagation();
-		e.nativeEvent.stopImmediatePropagation();
-		internalInputRef.current?.click();
-		if (onClick) {
-			onClick(e);
-		}
-	}
+    const handleClick = (_, e) => {
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        internalInputRef.current?.click();
+        if (onClick) {
+            onClick(e);
+        }
+    };
 
     const handleInputChange = event => {
         event.stopPropagation();
-    	event.nativeEvent.stopImmediatePropagation();
+        event.nativeEvent.stopImmediatePropagation();
 
         if (event.nativeEvent.defaultPrevented) {
             return;
@@ -142,5 +142,5 @@ ToggleBase.propTypes = {
 
 ToggleBase.defaultProps = {
     color: 'primary',
-	type: 'button',
+    type: 'button',
 };
