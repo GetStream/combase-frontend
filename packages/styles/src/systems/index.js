@@ -15,14 +15,29 @@ export const placeholderColor = system({
     },
 });
 
+export const colorAlpha = system({
+    backgroundColor: {
+        property: 'backgroundColor',
+        scale: 'colors',
+		transform: (v, scale, { backgroundColorAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], backgroundColorAlpha),
+    },
+    color: {
+        property: 'color',
+        scale: 'colors',
+		transform: (v, scale, { colorAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], colorAlpha),
+    },
+});
+
 export const fill = system({
     color: {
         property: 'fill',
         scale: 'colors',
+		transform: (v, scale, { fillAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], fillAlpha),
     },
     fill: {
         property: 'fill',
         scale: 'colors',
+		transform: (v, scale, { fillAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], fillAlpha),
     },
 });
 
@@ -54,13 +69,13 @@ export const interactions = ({ active, color = 'text', disabled, hoverColor, the
                   highlight: {
                       cursor: disabled ? 'inherit' : 'pointer',
                       transition: ({ easing }) => `120ms background ${easing.move}`,
-                      backgroundColor: active ? `${color}A.2` : 'transparent',
+                      backgroundColor: active ? theme.utils.colors.fade(hoverColor || color, 0.02) : 'transparent',
                       boxShadow: 'unset',
                       '&:hover': {
-                          backgroundColor: `${color}A.2`,
+                          backgroundColor: theme.utils.colors.fade(hoverColor || color, 0.02),
                       },
                       '&:active': {
-                          backgroundColor: `${color}A.4`,
+                          backgroundColor: theme.utils.colors.fade(hoverColor || color, 0.04),
                       },
                   },
                   bump: {
@@ -78,11 +93,11 @@ export const interactions = ({ active, color = 'text', disabled, hoverColor, the
                   },
                   hover: {
                       cursor: disabled ? 'inherit' : 'pointer',
-                      backgroundColor: active ? `${color}A.2` : 'transparent',
+                      backgroundColor: active ? theme.utils.colors.fade(color, 0.02) : 'transparent',
                       [`@media (min-width: ${theme.breakpoints[1]})`]: {
                           transition: ({ easing }) => `56ms background ${easing.move}`,
                           '&:hover': {
-                              backgroundColor: hoverColor || `${color}A.2`,
+                              backgroundColor: theme.utils.colors.fade(color, 0.02),
                           },
                       },
                   },

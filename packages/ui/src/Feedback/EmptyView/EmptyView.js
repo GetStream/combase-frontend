@@ -1,13 +1,14 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { layout, space } from '@combase.app/styles';
+import { colorAlpha, layout, space } from '@combase.app/styles';
 
 import { Box, Container } from '../../Layout';
 import { Text } from '../../Text';
 
 const Root = styled(Box)`
     ${layout};
+	${colorAlpha};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,17 +17,18 @@ const Root = styled(Box)`
 `;
 
 const Label = styled(Text)`
+	${colorAlpha};
     ${space};
     text-align: center;
     user-select: none;
 `;
 
-const EmptyView = forwardRef(({ backgroundColor, children, color, error, gap, icon, iconColor, loading, size, title, ...rest }, ref) => (
+const EmptyView = forwardRef(({ backgroundColor, children, colorAlpha, color, error, gap, icon, iconColor, loading, size, title, ...rest }, ref) => (
     <Root {...rest} backgroundColor={backgroundColor} borderRadius={3} ref={ref}>
         <Container maxWidth={16}>
             {icon || null}
             {title ? (
-                <Label color={color} fontWeight="600" marginBottom={gap} fontSize={4}>
+                <Label color={color} opacity={colorAlpha} fontWeight="600" marginBottom={gap} fontSize={4}>
                     {title}
                 </Label>
             ) : null}
@@ -41,8 +43,10 @@ EmptyView.propTypes = {
 };
 
 EmptyView.defaultProps = {
-    backgroundColor: 'textA.2',
-    color: 'altTextA.56',
+    backgroundColor: 'text',
+	backgroundColorAlpha: 0.02,
+    color: 'altText',
+	colorAlpha: .56,
     gap: 2,
     minHeight: [14, 16],
     size: 4,

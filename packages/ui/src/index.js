@@ -1,6 +1,7 @@
 export * from './Avatar';
 export * from './Buttons';
 export * from './Cards';
+export * from './Chat';
 export * from './Chip';
 export * from './Feedback';
 export * from './Icon';

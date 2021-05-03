@@ -14,7 +14,7 @@ const Root = styled.svg`
     }
 
     & circle:first-child {
-        stroke: ${({ $color, theme }) => theme.utils.colors.fade(theme.colors[$color], 0.8)};
+        stroke: ${({ $color, theme }) => theme.utils.colors.fade(theme.colors[$color], 0.08)};
     }
 
     & circle:last-child {
@@ -53,7 +53,7 @@ Spinner.propTypes = {
 
 Spinner.defaultProps = {
     color: 'primary',
-    size: 6,
+    size: 7,
 };
 
 export default Spinner;

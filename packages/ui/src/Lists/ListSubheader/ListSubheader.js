@@ -4,7 +4,7 @@ import { Text } from '../../Text';
 
 export const ListSubheader = ({ children, ...rest }) => (
     <Box {...rest}>
-        <Text color="altTextA.64" fontSize={2} fontWeight="600" lineHeight={4}>
+        <Text color="altText" fontSize={2} fontWeight="600" lineHeight={4}>
             {children}
         </Text>
     </Box>

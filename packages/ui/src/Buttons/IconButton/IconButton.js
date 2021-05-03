@@ -33,7 +33,7 @@ const Root = styled(ButtonBase)`
 		width: 150%;
 		height: 150%;
 		position: absolute;
-		background-color: ${theme.colors[`${color}A`][color === 'border' ? 16 : 8]};
+		background-color: ${theme.utils.colors.fade(theme.colors[color], color === 'border' ? .16 : .08)};
 		border-radius: 50%;
 		z-index: 0;
 		transform: scale(0);
@@ -57,17 +57,13 @@ const Root = styled(ButtonBase)`
 `;
 
 const IconButton = forwardRef(({ as, className, color, disabled, icon: Icon, onClick, size, style, ...rest }, ref) => {
-    const handleClick = useCallback(e => {
-        e.stopPropagation();
-        onClick?.(e);
-    }, []);
     return (
         <Root
             as={as}
             className={className}
             color={color}
             disabled={disabled}
-            onClick={!disabled ? handleClick : undefined}
+            onClick={!disabled ? onClick : undefined}
             ref={ref}
             size={size}
             style={style}

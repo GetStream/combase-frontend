@@ -7,6 +7,9 @@ import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
 import { useReactiveMedia } from 'hooks';
+import { Conversations } from 'screens';
+
+import { SidebarNav } from 'components/SidebarNav';
 
 const Root = styled(Box)`
     height: 100%;
@@ -33,11 +36,11 @@ const Dashboard = () => {
 	return (
 		<ShellProvider>
 			<Root>
-				{isSm ? <div /> : null}
+				{isSm?.matches ? <SidebarNav /> : null}
 				<Switch>
 					<Route 
 						path="/dashboard/conversations/:inbox/:channelId?"
-						components={Conversations} 
+						component={Conversations} 
 					/>
 					<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
 				</Switch>

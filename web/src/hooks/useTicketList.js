@@ -88,7 +88,7 @@ export const useTicketList = (filter, sort, opts) => {
         [apollo, count, queryOpts, sort, opts]
     );
 
-    const [{ loading }, loadMore] = useAsyncFn(queryChannels, [queryChannels]);
+    const [{ error, loading }, loadMore] = useAsyncFn(queryChannels, [queryChannels]);
 
     useEffect(() => {
         loadMore(true);
@@ -111,5 +111,5 @@ export const useTicketList = (filter, sort, opts) => {
         [inbox]
     );
 
-    return [data?.entities, { loading, onClickTicket, loadMore }];
+    return [data?.entities, { error, loading, onClickTicket, loadMore }];
 };

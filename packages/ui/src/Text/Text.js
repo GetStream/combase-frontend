@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { borderRadius, color, space, system, typography, variant } from '@combase.app/styles';
+import { color, space, system, typography, variant } from '@combase.app/styles';
 
 import { Placeholder } from '../Placeholder';
 

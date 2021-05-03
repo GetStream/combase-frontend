@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { shadow, layout, wrapperBorderRadius } from '@combase.app/styles';
+import { colorAlpha, shadow, layout, wrapperBorderRadius } from '@combase.app/styles';
 import { animated, useSpring } from 'react-spring';
 
 import { Box } from '../Layout';
@@ -9,6 +9,7 @@ import { Box } from '../Layout';
 const Root = styled(Box)`
     ${layout};
     ${wrapperBorderRadius};
+	${colorAlpha};
     position: relative;
     display: flex;
     flex-direction: row;
@@ -53,9 +54,9 @@ const ToggleGroup = ({ children, onChange, value }) => {
     }, [children, reportActive, onChange, value]);
 
     return (
-        <Root backgroundColor="textA.5" borderRadius={1} minHeight={8}>
+        <Root backgroundColor="text" backgroundColorAlpha={0.04} borderRadius={2} minHeight={8}>
             {children?.length ? (
-                <Active backgroundColor="white" borderRadius={1} boxShadow={3} optionCount={children?.length || 0} style={{ x }} />
+                <Active backgroundColor="white" borderRadius={2} boxShadow={3} optionCount={children?.length || 0} style={{ x }} />
             ) : null}
             {options}
         </Root>
