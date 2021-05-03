@@ -10,7 +10,9 @@ const Root = styled(Box)`
 
 const ButtonBase = forwardRef(({ as, children, className, onClick, type, value, ...rest }, ref) => {
 	const handleClick = useCallback((e) => {
-		onClick(value, e);
+		if (onClick) {
+			onClick(value, e);
+		}
 	}, [onClick, value]);
 
 	return <Root {...rest} data-testid="button-base" as={as} children={children} className={className} onClick={handleClick} ref={ref} type={type} />;

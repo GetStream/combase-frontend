@@ -26,4 +26,5 @@ export const sizes = [
 	'85rem',
 ];
 sizes.small = '0.5rem';
+sizes.sidenav = '3.5rem';
 sizes.drawer = '18rem';

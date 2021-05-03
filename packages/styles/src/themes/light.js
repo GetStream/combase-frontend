@@ -1,18 +1,18 @@
-import createTheme from './createTheme';
+import base from './base';
 
-const light = createTheme(({ colors, utils }) => ({
+export const light = {
+	...base,
 	colors: {
-		primary: colors.blue,
-		background: colors.offWhite,
-		border:colors.gray,
-		disabled: colors.lightGray,
-		shadow: utils.colors.darken(colors.gray, .24),
-		surface: colors.white,
-		text: colors.slate,
-		altText: colors.lavender,
+		...base.colors,
+		primary: base.colors.blue,
+		background: base.colors.offWhite,
+		border:base.colors.gray,
+		disabled: base.colors.lightGray,
+		shadow: base.utils.colors.darken(base.colors.gray, .24),
+		surface: base.colors.white,
+		text: base.colors.slate,
+		altText: base.colors.lavender,
 	},
 	dark: false,
 	name: 'light',
-}));
-
-export { light };
+}

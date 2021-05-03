@@ -14,7 +14,7 @@ const Root = styled.svg`
     }
 
     & circle:first-child {
-        stroke: ${({ $color, theme }) => theme.colors[`${$color}A`][8]};
+        stroke: ${({ $color, theme }) => theme.utils.colors.fade(theme.colors[$color], 0.8)};
     }
 
     & circle:last-child {

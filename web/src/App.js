@@ -1,15 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { ApolloProvider } from '@combase.app/apollo';
+import { themes } from '@combase.app/styles';
+
 import {Auth, Dashboard} from './shells';
 
 function App() {
   return (
-    <Router>
-		<Switch>
-			<Route path="/auth" component={Auth} />
-			<Route path="/dashboard" component={Dashboard} />
-		</Switch>
-	</Router>
+    <ThemeProvider theme={themes.light}>
+        <ApolloProvider endpoint={process.env.REACT_APP_API_URL}>		
+			<Router>
+				<Switch>
+					<Route path="/dashboard" component={Dashboard} />
+					<Route path="/" component={Auth} />
+				</Switch>
+			</Router>
+		</ApolloProvider>
+	</ThemeProvider>
   );
 }
 

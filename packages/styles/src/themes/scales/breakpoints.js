@@ -10,3 +10,10 @@ export const breakpoints = [
 	'128rem',
 	'136rem',
 ];
+
+breakpoints.xs = breakpoints[0];
+breakpoints.sm = breakpoints[1];
+breakpoints.md = breakpoints[2];
+breakpoints.lg = breakpoints[3];
+breakpoints.xl = breakpoints[4];
+breakpoints.xxl = breakpoints[5];
