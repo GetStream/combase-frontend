@@ -76,11 +76,11 @@ export const routes = [
     //     icon: KnowledgeBaseIcon,
     //     to: '/dashboard/knowledge-base',
     // },
-    // {
-    //     exact: false,
-    //     path: '/dashboard/settings',
-    //     name: 'Settings',
-    //     icon: SettingsIcon,
-    //     to: '/dashboard/settings',
-    // },
+    {
+        exact: false,
+        path: '/dashboard/settings',
+        name: 'Settings',
+        icon: SettingsIcon,
+        to: '/dashboard/settings',
+    },
 ];

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Box } from '../../../Layout';
 
-export default styled(Box).attrs({
+const ChannelPreviewToggles = styled(Box).attrs({
     paddingY: 1,
 })`
     display: flex;
@@ -18,3 +18,6 @@ export default styled(Box).attrs({
         margin-left: ${({ theme }) => theme.space[2]};
     }
 `;
+
+
+export default ChannelPreviewToggles;

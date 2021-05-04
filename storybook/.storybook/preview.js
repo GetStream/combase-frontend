@@ -22,13 +22,10 @@ const Global = createGlobalStyle`
     }
 
 	.sb-show-main.sb-main-padded {
-		padding: .5rem;
+		padding: 0;
 		height: 100%;
 
 		& > #root {
-			border-radius: ${({ theme }) => theme.radii[2]};
-			padding: 1rem;
-			background-color: ${({ theme }) => theme.colors.surface};
 			height: 100%;
 		}
 	}

@@ -38,7 +38,7 @@ const Label = styled(Text)`
     pointer-events: none;
     opacity: ${({ $active, $error }) => ($active || $error ? 1 : 0.56)};
     color: ${({ $active, $error, theme }) => theme.colors[$error ? 'error' : $active ? 'primary' : 'text']};
-    transform: ${({ $active }) => `translate3d(0, ${$active ? -10 : 4}px, 0) scale(${$active ? 0.625 : 1})`};
+    transform: ${({ $active }) => `translate3d(0, ${$active ? -8 : 4}px, 0) scale(${$active ? 0.75 : 1})`};
     transition: 0.2s transform, color cubic-bezier(0.4, 0, 0.2, 1), opacity cubic-bezier(0.4, 0, 0.2, 1);
 
     ${Root}:focus-within > & {

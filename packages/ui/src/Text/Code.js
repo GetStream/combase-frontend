@@ -7,7 +7,7 @@ export const Code = styled(Text).attrs({
 })`
     display: inline-flex;
     border-radius: ${({ theme }) => theme.radii[0]};
-    background-color: ${({ theme }) => theme.colors.textA[5]};
+    background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors.text, 0.05)};
     border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
@@ -15,5 +15,5 @@ Code.defaultProps = {
     fontSize: 2,
     paddingX: 1,
     paddingY: 'small',
-    color: 'primaryA.64',
+    color: 'primary',
 };

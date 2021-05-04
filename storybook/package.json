@@ -8,6 +8,10 @@
     "build": "build-storybook -s public"
   },
   "dependencies": {
+	"@combase.app/apollo": "*",
+	"@combase.app/chat": "*",
+	"@combase.app/styles": "*",
+	"@combase.app/ui": "*",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/react": "^6.2.9"

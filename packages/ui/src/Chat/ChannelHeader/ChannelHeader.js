@@ -72,7 +72,7 @@ export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, 
             Boolean(scrollbars?.anim) && animated
                 ? {
                       height: scrollbars?.anim.value.to({
-                          output: [theme.sizes[10], theme.sizes[9]],
+                          output: [theme.sizes[12], theme.sizes[11]],
                           range: [0, scrollbars?.threshold],
                           extrapolate: 'clamp',
                       }),
@@ -82,11 +82,11 @@ export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, 
     );
 
     return (
-        <Root maxWidth={17} minHeight={8}>
-            <Wrapper maxWidth={17} style={style}>
+        <Root maxWidth={18} minHeight={11}>
+            <Wrapper maxWidth={18} style={style}>
                 <Main>
                     {showBackBtn ? <BackBtn size={4} icon={ArrowBackIcon} onClick={onBackClick} /> : null}
-                    <Entity icon={<Avatar name={user?.name} size={5} src={user?.avatar} />}>
+                    <Entity icon={<Avatar name={user?.name} size={7} src={user?.avatar} />}>
                         <Text as={!user?.name ? Placeholder : undefined}>{user?.name}</Text>
                         <PartnerStatus lastActive={lastActive} user={user} />
                     </Entity>

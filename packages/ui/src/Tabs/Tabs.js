@@ -58,7 +58,7 @@ export const Tabs = ({ children, onChange, value }) => {
     }, [children, onChange, value]);
 
     return (
-        <Root>
+        <Root paddingBottom={2}>
             {tabs}
             <Active style={activeStyle} />
         </Root>

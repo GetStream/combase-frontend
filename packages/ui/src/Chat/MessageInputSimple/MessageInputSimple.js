@@ -122,7 +122,7 @@ export const MessageInputSimple = props => {
         <Root backgroundColor="surface" borderTopLeftRadius={2} borderTopRightRadius={2} gutter={false} paddingY={1}>
             <Wrapper minHeight={7} paddingTop={1} paddingBottom={1}>
                 <ActionButton marginRight={[1, 1, 2]} paddingBottom={1}>
-                    <IconButton icon={AttachmentIcon} size={[4, 4, 5]} />
+                    <IconButton icon={AttachmentIcon} size={[5, 5, 6]} />
                 </ActionButton>
                 <Input fontFamily="text" marginX={2} borderRadius={2} maxRows={props.maxRows}>
                     <Editable
@@ -146,7 +146,7 @@ export const MessageInputSimple = props => {
                         disabled={disabled}
                         icon={ArrowUpCircleIcon}
                         onClick={editorRef.current?.onSubmit}
-                        size={[4, 4, 5]}
+                        size={[5, 5, 6]}
                     />
                 </ActionButton>
             </Wrapper>

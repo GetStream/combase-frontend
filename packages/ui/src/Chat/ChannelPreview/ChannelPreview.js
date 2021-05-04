@@ -49,7 +49,7 @@ const Toggles = styled(ChannelPreviewToggles)`
     right: 0;
 
     ${Root}:hover & > button:not(.active) {
-        display: block;
+        display: block !important;
     }
 `;
 
@@ -103,7 +103,7 @@ export const ChannelPreview = ({
                                 </Text>
                             </IconLabel>
                         </TextGroup>
-                        {toggles?.length ? <Toggles>{toggles}</Toggles> : null}
+						{toggles?.length ? <Toggles>{toggles}</Toggles> : null}
                     </Header>
                     {!compact ? (
                         <Preview marginTop={1} placeholderWidth={11} as={!message ? Placeholder : undefined} variant="clamped" lineClamp={3}>

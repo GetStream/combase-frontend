@@ -71,7 +71,7 @@ export const ToggleBase = forwardRef((props, ref) => {
 
         onChange(event);
     };
-
+	
     return (
         <Root
             as="span"

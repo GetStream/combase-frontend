@@ -1,6 +1,7 @@
 export * from './Checkbox';
 export * from './ColorInput';
 export * from './Editable';
+export * from './LabelledCheckbox';
 export * from './ScheduleInput';
 export * from './SearchToolbar';
 export * from './SelectButton';

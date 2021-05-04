@@ -54,7 +54,7 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
             Boolean(scrollbars?.anim) && animated
                 ? {
                       height: scrollbars?.anim.value.to({
-                          output: [theme.sizes[10], theme.sizes[8]],
+                          output: [theme.sizes[10], theme.sizes[9]],
                           range: [0, scrollbars?.threshold],
                           extrapolate: 'clamp',
                       }),
@@ -64,14 +64,14 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
     );
 
     return (
-        <Root maxWidth={17} minHeight={8}>
-            <Wrapper maxWidth={17} style={style}>
-                <IconButton icon={ArrowBackIcon} onClick={onBackClick} size={4} />
+        <Root maxWidth={19} minHeight={9}>
+            <Wrapper maxWidth={19} style={style}>
+                <IconButton icon={ArrowBackIcon} onClick={onBackClick} size={5} />
                 <TextGroup variant="centered">
                     <Name as={!user?.name ? Placeholder : 'p'}>{user?.name}</Name>
                     <PartnerStatus user={user} />
                 </TextGroup>
-                <Avatar name={user?.name} size={5} src={user?.image} />
+                <Avatar name={user?.name} size={6} src={user?.image} />
             </Wrapper>
         </Root>
     );

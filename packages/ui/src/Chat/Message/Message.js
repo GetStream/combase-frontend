@@ -17,7 +17,7 @@ import { MessageAttachments } from '../MessageAttachments';
 import { MessageDate } from './MessageDate';
 import { MessageMeta } from './MessageMeta';
 
-const avatarSize = 5;
+const avatarSize = 7;
 
 const Root = styled(Container).attrs({
     gridGap: 3,
@@ -65,7 +65,7 @@ export const Message = React.memo(({ index }) => {
             <Root
                 $ours={isMyMessage}
                 color="text"
-                maxWidth={17}
+                maxWidth={18}
                 variant="contain"
                 data-date={noAvatar && message?.created_at ? format(message.created_at, 'eeee, p') : undefined}
                 data-grouping={grouping}

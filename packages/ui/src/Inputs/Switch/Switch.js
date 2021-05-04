@@ -54,8 +54,8 @@ export const Switch = ({ name, onBlur, onChange, onFocus, size, value }) => {
         type: 'toggle',
         value,
     });
-
-    return (
+    
+	return (
         <ToggleBase {...inputProps} size={size}>
             <Track>
                 <Handle size={size} />

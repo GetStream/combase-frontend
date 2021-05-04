@@ -55,6 +55,10 @@ export const GET_ORGANIZATION_PROFILE = gql`
             agents {
                 count
             }
+			contact {
+				phone
+				email
+			}
             theme
         }
     }

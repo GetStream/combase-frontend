@@ -1,0 +1,1 @@
+export { default as ListDetailSection } from './ListDetailSection';

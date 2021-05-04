@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { Route, useParams } from 'react-router-dom';
 import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
-import { layout } from '@combase.app/styles';
+import { itemGap, layout } from '@combase.app/styles';
 import {
     ArchiveIcon,
     Box,
@@ -46,6 +46,12 @@ const SpinnerWrapper = styled(Box)`
 const ItemContainer = styled(Box).attrs({
     paddingX: 2,
 })``;
+
+const BulkActions = styled(Box)`
+	& > * + * {
+		${itemGap};	
+	}
+`
 
 const sort = { last_message_at: -1 };
 const options = {
@@ -153,6 +159,54 @@ const ChannelList = () => {
     const [selectableItemProps, bulkCheckboxProps, selected] = useBulkSelect(tickets?.edges, selectable);
     const handleEndReached = useCallback(() => tickets?.hasMore && loadMore(), [tickets, loadMore]);
 
+	const handleToggleLabel = useCallback((value, event) => {
+		event.stopPropagation();
+		console.log(value);
+	}, []);
+
+	const renderChannelPreview = useCallback(i => {
+		const { node: ticket } = tickets?.edges?.[i] || {};
+		return (
+			<Route path="/dashboard/conversations/:inbox/:ticketId">
+				{({ match }) => (
+					<ChannelPreview
+						{...selectableItemProps}
+						active={match?.params && match.params.ticketId === ticket?._id}
+						message={ticket?.latestMessage}
+						partnerAvatar={ticket?.user?.avatar}
+						partnerName={ticket?.user?.name}
+						updatedAt={ticket?.latestMessageAt}
+						unread={ticket?.unread}
+						disabled={!ticket?._id}
+						toggles={[
+							<IconButton
+								className={ticket?.starred ? 'active' : undefined}
+								color={ticket?.starred ? 'yellow' : 'border'}
+								size={3}
+								icon={StarIcon}
+								key={0}
+								onClick={handleToggleLabel}
+								value="star"
+							/>,
+							<IconButton
+								className={ticket?.priority ? 'active' : undefined}
+								color={ticket?.priority ? 'red' : 'border'}
+								size={3}
+								active={ticket?.priority}
+								icon={PriorityIcon}
+								key={1}
+								onClick={handleToggleLabel}
+								value="priority"
+							/>,
+						]}
+						value={!ticket?._id}
+						onClick={() => onClickTicket(ticket?._id)}
+					/>
+				)}
+			</Route>
+		);
+	}, [selectableItemProps, onClickTicket, tickets]);
+
     return (
         <ScrollContextProvider type="px">
             <Root>
@@ -167,7 +221,7 @@ const ChannelList = () => {
                         ) : undefined
                     }
                     actions={
-                        <Box>
+                        <BulkActions gapLeft={2}>
                             {selected?.length ? (
                                 <>
                                     <Tooltip text={`Star ${selected?.length} Tickets`}>
@@ -195,7 +249,7 @@ const ChannelList = () => {
                                     />
                                 </Tooltip>
                             )}
-                        </Box>
+                        </BulkActions>
                     }
                     animated={!isSm?.matches}
                     centered={!isSm?.matches}
@@ -211,13 +265,13 @@ const ChannelList = () => {
                         <Container paddingBottom={3}>
                             <ToggleGroup onChange={setStatusFilter} value={statusFilter}>
                                 <ToggleGroupOption value={null}>
-                                    <p>{'All'}</p>
+                                    All
                                 </ToggleGroupOption>
                                 <ToggleGroupOption value="open">
-                                    <p>{'Open'}</p>
+									Open
                                 </ToggleGroupOption>
                                 <ToggleGroupOption value="closed">
-                                    <p>{'Closed'}</p>
+                                    Closed
                                 </ToggleGroupOption>
                             </ToggleGroup>
                         </Container>
@@ -247,35 +301,7 @@ const ChannelList = () => {
                         </Container>
                     )}
                     ItemContainer={ItemContainer}
-                    renderItem={i => {
-                        const { node: ticket } = tickets?.edges?.[i] || {};
-                        return (
-                            <Route path="/dashboard/conversations/:inbox/:ticketId">
-                                {({ match }) => (
-                                    <ChannelPreview
-                                        {...selectableItemProps}
-                                        active={match?.params && match.params.ticketId === ticket?._id}
-                                        message={ticket?.latestMessage}
-                                        partnerAvatar={ticket?.user?.avatar}
-                                        partnerName={ticket?.user?.name}
-                                        updatedAt={ticket?.latestMessageAt}
-                                        unread={ticket?.unread}
-                                        disabled={!ticket?._id}
-                                        toggles={[
-                                            <Tooltip text="Star Ticket">
-                                                <TicketLabelToggle type="star" value={ticket?.starred} />
-                                            </Tooltip>,
-                                            <Tooltip text="Toggle Priority">
-                                                <TicketLabelToggle type="priority" value={ticket?.priority} />
-                                            </Tooltip>,
-                                        ]}
-                                        value={!ticket?._id}
-                                        onClick={() => onClickTicket(ticket?._id)}
-                                    />
-                                )}
-                            </Route>
-                        );
-                    }}
+                    renderItem={renderChannelPreview}
                     totalCount={totalCount}
                 />
             </Root>

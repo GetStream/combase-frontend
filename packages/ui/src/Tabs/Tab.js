@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { space } from '@combase.app/styles';
+import { colorAlpha, layout, space } from '@combase.app/styles';
 
 import { ButtonBase } from '../Buttons/shared';
 import { IconLabel } from '../IconLabel';
@@ -9,24 +9,25 @@ import { Text } from '../Text';
 
 const Root = styled(ButtonBase)`
     ${space};
+	${layout};
+	${colorAlpha};
     position: relative;
     cursor: pointer;
     display: flex;
     flex-direction: row;
+	align-items: center;
     position: relative;
 
-    &:active {
-        &:before {
-            transform: scale(${({ disabled }) => (disabled ? 0 : 0.9)});
-        }
-    }
-
     &:before {
-        top: -37.5%;
-        left: -0.75rem;
-        height: 175% !important;
-        width: calc(100% + 1.5rem);
-        border-radius: ${({ theme }) => theme.borderRadius}rem !important;
+		content: '';
+		position: absolute;
+		background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors.text, 0)};
+		top: 0;
+		left: -0.5rem;
+		height: 100%;
+        width: calc(100% + 1rem);
+        border-radius: ${({ theme }) => theme.radii[1]} !important;
+        transition: 0.16s transform ${({ theme }) => theme.ease};
     }
 
     & ${Text} {
@@ -36,9 +37,20 @@ const Root = styled(ButtonBase)`
         opacity: 0.48;
     }
 
-    .active& ${Text}, &:hover ${Text} {
-        opacity: 1;
+	&:active {
+        &:before {
+            transform: scale(${({ disabled }) => (disabled ? 0 : 0.95)});
+        }
     }
+
+	.active&, &:hover {
+		&:before {
+			background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors.text, 0.04)};
+		}
+		& ${Text} {
+			opacity: 1;
+		}
+	}
 
     & + & {
         margin-left: 1.5rem;
@@ -57,7 +69,7 @@ export const Tab = ({ active, icon, iconSize, reverseLabel, label, onClick, dims
     }, [active, dims]);
 
     return (
-        <Root className={active ? 'active' : null} onClick={onClick} paddingX={2} paddingY={3} ref={ref} value={value}>
+        <Root className={active ? 'active' : null} onClick={onClick} maxHeight={7} paddingX={0} paddingY={3} ref={ref} value={value}>
             <IconLabel reverse={reverseLabel}>
                 {icon || null}
                 <Text fontSize={3} fontWeight="500" lineHeight={3}>
