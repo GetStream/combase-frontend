@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import { gql, useMutation, useQuery, GET_MY_PROFILE } from '@combase.app/apollo';
+import { useToasts } from 'react-toast-notifications';
 
 import { Box, Container, FormikAutosave, ListDetailSection, ScheduleInput, TextInput } from '@combase.app/ui';
 
@@ -37,6 +38,7 @@ const UPDATE_USER_DATA = gql`
 const ProfileSettings = () => {
 	const { data } = useQuery(GET_MY_PROFILE);
 	const [updateUser, { error, loading }] = useMutation(UPDATE_USER_DATA);
+	const { addToast } = useToasts();
 
 	const initialValues = useMemo(
 		() => ({
@@ -81,7 +83,6 @@ const ProfileSettings = () => {
 			await updateUser({
 				update: (cache, { data: { agentUpdate } }) => {
 					const agent = agentUpdate.record;
-					console.log(agent);
 					 cache.writeFragment({
 						data: agent,
 						fragment: gql`
@@ -119,6 +120,7 @@ const ProfileSettings = () => {
 				autoDismiss: true,
 			});
 		} catch (error) {
+			console.log(error);
 			addToast(error.message, {
 				appearance: 'error',
 				autoDismiss: true,
