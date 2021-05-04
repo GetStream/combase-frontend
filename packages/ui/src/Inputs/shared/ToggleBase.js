@@ -25,7 +25,6 @@ const Input = styled.input`
 
 export const ToggleBase = forwardRef((props, ref) => {
     const {
-        checked,
         checkedIcon,
         children,
         className,
@@ -85,7 +84,7 @@ export const ToggleBase = forwardRef((props, ref) => {
             {...other}
         >
             <Input
-                checked={checked}
+                checked={value}
                 disabled={disabled}
                 id={id}
                 name={name}
@@ -98,17 +97,17 @@ export const ToggleBase = forwardRef((props, ref) => {
             />
             {children ? (
                 cloneElement(Children.only(children), {
-                    checked,
+                    checked: value,
                     onClick: handleClick,
                     size,
                     value,
                 })
             ) : (
                 <IconButton
-                    color={indeterminate || checked ? color : 'border'}
+                    color={indeterminate || value ? color : 'border'}
                     disabled={disabled}
                     // eslint-disable-next-line no-nested-ternary
-                    icon={indeterminate ? indeterminateIcon || icon : checked ? checkedIcon : icon}
+                    icon={indeterminate ? indeterminateIcon || icon : value ? checkedIcon : icon}
                     onClick={handleClick}
                     size={size}
                 />
@@ -118,7 +117,6 @@ export const ToggleBase = forwardRef((props, ref) => {
 });
 
 ToggleBase.propTypes = {
-    checked: PropTypes.bool,
     checkedIcon: PropTypes.func,
     className: PropTypes.string,
     color: PropTypes.string,
@@ -138,6 +136,7 @@ ToggleBase.propTypes = {
     size: PropTypes.number,
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     type: PropTypes.oneOf(['button']),
+	value: PropTypes.bool,
 };
 
 ToggleBase.defaultProps = {

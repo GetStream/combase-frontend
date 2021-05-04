@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import { gql, useMutation, useQuery, GET_MY_PROFILE } from '@combase.app/apollo';
 
-import { Box, Container, ListDetailSection, TextInput } from '@combase.app/ui';
+import { Box, Container, FormikAutosave, ListDetailSection, ScheduleInput, TextInput } from '@combase.app/ui';
 
 const InputGroup = styled(Box)`
     display: grid;
@@ -36,7 +36,7 @@ const UPDATE_USER_DATA = gql`
 
 const ProfileSettings = () => {
 	const { data } = useQuery(GET_MY_PROFILE);
-	const [handleUpdateUser, { error, loading }] = useMutation(UPDATE_USER_DATA);
+	const [updateUser, { error, loading }] = useMutation(UPDATE_USER_DATA);
 
 	const initialValues = useMemo(
 		() => ({
@@ -47,52 +47,135 @@ const ProfileSettings = () => {
 			},
 			role: data?.me?.role || '',
 			timezone: data?.me?.timezone || '',
+			schedule: data?.me?.schedule || [
+				{
+					day: [],
+					time: [{}],
+				},
+			],
 		}),
 		[data]
 	);
 
+	const handleSubmit = useCallback(async ({ security, ...values}) => {
+		try {
+			const schedule = values.schedule.map(({__typename, ...v}) => ({
+                ...v,
+                time: v.time.map(({ start, end }) => {
+                    const [startHour, startMinute] = start.split(':');
+                    const [endHour, endMinute] = end.split(':');
+
+                    return {
+                        start: {
+                            hour: parseInt(startHour, 10),
+                            minute: parseInt(startMinute, 10),
+                        },
+                        end: {
+                            hour: parseInt(endHour, 10),
+                            minute: parseInt(endMinute, 10),
+                        },
+                    };
+                }),
+            }));
+
+			await updateUser({
+				update: (cache, { data: { agentUpdate } }) => {
+					const agent = agentUpdate.record;
+					console.log(agent);
+					 cache.writeFragment({
+						data: agent,
+						fragment: gql`
+							fragment UpdateAgentProfile on Agent {
+								name {
+									first
+									display
+								}
+								role
+								email
+								schedule {
+									enabled
+									day
+									time {
+										start: startTime
+										end: endTime
+									}
+								}
+								timezone
+							}
+						`,
+					});
+				},
+				variables: {
+					_id: data.me._id,
+					record: {
+						...values,
+						schedule,
+					},
+				}
+			});
+
+			addToast('Saved.', {
+				appearance: 'success',
+				autoDismiss: true,
+			});
+		} catch (error) {
+			addToast(error.message, {
+				appearance: 'error',
+				autoDismiss: true,
+			})
+		}
+	}, [data]);
+
 	return (
-		<Container variant="fluid">
-			<ListDetailSection title="Your Profile" description="Customize your profile information and how you will appear in conversations with end-users on Combase.">
-				<Formik enableReinitialize initialValues={initialValues} onSubmit={console.log}>
-					{formik => (
-						<Form onSubmit={formik.handleSubmit}>
-							<InputGroup>
-								<div>
-									<TextInput
-										label="Full Name"
-										name="name.full"
-										onBlur={formik.handleBlur}
-										onChange={formik.handleChange}
-										value={formik.values.name?.full}
-									/>
-								</div>
-								<div>
-									<TextInput
-										label="Display Name"
-										name="name.display"
-										onBlur={formik.handleBlur}
-										onChange={formik.handleChange}
-										value={formik.values.name?.display}
-									/>
-								</div>
-								<div>
-									<TextInput
-										label="What I Do"
-										name="role"
-										onBlur={formik.handleBlur}
-										onChange={formik.handleChange}
-										value={formik.values.role}
-									/>
-								</div>
-							</InputGroup>
-						</Form>
-					)}
-				</Formik>
-			</ListDetailSection>
-			<ListDetailSection title="Your Availability" description="Customize how you will appear in conversations with end-users on Combase." />
-			<ListDetailSection title="Two Factor Authentication" description="Secure your account with 2FA." />
-		</Container>
+		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+			{formik => (
+				<Container variant="fluid">
+					<ListDetailSection title="Your Profile" description="Customize your profile information and how you will appear in conversations with end-users on Combase.">
+						<InputGroup>
+							<div>
+								<TextInput
+									label="Full Name"
+									name="name.full"
+									onBlur={formik.handleBlur}
+									onChange={formik.handleChange}
+									value={formik.values.name?.full}
+								/>
+							</div>
+							<div>
+								<TextInput
+									label="Display Name"
+									name="name.display"
+									onBlur={formik.handleBlur}
+									onChange={formik.handleChange}
+									value={formik.values.name?.display}
+								/>
+							</div>
+							<div>
+								<TextInput
+									label="What I Do"
+									name="role"
+									onBlur={formik.handleBlur}
+									onChange={formik.handleChange}
+									value={formik.values.role}
+								/>
+							</div>
+						</InputGroup>
+					</ListDetailSection>
+					<ListDetailSection title="Your Availability" description="Customize how you will appear in conversations with end-users on Combase." >
+						<ScheduleInput 
+							canSave={formik.dirty && formik.isValid}
+							onBlur={formik.handleBlur}
+							onChange={formik.handleChange}
+							onSubmit={formik.handleSubmit}
+							name="schedule"
+							value={formik.values.schedule}
+						/>
+					</ListDetailSection>
+					<ListDetailSection title="Two Factor Authentication" description="Secure your account with 2FA." />
+					<FormikAutosave />
+				</Container>
+			)}
+		</Formik>
 	)
 };
 

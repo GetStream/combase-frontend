@@ -11,7 +11,9 @@ import { IconButton } from '../Buttons';
 
 const Root = styled(Box)`
 	display: flex;
+	align-self: flex-end;
 	align-items: center;
+	justify-content: space-between;
 	transition: 240ms all ${({ theme }) => theme.easing.snapPing};
 	box-shadow: 0px 4px 8px -2px ${({ theme }) => theme.utils.colors.fade(theme.colors.shadow, 0.2)};
 	${layout};
@@ -52,7 +54,7 @@ const animStates = (placement) => ({
 const Snackbar = ({ appearance, children, onDismiss, placement, transitionState }) => {
 	const Icon = iconMap[appearance];
 	return (
-		<Root backgroundColor="surface" boxShadow={2} maxWidth={17} style={animStates(placement)[transitionState]} padding={4} paddingRight={6} borderRadius={2}>
+		<Root backgroundColor="surface" boxShadow={2} width={16} style={animStates(placement)[transitionState]} padding={4} paddingRight={6} borderRadius={2}>
 			<IconLabel marginRight={8} gap={2}>
 				{/* <Icon size={5} color="text" /> */}
 				<IconBubble color={appearance} icon={Icon} />

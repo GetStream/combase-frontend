@@ -27,7 +27,7 @@ export const Checkbox = ({
         type: 'toggle',
         value,
     });
-
+	console.log(inputProps);
     return (
         <ToggleBase
             className={className}
@@ -35,6 +35,7 @@ export const Checkbox = ({
             checkedIcon={checkedIcon}
             disabled={disabled}
             icon={icon}
+			type="button"
             indeterminate={indeterminate}
             indeterminateIcon={indeterminateIcon}
             size={size}

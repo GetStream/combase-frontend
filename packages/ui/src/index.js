@@ -4,6 +4,7 @@ export * from './Cards';
 export * from './Chat';
 export * from './Chip';
 export * from './Feedback';
+export * from './FormikAutosave';
 export * from './Icon';
 export * from './IconBubble';
 export * from './IconLabel';

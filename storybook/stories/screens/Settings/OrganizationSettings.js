@@ -1,10 +1,18 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import { Form, Formik } from 'formik';
-import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
+import { Formik } from 'formik';
+import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from '@combase.app/apollo';
+import { layout } from '@combase.app/styles';
 import { useToasts } from 'react-toast-notifications';
+import { useDropzone } from 'react-dropzone';
 
-import { Box, Container, LabelledCheckbox, ListDetailSection, Text, TextInput } from '@combase.app/ui';
+import { AddImageIcon, Avatar, Box, Container, FormikAutosave, LabelledCheckbox, ListDetailSection, Text, TextInput } from '@combase.app/ui';
+
+const AvatarRow = styled(Box)`
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	grid-column-gap: ${({ theme }) => theme.space[5]};
+`;
 
 const InputGroup = styled(Box)`
     display: grid;
@@ -14,13 +22,27 @@ const InputGroup = styled(Box)`
     grid-row-gap: ${({ theme }) => theme.space[5]};
 
     & > div:nth-child(n + 3) {
-        grid-row: 2;
+        grid-row: 3;
     }
 `;
 
+const Dropzone = styled(Box)`
+    ${layout};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+	border: 2px dashed ${({ theme }) => theme.colors.border};
+	background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors.border, .04)};
+`;
+
 const OrganizationSettings = () => {
-	const { data } = useQuery(GET_ORGANIZATION_PROFILE);
-	const { addToast, removeAllToasts } = useToasts();
+	const { data } = useQuery(GET_ORGANIZATION_PROFILE, { fetchPolicy: 'cache-and-network'});
+	const [updateOrganizationProfile, { loading, error }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
+	const { addToast } = useToasts();
 
 	const initialValues = useMemo(
 		() => ({
@@ -28,27 +50,91 @@ const OrganizationSettings = () => {
 			contact: {
 				phone: data?.organization?.contact?.phone || '',
 				email: data?.organization?.contact?.email || '',
+			},
+			security: {
+				global2Fa: true
 			}
 		}),
 		[data]
 	);
 
-	useEffect(() => {
-		addToast('There was an issue saving your profile changes.', {
-			appearance: 'warning',
-			autoDismiss: true,		
-		})
+	const handleSubmit = useCallback(async ({ security, ...values}) => {
+		try {
+			await updateOrganizationProfile({
+				update: (cache, { data: { organizationUpdate } }) => {
+					const org = organizationUpdate.record;
 
-		return () => {
-			removeAllToasts();
+					 cache.writeFragment({
+						data: org,
+						fragment: gql`
+							fragment UpdateOrganization on Organization {
+								name
+								branding {
+									logo
+									colors {
+										primary
+									}
+								}
+								contact {
+									phone
+									email
+								}
+							}
+						`,
+					});
+				},
+				variables: {
+					_id: data.organization._id,
+					record: values,
+				}
+			});
+
+			addToast('Saved.', {
+				appearance: 'success',
+				autoDismiss: true,
+			});
+		} catch (error) {
+			addToast(error.message, {
+				appearance: 'error',
+				autoDismiss: true,
+			})
 		}
-	}, [])
+	}, [data]);
+
+	const handleDrop = useCallback(acceptedFiles => {
+        let newFile = acceptedFiles[0];
+
+        if (newFile) {
+            setFile({
+                ...newFile,
+                preview: URL.createObjectURL(newFile),
+            });
+        }
+    }, []);
+
+	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ onDrop: handleDrop, multiple: false });
 
 	return (
-		<Formik enableReinitialize initialValues={initialValues} onSubmit={console.log}>
+		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 			{formik => (
-				<Container as={Form} onSubmit={formik.handleSubmit} variant="fluid">
+				<Container variant="fluid">
 					<ListDetailSection title="Brand" description="Customize your organizations logo, colors and more to white-label Combase and customize how you appear in the widget.">
+						<AvatarRow marginBottom={6}>
+							<Box>
+								<Avatar name={formik.values.name} size={12} />
+							</Box>
+							<Box>
+								<Dropzone {...getRootProps()} borderRadius={2} paddingX={3} height={13} backgroundColor="textA.2">
+									<AddImageIcon color="altText" size={8} />
+									<Text marginTop={2} fontSize={3} lineHeight={4}>
+										Click to replace
+									</Text>
+									<Text fontSize={3} lineHeight={5} color="altText">or drag and drop</Text>
+									<Text fontSize={2} lineHeight={2} color="altText" marginTop={2} fontWeight={400}>PNG, JPG or SVG</Text>
+									<input {...getInputProps()} />
+								</Dropzone>
+							</Box>
+						</AvatarRow>
 						<InputGroup>
 							<div>
 								<TextInput
@@ -57,6 +143,15 @@ const OrganizationSettings = () => {
 									onBlur={formik.handleBlur}
 									onChange={formik.handleChange}
 									value={formik.values.name}
+								/>
+							</div>
+							<div>
+								<TextInput
+									label="Primary Color"
+									name="colors.primary"
+									onBlur={formik.handleBlur}
+									onChange={formik.handleChange}
+									value={formik.values.colors?.primary}
 								/>
 							</div>
 						</InputGroup>
@@ -84,10 +179,11 @@ const OrganizationSettings = () => {
 						</InputGroup>
 					</ListDetailSection>
 					<ListDetailSection title="Security" description="Configure the default security settings at the Organization level, to be applied to all agent accounts.">
-						<LabelledCheckbox title="Two Factor Authentication">
+						<LabelledCheckbox name="security.global2Fa" onBlur={formik.handleBlur} onChange={formik.handleChange} checked={formik.values.security.global2Fa} title="Two Factor Authentication">
 							<Text color="altText">Globally enforce 2FA for all Agent Users in your organization.</Text>
 						</LabelledCheckbox>
 					</ListDetailSection>
+					<FormikAutosave />
 				</Container>
 			)}
 		</Formik>

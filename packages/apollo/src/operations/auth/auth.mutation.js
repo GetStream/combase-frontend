@@ -29,3 +29,24 @@ export const ONBOARD_USER_AND_ORG = gql`
         }
     }
 `;
+
+export const UPDATE_ORGANIZATION_PROFILE = gql`
+    mutation updateOrganizationProfile($_id: MongoID!, $record: UpdateByIdOrganizationInput!) {
+        organizationUpdate(_id: $_id, record: $record) {
+            record {
+				_id
+				name
+				branding {
+					logo
+					colors {
+						primary
+					}
+				}
+				contact {
+					email
+					phone
+				}
+			}
+        }
+    }
+`;

@@ -111,13 +111,8 @@ const ScheduleInput = ({ canSave, onChange, onSubmit, name, value }) => {
                                             />
                                         </div>
                                         <div>
-                                            {i > 0 ? (
-                                                <IconButton
-                                                    color={'red'}
-                                                    size={4}
-                                                    icon={CloseCircleIcon}
-                                                    onClick={() => timesArray.remove(i)}
-                                                />
+                                            {i > 0 || i === 0 && time.length > 1 ? (
+												<IconButton color={'red'} size={4} icon={CloseCircleIcon} onClick={() => timesArray.remove(i)} />
                                             ) : null}
                                             {i === time.length - 1 ? (
                                                 <IconButton color={'text'} size={4} icon={AddCircleIcon} onClick={() => timesArray.push({})} />
@@ -133,9 +128,6 @@ const ScheduleInput = ({ canSave, onChange, onSubmit, name, value }) => {
                     <Footer>
                         <Button variant="flat" onClick={() => push(newScheduleData)}>
                             <Text>New Schedule</Text>
-                        </Button>
-                        <Button type="submit" onClick={onSubmit} disabled={!canSave}>
-                            <Text>Save Changes</Text>
                         </Button>
                     </Footer>
                 ) : null}

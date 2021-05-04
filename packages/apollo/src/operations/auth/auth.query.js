@@ -76,6 +76,14 @@ export const GET_MY_PROFILE = gql`
             email
             role
             timezone
+			schedule {
+                enabled
+                day
+                time {
+                    start: startTime
+                    end: endTime
+                }
+            }
         }
     }
 `;
