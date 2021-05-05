@@ -12,7 +12,7 @@ import { routes, renderIconRoute } from './utils';
 const Root = styled(Box).attrs({
     as: 'nav',
     paddingX: 2,
-    paddingY: 2,
+    paddingY: 3,
 })`
     ${layout};
     display: flex;
@@ -27,7 +27,7 @@ const FlexFill = styled(Box).attrs({
 `;
 
 export const SidebarNav = ({ as, children, logoTo, ...rest }) => (
-    <Root {...rest} paddingY={4}>
+    <Root {...rest}>
         <Box marginBottom={3}>
             <NavLink to={logoTo}>
                 <StreamLogo color="primary" size={6} />

@@ -49,6 +49,7 @@ export * from './mail';
 export * from './menu';
 export * from './more';
 export * from './organization';
+export * from './pin';
 export * from './plugins';
 export * from './priority';
 export * from './priorityHigh';

@@ -7,11 +7,7 @@ import { useReactiveMedia } from 'hooks';
 
 import ConversationsMenu from './ConversationsMenu';
 
-const ConversationPanel = styled(Box)`
-    height: 100%;
-    display: grid;
-    grid-template-columns: 1fr ${({ drawer }) => (drawer ? `minmax(20%, 20rem)` : '')};
-`;
+import Conversation from 'screens/Conversation'
 
 const Conversations = () => {
 	const isSm = useReactiveMedia('sm');
@@ -32,14 +28,7 @@ const Conversations = () => {
 	return (
 		<SplitView columnTemplate={columnTemplate}>
 			<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
-			<Route path="/dashboard/conversations/:inbox/:channelId/:page?">
-                {({ match }) => (
-                    <ConversationPanel path="/dashboard/conversations/:inbox/:channelId" drawer={match?.params?.page}>
-                        {/* <Route component={Conversation} path="/dashboard/conversations/:inbox/:channelId" />
-                        <Route component={ConversationDetails} path="/dashboard/conversations/:inbox/:channelId/info" /> */}
-                    </ConversationPanel>
-                )}
-            </Route>
+			<Route path="/dashboard/conversations/:inbox/:channelId" component={Conversation} />
 		</SplitView>
 	);
 }

@@ -284,7 +284,7 @@ const ChannelList = () => {
                     onClose={() => setMenuAnchor(false)}
                     placement={isSm?.matches ? 'bottom-start' : 'bottom'}
                     subheading="Inboxes"
-                    minWidth={14}
+                    minWidth={15}
                 >
                     <InboxSelector onClickItem={() => setMenuAnchor(false)} />
                 </Popover>

@@ -65,7 +65,7 @@ const ComposerToolbar = ({ disabled }) => {
                     ))}
                 </Attachments>
             ) : null}
-            <Root marginTop={2} paddingBottom={2} contentEditable={false}>
+            <Root marginTop={4} paddingBottom={4} contentEditable={false}>
                 <input ref={attachmentInputRef} type="file" style={{ display: 'none' }} onChange={editor.onUpload} />
                 <ActionGroup gapLeft={3}>
                     <Tooltip text="Add Attachment" placement="top">

@@ -7,7 +7,7 @@ import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
 import { useReactiveMedia } from 'hooks';
-import { Conversations } from 'screens';
+import { Conversations, Settings } from 'screens';
 
 import { SidebarNav } from 'components/SidebarNav';
 
@@ -38,6 +38,10 @@ const Dashboard = () => {
 			<Root>
 				{isSm?.matches ? <SidebarNav /> : null}
 				<Switch>
+					<Route 
+						path="/dashboard/settings/:page?"
+						component={Settings} 
+					/>
 					<Route 
 						path="/dashboard/conversations/:inbox/:channelId?"
 						component={Conversations} 
