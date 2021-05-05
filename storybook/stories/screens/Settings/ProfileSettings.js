@@ -1,10 +1,31 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Form, Formik } from 'formik';
-import { gql, useMutation, useQuery, GET_MY_PROFILE } from '@combase.app/apollo';
+import { Formik } from 'formik';
+import { gql, useMutation, useQuery, GET_MY_PROFILE, UPDATE_AGENT_PROFILE_FRAGMENT } from '@combase.app/apollo';
 import { useToasts } from 'react-toast-notifications';
+import { useDropzone } from 'react-dropzone';
 
-import { Box, Container, FormikAutosave, ListDetailSection, ScheduleInput, TextInput } from '@combase.app/ui';
+import { Avatar, AddImageIcon, Box, Container, FormikAutosave, ListDetailSection, Modal, ScheduleInput, Text, TextInput, UpdateAvatarDialog } from '@combase.app/ui';
+import { layout } from '@combase.app/styles';
+
+const AvatarRow = styled(Box)`
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	grid-column-gap: ${({ theme }) => theme.space[5]};
+`;
+
+const Dropzone = styled(Box)`
+    ${layout};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+	border: 2px dashed ${({ theme }) => theme.colors.border};
+	background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors.border, .04)};
+`;
 
 const InputGroup = styled(Box)`
     display: grid;
@@ -39,9 +60,25 @@ const ProfileSettings = () => {
 	const { data } = useQuery(GET_MY_PROFILE);
 	const [updateUser, { error, loading }] = useMutation(UPDATE_USER_DATA);
 	const { addToast } = useToasts();
+	const [avatarFile, setAvatarFile] = useState(null);
+	
+	const handleDrop = useCallback(acceptedFiles => {
+		let newFile = acceptedFiles[0];
+		
+        if (newFile) {
+			setAvatarFile({
+				...newFile,
+                preview: URL.createObjectURL(newFile),
+            });
+        }
+    }, []);
+	
+
+	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ accept: 'image/jpeg, image/png, image/svg+xml', onDrop: handleDrop, multiple: false });
 
 	const initialValues = useMemo(
 		() => ({
+			avatar: data?.me?.avatar || '',
 			email: data?.me?.email || '',
 			name: {
 				display: data?.me?.name?.display || '',
@@ -85,25 +122,7 @@ const ProfileSettings = () => {
 					const agent = agentUpdate.record;
 					 cache.writeFragment({
 						data: agent,
-						fragment: gql`
-							fragment UpdateAgentProfile on Agent {
-								name {
-									first
-									display
-								}
-								role
-								email
-								schedule {
-									enabled
-									day
-									time {
-										start: startTime
-										end: endTime
-									}
-								}
-								timezone
-							}
-						`,
+						fragment: UPDATE_AGENT_PROFILE_FRAGMENT,
 					});
 				},
 				variables: {
@@ -133,6 +152,22 @@ const ProfileSettings = () => {
 			{formik => (
 				<Container variant="fluid">
 					<ListDetailSection title="Your Profile" description="Customize your profile information and how you will appear in conversations with end-users on Combase.">
+						<AvatarRow marginBottom={6}>
+							<Box>
+								<Avatar name={formik.values.name?.display} src={formik.values.avatar} size={12} />
+							</Box>
+							<Box>
+								<Dropzone {...getRootProps()} borderRadius={2} paddingX={3} height={13} backgroundColor="textA.2">
+									<AddImageIcon color="altText" size={8} />
+									<Text marginTop={2} fontSize={3} lineHeight={4}>
+										Click to replace
+									</Text>
+									<Text fontSize={3} lineHeight={5} color="altText">or drag and drop</Text>
+									<Text fontSize={2} lineHeight={2} color="altText" marginTop={2} fontWeight={400}>PNG, JPG or SVG</Text>
+									<input {...getInputProps()} />
+								</Dropzone>
+							</Box>
+						</AvatarRow>
 						<InputGroup>
 							<div>
 								<TextInput
@@ -174,6 +209,15 @@ const ProfileSettings = () => {
 						/>
 					</ListDetailSection>
 					<ListDetailSection title="Two Factor Authentication" description="Secure your account with 2FA." />
+					<Modal 
+						backdrop 
+						open={!!avatarFile} 
+						file={avatarFile} 
+						name="avatar"
+						onSubmit={formik.handleChange}
+						onClose={() => setAvatarFile(null)} 
+						component={UpdateAvatarDialog} 
+					/>
 					<FormikAutosave />
 				</Container>
 			)}

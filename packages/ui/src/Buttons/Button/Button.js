@@ -47,7 +47,7 @@ const Button = forwardRef(({ children, loading, reverseLabel, ...props }, ref) =
 				{children}
 			</IconLabel>
 		) : (
-			<Spinner color="white" size={2} />
+			<Spinner color="white" size={4} />
 		)}
 	</Root>
 ));

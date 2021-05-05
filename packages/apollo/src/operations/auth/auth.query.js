@@ -87,3 +87,24 @@ export const GET_MY_PROFILE = gql`
         }
     }
 `;
+
+export const UPDATE_AGENT_PROFILE_FRAGMENT = gql`
+	fragment UpdateAgentProfile on Agent {
+		avatar
+		name {
+			full
+			display
+		}
+		role
+		email
+		schedule {
+			enabled
+			day
+			time {
+				start: startTime
+				end: endTime
+			}
+		}
+		timezone
+	}
+`

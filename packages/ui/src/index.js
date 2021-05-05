@@ -13,6 +13,7 @@ export * from './Label';
 export * from './Layout';
 export * from './ListDetailSection';
 export * from './Lists';
+export * from './Modals';
 export * from './PageTitle';
 export * from './PageHeader';
 export * from './Placeholder';

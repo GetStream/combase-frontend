@@ -1,29 +1,61 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
-import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
+import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, GET_AGENTS } from '@combase.app/apollo';
 
-import { Box, Container, LabelledCheckbox, ListDetailSection, Text, TextInput } from '@combase.app/ui';
+import { Box, Button, DropdownIcon, TableHeader, Text, Tooltip, useBulkSelect, useEntities } from '@combase.app/ui';
 
-const InputGroup = styled(Box)`
+const Root = styled(Box)`
+    dwidth: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: min-content;
-    grid-column-gap: ${({ theme }) => theme.space[5]};
-    grid-row-gap: ${({ theme }) => theme.space[5]};
-
-    & > div:nth-child(n + 3) {
-        grid-row: 2;
-    }
+    grid-template-rows: min-content 1fr;
 `;
 
 const ManageUsers = () => {
-    const { data } = useQuery(GET_ORGANIZATION_PROFILE);
+    const [agents] = useEntities(GET_AGENTS);
+	const [selectableItem, bulkCheckbox, selected] = useBulkSelect(agents?.edges || [], true);
 
     return (
-        <Container variant="fluid">
-            <Text>Testing</Text>
-        </Container>
+        <Root>
+			<TableHeader
+				backgroundColor="background"
+				columnTemplate="1fr 1.5fr 0.5fr 1fr"
+				indeterminate={bulkCheckbox.indeterminate}
+				onBulkSelect={bulkCheckbox.onChange}
+				checked={bulkCheckbox.value}
+				selectable
+			>
+				<div>
+					<Tooltip text="Sort by Name">
+						<Button size="xs" variant="flat">
+							<Text>{'Name'}</Text>
+						</Button>
+					</Tooltip>
+				</div>
+				<div>
+					<Tooltip text="Sort by Group">
+						<Button size="xs" variant="flat">
+							<Text>{'Groups'}</Text>
+						</Button>
+					</Tooltip>
+				</div>
+				<div>
+					<Tooltip text="Sort by Chat Count">
+						<Button size="xs" variant="flat">
+							<Text>{'Chats'}</Text>
+						</Button>
+					</Tooltip>
+				</div>
+				<div>
+					<Tooltip text="Newest First">
+						<Button size="xs" variant="flat">
+							<Text>{'Created'}</Text>
+							<DropdownIcon size={3} />
+						</Button>
+					</Tooltip>
+				</div>
+			</TableHeader>
+		</Root>
     );
 };
 

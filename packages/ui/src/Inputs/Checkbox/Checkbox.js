@@ -27,7 +27,7 @@ export const Checkbox = ({
         type: 'toggle',
         value,
     });
-	console.log(inputProps);
+
     return (
         <ToggleBase
             className={className}

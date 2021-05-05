@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FieldArray, Formik } from 'formik';
 import { useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
 
-import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, TextInput } from '@combase.app/ui';
+import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, TextInput, ToggleGroup, ToggleGroupOption } from '@combase.app/ui';
 
 const FieldArrayInput = styled(Box)`
 	display: grid;
@@ -32,7 +32,8 @@ const Pre = styled(Box).attrs({
 
 const initialValues = {
 	welcomeMessages: ['Hey 👋', 'Thanks for reaching out!', 'How can we help you today?'],
-	trustedDomains: ['localhost']
+	trustedDomains: ['localhost'],
+	uitheme: 'auto'
 }
 
 const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, values }, name, push, remove }) => {
@@ -52,13 +53,23 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 	));
 }
 
+// TODO: Use live data (need to add some fields to the org model)
 const WidgetSettings = () => {
-	const { data } = useQuery(GET_ORGANIZATION_PROFILE);
 	return (
 		<Formik initialValues={initialValues} onSubmit={console.log}>
 			{
 				formik => (
 					<Container variant="fluid">
+						<ListDetailSection
+							title="Theme"
+							description="Edit the UI theme of the widget (if you have a custom organization theme, those colors will propagate to the widget too.)"
+						>
+							<ToggleGroup name='uitheme' onChange={(value) => formik.setFieldValue('uitheme', value)} value={formik.values.uitheme}>
+								<ToggleGroupOption value="auto">{'Auto'}</ToggleGroupOption>
+								<ToggleGroupOption value="light">{'Light'}</ToggleGroupOption>
+								<ToggleGroupOption value="dark">{'Dark'}</ToggleGroupOption>
+							</ToggleGroup>
+						</ListDetailSection>
 						<ListDetailSection
 							title="Welcome Message"
 							description="Edit the message, or series of messages, that an end-user will receive upon starting a new conversation."
@@ -81,7 +92,7 @@ const WidgetSettings = () => {
 							title="Embed Code"
 							description="Grab a customized embed code for your Chat Widget. Just paste the script tag into your website."
 						>
-							<Pre padding={3} borderRadius={2}>
+							<Pre padding={3} borderRadius={1}>
 								{"<script></script>"}
 							</Pre>
 						</ListDetailSection>
