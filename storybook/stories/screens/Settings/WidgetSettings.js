@@ -19,8 +19,16 @@ const ArrayActions = styled(Box)`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	min-width: ${({ theme }) => theme.sizes[11]}
+	min-width: ${({ theme }) => theme.sizes[11]};
 `;
+
+const Pre = styled(Box).attrs({
+	as: 'pre',
+})`
+	border: 1px solid ${({ theme }) => theme.colors.border};
+	font-family: ${({ theme }) => theme.fonts.code};
+	font-size: ${({ theme }) => theme.fontSizes[2]};
+`
 
 const initialValues = {
 	welcomeMessages: ['Hey 👋', 'Thanks for reaching out!', 'How can we help you today?'],
@@ -72,7 +80,11 @@ const WidgetSettings = () => {
 						<ListDetailSection
 							title="Embed Code"
 							description="Grab a customized embed code for your Chat Widget. Just paste the script tag into your website."
-						/>
+						>
+							<Pre padding={3} borderRadius={2}>
+								{"<script></script>"}
+							</Pre>
+						</ListDetailSection>
 					</Container>
 				)
 			}
