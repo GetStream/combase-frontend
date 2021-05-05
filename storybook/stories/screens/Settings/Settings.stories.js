@@ -68,7 +68,7 @@ export default {
 	decorators: [
 		Story => (
 			<ToastProvider components={toastComponents} transitionDuration={100} placement="top-right">
-				<MemoryRouter initialEntries={['/profile']} initialIndex={0}>
+				<MemoryRouter initialEntries={['/widget']} initialIndex={0}>
 					<Route path="/:page?" component={Story} />
 				</MemoryRouter>
 			</ToastProvider>

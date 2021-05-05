@@ -8,7 +8,7 @@ import { Card } from '../../Cards';
 import { IconLabel } from '../../IconLabel';
 import { Button, IconButton } from '../../Buttons';
 import { Heading, Text, TextGroup } from '../../Text';
-import { AddCircleIcon, CloseCircleIcon } from '../../icons';
+import { AddCircleIcon, AddIcon, CloseCircleIcon } from '../../icons';
 import { Switch } from '../../Inputs';
 import { ListSubheader } from '../../Lists';
 import { Tooltip } from '../../Popovers';
@@ -127,7 +127,8 @@ const ScheduleInput = ({ canSave, onChange, onSubmit, name, value }) => {
                 {index + 1 === value?.length ? (
                     <Footer>
                         <Button variant="flat" onClick={() => push(newScheduleData)}>
-                            <Text>New Schedule</Text>
+							<AddIcon />
+                            <Text>Add Schedule Entry</Text>
                         </Button>
                     </Footer>
                 ) : null}

@@ -1,40 +1,82 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { Form, Formik } from 'formik';
-import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
+import { FieldArray, Formik } from 'formik';
+import { useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
 
-import { Box, Container, LabelledCheckbox, ListDetailSection, Text, TextInput } from '@combase.app/ui';
+import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, TextInput } from '@combase.app/ui';
 
-const InputGroup = styled(Box)`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: min-content;
-    grid-column-gap: ${({ theme }) => theme.space[5]};
-    grid-row-gap: ${({ theme }) => theme.space[5]};
+const FieldArrayInput = styled(Box)`
+	display: grid;
+	grid-template-columns: 1fr min-content;
 
-    & > div:nth-child(n + 3) {
-        grid-row: 2;
-    }
+	& + & {
+		margin-top: ${({ theme }) => theme.space[4]};
+	}
 `;
+
+const ArrayActions = styled(Box)`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	min-width: ${({ theme }) => theme.sizes[11]}
+`;
+
+const initialValues = {
+	welcomeMessages: ['Hey 👋', 'Thanks for reaching out!', 'How can we help you today?'],
+	trustedDomains: ['localhost']
+}
+
+const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, values }, name, push, remove }) => {
+	const value = values[name];
+	return value.map((v, i) => (
+		<FieldArrayInput key={`${name}-${i}`}>
+			<TextInput label={`${i + 1}`} name={`${name}.${i}`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v} />
+			<ArrayActions padding={2}>
+				{i > 0 || i === 0 && value.length > 1 ? (
+					<IconButton color={'red'} size={4} icon={CloseCircleIcon} onClick={() => remove(i)} />
+				) : null}
+				{i === value.length - 1 ? (
+					<IconButton color={'text'} size={4} icon={AddCircleIcon} onClick={() => push('')} />
+				) : null}
+			</ArrayActions>
+		</FieldArrayInput>
+	));
+}
 
 const WidgetSettings = () => {
 	const { data } = useQuery(GET_ORGANIZATION_PROFILE);
-
 	return (
-		<Container variant="fluid">
-			<ListDetailSection
-				title="Welcome Message"
-				description="Edit the series of message(s) that a end-user will receive upon starting a new conversation."
-			/>
-			<ListDetailSection
-				title="Trusted Domains"
-				description="Provide a list of whitelisted domains for the chat widget, so it can only be displayed on your owned pages."
-			/>
-			<ListDetailSection
-				title="Embed Code"
-				description="Grab a customized embed code for your Chat Widget. Just paste the script tag into your website."
-			/>
-		</Container>
+		<Formik initialValues={initialValues} onSubmit={console.log}>
+			{
+				formik => (
+					<Container variant="fluid">
+						<ListDetailSection
+							title="Welcome Message"
+							description="Edit the message, or series of messages, that an end-user will receive upon starting a new conversation."
+						>
+							<FieldArray 
+								name="welcomeMessages"
+								render={renderFieldArray}
+							/>
+						</ListDetailSection>
+						<ListDetailSection
+							title="Trusted Domains"
+							description="Provide a list of whitelisted domains for the chat widget, so it can only be displayed on your owned pages."
+						>
+							<FieldArray 
+								name="trustedDomains"
+								render={renderFieldArray}
+							/>
+						</ListDetailSection>
+						<ListDetailSection
+							title="Embed Code"
+							description="Grab a customized embed code for your Chat Widget. Just paste the script tag into your website."
+						/>
+					</Container>
+				)
+			}
+		</Formik>
 	)
 };
 
