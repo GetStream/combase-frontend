@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Route, Switch, useHistory, useParams } from 'react-router-dom';
 import { AddUsersIcon, Box, Button, Chip, PageHeader, Tabs, Tab, Text, Container, AddTagIcon } from '@combase.app/ui';
 import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
-import { Scrollbars } from 'rc-scrollbars';
+import Scrollbars from 'rc-scrollbars';
 
 import ProfileSettings from './ProfileSettings';
 import OrganizationSettings from './OrganizationSettings';

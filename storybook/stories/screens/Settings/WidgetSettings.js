@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { FieldArray, Formik } from 'formik';
+import Scrollbars from 'rc-scrollbars';
 import { useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
 
 import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, TextInput, ToggleGroup, ToggleGroupOption } from '@combase.app/ui';
