@@ -81,6 +81,6 @@ export const routes = [
         path: '/dashboard/settings',
         name: 'Settings',
         icon: SettingsIcon,
-        to: '/dashboard/settings',
+        to: '/dashboard/settings/profile',
     },
 ];

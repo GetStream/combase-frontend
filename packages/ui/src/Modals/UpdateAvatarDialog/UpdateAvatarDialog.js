@@ -178,7 +178,7 @@ export const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose },
                 </Button>
                 <Button
                     disabled={!formik.dirty || !formik.isValid}
-                    loading
+                    loading={uploading || loading}
                     type="submit"
                     size="sm"
                     onClick={formik.handleSubmit}

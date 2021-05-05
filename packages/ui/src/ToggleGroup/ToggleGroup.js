@@ -18,13 +18,13 @@ const Root = styled(Box)`
 `;
 
 const Active = styled(Box).attrs({ as: animated.div })`
-    ${shadow.boxShadow};
     z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     width: calc(100% / ${({ optionCount }) => optionCount});
+	box-shadow: 0px 2px 8px -2px ${({ theme }) => theme.utils.colors.fade(theme.colors.shadow, 0.5)};
 `;
 
 const ToggleGroup = ({ children, onChange, value }) => {

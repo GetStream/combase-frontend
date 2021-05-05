@@ -37,7 +37,7 @@ export const MessageList = ({ renderItem }) => {
         fetching.current = false;
 	}, [hasMore, loadMore, messages]);
 
-	if (!messages?.length) return <EmptyView minHeight="unset" backgroundColor="transparent" title="">{loading ? <Spinner /> : null}</EmptyView>
+	if (!messages?.length) return <div />
 
     return (
 		<VirtualizedList

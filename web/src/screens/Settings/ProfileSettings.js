@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { gql, useMutation, useQuery, GET_MY_PROFILE, UPDATE_AGENT_PROFILE_FRAGMENT } from '@combase.app/apollo';
 import { useToasts } from 'react-toast-notifications';
 import { useDropzone } from 'react-dropzone';
+import Scrollbars from 'rc-scrollbars';
 
 import { Avatar, AddImageIcon, Box, Container, FormikAutosave, ListDetailSection, Modal, ScheduleInput, Text, TextInput, UpdateAvatarDialog } from '@combase.app/ui';
 import { layout } from '@combase.app/styles';
@@ -148,80 +149,82 @@ const ProfileSettings = () => {
 	}, [data]);
 
 	return (
-		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
-			{formik => (
-				<Container variant="fluid">
-					<ListDetailSection title="Your Profile" description="Customize your profile information and how you will appear in conversations with end-users on Combase.">
-						<AvatarRow marginBottom={6}>
-							<Box>
-								<Avatar name={formik.values.name?.display} src={formik.values.avatar} size={12} />
-							</Box>
-							<Box>
-								<Dropzone {...getRootProps()} borderRadius={2} paddingX={3} height={13} backgroundColor="textA.2">
-									<AddImageIcon color="altText" size={8} />
-									<Text marginTop={2} fontSize={3} lineHeight={4}>
-										Click to replace
-									</Text>
-									<Text fontSize={3} lineHeight={5} color="altText">or drag and drop</Text>
-									<Text fontSize={2} lineHeight={2} color="altText" marginTop={2} fontWeight={400}>PNG, JPG or SVG</Text>
-									<input {...getInputProps()} />
-								</Dropzone>
-							</Box>
-						</AvatarRow>
-						<InputGroup>
-							<div>
-								<TextInput
-									label="Full Name"
-									name="name.full"
-									onBlur={formik.handleBlur}
-									onChange={formik.handleChange}
-									value={formik.values.name?.full}
-								/>
-							</div>
-							<div>
-								<TextInput
-									label="Display Name"
-									name="name.display"
-									onBlur={formik.handleBlur}
-									onChange={formik.handleChange}
-									value={formik.values.name?.display}
-								/>
-							</div>
-							<div>
-								<TextInput
-									label="What I Do"
-									name="role"
-									onBlur={formik.handleBlur}
-									onChange={formik.handleChange}
-									value={formik.values.role}
-								/>
-							</div>
-						</InputGroup>
-					</ListDetailSection>
-					<ListDetailSection title="Your Availability" description="Customize how you will appear in conversations with end-users on Combase." >
-						<ScheduleInput 
-							canSave={formik.dirty && formik.isValid}
-							onBlur={formik.handleBlur}
-							onChange={formik.handleChange}
-							onSubmit={formik.handleSubmit}
-							name="schedule"
-							value={formik.values.schedule}
+		<Scrollbars>
+			<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+				{formik => (
+					<Container paddingY={6} maxWidth={22}>
+						<ListDetailSection title="Your Profile" description="Customize your profile information and how you will appear in conversations with end-users on Combase.">
+							<AvatarRow marginBottom={6}>
+								<Box>
+									<Avatar name={formik.values.name?.display} src={formik.values.avatar} size={12} />
+								</Box>
+								<Box>
+									<Dropzone {...getRootProps()} borderRadius={2} paddingX={3} height={13} backgroundColor="textA.2">
+										<AddImageIcon color="altText" size={8} />
+										<Text marginTop={2} fontSize={3} lineHeight={4}>
+											Click to replace
+										</Text>
+										<Text fontSize={3} lineHeight={5} color="altText">or drag and drop</Text>
+										<Text fontSize={2} lineHeight={2} color="altText" marginTop={2} fontWeight={400}>PNG, JPG or SVG</Text>
+										<input {...getInputProps()} />
+									</Dropzone>
+								</Box>
+							</AvatarRow>
+							<InputGroup>
+								<div>
+									<TextInput
+										label="Full Name"
+										name="name.full"
+										onBlur={formik.handleBlur}
+										onChange={formik.handleChange}
+										value={formik.values.name?.full}
+									/>
+								</div>
+								<div>
+									<TextInput
+										label="Display Name"
+										name="name.display"
+										onBlur={formik.handleBlur}
+										onChange={formik.handleChange}
+										value={formik.values.name?.display}
+									/>
+								</div>
+								<div>
+									<TextInput
+										label="What I Do"
+										name="role"
+										onBlur={formik.handleBlur}
+										onChange={formik.handleChange}
+										value={formik.values.role}
+									/>
+								</div>
+							</InputGroup>
+						</ListDetailSection>
+						<ListDetailSection title="Your Availability" description="Customize how you will appear in conversations with end-users on Combase." >
+							<ScheduleInput 
+								canSave={formik.dirty && formik.isValid}
+								onBlur={formik.handleBlur}
+								onChange={formik.handleChange}
+								onSubmit={formik.handleSubmit}
+								name="schedule"
+								value={formik.values.schedule}
+							/>
+						</ListDetailSection>
+						<ListDetailSection title="Two Factor Authentication" description="Secure your account with 2FA." />
+						<Modal 
+							backdrop 
+							open={!!avatarFile} 
+							file={avatarFile} 
+							name="avatar"
+							onSubmit={formik.handleChange}
+							onClose={() => setAvatarFile(null)} 
+							component={UpdateAvatarDialog} 
 						/>
-					</ListDetailSection>
-					<ListDetailSection title="Two Factor Authentication" description="Secure your account with 2FA." />
-					<Modal 
-						backdrop 
-						open={!!avatarFile} 
-						file={avatarFile} 
-						name="avatar"
-						onSubmit={formik.handleChange}
-						onClose={() => setAvatarFile(null)} 
-						component={UpdateAvatarDialog} 
-					/>
-					<FormikAutosave />
-				</Container>
-			)}
-		</Formik>
+						<FormikAutosave />
+					</Container>
+				)}
+			</Formik>
+		</Scrollbars>
 	)
 };
 

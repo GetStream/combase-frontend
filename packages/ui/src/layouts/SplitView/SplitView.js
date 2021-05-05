@@ -8,7 +8,6 @@ import { Box } from '../../Layout';
 import { Card } from '../../Cards';
 
 const SplitRoot = styled(Card).attrs({
-    boxShadow: 1,
     borderTopLeftRadius: 2,
     borderBottomLeftRadius: 2,
     borderTopRightRadius: 0,
@@ -19,6 +18,7 @@ const SplitRoot = styled(Card).attrs({
     display: grid;
     grid-template-columns: ${({ $columnTemplate }) => $columnTemplate};
     grid-auto-rows: 100%;
+	box-shadow: -4px 0px 24px -8px ${({ theme }) => theme.utils.colors.fade(theme.colors.shadow, .4)};
 `;
 
 const Primary = styled(Box)`

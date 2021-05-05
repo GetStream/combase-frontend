@@ -49,6 +49,10 @@ const Footer = styled(Box)`
     justify-content: space-between;
 `;
 
+const EntryCard = styled(Card)`
+	border: 1px solid ${({ theme }) => theme.colors.border};
+`
+
 const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
 const options = days.map(value => ({
@@ -61,7 +65,7 @@ const ScheduleInput = ({ canSave, onChange, onSubmit, name, value }) => {
     const renderScheduleEntries = ({ push, remove }) =>
         value?.map(({ enabled, day, time }, index) => (
             <>
-                <Card boxShadow={1} backgroundColor="background" key={index} paddingTop={5} paddingBottom={7} paddingX={5} marginBottom={7}>
+                <EntryCard boxShadow={1} backgroundColor="background" key={index} paddingTop={5} paddingBottom={7} paddingX={5} marginBottom={7}>
                     <TextGroup gapTop={2} marginBottom={4}>
                         <Heading fontSize={4} lineHeight={4}>
                             Schedule Entry
@@ -123,7 +127,7 @@ const ScheduleInput = ({ canSave, onChange, onSubmit, name, value }) => {
                             })
                         }
                     </FieldArray>
-                </Card>
+                </EntryCard>
                 {index + 1 === value?.length ? (
                     <Footer>
                         <Button variant="flat" onClick={() => push(newScheduleData)}>

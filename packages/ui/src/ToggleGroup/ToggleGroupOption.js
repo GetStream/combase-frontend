@@ -12,6 +12,8 @@ const Root = styled(ButtonBase)`
     width: 100%;
     cursor: pointer;
     user-select: none;
+	align-self: stretch;
+	
 	&, & > ${Text} {
 		display: flex;
 		align-items: center;
