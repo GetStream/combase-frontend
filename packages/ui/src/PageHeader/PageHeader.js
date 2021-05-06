@@ -92,14 +92,14 @@ const PageHeader = forwardRef(
                         {!hideLeftAction
                             ? leftIcon || (
                                   <IconButton
-                                      marginRight={!centerTitle ? 4 : 0}
+                                      marginRight={!centerTitle ? 3 : 0}
                                       icon={goBack ? ArrowBackIcon : MenuIcon}
                                       onClick={goBack ? history.goBack : undefined}
-                                      size={4}
+                                      size={5}
                                   />
                               )
                             : null}
-                        {title && !centerTitle ? (
+                        {!centerTitle ? (
                             <PageTitle
                                 centered={centered}
                                 reverse={reverse}
@@ -110,7 +110,7 @@ const PageHeader = forwardRef(
                             />
                         ) : null}
                     </Title>
-                    {title && centerTitle ? (
+                    {centerTitle ? (
                         <PageTitle
                             centered={centered}
                             reverse

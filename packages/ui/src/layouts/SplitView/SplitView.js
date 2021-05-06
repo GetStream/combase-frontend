@@ -5,20 +5,12 @@ import styled, { useTheme } from 'styled-components';
 import { useMedia } from 'react-use';
 
 import { Box } from '../../Layout';
-import { Card } from '../../Cards';
+import { PageCard } from '../../Cards';
 
-const SplitRoot = styled(Card).attrs({
-    borderTopLeftRadius: 2,
-    borderBottomLeftRadius: 2,
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-})`
-    width: 100%;
-    height: 100%;
+const SplitRoot = styled(PageCard)`
     display: grid;
     grid-template-columns: ${({ $columnTemplate }) => $columnTemplate};
     grid-auto-rows: 100%;
-	box-shadow: -4px 0px 24px -8px ${({ theme }) => theme.utils.colors.fade(theme.colors.shadow, .4)};
 `;
 
 const Primary = styled(Box)`

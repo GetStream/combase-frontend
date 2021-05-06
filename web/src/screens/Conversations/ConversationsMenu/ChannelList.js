@@ -212,7 +212,7 @@ const ChannelList = () => {
             <Root>
                 <PageHeader
                     centered
-                    showOrganization={isSm?.matches && !isXl?.matches}
+                    showOrganization={!selectable && isSm?.matches && !isXl?.matches}
                     leftIcon={
                         selectable ? (
                             <Box marginRight={isSm?.matches ? 4 : 0}>
@@ -256,10 +256,8 @@ const ChannelList = () => {
                     hideLeftAction={isSm?.matches && !selectable}
                     reverse={selectable || !isSm?.matches}
                     title={inbox}
-                    subtitle={
-                        isSm.matches && !selectable ? undefined : selectable ? `${selected?.length} selected` : `${tickets?.count || 0} tickets`
-                    }
-                    onTitleClick={!isXl.matches ? e => setMenuAnchor(e.target) : null}
+                    subtitle={selectable ? `${selected?.length || 0} selected` : `${tickets?.count || 0} tickets`}
+                    onTitleClick={!selectable && !isXl.matches ? e => setMenuAnchor(e.target) : null}
                 >
                     {inbox !== 'unassigned' && inbox !== 'archived' ? (
                         <Container paddingBottom={3}>

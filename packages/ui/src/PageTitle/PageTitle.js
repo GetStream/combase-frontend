@@ -6,6 +6,7 @@ import { animated } from 'react-spring';
 import { Box } from '../Layout';
 import { Heading, Text, TextGroup } from '../Text';
 import { DropdownIcon } from '../icons/index';
+import { Placeholder } from '../Placeholder';
 
 const Root = styled(TextGroup).attrs({
     as: animated.div,
@@ -58,7 +59,7 @@ const PageTitle = ({ centered, color, reverse, subtitle, marginBottom, onClick, 
         ) : typeof subtitle !== 'undefined' ? (
             <Spacer minHeight={2} />
         ) : null}
-        <Heading fontSize={5} fontWeight={700} lineHeight={5}>
+        <Heading as={!title ? Placeholder : undefined} fontSize={5} fontWeight={700} lineHeight={5} placeholderWidth={13}>
             {title}
             {onClick ? (
                 <span>

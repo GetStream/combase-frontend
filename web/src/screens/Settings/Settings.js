@@ -1,22 +1,14 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, useHistory, useParams } from 'react-router-dom';
-import { AddUsersIcon, Box, Button, Chip, PageHeader, Tabs, Tab, Text, Container, AddTagIcon } from '@combase.app/ui';
+import { AddUsersIcon, Box, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard, AddTagIcon } from '@combase.app/ui';
 import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
-import Scrollbars from 'rc-scrollbars';
 
 import ProfileSettings from './ProfileSettings';
 import OrganizationSettings from './OrganizationSettings';
 import WidgetSettings from './WidgetSettings';
 import ManageTags from './ManageTags';
 import ManageUsers from './ManageUsers';
-
-const Root = styled(Box)`
-	height: 100%;
-	display: grid;
-	grid-template-rows: min-content 1fr;
-	box-shadow: -4px 0px 16px -8px ${({ theme }) => theme.utils.colors.fade(theme.colors.shadow, .4)};
-`;
 
 const TabWrapper =  styled(Container)`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.border};
@@ -43,7 +35,7 @@ const Settings = () => {
 	);
 
 	return (
-		<Root backgroundColor="surface" borderTopLeftRadius={2} borderBottomLeftRadius={2}>
+		<PageCard variant="withHeader">
 			<PageHeader 
 				variant="fluid" 
 				title="Settings" 
@@ -91,7 +83,7 @@ const Settings = () => {
 				<Route path="/dashboard/settings/users" component={ManageUsers} />
 				<Route path="/dashboard/settings/widget" component={WidgetSettings} />
 			</Switch>
-		</Root>
+		</PageCard>
 	)
 }
 

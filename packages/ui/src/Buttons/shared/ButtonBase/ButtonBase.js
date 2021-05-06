@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Box } from '../../../Layout';
 
 const Root = styled(Box)`
-	margin: 0;
 	border: 0;
 `;
 

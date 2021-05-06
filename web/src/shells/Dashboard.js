@@ -7,7 +7,7 @@ import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
 import { useReactiveMedia } from 'hooks';
-import { Conversations, Settings } from 'screens';
+import { Conversations, Integration, Integrations, Settings } from 'screens';
 
 import { SidebarNav } from 'components/SidebarNav';
 
@@ -38,6 +38,14 @@ const Dashboard = () => {
 			<Root>
 				{isSm?.matches ? <SidebarNav /> : null}
 				<Switch>
+					<Route 
+						path="/dashboard/integrations/:integrationId"
+						component={Integration} 
+					/>
+					<Route 
+						path="/dashboard/integrations"
+						component={Integrations} 
+					/>
 					<Route 
 						path="/dashboard/settings/:page?"
 						component={Settings} 

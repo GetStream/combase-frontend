@@ -5,25 +5,11 @@ import { useToggle } from 'react-use';
 import { useHistory } from 'react-router-dom';
 
 import {
-    AddTagIcon,
-    Button,
     Box,
-    Container,
-    DropdownIcon,
-    DeleteIcon,
-    EditTagDialog,
     EntityList,
-    PageHeader,
-    IconButton,
-    InputDialog,
-    Modal,
-    ScrollContextProvider,
-    Spinner,
     TableHeader,
     TagListItem,
     transformToTag,
-    Text,
-    Tooltip,
     useBulkSelect,
     useEntities,
 } from '@combase.app/ui';
