@@ -28,9 +28,9 @@ const StatusBadge = () => {
                 placement="right-end"
                 subheading="Your Status"
             >
-                <MenuItem icon={Badge} iconSize={0} iconColor="green" label="Online" onClick={() => null} variant="sm" />
-                <MenuItem icon={Badge} iconSize={0} iconColor="orange" label="Away" onClick={() => null} variant="sm" />
-                <MenuItem icon={Badge} iconSize={0} iconColor="disabled" label="Offline" onClick={() => null} variant="sm" />
+                <MenuItem icon={Badge} iconSize="small" iconColor="green" label="Online" onClick={() => null} variant="sm" />
+                <MenuItem icon={Badge} iconSize="small" iconColor="orange" label="Away" onClick={() => null} variant="sm" />
+                <MenuItem icon={Badge} iconSize="small" iconColor="disabled" label="Offline" onClick={() => null} variant="sm" />
                 <MenuItem variant="sm" actions={[<Switch size={1} value />]} label="Notification Sounds" />
             </Popover>
         </>

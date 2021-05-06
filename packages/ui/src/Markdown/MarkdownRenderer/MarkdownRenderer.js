@@ -8,7 +8,7 @@ import remark2react from 'remark-react';
 
 import syntaxTheme from './syntaxTheme';
 import { EmptyView, Spinner } from '../../Feedback';
-import { Heading, Text } from '../../Text';
+import { Code, Heading, Text } from '../../Text';
 
 const Root = styled.div`
 	& > *:first-child {
@@ -32,6 +32,7 @@ const components = {
     h6: props => <Heading {...props} marginTop={7} color="altText" fontSize={5} fontWeight={500} lineHeight={7} />,
     a: props => <Text {...props} color="primary" as="a" fontSize={3} lineHeight={5} />,
     p: props => <Text {...props} fontSize={3} marginY={4} lineHeight={6} />,
+    li: props => <Text as="li" {...props} fontSize={3} marginY={4} lineHeight={6} />,
     pre: props => {
         return props.children;
     },
@@ -43,7 +44,7 @@ const components = {
             return <SyntaxHighlighter style={syntaxTheme} language={language} {...props} />;
         }
 
-        return <code {...props} />;
+        return <Code {...props} />;
     },
 };
 

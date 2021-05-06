@@ -46,6 +46,7 @@ const PageHeader = forwardRef(
             className,
             goBack,
             fluid,
+            hideTitle,
             hideLeftAction,
             leftIcon,
             pageTitleStyle,
@@ -99,7 +100,7 @@ const PageHeader = forwardRef(
                                   />
                               )
                             : null}
-                        {!centerTitle ? (
+                        {!hideTitle && !centerTitle ? (
                             <PageTitle
                                 centered={centered}
                                 reverse={reverse}
@@ -110,7 +111,7 @@ const PageHeader = forwardRef(
                             />
                         ) : null}
                     </Title>
-                    {centerTitle ? (
+                    {!hideTitle && centerTitle ? (
                         <PageTitle
                             centered={centered}
                             reverse
@@ -131,6 +132,7 @@ PageHeader.defaultProps = {
     animated: true,
     fluid: true,
     hideLeftAction: true,
+	hideTitle: false,
 };
 
 export default PageHeader;

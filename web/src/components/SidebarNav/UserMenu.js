@@ -35,7 +35,7 @@ const ThemeToggle = ({ size }) => {
                 subheading="Your Combase"
                 header={
                     <Box padding={2} marginBottom={1}>
-                        <AgentEntity name="Luke" role="Customer Support" />
+                        <AgentEntity avatar={me?.avatar} name={me?.name?.display} meta={me?.role} />
                     </Box>
                 }
             >

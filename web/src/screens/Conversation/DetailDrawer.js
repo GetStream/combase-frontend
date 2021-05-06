@@ -95,7 +95,8 @@ const DetailDrawer = ({ onClose }) => {
         <Root>
             <Box>
                 <PageHeader
-					backgroundColor="surface"
+					backgroundColor="text"
+					hideTitle
                     actions={[<IconButton color="altText" icon={CloseIcon} onClick={onClose} />]}
                 />
                 <Masthead variant="fluid" paddingBottom={4}>

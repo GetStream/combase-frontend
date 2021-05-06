@@ -79,7 +79,7 @@ export const MenuItem = ({
                 minHeight={sm ? 6 : [7, 7, 7, 7, 8]}
                 onClick={handleClick}
             >
-                <IconLabel iconColor={iconColor || color} color={color} gap={sm ? 2 : [2, 2, 2, 2, 3]} size={iconSize}>
+                <IconLabel iconColor={iconColor || color} color={color} gap={sm ? 2 : [2, 2, 2, 2, 3]}>
                     {Icon ? <Icon {...iconProps} color={iconColor || color} size={iconSize || sm ? 3 : [3, 3, 3, 3, 4]} /> : null}
                     <Text fontSize={sm ? 3 : [3, 3, 3, 3, 4]} lineHeight={sm ? 3 : [3, 3, 3, 3, 4]}>
                         {label}
