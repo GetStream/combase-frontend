@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import { layout } from '@combase.app/styles';
 
 import { Box } from '../../Layout';
 import { Checkbox } from '../../Inputs';
 import { Text } from '../../Text';
 
 const Root = styled(Box)`
+	${layout};
     display: grid;
     align-items: center;
     grid-template-columns: ${({ $columnTemplate, $selectable }) => ($selectable ? `max-content ${$columnTemplate}` : $columnTemplate)};
@@ -27,7 +29,7 @@ const Root = styled(Box)`
 `;
 
 export const TableHeader = ({ checked, children, columnTemplate, indeterminate, onBulkSelect, selectable, ...rest }) => (
-    <Root $columnTemplate={columnTemplate} $selectable={selectable} paddingX={3} paddingY={1} {...rest}>
+    <Root $columnTemplate={columnTemplate} $selectable={selectable} minHeight={8} paddingX={3} paddingY={1} {...rest}>
         {selectable ? (
             <div>
                 <Checkbox indeterminate={indeterminate} onChange={onBulkSelect} value={checked} />

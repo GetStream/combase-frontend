@@ -8,6 +8,7 @@ import Scrollbars from 'rc-scrollbars';
 import ProfileSettings from './ProfileSettings';
 import OrganizationSettings from './OrganizationSettings';
 import WidgetSettings from './WidgetSettings';
+import ManageTags from './ManageTags';
 import ManageUsers from './ManageUsers';
 
 const Root = styled(Box)`
@@ -79,13 +80,14 @@ const Settings = () => {
 						<Tab reverseLabel icon={<Chip color="text" label={data?.organization?.agents?.count} />} label="Agents" value="users" />
 						<Tab label="Tags" value="tags" />
 						<Tab label="Widget" value="widget" />
-						<Tab label="Integrations" value="integrations" />
+						<Tab label="API" value="api" />
 					</Tabs>
 				</TabWrapper>
 			</PageHeader>
 			<Switch>
 				<Route path="/dashboard/settings/profile" component={ProfileSettings} />
 				<Route path="/dashboard/settings/organization" component={OrganizationSettings} />
+				<Route path="/dashboard/settings/tags" component={ManageTags} />
 				<Route path="/dashboard/settings/users" component={ManageUsers} />
 				<Route path="/dashboard/settings/widget" component={WidgetSettings} />
 			</Switch>

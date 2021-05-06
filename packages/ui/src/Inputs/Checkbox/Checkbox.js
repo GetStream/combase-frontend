@@ -19,6 +19,7 @@ export const Checkbox = ({
     size,
     value,
 }) => {
+
     const [inputProps] = useInput({
         name,
         onBlur,

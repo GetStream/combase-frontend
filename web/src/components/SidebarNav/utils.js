@@ -9,6 +9,7 @@ import {
     SettingsIcon,
     KnowledgeBaseIcon,
     DashboardIcon,
+	PluginsIcon,
 } from '@combase.app/ui';
 
 export const renderMenuRoute = route => (
@@ -76,6 +77,13 @@ export const routes = [
     //     icon: KnowledgeBaseIcon,
     //     to: '/dashboard/knowledge-base',
     // },
+    {
+        exact: false,
+        path: '/dashboard/integrations',
+        name: 'Integrations',
+        icon: PluginsIcon,
+        to: '/dashboard/integrations',
+    },
     {
         exact: false,
         path: '/dashboard/settings',

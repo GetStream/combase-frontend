@@ -26,7 +26,7 @@ const CheckboxInput = styled(Checkbox)`
 
 export const ListItem = ({ active, alignCheckbox, columnTemplate, children, interaction, onClick, onSelect, selectable, value, ...rest }) => {
     const isSelected = rest?.isSelected?.(value);
-
+	console.log(value, isSelected)
     const handleClick = e => {
         if (!e.nativeEvent.defaultPrevented && onClick) {
             onClick(e);
@@ -48,10 +48,13 @@ export const ListItem = ({ active, alignCheckbox, columnTemplate, children, inte
                 {selectable ? (
                     <CheckboxInput
                         $alignCheckbox={alignCheckbox}
-                        onChange={val => {
-                            onSelect?.(val);
+                        onChange={() => {
+							if (onSelect) {
+								onSelect(value);
+							}
                         }}
                         value={isSelected}
+						size={4}
                     />
                 ) : null}
                 {children || null}

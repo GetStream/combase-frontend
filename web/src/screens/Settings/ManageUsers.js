@@ -6,7 +6,6 @@ import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, GET_AGENTS } from
 import { AgentListItem, Box, Button, DropdownIcon, EntityList, TableHeader, Text, Tooltip, useBulkSelect, useEntities } from '@combase.app/ui';
 
 const Root = styled(Box)`
-    dwidth: 100%;
     display: grid;
     grid-template-rows: min-content 1fr;
 `;
