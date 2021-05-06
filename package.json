@@ -11,7 +11,8 @@
   "start:web": "yarn workspace web start",
   "storybook": "yarn workspace storybook start",
   "test:unit": "jest",
-  "test:unit:watch": "jest --watch"
+  "test:unit:watch": "jest --watch",
+  "widget:build": "yarn workspace @combase.app/widget build"
  },
  "workspaces": {
   "packages": [
