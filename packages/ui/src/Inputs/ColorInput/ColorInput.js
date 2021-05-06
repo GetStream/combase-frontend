@@ -4,15 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import InputColor from 'react-input-color';
 
-import { Box } from '../../Layout';
-import { Popover } from '../../Popovers';
 import { TextInput } from '../TextInput';
-
-const Root = styled(Box)`
-    display: flex;
-    flex-direction: column;
-    z-index: 0;
-`;
 
 const ColorPicker = styled(InputColor)`
     border: 0 !important;
@@ -26,7 +18,7 @@ const ColorPicker = styled(InputColor)`
     }
 `;
 
-export const ColorInput = props => {
+const ColorInput = props => {
     const [anchorRef, setAnchorRef] = useState();
     const inputRef = useRef();
     const [open, toggleDropdown] = useToggle();
@@ -73,3 +65,5 @@ ColorInput.defaultProps = {
     focusedPlaceholder: '',
     type: 'text',
 };
+
+export default ColorInput;

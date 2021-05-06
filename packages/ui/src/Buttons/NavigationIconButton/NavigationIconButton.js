@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { Route } from 'react-router-dom';
 
-import { IconButton } from '../../Buttons';
+import { IconButton } from '../IconButton';
 
 const NavigationIconButton = forwardRef(({ activeColor, color, icon, to, ...rest }, ref) => (
     <Route {...rest}>

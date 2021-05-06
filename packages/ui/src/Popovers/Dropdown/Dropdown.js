@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { animated } from 'react-spring';
 
 import { Box } from '../../Layout';
-import { Menu } from '../../Lists';
+import { Menu } from '../../Lists/Menu';
 
 import { getTransformOrigin } from '../utils';
 

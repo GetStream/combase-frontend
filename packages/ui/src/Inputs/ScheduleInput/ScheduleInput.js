@@ -9,10 +9,10 @@ import { IconLabel } from '../../IconLabel';
 import { Button, IconButton } from '../../Buttons';
 import { Heading, Text, TextGroup } from '../../Text';
 import { AddCircleIcon, AddIcon, CloseCircleIcon } from '../../icons';
-import { Switch } from '../../Inputs';
-import { ListSubheader } from '../../Lists';
+import { ListSubheader } from '../../Lists/ListSubheader';
 import { Tooltip } from '../../Popovers';
 
+import { Switch } from '../Switch';
 import { TextInput } from '../TextInput';
 import { ButtonGroupInput } from '../ButtonGroupInput';
 

@@ -6,11 +6,11 @@ import { ClockIcon, GroupIcon } from '../../icons';
 
 import { Box } from '../../Layout';
 import { IconLabel } from '../../IconLabel';
-import { Helper } from '../../Inputs';
-import { Text } from '../../Text';
+import { Helper } from '../../Inputs/shared/Helper';
+import { ListItem } from '../ListItem/ListItem';
 import { AgentEntity } from '../Entity';
-import { ListItem } from '../ListItem';
 import { Chip } from '../../Chip';
+import {Text} from '../../Text/Text';
 
 const Groups = styled(Box)`
     display: flex;

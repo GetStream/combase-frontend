@@ -1,4 +1,4 @@
-import { colors } from '../utils';
+import {colors} from '../utils/colors';
 
 /*
  * Check systems/index.js

@@ -4,9 +4,10 @@ import { useSlate } from 'slate-react';
 import { Box } from '../../../../Layout';
 import { Chip } from '../../../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../../../icons';
-import { AuthorEntity } from '../../../../Lists';
+import { AuthorEntity } from '../../../../Lists/Entity';
 import { Heading, Text } from '../../../../Text';
-import { ChipInputBase, transformToTag } from '../../../shared';
+import { ChipInputBase } from '../../../shared/ChipInputBase';
+import transformToTag from '../../../shared/transformToTag';
 
 const Root = styled(Box)`
     border-bottom: 1px solid ${({ theme }) => theme.colors.border};
@@ -50,7 +51,7 @@ const renderChip = ({ node = {} }, actions, i, cursor) => (
     />
 );
 
-export const Title = ({ attributes, nodeProps, ...rest }) => {
+const Title = ({ attributes, nodeProps, ...rest }) => {
     const { tags, onAddTag, onRemoveTag } = useSlate();
 
     return (
@@ -81,3 +82,5 @@ export const Title = ({ attributes, nodeProps, ...rest }) => {
         </Root>
     );
 };
+
+export default Title;

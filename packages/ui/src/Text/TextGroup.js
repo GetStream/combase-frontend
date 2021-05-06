@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { itemGap, layout, variant } from '@combase.app/styles';
 
 import { Box } from '../Layout';
-import { Text } from '../Text';
+
+import { Text } from './Text';
 
 export const TextGroup = styled(Box)`
     ${layout};

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
 import { IconLabel } from '../IconLabel';
-import { Text } from '../Text';
 import { ChevronRightIcon } from '../icons/chevronRight';
+import {Text} from '../Text/Text';
 
 const Root = styled(IconLabel)`
     ${interactions};

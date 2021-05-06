@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { color, fill, system, itemGap } from '@combase.app/styles';
 
 import { Box } from '../Layout';
-import { Text } from '../Text';
+import {Text} from '../Text/Text';
 
 const iconFill = system({
 	iconColor: {

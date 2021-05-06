@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
-import { Checkbox } from '../../Inputs';
+import Box from '../../Layout/Box';
+import {Checkbox} from '../../Inputs/Checkbox';
 
 const Root = styled(Box)`
     padding: 0.125rem 0;
