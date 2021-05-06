@@ -12,7 +12,7 @@ const Integration = () => {
 	console.log(integration)
 	return (
 		<SidebarView columnTemplate="25% 1fr" Sidebar={<Sidebar />}>
-			<Container paddingTop={13} minHeight="100%">
+			<Container paddingTop={10} minHeight="100%">
 				<Switch>
 					<Route>{() => <MarkdownRenderer md={integration?.about} />}</Route>
 				</Switch>

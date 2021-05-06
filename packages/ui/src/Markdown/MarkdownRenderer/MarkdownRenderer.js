@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 import unified from 'unified';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import githubSchema from 'hast-util-sanitize/lib/github.json';
@@ -8,6 +9,12 @@ import remark2react from 'remark-react';
 import syntaxTheme from './syntaxTheme';
 import { EmptyView, Spinner } from '../../Feedback';
 import { Heading, Text } from '../../Text';
+
+const Root = styled.div`
+	& > *:first-child {
+		margin-top: 0;
+	}
+`
 
 const sanitize = Object.assign({}, githubSchema, {
     attributes: Object.assign({}, githubSchema.attributes, {
@@ -51,13 +58,13 @@ const MarkdownRenderer = ({ md }) => {
     );
 
     return (
-        <div>
+        <Root>
             {pageContent ?? (
                 <EmptyView marginTop={6} title="">
                     <Spinner />
                 </EmptyView>
             )}
-        </div>
+        </Root>
     );
 };
 
