@@ -55,6 +55,9 @@ export const GET_ORGANIZATION_PROFILE = gql`
             agents {
                 count
             }
+			tags {
+				count
+			}
 			contact {
 				phone
 				email

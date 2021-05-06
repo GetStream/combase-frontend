@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, useHistory, useParams } from 'react-router-dom';
-import { AddUsersIcon, Box, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard, AddTagIcon } from '@combase.app/ui';
+import { AddUsersIcon, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard, AddTagIcon } from '@combase.app/ui';
 import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
 
 import ProfileSettings from './ProfileSettings';
@@ -70,7 +70,7 @@ const Settings = () => {
 						<Tab label="Profile" value="profile" />
 						<Tab label="Organization" value="organization" />
 						<Tab reverseLabel icon={<Chip color="text" label={data?.organization?.agents?.count} />} label="Agents" value="users" />
-						<Tab label="Tags" value="tags" />
+						<Tab reverseLabel icon={<Chip color="text" label={data?.organization?.tags?.count} />} label="Tags" value="tags" />
 						<Tab label="Widget" value="widget" />
 						<Tab label="API" value="api" />
 					</Tabs>
