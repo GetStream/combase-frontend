@@ -199,7 +199,7 @@ const ChannelList = () => {
 								value="priority"
 							/>,
 						]}
-						value={!ticket?._id}
+						value={ticket?._id}
 						onClick={() => onClickTicket(ticket?._id)}
 					/>
 				)}
