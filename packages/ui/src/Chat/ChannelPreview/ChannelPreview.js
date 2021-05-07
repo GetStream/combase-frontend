@@ -48,7 +48,7 @@ const Toggles = styled(ChannelPreviewToggles)`
     top: 0;
     right: 0;
 
-    ${Root}:hover & > button:not(.active) {
+    ${Root}:hover & > span:not(.active) {
         display: block !important;
     }
 `;

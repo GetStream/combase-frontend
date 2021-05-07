@@ -6,8 +6,8 @@ import { Card } from '../Card';
 const PageCard = styled(Card).attrs({
     borderTopLeftRadius: ['unset', 'unset', 2],
     borderBottomLeftRadius: ['unset', 'unset', 2],
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
+    borderTopRightRadius: 'unset',
+    borderBottomRightRadius: 'unset',
 })`
 	${variant({
 		variants: {

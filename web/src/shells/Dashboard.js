@@ -39,7 +39,7 @@ const Dashboard = () => {
 				{isSm?.matches ? <SidebarNav /> : null}
 				<Switch>
 					<Route 
-						path="/dashboard/integrations/:integrationId"
+						path="/dashboard/integrations/:integrationId/:page?"
 						component={Integration} 
 					/>
 					<Route 

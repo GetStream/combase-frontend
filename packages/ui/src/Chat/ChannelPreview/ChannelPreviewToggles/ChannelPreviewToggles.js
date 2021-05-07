@@ -10,11 +10,11 @@ const ChannelPreviewToggles = styled(Box).attrs({
     align-items: center;
     align-self: flex-start;
 
-    & button:not(.active) {
+    & > span:not(.active) {
         display: none;
     }
 
-    & button + button {
+    & span + span {
         margin-left: ${({ theme }) => theme.space[2]};
     }
 `;

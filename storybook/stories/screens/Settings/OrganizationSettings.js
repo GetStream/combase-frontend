@@ -64,7 +64,7 @@ const OrganizationSettings = () => {
 				update: (cache, { data: { organizationUpdate } }) => {
 					const org = organizationUpdate.record;
 
-					 cache.writeFragment({
+					cache.writeFragment({
 						data: org,
 						fragment: gql`
 							fragment UpdateOrganization on Organization {

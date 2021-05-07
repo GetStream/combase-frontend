@@ -1,22 +1,55 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import { Route, Switch, useHistory, useParams } from 'react-router-dom';
 
-import { Container, SidebarView, MarkdownRenderer } from '@combase.app/ui';
+import { Box, Container, SidebarView, Tabs, Tab, MarkdownRenderer } from '@combase.app/ui';
 
 import useIntegrationDefinition from 'hooks/useIntegrationDefinition';
 
 import Sidebar from './Sidebar';
 
+const TabWrapper =  styled(Container)`
+	border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+	min-height: 4rem;
+    display: flex;
+    align-items: flex-end;
+`;
+
 const Integration = () => {
 	const [integration] = useIntegrationDefinition();
-	console.log(integration)
+	
+	const history = useHistory();
+	const params = useParams();
+
+	const handleTabChange = useCallback(
+		slug => {
+			history.push(
+				slug
+					? `/integrations/${params.integrationId}/${slug}`
+					: `/integrations/${params.integrationId}`,
+				{
+					preserve: false,
+				}
+			);
+		},
+		[history]
+	);
+
 	return (
 		<SidebarView columnTemplate="25% 1fr" Sidebar={<Sidebar />}>
-			<Container paddingTop={10} minHeight="100%">
-				<Switch>
-					<Route>{() => <MarkdownRenderer md={integration?.about} />}</Route>
-				</Switch>
-			</Container>		
+			<Box>
+				<TabWrapper variant="fluid">
+					<Tabs onChange={handleTabChange} value={params.page}>
+						<Tab label="About" value={undefined} />
+						<Tab label="Configuration" value="configuration" />
+					</Tabs>
+				</TabWrapper>
+				<Container paddingTop={10} minHeight="100%">
+					<Switch>
+						<Route>{() => <MarkdownRenderer md={integration?.about} />}</Route>
+					</Switch>
+				</Container>
+			</Box>		
 		</SidebarView>
 	);
 };

@@ -45,6 +45,7 @@ export const NEW_TICKET_FRAGMENT = gql`
 export const GET_TICKETS = gql`
     query getTickets($filter: FilterFindManyTicketInput) {
         organization {
+			_id
             entities: tickets(filter: $filter) {
                 edges {
                     node {
@@ -84,6 +85,8 @@ export const GET_CONVERSATIONS = gql`
                         organization
                     }
                     status
+					starred
+					priority
                     organization
                     createdAt
                     updatedAt
@@ -100,26 +103,29 @@ export const GET_CONVERSATIONS = gql`
 
 export const GET_TICKET = gql`
     query getTicket($_id: MongoID!) {
-        ticket(_id: $_id) {
-            _id
-            user: userData {
-                _id
-                name
-                email
-                organization
-                # feed
-            }
-            agents
-            tags
-            status
-            starred
-            priority
-            organization
-            createdAt
-            source
-            group
-            updatedAt
-        }
+        organization {
+			_id
+			ticket(_id: $_id) {
+				_id
+				user: userData {
+					_id
+					name
+					email
+					organization
+					# feed
+				}
+				agents
+				tags
+				status
+				starred
+				priority
+				organization
+				createdAt
+				source
+				group
+				updatedAt
+			}
+		}
     }
 `;
 

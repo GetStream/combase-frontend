@@ -43,6 +43,9 @@ export const GET_ORGANIZATION_PROFILE = gql`
         organization {
             _id
             name
+			security {
+				global2Fa
+			}
             stream {
                 key
             }

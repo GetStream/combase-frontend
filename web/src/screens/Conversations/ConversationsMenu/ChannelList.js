@@ -159,11 +159,6 @@ const ChannelList = () => {
     const [selectableItemProps, bulkCheckboxProps, selected] = useBulkSelect(tickets?.edges, selectable);
     const handleEndReached = useCallback(() => tickets?.hasMore && loadMore(), [tickets, loadMore]);
 
-	const handleToggleLabel = useCallback((value, event) => {
-		event.stopPropagation();
-		console.log(value);
-	}, []);
-
 	const renderChannelPreview = useCallback(i => {
 		const { node: ticket } = tickets?.edges?.[i] || {};
 		return (
@@ -179,25 +174,8 @@ const ChannelList = () => {
 						unread={ticket?.unread}
 						disabled={!ticket?._id}
 						toggles={[
-							<IconButton
-								className={ticket?.starred ? 'active' : undefined}
-								color={ticket?.starred ? 'yellow' : 'border'}
-								size={3}
-								icon={StarIcon}
-								key={0}
-								onClick={handleToggleLabel}
-								value="star"
-							/>,
-							<IconButton
-								className={ticket?.priority ? 'active' : undefined}
-								color={ticket?.priority ? 'red' : 'border'}
-								size={3}
-								active={ticket?.priority}
-								icon={PriorityIcon}
-								key={1}
-								onClick={handleToggleLabel}
-								value="priority"
-							/>,
+							<TicketLabelToggle className={ticket?.starred ? "active" : undefined} type="star" value={ticket?.starred || false} />,
+							<TicketLabelToggle className={ticket?.priority ? "active" : undefined} type="priority" value={ticket?.priority || 0} />,
 						]}
 						value={ticket?._id}
 						onClick={() => onClickTicket(ticket?._id)}

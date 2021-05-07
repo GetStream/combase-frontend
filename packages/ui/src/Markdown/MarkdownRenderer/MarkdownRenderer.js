@@ -24,12 +24,12 @@ const sanitize = Object.assign({}, githubSchema, {
 });
 
 const components = {
-    h1: props => <Heading {...props} marginTop={7} fontSize={8} lineHeight={10} />,
-    h2: props => <Heading {...props} marginTop={7} fontSize={7} lineHeight={9} />,
-    h3: props => <Heading {...props} marginTop={7} fontSize={6} fontWeight={600} lineHeight={8} />,
-    h4: props => <Heading {...props} marginTop={7} fontSize={6} fontWeight={600} lineHeight={8} />,
-    h5: props => <Heading {...props} marginTop={7} fontSize={6} fontWeight={600} lineHeight={8} />,
-    h6: props => <Heading {...props} marginTop={7} color="altText" fontSize={5} fontWeight={500} lineHeight={7} />,
+    h1: props => <Heading {...props} as="h1" marginTop={7} fontSize={8} lineHeight={10} />,
+    h2: props => <Heading {...props} as="h2" marginTop={7} fontSize={7} lineHeight={9} />,
+    h3: props => <Heading {...props} as="h3" marginTop={7} fontSize={6} fontWeight={600} lineHeight={8} />,
+    h4: props => <Heading {...props} as="h4" marginTop={7} fontSize={6} fontWeight={600} lineHeight={8} />,
+    h5: props => <Heading {...props} as="h5" marginTop={7} fontSize={6} fontWeight={600} lineHeight={8} />,
+    h6: props => <Heading {...props} as="h6" marginTop={7} color="altText" fontSize={5} fontWeight={500} lineHeight={7} />,
     a: props => <Text {...props} color="primary" as="a" fontSize={3} lineHeight={5} />,
     p: props => <Text {...props} fontSize={3} marginY={4} lineHeight={6} />,
     li: props => <Text as="li" {...props} fontSize={3} marginY={4} lineHeight={6} />,

@@ -39,7 +39,7 @@ export const TicketLabelToggle = forwardRef(({ className, disabled, name, onBlur
         <ToggleBase
             {...inputProps}
             className={className}
-            checked={type === 'priority' ? Boolean(value) : inputProps?.checked}
+            checked={type === 'priority' ? Boolean(value) : inputProps?.value}
             onChange={handleChange}
             color={color}
             checkedIcon={type === 'priority' && value === 2 ? PriorityHighIcon : icon}
@@ -61,7 +61,7 @@ TicketLabelToggle.propTypes = {
     onChange: PropTypes.func,
     required: PropTypes.bool,
     size: PropTypes.number,
-    type: PropTypes.oneOf(['value', 'toggle']),
+    type: PropTypes.oneOf(['star', 'priority']),
     value: PropTypes.any,
 };
 

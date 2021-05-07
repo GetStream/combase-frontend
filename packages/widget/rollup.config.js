@@ -10,11 +10,11 @@ export default {
     input: './src/index.js',
     output: [
         {
-            dir: `./lib/cjs`,
+            dir: `./dist/cjs`,
             format: 'cjs',
         },
         {
-            dir: `./lib/esm`,
+            dir: `./dist/esm`,
             format: 'esm',
         },
     ],
