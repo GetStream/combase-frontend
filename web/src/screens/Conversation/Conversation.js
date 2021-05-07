@@ -44,8 +44,8 @@ const Conversation = ({ match, readonly, showBackBtn }) => {
 	}
 
     return (
-        <ScrollContextProvider type="px">
-            <Root drawer={drawerOpen}>
+		<Root drawer={drawerOpen}>
+        	<ScrollContextProvider type="px">
 				<Wrapper>
 					<Channel channel={channel} key={channelId}>
 						<ConversationHeader
@@ -59,9 +59,9 @@ const Conversation = ({ match, readonly, showBackBtn }) => {
 						{!readonly ? <MessageInput placeholder="Type a message" /> : null}
 					</Channel>
 				</Wrapper>
-				{drawerOpen ? <DetailDrawer onClose={toggleDrawer} /> : null}
-			</Root>
-        </ScrollContextProvider>
+        	</ScrollContextProvider>
+			{drawerOpen ? <DetailDrawer onClose={toggleDrawer} /> : null}
+		</Root>
     );
 };
 
