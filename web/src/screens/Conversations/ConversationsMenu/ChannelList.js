@@ -30,7 +30,7 @@ import {
     useBulkSelect,
 } from '@combase.app/ui';
 
-import { useReactiveMedia, useTicketList } from 'hooks';
+import { useReactiveMedia, useTicketList, useTicketLabelToggles } from 'hooks';
 import InboxSelector from './InboxSelector';
 
 const Root = styled.div`
@@ -158,6 +158,8 @@ const ChannelList = () => {
 
     const [selectableItemProps, bulkCheckboxProps, selected] = useBulkSelect(tickets?.edges, selectable);
     const handleEndReached = useCallback(() => tickets?.hasMore && loadMore(), [tickets, loadMore]);
+	
+	const [starTicket, setPriority] = useTicketLabelToggles();
 
 	const renderChannelPreview = useCallback(i => {
 		const { node: ticket } = tickets?.edges?.[i] || {};
