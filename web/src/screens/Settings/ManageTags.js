@@ -26,7 +26,7 @@ const ManageTags = () => {
 
     const [showCreateModal, toggleCreateModal] = useToggle();
     const [editing, setEditTag] = useState();
-    const [tags, { organization }] = useEntities(GET_TAGS);
+    const [tags, { loading, organization }] = useEntities(GET_TAGS);
     const [selectableItem, bulkCheckbox, selected, setSelected] = useBulkSelect(tags?.edges || [], true);
 
 	const [handleCreateTag, { loading: creating }] = useMutation(CREATE_TAG);
@@ -117,6 +117,7 @@ const ManageTags = () => {
 			<EntityList
 				data={tags?.edges}
 				selectable
+				loading={loading}
 				ItemContainer={ItemContainer}
 				renderItem={(_, { node: tag } = {}) => (
 					<TagListItem

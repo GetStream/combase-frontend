@@ -118,7 +118,7 @@ const OrganizationSettings = () => {
         }
     }, []);
 
-	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ accept: 'image/jpeg, image/png, image/svg+xml', onDrop: handleDrop, multiple: false });
+	const { getRootProps, getInputProps } = useDropzone({ accept: 'image/jpeg, image/png, image/svg+xml', onDrop: handleDrop, multiple: false });
 
 	return (
 		<Scrollbars>

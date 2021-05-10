@@ -19,7 +19,7 @@ const Root = styled(Box)`
 
 const DefaultItemContainer = props => <Box {...props} paddingX={1} />;
 
-export const EntityList = ({ data, ItemContainer, GridContainer, totalCount, mode, renderItem, selectable }) => {
+export const EntityList = ({ data, ItemContainer, GridContainer, totalCount, loading, mode, renderItem }) => {
     const ListComponent = mode !== 'grid' ? VirtualizedList : VirtualizedGrid;
 
     return (
@@ -28,6 +28,7 @@ export const EntityList = ({ data, ItemContainer, GridContainer, totalCount, mod
                 ItemContainer={ItemContainer || DefaultItemContainer}
                 GridContainer={GridContainer}
                 overscan={200}
+				loading={loading}
                 renderItem={i => renderItem(i, data?.[i])}
                 totalCount={totalCount || data?.length || 0}
             />

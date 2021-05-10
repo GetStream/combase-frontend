@@ -29,7 +29,7 @@ const StateDisplay = forwardRef(({ children, color, error, icon: Icon, loading, 
         {error ? (
             <WarningIcon color="warning" size={size} />
         ) : loading ? (
-            <Spinner key={0} size={3} color="text" />
+            <Spinner key={0} size={5} color="altText" />
         ) : (
             <Icon color={color} size={size} />
         )}

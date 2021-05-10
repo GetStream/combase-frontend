@@ -12,7 +12,7 @@ const Root = styled(Box)`
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 
 const ManageUsers = () => {
-    const [agents] = useEntities(GET_AGENTS);
+    const [agents, { loading }] = useEntities(GET_AGENTS);
 	const [selectableItem, bulkCheckbox] = useBulkSelect(agents?.edges || [], true);
 
     return (
@@ -58,7 +58,7 @@ const ManageUsers = () => {
 				columnTemplate="1fr 1.5fr 0.5fr 1fr"
 				data={agents?.edges}
 				ItemContainer={ItemContainer}
-				selectable
+				loading={loading}
 				renderItem={(_, { node: agent } = {}) => (
 					<AgentListItem
 						selectable={selectableItem.selectable}
@@ -71,6 +71,7 @@ const ManageUsers = () => {
 						_id={agent?._id}
 						groups={agent?.groups?.edges}
 						totalGroups={agent?.groups?.count}
+						avatar={agent?.avatar}
 						name={agent?.name?.full}
 						meta={agent?.role}
 					/>
