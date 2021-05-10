@@ -131,7 +131,7 @@ const WidgetSettings = () => {
 							>
 								<Pre padding={3} borderRadius={1}>
 									{`<script>
-config({ theme: ${formik.values.defaultTheme}, trustedDomains: ${JSON.stringify(formik.values.domains)} })
+  config({ theme: ${formik.values.defaultTheme}, trustedDomains: ${JSON.stringify(formik.values.domains)} })
 </script>`}
 								</Pre>
 							</ListDetailSection>
