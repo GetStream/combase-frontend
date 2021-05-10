@@ -50,3 +50,39 @@ export const UPDATE_ORGANIZATION_PROFILE = gql`
         }
     }
 `;
+
+export const WIDGET_SETTINGS_FRAGMENT = gql`
+	fragment WidgetSettings on Organization {
+		widget {
+			domains
+			defaultTheme
+			home {
+				title
+				tagline
+			}
+			welcomeMessages
+		}
+	}
+`
+
+export const GET_WIDGET_SETTINGS = gql`
+	${WIDGET_SETTINGS_FRAGMENT}
+	query getWidgetSettings {
+		organization {
+			_id
+			...WidgetSettings
+		}
+	}
+`
+
+export const UPDATE_WIDGET_SETTINGS = gql`
+	${WIDGET_SETTINGS_FRAGMENT}
+    mutation updateWidgetSettings($_id: MongoID!, $record: UpdateByIdOrganizationInput!) {
+        organizationUpdate(_id: $_id, record: $record) {
+            record {
+				_id
+				...WidgetSettings
+			}
+        }
+    }
+`;

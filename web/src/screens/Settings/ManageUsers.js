@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Form, Formik } from 'formik';
-import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, GET_AGENTS } from '@combase.app/apollo';
+import { GET_AGENTS } from '@combase.app/apollo';
 
 import { AgentListItem, Box, Button, DropdownIcon, EntityList, TableHeader, Text, Tooltip, useBulkSelect, useEntities } from '@combase.app/ui';
 
@@ -14,7 +13,7 @@ const ItemContainer = props => <Box {...props} paddingX={1} />;
 
 const ManageUsers = () => {
     const [agents] = useEntities(GET_AGENTS);
-	const [selectableItem, bulkCheckbox, selected] = useBulkSelect(agents?.edges || [], true);
+	const [selectableItem, bulkCheckbox] = useBulkSelect(agents?.edges || [], true);
 
     return (
         <Root>

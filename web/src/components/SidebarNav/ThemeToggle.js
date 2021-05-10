@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useTheme as useStyledTheme } from 'styled-components';
 import { setUITheme, themeVar, useReactiveVar } from '@combase.app/apollo';
 import { CheckCircleIcon, Dropdown, IconButton, MenuItem, Popover, SwitchThemeIcon, Tooltip } from '@combase.app/ui';
 
@@ -21,7 +20,6 @@ const themeOpts = [
 
 const ThemeToggle = ({ size }) => {
     const [anchorRef, setAnchorRef] = useState();
-    const { name } = useStyledTheme();
     const themeMode = useReactiveVar(themeVar);
 
     return (

@@ -28,6 +28,7 @@ import {
     Tooltip,
     VirtualizedList,
     useBulkSelect,
+	SortIcon,
 } from '@combase.app/ui';
 
 import { useReactiveMedia, useTicketList, useTicketLabelToggles } from 'hooks';
@@ -220,14 +221,23 @@ const ChannelList = () => {
                                     <Spinner size={5} />
                                 </SpinnerWrapper>
                             ) : (
-                                <Tooltip text={selectable ? 'Cancel' : 'Edit'}>
-                                    <IconButton
-                                        color={selectable ? 'red' : 'altText'}
-                                        size={4}
-                                        icon={selectable ? CloseIcon : EditIcon}
-                                        onClick={toggleSelectable}
-                                    />
-                                </Tooltip>
+                                <>
+									<Tooltip text="Sort">
+										<IconButton
+											color={'altText'}
+											size={4}
+											icon={SortIcon}
+										/>
+									</Tooltip>
+									<Tooltip text={selectable ? 'Cancel' : 'Edit'}>
+										<IconButton
+											color={selectable ? 'red' : 'altText'}
+											size={4}
+											icon={selectable ? CloseIcon : EditIcon}
+											onClick={toggleSelectable}
+										/>
+									</Tooltip>
+								</>
                             )}
                         </BulkActions>
                     }

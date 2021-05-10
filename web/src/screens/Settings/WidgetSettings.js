@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { FieldArray, Formik } from 'formik';
 import Scrollbars from 'rc-scrollbars';
-import { useQuery, GET_ORGANIZATION_PROFILE } from '@combase.app/apollo';
+import { useToasts } from 'react-toast-notifications';
+import { useQuery, useMutation, GET_WIDGET_SETTINGS, UPDATE_WIDGET_SETTINGS } from '@combase.app/apollo';
 
-import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, TextInput, ToggleGroup, ToggleGroupOption } from '@combase.app/ui';
+import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, Text, TextInput, ToggleGroup, ToggleGroupOption } from '@combase.app/ui';
 
 const FieldArrayInput = styled(Box)`
 	display: grid;
@@ -23,7 +24,7 @@ const ArrayActions = styled(Box)`
 	min-width: ${({ theme }) => theme.sizes[11]};
 `;
 
-const Pre = styled(Box).attrs({
+const Pre = styled(Text).attrs({
 	as: 'pre',
 })`
 	border: 1px solid ${({ theme }) => theme.colors.border};
@@ -31,17 +32,11 @@ const Pre = styled(Box).attrs({
 	font-size: ${({ theme }) => theme.fontSizes[2]};
 `
 
-const initialValues = {
-	welcomeMessages: ['Hey 👋', 'Thanks for reaching out!', 'How can we help you today?'],
-	trustedDomains: ['localhost'],
-	uitheme: 'auto'
-}
-
 const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, values }, name, push, remove }) => {
 	const value = values[name];
 	return value.map((v, i) => (
 		<FieldArrayInput key={`${name}-${i}`}>
-			<TextInput label={`${i + 1}`} name={`${name}.${i}`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v} />
+			<TextInput placeholder={`${i + 1}`} name={`${name}.${i}`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v} />
 			<ArrayActions padding={2}>
 				{i > 0 || i === 0 && value.length > 1 ? (
 					<IconButton color={'red'} size={4} icon={CloseCircleIcon} onClick={() => remove(i)} />
@@ -54,11 +49,51 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 	));
 }
 
-// TODO: Use live data (need to add some fields to the org model)
+const queryOpts = { fetchPolicy: 'cache-and-network'};
+
 const WidgetSettings = () => {
+	const { data } = useQuery(GET_WIDGET_SETTINGS, queryOpts);
+	const [updateWidgetSettings, { loading, error }] = useMutation(UPDATE_WIDGET_SETTINGS);
+	const { addToast } = useToasts();
+
+	const handleSubmit = useCallback(async (values) => {
+		try {
+			await updateWidgetSettings({
+				variables: {
+					_id: data.organization._id,
+					record: {
+						widget: values
+					},
+				}
+			})
+			addToast('Saved widget settings.', {
+				appearance: 'success',
+				autoDismiss: true,
+			});
+		} catch (error) {
+			addToast(error.message, {
+				appearance: 'error',
+				autoDismiss: true,
+			});
+		}
+	}, [data]);
+
+	const initialValues = useMemo(() => {
+		const { widget } = data?.organization || {};
+		return {
+			defaultTheme: widget?.defaultTheme || 'auto',
+			welcomeMessages: widget?.welcomeMessages?.length ? widget.welcomeMessages :  [''],
+			home: {
+				title: widget?.home?.title || '',
+				tagline: widget?.home?.tagline || '',
+			},
+			domains: widget?.domains?.length ? widget.domains : [''],
+		}
+	}, [data]);
+
 	return (
 		<Scrollbars>
-			<Formik initialValues={initialValues} onSubmit={console.log}>
+			<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 				{
 					formik => (
 						<Container paddingY={6} maxWidth={22}>
@@ -66,7 +101,7 @@ const WidgetSettings = () => {
 								title="Theme"
 								description="Edit the UI theme of the widget (if you have a custom organization theme, those colors will propagate to the widget too.)"
 							>
-								<ToggleGroup name='uitheme' onChange={(value) => formik.setFieldValue('uitheme', value)} value={formik.values.uitheme}>
+								<ToggleGroup name='defaultTheme' onChange={(value) => formik.setFieldValue('defaultTheme', value)} value={formik.values.defaultTheme}>
 									<ToggleGroupOption value="auto">{'Auto'}</ToggleGroupOption>
 									<ToggleGroupOption value="light">{'Light'}</ToggleGroupOption>
 									<ToggleGroupOption value="dark">{'Dark'}</ToggleGroupOption>
@@ -86,7 +121,7 @@ const WidgetSettings = () => {
 								description="Provide a list of whitelisted domains for the chat widget, so it can only be displayed on your owned pages."
 							>
 								<FieldArray 
-									name="trustedDomains"
+									name="domains"
 									render={renderFieldArray}
 								/>
 							</ListDetailSection>
@@ -95,9 +130,12 @@ const WidgetSettings = () => {
 								description="Grab a customized embed code for your Chat Widget. Just paste the script tag into your website."
 							>
 								<Pre padding={3} borderRadius={1}>
-									{"<script></script>"}
+									{`<script>
+config({ theme: ${formik.values.defaultTheme}, trustedDomains: ${JSON.stringify(formik.values.domains)} })
+</script>`}
 								</Pre>
 							</ListDetailSection>
+							<FormikAutosave />
 						</Container>
 					)
 				}

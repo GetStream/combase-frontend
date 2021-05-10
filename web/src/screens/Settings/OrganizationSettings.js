@@ -40,8 +40,10 @@ const Dropzone = styled(Box)`
 	background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors.border, .04)};
 `;
 
+const queryOpts = { fetchPolicy: 'cache-and-network'};
+
 const OrganizationSettings = () => {
-	const { data } = useQuery(GET_ORGANIZATION_PROFILE, { fetchPolicy: 'cache-and-network'});
+	const { data } = useQuery(GET_ORGANIZATION_PROFILE, queryOpts);
 	const [updateOrganizationProfile, { loading, error }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
 	const { addToast } = useToasts();
 
@@ -90,7 +92,7 @@ const OrganizationSettings = () => {
 				}
 			});
 
-			addToast('Saved.', {
+			addToast('Saved Organization profile.', {
 				appearance: 'success',
 				autoDismiss: true,
 			});
