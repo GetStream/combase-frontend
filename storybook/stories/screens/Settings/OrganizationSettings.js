@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from '@combase.app/apollo';
@@ -6,7 +6,7 @@ import { layout } from '@combase.app/styles';
 import { useToasts } from 'react-toast-notifications';
 import { useDropzone } from 'react-dropzone';
 
-import { AddImageIcon, Avatar, Box, Container, FormikAutosave, LabelledCheckbox, ListDetailSection, Text, TextInput } from '@combase.app/ui';
+import { AddImageIcon, Avatar, Box, Container, FormikAutosave, LabelledCheckbox, ListDetailSection, Modal, Text, TextInput, UpdateAvatarDialog } from '@combase.app/ui';
 
 const AvatarRow = styled(Box)`
 	display: grid;
@@ -40,6 +40,7 @@ const Dropzone = styled(Box)`
 `;
 
 const OrganizationSettings = () => {
+	const [avatarFile, setAvatarFile] = useState(null);
 	const { data } = useQuery(GET_ORGANIZATION_PROFILE, { fetchPolicy: 'cache-and-network'});
 	const [updateOrganizationProfile, { loading, error }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
 	const { addToast } = useToasts();
@@ -102,17 +103,18 @@ const OrganizationSettings = () => {
 	}, [data]);
 
 	const handleDrop = useCallback(acceptedFiles => {
-        let newFile = acceptedFiles[0];
-
+		let newFile = acceptedFiles[0];
         if (newFile) {
-            setFile({
-                ...newFile,
+			setAvatarFile({
+				...newFile,
                 preview: URL.createObjectURL(newFile),
             });
         }
     }, []);
 
-	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ onDrop: handleDrop, multiple: false });
+	console.log(avatarFile);
+
+	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ accept: 'image/jpeg, image/png, image/svg+xml', onDrop: handleDrop, multiple: false });
 
 	return (
 		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -183,6 +185,15 @@ const OrganizationSettings = () => {
 							<Text color="altText">Globally enforce 2FA for all Agent Users in your organization.</Text>
 						</LabelledCheckbox>
 					</ListDetailSection>
+					<Modal 
+						backdrop 
+						open={!!avatarFile} 
+						file={avatarFile} 
+						name="avatar"
+						onSubmit={formik.handleChange}
+						onClose={() => setAvatarFile(null)} 
+						component={UpdateAvatarDialog} 
+					/>
 					<FormikAutosave />
 				</Container>
 			)}

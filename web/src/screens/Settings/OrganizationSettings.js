@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from '@combase.app/apollo';
@@ -7,7 +7,7 @@ import { useToasts } from 'react-toast-notifications';
 import { useDropzone } from 'react-dropzone';
 import Scrollbars from 'rc-scrollbars';
 
-import { AddImageIcon, Avatar, Box, Container, FormikAutosave, LabelledCheckbox, ListDetailSection, Text, TextInput } from '@combase.app/ui';
+import { AddImageIcon, Avatar, Box, Container, FormikAutosave, LabelledCheckbox, ListDetailSection, Modal, Text, TextInput, UpdateAvatarDialog } from '@combase.app/ui';
 
 const AvatarRow = styled(Box)`
 	display: grid;
@@ -43,6 +43,7 @@ const Dropzone = styled(Box)`
 const queryOpts = { fetchPolicy: 'cache-and-network'};
 
 const OrganizationSettings = () => {
+	const [avatarFile, setAvatarFile] = useState(null);
 	const { data } = useQuery(GET_ORGANIZATION_PROFILE, queryOpts);
 	const [updateOrganizationProfile, { loading, error }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
 	const { addToast } = useToasts();
@@ -53,6 +54,9 @@ const OrganizationSettings = () => {
 			contact: {
 				phone: data?.organization?.contact?.phone || '',
 				email: data?.organization?.contact?.email || '',
+			},
+			branding: {
+				logo: data?.organization?.branding?.logo || '',
 			},
 			security: {
 				global2Fa: true
@@ -105,17 +109,16 @@ const OrganizationSettings = () => {
 	}, [data]);
 
 	const handleDrop = useCallback(acceptedFiles => {
-        let newFile = acceptedFiles[0];
-
+		let newFile = acceptedFiles[0];
         if (newFile) {
-            // setFile({
-            //     ...newFile,
-            //     preview: URL.createObjectURL(newFile),
-            // });
+			setAvatarFile({
+				...newFile,
+                preview: URL.createObjectURL(newFile),
+            });
         }
     }, []);
 
-	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ onDrop: handleDrop, multiple: false });
+	const { getRootProps, getInputProps, isDragActive, isDragReject, isDragAccept } = useDropzone({ accept: 'image/jpeg, image/png, image/svg+xml', onDrop: handleDrop, multiple: false });
 
 	return (
 		<Scrollbars>
@@ -125,7 +128,7 @@ const OrganizationSettings = () => {
 						<ListDetailSection title="Brand" description="Customize your organizations logo, colors and more to white-label Combase and customize how you appear in the widget.">
 							<AvatarRow marginBottom={6}>
 								<Box>
-									<Avatar name={formik.values.name} size={12} />
+									<Avatar src={formik.values.branding.logo} name={formik.values.name} size={12} />
 								</Box>
 								<Box>
 									<Dropzone {...getRootProps()} borderRadius={2} paddingX={3} height={13} backgroundColor="textA.2">
@@ -187,6 +190,15 @@ const OrganizationSettings = () => {
 								<Text color="altText">Globally enforce 2FA for all Agent Users in your organization.</Text>
 							</LabelledCheckbox>
 						</ListDetailSection>
+						<Modal 
+							backdrop 
+							open={!!avatarFile} 
+							file={avatarFile} 
+							name="branding.logo"
+							onSubmit={formik.handleChange}
+							onClose={() => setAvatarFile(null)} 
+							component={UpdateAvatarDialog} 
+						/>
 						<FormikAutosave />
 					</Container>
 				)}
