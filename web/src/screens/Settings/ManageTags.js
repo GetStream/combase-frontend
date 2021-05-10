@@ -1,15 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import { CREATE_TAG, GET_TAGS, REMOVE_TAGS, NEW_TAG_FRAGMENT, useMutation } from '@combase.app/apollo';
-import { useToggle } from 'react-use';
-import { useHistory } from 'react-router-dom';
+import { GET_TAGS, REMOVE_TAGS, NEW_TAG_FRAGMENT, useMutation } from '@combase.app/apollo';
 
 import {
     Box,
     EntityList,
     TableHeader,
     TagListItem,
-    transformToTag,
     useBulkSelect,
     useEntities,
 } from '@combase.app/ui';
@@ -22,45 +19,11 @@ const Root = styled(Box)`
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 
 const ManageTags = () => {
-	const history = useHistory();
-
-    const [showCreateModal, toggleCreateModal] = useToggle();
     const [editing, setEditTag] = useState();
     const [tags, { loading, organization }] = useEntities(GET_TAGS);
     const [selectableItem, bulkCheckbox, selected, setSelected] = useBulkSelect(tags?.edges || [], true);
 
-	const [handleCreateTag, { loading: creating }] = useMutation(CREATE_TAG);
     const [handleRemoveTags, { loading: removing }] = useMutation(REMOVE_TAGS);
-
-    const handleSubmit = useCallback(
-        async values => {
-            try {
-                const name = transformToTag(values.name);
-                await handleCreateTag({
-                    optimisticResponse: {
-                        __typename: 'Mutation',
-                        tagCreate: {
-                            tag: {
-                                name,
-                                organization,
-                                __typename: 'Tag',
-                            },
-                            __typename: 'CreateOneTagPayload',
-                        },
-                    },
-                    variables: {
-                        name,
-                    },
-                    update: (cache, { data }) => {
-                        toggleCreateModal(false);
-                    },
-                });
-            } catch (error) {
-                console.error(error.message);
-            }
-        },
-        [history, tags, organization]
-    );
 
     const handleRemoveMany = useCallback(async () => {
         try {

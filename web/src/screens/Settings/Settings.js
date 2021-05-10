@@ -4,6 +4,8 @@ import { Route, Switch, useHistory, useParams } from 'react-router-dom';
 import { AddUsersIcon, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard, AddTagIcon } from '@combase.app/ui';
 import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
 
+import AddTagDialog from 'components/modals/AddTagDialog';
+
 import ProfileSettings from './ProfileSettings';
 import OrganizationSettings from './OrganizationSettings';
 import WidgetSettings from './WidgetSettings';
@@ -45,12 +47,7 @@ const Settings = () => {
 						<Route 
 							exact 
 							path="/dashboard/settings/tags" 
-							render={() => (
-								<Button size="xs">
-									<AddTagIcon />
-									<Text>Add Tag</Text>
-								</Button>
-							)}
+							component={AddTagDialog}
 						/>
 						<Route 
 							exact 

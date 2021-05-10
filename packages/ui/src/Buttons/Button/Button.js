@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { interactions, layout, shadow, variant } from '@combase.app/styles';
+import { backgroundColorAlpha, colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
 
 import { Spinner } from '../../Feedback';
 import { IconLabel } from '../../IconLabel';
@@ -18,6 +18,7 @@ const Root = styled(ButtonBase).attrs(() => ({
     ${shadow.boxShadow};
     ${layout};
     ${interactions};
+	${colorAlpha};
 
     border: 0;
     margin: 0;

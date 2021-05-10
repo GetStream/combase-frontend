@@ -15,7 +15,7 @@ export const buttonSizeVariants = variant({
 
 export const buttonVisualVariants = props => {
     const color = props.disabled ? 'disabled' : props.color;
-
+	console.log(color);
     return variant({
         variants: {
             flat: {
@@ -29,10 +29,10 @@ export const buttonVisualVariants = props => {
                     fill: color,
                 },
                 '&:hover': {
-                    backgroundColor: `${color}A.4`,
+                    backgroundColor: ({ utils }) => props.disabled ? 'disabled' : utils.colors.fade(color, 0.04),
                 },
                 '&:active': {
-                    backgroundColor: `${color}A.8`,
+                    backgroundColor: ({ utils }) => props.disabled ? 'disabled' : utils.colors.fade(color, 0.08),
                 },
             },
             raised: {
