@@ -61,16 +61,7 @@ export const WIDGET_SETTINGS_FRAGMENT = gql`
 				tagline
 			}
 			welcomeMessages
-		}
-	}
-`
-
-export const GET_WIDGET_SETTINGS = gql`
-	${WIDGET_SETTINGS_FRAGMENT}
-	query getWidgetSettings {
-		organization {
-			_id
-			...WidgetSettings
+			unassignedMessages
 		}
 	}
 `

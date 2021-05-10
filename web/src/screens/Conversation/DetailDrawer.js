@@ -24,6 +24,7 @@ import {
 	Tooltip,
 	transformToTag,
 	ChipInputBase,
+	MenuItem,
 } from '@combase.app/ui';
 import { useParams } from 'react-router-dom';
 import { useQuery, GET_TICKET } from '@combase.app/apollo';
@@ -34,6 +35,7 @@ const Root = styled(Box)`
     grid-template-rows: max-content 1fr;
     height: 100vh;
     background-color: ${({ theme }) => theme.colors.surface};
+	border-left: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const Masthead = styled(Container)`
@@ -89,7 +91,7 @@ const renderChip = ({ node = {} }, actions, i, cursor) => (
 const DetailDrawer = ({ onClose }) => {
     const { channelId } = useParams();
     const { data } = useQuery(GET_TICKET, { variables: { _id: channelId } });
-    const { tags, user } = data?.ticket || {};
+    const { tags, user } = data?.organization?.ticket || {};
 
     return (
         <Root>
@@ -99,7 +101,7 @@ const DetailDrawer = ({ onClose }) => {
 					hideTitle
                     actions={[<IconButton color="altText" icon={CloseIcon} onClick={onClose} />]}
                 />
-                <Masthead variant="fluid" paddingBottom={4}>
+                <Masthead variant="fluid">
 					<Avatar src={user?.avatar} name={user?.name} size={12} />
                     <TextGroup marginY={3} variant='centered'>
                         <Name as={!user?.name ? Placeholder : undefined} fontSize={6} fontWeight="600" lineHeight={6}>
@@ -108,17 +110,21 @@ const DetailDrawer = ({ onClose }) => {
 						<Text color="altText" fontSize={3} lineHeight={4} marginBottom={2}>
                             {user?.email}
                         </Text>
-                        <Tooltip text="10:00am • Wed 5 May">
-							<IconLabel color="primary">
-								<PinIcon />
-								<Text>
-									Boulder, CO
-								</Text>
-							</IconLabel>
-						</Tooltip>
+                        {user?.timezone ? (
+							<Tooltip text="10:00am • Wed 5 May">
+								<IconLabel color="primary">
+									<PinIcon />
+									<Text>
+										Boulder, CO
+									</Text>
+								</IconLabel>
+							</Tooltip>
+						) : (
+							<Text color="altText" opacity={0.5}>No timezone data available for this user</Text>
+						)}
                     </TextGroup>
                 </Masthead>
-				<Container>
+				<Container marginY={6}>
 					<ListSubheader>Tags</ListSubheader>
 					<Input
                         transformValue={transformToTag}
@@ -129,10 +135,14 @@ const DetailDrawer = ({ onClose }) => {
                         value={tags || []}
                     />
 				</Container>
+				<Container marginY={6}>
+					<ListSubheader>Actions</ListSubheader>
+					<MenuItem icon={Avatar} iconProps={{ name: 'Zendesk'}} label="Escalate to Zendesk" />
+				</Container>
             </Box>
-            {/* <FeedWrapper>
-                <ActivityFeed headerBackground="surface" feed={`ticket:${channelId}`} subtitle="Powered by Stream" title="Ticket Activity" />
-            </FeedWrapper> */}
+            <FeedWrapper>
+                {/* <ActivityFeed headerBackground="surface" feed={`ticket:${channelId}`} subtitle="Powered by Stream" title="Ticket Activity" /> */}
+            </FeedWrapper>
         </Root>
     );
 };

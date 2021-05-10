@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { WIDGET_SETTINGS_FRAGMENT } from './auth.mutation';
 
 export const GET_CURRENT_USER = gql`
     {
@@ -115,5 +116,15 @@ export const UPDATE_AGENT_PROFILE_FRAGMENT = gql`
 			}
 		}
 		timezone
+	}
+`
+
+export const GET_WIDGET_SETTINGS = gql`
+	${WIDGET_SETTINGS_FRAGMENT}
+	query getWidgetSettings {
+		organization {
+			_id
+			...WidgetSettings
+		}
 	}
 `

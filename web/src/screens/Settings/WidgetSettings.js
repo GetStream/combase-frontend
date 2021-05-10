@@ -83,6 +83,7 @@ const WidgetSettings = () => {
 		return {
 			defaultTheme: widget?.defaultTheme || 'auto',
 			welcomeMessages: widget?.welcomeMessages?.length ? widget.welcomeMessages :  [''],
+			unassignedMessages: widget?.unassignedMessages?.length ? widget.unassignedMessages :  [''],
 			home: {
 				title: widget?.home?.title || '',
 				tagline: widget?.home?.tagline || '',
@@ -113,6 +114,15 @@ const WidgetSettings = () => {
 							>
 								<FieldArray 
 									name="welcomeMessages"
+									render={renderFieldArray}
+								/>
+							</ListDetailSection>
+							<ListDetailSection
+								title="Unassigned Message"
+								description="Edit the message, or series of messages, that an end-user will receive when no agents are available."
+							>
+								<FieldArray 
+									name="unassignedMessages"
 									render={renderFieldArray}
 								/>
 							</ListDetailSection>
