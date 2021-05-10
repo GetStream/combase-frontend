@@ -51,6 +51,10 @@ export const ToggleBase = forwardRef((props, ref) => {
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
 
+	const handleRootClick = e => {
+		e.stopPropagation();
+	};
+
     const handleClick = (_, e) => {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
@@ -78,6 +82,7 @@ export const ToggleBase = forwardRef((props, ref) => {
             disabled={disabled}
             onBlur={onBlur}
             onFocus={onFocus}
+			onClick={handleRootClick}
             ref={ref}
             role={undefined}
             tabIndex={null}

@@ -1,16 +1,16 @@
 import { useChannelManager } from '@combase.app/chat';
 import { useToggle } from 'react-use';
+import { ScrollbarsWithContext } from '@combase.app/ui/src/contexts';
+import { EmptyView } from '@combase.app/ui/src/Feedback';
+import { Box } from '@combase.app/ui/src/Layout';
+import { useBulkSelect } from '@combase.app/ui/src/hooks';
 import {
-	Box,
-	Checkbox,
 	CloseIcon,
 	EditIcon,
-	EmptyView,
 	InboxIcon,
-	ScrollbarsWithContext,
-	Text,
-	useBulkSelect,
-} from '@combase.app/ui';
+} from '@combase.app/ui/src/icons';
+import { Checkbox } from '@combase.app/ui/src/Inputs';
+import { Text } from '@combase.app/ui/src/Text';
 
 import { WidgetHeader } from '../../WidgetHeader';
 import { WidgetChannelPreview } from '../../WidgetChannelPreview';

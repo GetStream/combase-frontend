@@ -1,17 +1,14 @@
 import { useCallback } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import { useParams } from 'react-router-dom';
 import { useMutation, STAR_TICKET, SET_TICKET_PRIORITY, UPDATE_TICKET_LABELS_FRAGMENT } from '@combase.app/apollo';
 
-// TODO: Pass ticketID to handleStar and handleSetPriority instead of from useParams
 export const useTicketLabelToggles = () => {
-	const { channelId } = useParams();
 	const { addToast } = useToasts();
 
 	const [starTicket, { loading: starring, error: starError }] = useMutation(STAR_TICKET);
 	const [setTicketPriority, { loading: prioritizing, error: priorityError }] = useMutation(SET_TICKET_PRIORITY);
 
-	const handleStarTicket = useCallback(async (e) => {
+	const handleStarTicket = useCallback(async (e, channelId) => {
 		try {
 			if (!channelId) {
 				return;
@@ -50,9 +47,9 @@ export const useTicketLabelToggles = () => {
 				autoDismiss: true,
 			})	
 		}
-	}, [channelId]);
+	}, []);
 	
-	const handleSetPriority = useCallback(async (e) => {
+	const handleSetPriority = useCallback(async (e, channelId) => {
 		try {
 			if (!channelId) {
 				return;
@@ -93,7 +90,7 @@ export const useTicketLabelToggles = () => {
 				autoDismiss: true,
 			})	
 		}
-	}, [channelId]);
+	}, []);
 
 	return [handleStarTicket, handleSetPriority, {
 		starring,

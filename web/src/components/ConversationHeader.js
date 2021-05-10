@@ -30,10 +30,10 @@ const ConversationHeader = ({  onBackClick, onInfoClick, readonly, showBackBtn }
             showBackBtn={showBackBtn}
             toggles={[
                 <Tooltip key={0} text="Star Conversation">
-                    <TicketLabelToggle type="star" onChange={starTicket} value={ticket?.starred || false} />
+                    <TicketLabelToggle type="star" onChange={(e) => starTicket(e, channelId)} value={ticket?.starred || false} />
                 </Tooltip>,
                 <Tooltip key={1} text="Set Priority">
-                    <TicketLabelToggle type="priority" onChange={setPriority} value={ticket?.priority || 0} />
+                    <TicketLabelToggle type="priority" onChange={(e) => setPriority(e, channelId)} value={ticket?.priority || 0} />
                 </Tooltip>,
             ]}
             user={partner?.user}

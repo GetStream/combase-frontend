@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { ScrollContextProvider } from '@combase.app/ui';
+import { ScrollContextProvider } from '@combase.app/ui/src/contexts';
 
 import { AuthGuard, GuestGuard } from './guards';
 

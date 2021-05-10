@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getMessagePreview, useChannelPartner, useChannelPreview } from '@combase.app/chat';
-import { ChannelPreview } from "@combase.app/ui";
+import { ChannelPreview } from '@combase.app/ui';
 
 export const WidgetChannelPreview = ({ compact, channel, selectable, ...rest }) => {
     const partner = useChannelPartner(channel?.state?.members);
