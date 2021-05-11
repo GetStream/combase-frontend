@@ -21,7 +21,7 @@ import {
     SupportIcon,
     SwitchThemeIcon,
 } from '../../icons';
-import { Avatar } from '../../Avatar/Avatar';
+import Avatar from '../../Avatar';
 
 const Page = styled.div`
     height: calc(100vh - 2rem);

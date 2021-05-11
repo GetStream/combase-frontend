@@ -1,4 +1,4 @@
-import { ColorInput } from '.';
+import ColorInput from './ColorInput';
 
 export const Default = () => <ColorInput label="Primary Color" />;
 

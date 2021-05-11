@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 import { itemGap, shadow } from '@combase.app/styles';
 
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { Box } from '../../Layout';
 import { PageTitle } from '../../PageTitle';
 import { Text } from '../../Text';

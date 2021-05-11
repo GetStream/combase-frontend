@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Avatar } from '../Avatar';
+import Avatar from '../Avatar';
 import { CloseCircleIcon } from '../icons';
 
 import Chip from './Chip';
