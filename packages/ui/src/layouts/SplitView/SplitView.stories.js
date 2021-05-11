@@ -11,8 +11,8 @@ import { Button, IconButton } from '../../Buttons';
 import { SplitView } from './SplitView';
 import { ActivityIcon, ArrowBackIcon } from '../../icons';
 import { VirtualizedList } from '../../Lists';
-import { PageHeader } from '../../PageHeader';
-import { PageTitle } from '../../PageTitle';
+import PageHeader from '../../PageHeader';
+import PageTitle from '../../PageTitle';
 
 const Wrapper = styled(Box)`
     height: 100vh;

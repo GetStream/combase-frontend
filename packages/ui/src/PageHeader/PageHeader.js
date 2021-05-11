@@ -11,7 +11,7 @@ import { ArrowBackIcon, MenuIcon } from '../icons';
 import Box from '../Box';
 import Container from '../Container';
 import HeaderBase from '../HeaderBase';
-import { PageTitle } from '../PageTitle';
+import PageTitle from '../PageTitle';
 
 const Title = styled.div`
     display: flex;

@@ -57,7 +57,7 @@ const Root = styled(ButtonBase)`
     }
 `;
 
-export const Tab = ({ active, icon, iconSize, reverseLabel, label, onClick, dims, value }) => {
+const Tab = ({ active, icon, iconSize, reverseLabel, label, onClick, dims, value }) => {
     const ref = useRef();
 
     useEffect(() => {
@@ -96,3 +96,5 @@ Tab.propTypes = {
     reportActive: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
+
+export default Tab;

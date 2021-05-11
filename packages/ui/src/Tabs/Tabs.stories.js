@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Tabs, Tab } from '.';
+import Tabs, { Tab } from '.';
 
 // TODO: Router-bound tabs example.
 /**

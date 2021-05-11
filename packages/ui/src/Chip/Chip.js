@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { interactions, itemGap, layout, variant } from '@combase.app/styles';
 
 import Box from '../Box';
-import { Placeholder } from '../Placeholder';
+import Placeholder from '../Placeholder';
 import { Text } from '../Text';
 
 // TODO: Dedupe with IconBubble

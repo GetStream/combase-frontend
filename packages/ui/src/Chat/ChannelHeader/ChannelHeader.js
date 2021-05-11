@@ -13,7 +13,7 @@ import { IconButton } from '../../Buttons';
 import { Entity } from '../../Lists';
 import { Text } from '../../Text';
 import { ArrowBackIcon } from '../../icons';
-import { Placeholder } from '../../Placeholder';
+import Placeholder from '../../Placeholder';
 
 import { PartnerStatus } from '../PartnerStatus';
 

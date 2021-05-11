@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { fill, opacity, system } from '@combase.app/styles';
 
-import { Placeholder } from '../Placeholder';
+import Placeholder from '../Placeholder';
 
 const iconSize = system({
     size: {

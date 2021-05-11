@@ -6,7 +6,7 @@ import { interactions, layout } from '@combase.app/styles';
 import { CloseIcon, FileIcon, WarningIcon } from '../icons';
 import Box from '../Box';
 import { IconBubble } from '../IconBubble';
-import { Placeholder } from '../Placeholder';
+import Placeholder from '../Placeholder';
 import { Chip } from '../Chip';
 import { Tooltip } from '../Popovers';
 import { Spinner } from '../Feedback';

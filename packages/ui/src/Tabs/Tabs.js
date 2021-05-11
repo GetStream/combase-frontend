@@ -33,7 +33,7 @@ const springConfig = {
     to: { dims: [0, 0] },
 };
 
-export const Tabs = ({ children, onChange, value }) => {
+const Tabs = ({ children, onChange, value }) => {
     const [{ dims }] = useSpring(springConfig, []);
 
     const activeStyle = useMemo(
@@ -70,3 +70,5 @@ Tabs.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
+
+export default Tabs;

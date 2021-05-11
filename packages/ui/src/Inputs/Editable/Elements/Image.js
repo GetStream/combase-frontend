@@ -4,7 +4,7 @@ import { useFocused, useSelected, useSlate } from 'slate-react';
 import { EmptyElement } from './EmptyElement';
 
 import Box from '../../../Box';
-import { Placeholder } from '../../../Placeholder';
+import Placeholder from '../../../Placeholder';
 import { useFeedsContext } from '../../../contexts/Feeds';
 
 const Root = styled(Box)`

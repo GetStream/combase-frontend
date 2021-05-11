@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { color, space, system, typography, variant } from '@combase.app/styles';
 
-import { Placeholder } from '../Placeholder';
+import Placeholder from '../Placeholder';
 
 export const Text = styled.p`
     margin: 0;

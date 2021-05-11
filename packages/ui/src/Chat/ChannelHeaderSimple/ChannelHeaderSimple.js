@@ -9,7 +9,7 @@ import Container from '../../Container';
 import HeaderBase from '../../HeaderBase';
 import { ArrowBackIcon } from '../../icons';
 import { IconButton } from '../../Buttons';
-import { Placeholder } from '../../Placeholder';
+import Placeholder from '../../Placeholder';
 import { Text, TextGroup } from '../../Text';
 
 import { PartnerStatus } from '../PartnerStatus';

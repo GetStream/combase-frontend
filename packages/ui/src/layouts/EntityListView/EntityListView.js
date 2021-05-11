@@ -2,14 +2,14 @@ import { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
-import { useBulkSelect, useEntities } from '../../hooks';
+import { useEntities } from '../../hooks';
 import { Button, IconButton } from '../../Buttons';
 import { IconLabel } from '../../IconLabel';
-import { AddUsersIcon, DeleteIcon, DropdownIcon } from '../../icons';
+import { AddUsersIcon, DeleteIcon } from '../../icons';
 import Box from '../../Box';
 import { Label } from '../../Label';
 import { Tooltip } from '../../Popovers';
-import { PageHeader } from '../../PageHeader';
+import PageHeader from '../../PageHeader';
 import { EntityList } from '../../Lists';
 import { Text } from '../../Text';
 import { ScrollContextProvider } from '../../contexts';

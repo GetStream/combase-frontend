@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { color, layout, system, variant } from '@combase.app/styles';
 
 import Box from '../Box';
-import { Placeholder } from '../Placeholder';
+import Placeholder from '../Placeholder';
 import { Text } from '../Text';
 
 const rootVariant = ({ color, invert }) => variant({

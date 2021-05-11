@@ -6,7 +6,7 @@ import { animated } from 'react-spring';
 import Box from '../Box';
 import { Heading, Text, TextGroup } from '../Text';
 import { DropdownIcon } from '../icons/index';
-import { Placeholder } from '../Placeholder';
+import Placeholder from '../Placeholder';
 
 const Root = styled(TextGroup).attrs({
     as: animated.div,

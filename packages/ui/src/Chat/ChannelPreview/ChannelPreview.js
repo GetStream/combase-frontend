@@ -8,7 +8,7 @@ import Box from '../../Box';
 import { IconLabel } from '../../IconLabel';
 import { ListItem } from '../../Lists/ListItem';
 import { Badge } from '../../Feedback';
-import { Placeholder } from '../../Placeholder';
+import Placeholder from '../../Placeholder';
 import { Text, TextGroup } from '../../Text';
 
 import ChannelPreviewToggles from './ChannelPreviewToggles';

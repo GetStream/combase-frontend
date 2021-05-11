@@ -7,7 +7,7 @@ import { GridViewIcon, ListViewIcon } from '../icons';
 import { Tooltip } from '../Popovers';
 import { Text } from '../Text';
 
-import { ToggleGroup, ToggleGroupOption } from '.';
+import ToggleGroup, { ToggleGroupOption } from '.';
 
 const Centered = styled(Box)`
     display: flex;
