@@ -8,9 +8,9 @@ import { useChannelMembers } from './useChannelMembers';
  *! Caution: Hook will work in all channels, but only ever
  *! returns one member.
  */
-export const useChannelPartner = () => {
+export const useChannelPartner = (membersProp) => {
     const client = useChatClient();
 	const members = useChannelMembers();
 
-    return useMemo(() => Object.values(members || {}).find(member => member.user.id !== client.userID), [client, members]);
+    return useMemo(() => Object.values(members || membersProp || {}).find(member => member.user.id !== client.userID), [client, members]);
 };

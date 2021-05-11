@@ -126,6 +126,7 @@ export const MessageInputSimple = props => {
                 </ActionButton>
                 <Input fontFamily="text" marginX={2} borderRadius={2} maxRows={props.maxRows}>
                     <Editable
+						id="widget_message_input"
                         components={EditablePresets.Chat.components}
                         plugins={plugins}
                         onChange={setValue}

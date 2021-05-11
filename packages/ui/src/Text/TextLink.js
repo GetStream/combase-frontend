@@ -4,7 +4,7 @@ import { interactions } from '@combase.app/styles';
 
 import { IconLabel } from '../IconLabel';
 import { ChevronRightIcon } from '../icons/chevronRight';
-import {Text} from '../Text/Text';
+import {Text} from './Text';
 
 const Root = styled(IconLabel)`
     ${interactions};

@@ -2,6 +2,7 @@ import { useToggle } from 'react-use';
 import {
 	CloseIcon,
 	SearchIcon,
+	IconButton,
 	KnowledgeBaseIcon,
 	Box,
 	EmptyView,

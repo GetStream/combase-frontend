@@ -45,7 +45,7 @@ CombaseWidget.propTypes = {
 };
 
 CombaseWidget.defaultProps = {
-    fabSize: 8,
+    fabSize: 10,
     theme: 'light',
 };
 
