@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { GET_CONVERSATIONS, NEW_TICKET_FRAGMENT, UNREAD_COUNT_FRAGMENT, useQuery } from '@combase.app/apollo';
 import { useHistory, useParams } from 'react-router-dom';
-import { useChatClient, useClientEvent } from '@combase.app/chat';
+import { useChatClient } from '@combase.app/chat';
 import { useAsyncFn } from 'react-use';
 
 import { channelToTicketEdge } from 'contexts/TicketManager/utils';
@@ -85,14 +85,14 @@ export const useTicketList = (filter, sort, opts) => {
                 console.info(error.message);
             }
         },
-        [apollo, count, queryOpts, sort, opts]
+        [apollo, chatClient, count, queryOpts, sort, opts]
     );
 
     const [{ error, loading }, loadMore] = useAsyncFn(queryChannels, [queryChannels]);
 
     useEffect(() => {
         loadMore(true);
-    }, [queryOpts]);
+    }, [loadMore, queryOpts]);
 
     const onClickTicket = useCallback(
         ticketId => {

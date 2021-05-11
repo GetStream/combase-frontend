@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { color, layout, system } from '@combase.app/styles';
 
-import { Box } from '../Layout';
+import Box from '../Layout/Box';
 import { Placeholder } from '../Placeholder';
 import { Text } from '../Text';
 
@@ -39,7 +39,7 @@ const Initials = styled(Text)`
 	})}
 `;
 
-export const Avatar = forwardRef(({ avatarStyle, backgroundColor, name, size, src, variant, ...props }, ref) => (
+const Avatar = forwardRef(({ avatarStyle, backgroundColor, name, size, src, variant, ...props }, ref) => (
 	<Root
 		as={!src && !name ? Placeholder : 'div'}
 		backgroundColor={backgroundColor}
@@ -73,3 +73,5 @@ Avatar.defaultProps = {
     size: 8,
     variant: 'squircle',
 };
+
+export default Avatar;

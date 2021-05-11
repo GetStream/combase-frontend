@@ -53,7 +53,7 @@ const queryOpts = { fetchPolicy: 'cache-and-network'};
 
 const WidgetSettings = () => {
 	const { data } = useQuery(GET_WIDGET_SETTINGS, queryOpts);
-	const [updateWidgetSettings, { loading, error }] = useMutation(UPDATE_WIDGET_SETTINGS);
+	const [updateWidgetSettings] = useMutation(UPDATE_WIDGET_SETTINGS);
 	const { addToast } = useToasts();
 
 	const handleSubmit = useCallback(async (values) => {
@@ -76,7 +76,7 @@ const WidgetSettings = () => {
 				autoDismiss: true,
 			});
 		}
-	}, [data]);
+	}, [addToast, data, updateWidgetSettings]);
 
 	const initialValues = useMemo(() => {
 		const { widget } = data?.organization || {};

@@ -45,7 +45,7 @@ export const useOrganization = () => {
 						}
 					}
 				}`,
-                  organization,
+                organization,
               ]
             : null,
         getOrg
@@ -70,6 +70,8 @@ export const useOrganizationStreamKey = organization => {
             : null,
         getOrg
     );
+
+	console.log(loading, error);
 
     return [data?.organization?.stream?.key, loading, error];
 };

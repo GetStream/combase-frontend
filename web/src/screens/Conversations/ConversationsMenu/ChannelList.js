@@ -60,32 +60,11 @@ const options = {
     watch: false,
 };
 
-const popoverModifiers = [
-    {
-        name: 'offset',
-        options: {
-            offset: [0, 16],
-        },
-    },
-    {
-        name: 'fullWidth',
-        enabled: true,
-        phase: 'beforeWrite',
-        requires: ['computeStyles'],
-        fn: ({ state }) => {
-            // eslint-disable-next-line no-param-reassign
-            state.styles.popper.width = `${window.innerWidth - 32}px`;
-        },
-        effect: ({ state }) => {
-            // eslint-disable-next-line no-param-reassign
-            state.elements.popper.style.width = `${window.innerWidth - 32}px`;
-        },
-    },
-];
-
 const ChannelList = () => {
     const { inbox } = useParams();
     const { data } = useQuery(GET_CURRENT_USER);
+
+	const me = useMemo(() => data?.me || {}, [data]);
 
     const [statusFilter, setStatusFilter] = useState('open');
     const [menuAnchor, setMenuAnchor] = useState();
@@ -93,6 +72,8 @@ const ChannelList = () => {
 
     const isSm = useReactiveMedia('sm');
     const isXl = useReactiveMedia('xl');
+	
+	const isSmallViewport = !isSm?.matches;
 
     const popoverModifiers = useMemo(
         () => [
@@ -104,7 +85,7 @@ const ChannelList = () => {
             },
             {
                 name: 'fullWidth',
-                enabled: !isSm?.matches,
+                enabled: isSmallViewport,
                 phase: 'beforeWrite',
                 requires: ['computeStyles'],
                 fn: ({ state }) => {
@@ -117,13 +98,13 @@ const ChannelList = () => {
                 },
             },
         ],
-        []
+        [isSmallViewport]
     );
 
     const filters = useMemo(() => {
         let filter = {
             members: {
-                $in: [data?.me?._id],
+                $in: [me?._id],
             },
         };
 
@@ -150,7 +131,7 @@ const ChannelList = () => {
         }
 
         return filter;
-    }, [inbox, statusFilter]);
+    }, [inbox, statusFilter, me]);
 
     const [tickets, { error, loading, onClickTicket, loadMore }] = useTicketList(filters, sort, options);
 
@@ -186,13 +167,12 @@ const ChannelList = () => {
 				)}
 			</Route>
 		);
-	}, [selectableItemProps, onClickTicket, tickets]);
+	}, [selectableItemProps, setPriority, starTicket, onClickTicket, tickets]);
 
     return (
         <ScrollContextProvider type="px">
             <Root>
                 <PageHeader
-                    centered
                     showOrganization={!selectable && isSm?.matches && !isXl?.matches}
                     leftIcon={
                         selectable ? (
@@ -241,12 +221,12 @@ const ChannelList = () => {
                             )}
                         </BulkActions>
                     }
-                    animated={!isSm?.matches}
-                    centered={!isSm?.matches}
+                    animated={isSmallViewport}
+                    centered={isSmallViewport}
                     hideLeftAction={isSm?.matches && !selectable}
-                    reverse={selectable || !isSm?.matches}
+                    reverse={selectable || isSmallViewport}
                     title={inbox}
-                    subtitle={selectable ? `${selected?.length || 0} selected` : `${tickets?.count || 0} tickets`}
+                    subtitle={selectable ? `${selected?.length || 0} selected` : !isSm?.matches ? `${tickets?.count || 0} tickets` : undefined}
                     onTitleClick={!selectable && !isXl.matches ? e => setMenuAnchor(e.target) : null}
                 >
                     {inbox !== 'unassigned' && inbox !== 'archived' ? (

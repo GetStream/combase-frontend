@@ -15,7 +15,6 @@ export const buttonSizeVariants = variant({
 
 export const buttonVisualVariants = props => {
     const color = props.disabled ? 'disabled' : props.color;
-	console.log(color);
     return variant({
         variants: {
             flat: {

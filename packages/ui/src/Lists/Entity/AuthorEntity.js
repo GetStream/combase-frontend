@@ -1,4 +1,4 @@
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { Text } from '../../Text';
 
 import { Entity } from './Entity';

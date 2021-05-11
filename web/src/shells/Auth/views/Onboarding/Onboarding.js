@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { PageTitle } from '@combase.app/ui';
-import { colorUtils } from '@combase.app/styles';
 import { useMutation } from '@combase.app/apollo';
 import { ONBOARD_USER_AND_ORG, setAuthenticationCredentials } from '@combase.app/apollo';
 import FormikWizard from 'components/FormikWizard';

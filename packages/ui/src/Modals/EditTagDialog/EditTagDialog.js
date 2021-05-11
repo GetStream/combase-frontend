@@ -1,12 +1,11 @@
 import { forwardRef, useCallback } from 'react';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 import { useMutation, UPDATE_TAG, GET_TAGS } from '@combase.app/apollo';
 
 import { Button } from '../../Buttons';
-import { Helper, TextInput } from '../../Inputs';
+import { TextInput } from '../../Inputs';
 import { Box } from '../../Layout';
 import { Heading, Text } from '../../Text';
 import { Card } from '../../Cards';

@@ -1,2 +1,2 @@
-export * from './Avatar';
-export * from './AvatarGroup';
+export { default } from './Avatar';
+export { default as AvatarGroup } from './AvatarGroup';

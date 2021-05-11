@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { backgroundColorAlpha, colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
+import { colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
 
 import { Spinner } from '../../Feedback';
 import { IconLabel } from '../../IconLabel';
 
-import { ButtonBase } from '../shared';
+import ButtonBase from '../shared/ButtonBase';
 import { buttonSizeVariants, buttonVisualVariants } from './variants';
 
 const Root = styled(ButtonBase).attrs(() => ({

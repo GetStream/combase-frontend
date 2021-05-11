@@ -1,13 +1,10 @@
 import {
-    AgentsIcon,
     NavigationIconButton,
     NavigationMenuItem,
     Tooltip,
-    GroupIcon,
     ChevronRightIcon,
     ConversationsIcon,
     SettingsIcon,
-    KnowledgeBaseIcon,
     DashboardIcon,
 	PluginsIcon,
 } from '@combase.app/ui';

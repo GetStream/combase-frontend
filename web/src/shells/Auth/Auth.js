@@ -27,21 +27,21 @@ const Page = styled.div`
     }
 `;
 
-const Promo = styled.div`
-    flex: 1;
-    display: flex;
-    padding: 1rem;
+// const Promo = styled.div`
+//     flex: 1;
+//     display: flex;
+//     padding: 1rem;
 
-    & div {
-        flex: 1;
-        background-color: ${({ theme }) => theme.colors.primary};
-        border-radius: ${({ theme }) => theme.borderRadius * 2}rem;
-    }
-`;
+//     & div {
+//         flex: 1;
+//         background-color: ${({ theme }) => theme.colors.primary};
+//         border-radius: ${({ theme }) => theme.borderRadius * 2}rem;
+//     }
+// `;
 
-const Credit = styled.div`
-    padding: 2rem 0;
-`;
+// const Credit = styled.div`
+//     padding: 2rem 0;
+// `;
 
 const AuthShell = ({ match }) => {
     const authed = useReactiveVar(authenticationVar);

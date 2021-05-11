@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Box } from '../../Layout';
 
-import { UpdateEmailDialog } from '.';
+import { EditTagDialog } from '.';
 
 const Root = styled(Box)`
     display: flex;
@@ -17,12 +17,12 @@ const initialValues = { name: '' };
 export const Default = () => {
     return (
         <Root>
-            <UpdateEmailDialog initialValues={initialValues} label="New Group" placeholder="Name" name="name" onSubmit={console.log} />
+            <EditTagDialog initialValues={initialValues} label="New Group" placeholder="Name" name="name" onSubmit={console.log} />
         </Root>
     );
 };
 
 export default {
-    component: UpdateEmailDialog,
-    title: 'Modals/UpdateEmailDialog',
+    component: EditTagDialog,
+    title: 'Modals/EditTagDialog',
 };

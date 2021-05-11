@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, useHistory, useParams } from 'react-router-dom';
-import { AddUsersIcon, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard, AddTagIcon } from '@combase.app/ui';
+import { AddUsersIcon, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard } from '@combase.app/ui';
 import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
 
 import AddTagDialog from 'components/modals/AddTagDialog';

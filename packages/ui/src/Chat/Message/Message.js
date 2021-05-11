@@ -4,7 +4,7 @@ import { interactions } from '@combase.app/styles';
 import { useMessage, useUserRole } from '@combase.app/chat';
 import format from 'date-fns/format';
 
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { IconLabel } from '../../IconLabel';
 import { CommandIcon } from '../../icons';
 import { Box, Container } from '../../Layout';

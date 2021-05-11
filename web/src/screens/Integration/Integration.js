@@ -32,7 +32,7 @@ const Integration = () => {
 				}
 			);
 		},
-		[history]
+		[history, params]
 	);
 
 	return (

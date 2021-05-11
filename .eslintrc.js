@@ -9,6 +9,7 @@ module.exports = {
         'import/no-unresolved': 0,
         'multiline-comment-style': 0,
         'new-cap': 0,
+		'no-mixed-operators': 0,
         'no-warning-comments': 0,
         'node/no-extraneous-import': 0,
         'node/no-extraneous-require': 0,

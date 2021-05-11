@@ -4,16 +4,12 @@ import {
     Avatar,
     Box,
     Chip,
-    ClockIcon,
 	CloseCircleIcon,
-    Entity,
     CloseIcon,
     Container,
     Heading,
     IconButton,
-    LinkIcon,
     ListSubheader,
-    MailIcon,
     PageHeader,
 	PinIcon,
     Placeholder,
@@ -44,12 +40,6 @@ const Masthead = styled(Container)`
 	justify-content: center;
 	align-items: center;
 `
-
-const MetaEntity = styled(Entity)`
-    & + & {
-        margin-top: 0.75rem;
-    }
-`;
 
 const Input = styled(ChipInputBase)`
     padding: 0 !important;

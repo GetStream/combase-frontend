@@ -1,4 +1,4 @@
-export * from './Button';
-export * from './Fab';
-export * from './IconButton';
-export * from './NavigationIconButton';
+export { default as Button } from './Button';
+export { default as Fab } from './Fab';
+export { default as IconButton } from './IconButton';
+export { default as NavigationIconButton } from './NavigationIconButton';

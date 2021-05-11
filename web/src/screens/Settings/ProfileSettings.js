@@ -59,7 +59,7 @@ const UPDATE_USER_DATA = gql`
 
 const ProfileSettings = () => {
 	const { data } = useQuery(GET_MY_PROFILE);
-	const [updateUser, { error, loading }] = useMutation(UPDATE_USER_DATA);
+	const [updateUser] = useMutation(UPDATE_USER_DATA);
 	const { addToast } = useToasts();
 	const [avatarFile, setAvatarFile] = useState(null);
 	
@@ -146,7 +146,7 @@ const ProfileSettings = () => {
 				autoDismiss: true,
 			})
 		}
-	}, [data]);
+	}, [addToast, data, updateUser]);
 
 	return (
 		<Scrollbars>

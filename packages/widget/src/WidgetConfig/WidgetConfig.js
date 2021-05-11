@@ -26,7 +26,7 @@ const WidgetConfig = ({ children, organization, theme }) => {
     const [auth, setAuth] = useLocalStorage('auth', undefined, lsOpts);
 
     const [streamChatKey] = useOrganizationStreamKey(organization);
-
+	
     useEffect(() => {
         if (!chatClient && streamChatKey) {
             const client = new StreamChat(streamChatKey);
@@ -34,7 +34,7 @@ const WidgetConfig = ({ children, organization, theme }) => {
                 const { token, user } = auth;
                 client.connectUser({ id: user }, token);
             } else {
-                client.setAnonymousUser();
+                client.connectAnonymousUser();
             }
             setChatClient(client);
         }

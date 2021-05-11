@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import { authenticationVar, useReactiveVar } from '@combase.app/apollo';
+import CombaseWidget from '@combase.app/widget';
+import { authenticationVar, useReactiveVar, useQuery, GET_ORGANIZATION } from '@combase.app/apollo';
 import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
@@ -29,9 +30,13 @@ const Dashboard = () => {
 	const authed = useReactiveVar(authenticationVar);
 	const isSm = useReactiveMedia('sm');
 
+	const { data } = useQuery(GET_ORGANIZATION);
+
 	if (!authed) {
 		return <Redirect replace to="/" />;
 	}
+
+	const organization = data?.organization?._id;
 
 	return (
 		<ShellProvider>
@@ -57,6 +62,7 @@ const Dashboard = () => {
 					<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
 				</Switch>
 			</Root>
+			{organization ? <CombaseWidget organization={organization} /> : null}
 		</ShellProvider>
 	);
 }

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { GET_TAGS, REMOVE_TAGS, NEW_TAG_FRAGMENT, useMutation } from '@combase.app/apollo';
 
@@ -19,11 +19,10 @@ const Root = styled(Box)`
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 
 const ManageTags = () => {
-    const [editing, setEditTag] = useState();
     const [tags, { loading, organization }] = useEntities(GET_TAGS);
     const [selectableItem, bulkCheckbox, selected, setSelected] = useBulkSelect(tags?.edges || [], true);
 
-    const [handleRemoveTags, { loading: removing }] = useMutation(REMOVE_TAGS);
+    const [handleRemoveTags] = useMutation(REMOVE_TAGS);
 
     const handleRemoveMany = useCallback(async () => {
         try {
@@ -62,11 +61,10 @@ const ManageTags = () => {
                 },
             });
             setSelected([]);
-            setEditTag(false);
         } catch (error) {
             console.error(error.message);
         }
-    }, [organization, selected]);
+    }, [handleRemoveTags, organization, setSelected, selected]);
 
     return (
         <Root>
@@ -88,7 +86,6 @@ const ManageTags = () => {
 						selectable={selectableItem.selectable}
 						isSelected={selectableItem.isSelected}
 						onSelect={selectableItem.onSelect}
-						onClick={() => setEditTag(tag)}
 						value={tag?._id}
 						name={tag?.name}
 					/>

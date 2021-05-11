@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { Box } from '../../Layout';
 import { IconLabel } from '../../IconLabel';
 import { ListItem } from '../../Lists/ListItem';

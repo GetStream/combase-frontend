@@ -6,7 +6,7 @@ import { animated } from 'react-spring';
 import { layout } from '@combase.app/styles';
 
 import { useScrollbars } from '../../contexts';
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { Container, HeaderBase } from '../../Layout';
 import { IconButton } from '../../Buttons';
 import { Entity } from '../../Lists';

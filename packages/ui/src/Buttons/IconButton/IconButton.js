@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { interactions, layout } from '@combase.app/styles';
 
-import { ButtonBase } from '../shared';
+import ButtonBase from '../shared/ButtonBase';
 
 const Root = styled(ButtonBase)`
     ${layout};
@@ -27,8 +27,8 @@ const Root = styled(ButtonBase)`
 
     & > div:before {
         content: '';
-        ${({ color, interaction, theme }) =>
-            interaction === 'bubble'
+        ${({ color, disabled, interaction, theme }) =>
+            !disabled && interaction === 'bubble'
                 ? `
 		width: 150%;
 		height: 150%;

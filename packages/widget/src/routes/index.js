@@ -1,38 +1,44 @@
 import { lazy } from 'react';
 import { ScrollContextProvider } from '@combase.app/ui/src/contexts';
 
+import Home from '../views/Home/Home';
+import Welcome from '../views/Welcome/Welcome';
+import Channels from '../views/Channels/Channels';
+import KnowledgeBase from '../views/KnowledgeBase/KnowledgeBase';
+import Conversation from '../views/Conversation/Conversation';
+
 import { AuthGuard, GuestGuard } from './guards';
 
 export default [
     {
         path: '/',
-        component: lazy(() => import(/* webpackChunkName: "CombaseWidgetHome" */ '../views/Home/Home')),
+        component: Home,
         guard: GuestGuard,
         exact: true,
     },
     {
         path: '/welcome',
-        component: lazy(() => import(/* webpackChunkName: "CombaseWidgetWelcome" */ '../views/Welcome/Welcome')),
+        component: Welcome,
         guard: AuthGuard,
         exact: true,
     },
     {
         path: '/channels',
-        component: lazy(() => import(/* webpackChunkName: "CombaseWidgetWelcome" */ '../views/Channels/Channels')),
+        component: Channels,
         layout: ScrollContextProvider,
         guard: GuestGuard,
         exact: false,
     },
     {
         path: '/knowledge-base',
-        component: lazy(() => import(/* webpackChunkName: "CombaseWidgetKnowledgeBase" */ '../views/KnowledgeBase/KnowledgeBase')),
+        component: KnowledgeBase,
         layout: ScrollContextProvider,
         guard: GuestGuard,
         exact: false,
     },
     {
         path: '/c/:channelID',
-        component: lazy(() => import(/* webpackChunkName: "CombaseWidgetWelcome" */ '../views/Conversation/Conversation')),
+        component: Conversation,
         guard: GuestGuard,
         exact: false,
     },

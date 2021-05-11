@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { space } from '@combase.app/styles';
 
-import { ButtonBase } from '../Buttons/shared';
+import ButtonBase from '../Buttons/shared/ButtonBase';
 import { Text } from '../Text';
 
 const Root = styled(ButtonBase)`

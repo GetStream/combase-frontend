@@ -3,7 +3,7 @@ import { system } from '@combase.app/styles';
 
 import { Box } from '../Layout';
 
-export const AvatarGroup = styled(Box)`
+const AvatarGroup = styled(Box)`
     display: grid;
     grid-template-columns: ${({ children }) => `repeat(${children?.length || 1}, min-content)`};
     & > * {
@@ -21,3 +21,5 @@ export const AvatarGroup = styled(Box)`
         })}
     }
 `;
+
+export default AvatarGroup;

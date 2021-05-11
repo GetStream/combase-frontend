@@ -1,5 +1,8 @@
+export { default as Avatar } from './Avatar';
 export * from './Avatar';
+
 export * from './Buttons';
+
 export * from './Cards';
 export * from './Chat';
 export * from './Chip';

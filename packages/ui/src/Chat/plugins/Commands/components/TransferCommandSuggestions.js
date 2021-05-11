@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { useAsync, useDebounce } from 'react-use';
 import { useSlate } from 'slate-react';
 
-import { Avatar } from '../../../../Avatar';
+import Avatar from '../../../../Avatar';
 import { StateDisplay } from '../../../../Feedback';
 import { MenuItem } from '../../../../Lists';
 import { Dropdown } from '../../../../Popovers';

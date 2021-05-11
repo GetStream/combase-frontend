@@ -45,7 +45,7 @@ const queryOpts = { fetchPolicy: 'cache-and-network'};
 const OrganizationSettings = () => {
 	const [avatarFile, setAvatarFile] = useState(null);
 	const { data } = useQuery(GET_ORGANIZATION_PROFILE, queryOpts);
-	const [updateOrganizationProfile, { loading, error }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
+	const [updateOrganizationProfile] = useMutation(UPDATE_ORGANIZATION_PROFILE);
 	const { addToast } = useToasts();
 
 	const initialValues = useMemo(
@@ -106,7 +106,7 @@ const OrganizationSettings = () => {
 				autoDismiss: true,
 			})
 		}
-	}, [data]);
+	}, [addToast, data, updateOrganizationProfile]);
 
 	const handleDrop = useCallback(acceptedFiles => {
 		let newFile = acceptedFiles[0];

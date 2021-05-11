@@ -4,7 +4,7 @@ import { animated } from 'react-spring';
 import { useChannelManager, useChannelMembers, useChannelPartner } from '@combase.app/chat';
 import { layout } from '@combase.app/styles';
 
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { Container, HeaderBase } from '../../Layout';
 import { ArrowBackIcon } from '../../icons';
 import { IconButton } from '../../Buttons';

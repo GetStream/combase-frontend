@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 import { Link } from 'react-router-dom';
 
-import { Avatar } from '../../Avatar';
+import Avatar from '../../Avatar';
 import { Card } from '../../Cards';
 import { ChevronRightIcon, RoleIcon } from '../../icons';
 import { IconLabel } from '../../IconLabel';

@@ -1,4 +1,4 @@
-import { Avatar, AvatarGroup } from '.';
+import Avatar, { AvatarGroup } from '.';
 
 export default {
     component: Avatar,

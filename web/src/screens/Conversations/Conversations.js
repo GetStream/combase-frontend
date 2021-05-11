@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
 import { Route } from 'react-router-dom';
-import { Box, SplitView } from '@combase.app/ui';
+import { SplitView } from '@combase.app/ui';
 
 import { useReactiveMedia } from 'hooks';
 

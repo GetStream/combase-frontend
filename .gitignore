@@ -65,7 +65,8 @@ typings/
 .jest-*
 
 # builds
-lib
+dist
+build
 storybook-static
 .idea
 
