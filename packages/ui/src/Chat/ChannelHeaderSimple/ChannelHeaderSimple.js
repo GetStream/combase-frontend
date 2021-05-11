@@ -5,7 +5,8 @@ import { useChannelManager, useChannelMembers, useChannelPartner } from '@combas
 import { layout } from '@combase.app/styles';
 
 import Avatar from '../../Avatar';
-import { Container, HeaderBase } from '../../Layout';
+import Container from '../../Container';
+import HeaderBase from '../../HeaderBase';
 import { ArrowBackIcon } from '../../icons';
 import { IconButton } from '../../Buttons';
 import { Placeholder } from '../../Placeholder';
@@ -54,7 +55,7 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
             Boolean(scrollbars?.anim) && animated
                 ? {
                       height: scrollbars?.anim.value.to({
-                          output: [theme.sizes[10], theme.sizes[9]],
+                          output: [theme.sizes[12], theme.sizes[10]],
                           range: [0, scrollbars?.threshold],
                           extrapolate: 'clamp',
                       }),

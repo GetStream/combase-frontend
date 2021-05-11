@@ -109,7 +109,7 @@ const ChannelList = () => {
         };
 
         if ((statusFilter && inbox === 'inbox') || inbox === 'starred' || inbox === 'priority') {
-            filter.status = statusFilter;
+            filter.status = statusFilter ?? undefined;
         }
 
         if (inbox === 'unassigned') {

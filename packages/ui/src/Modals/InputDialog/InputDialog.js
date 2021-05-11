@@ -6,9 +6,9 @@ import { layout } from '@combase.app/styles';
 
 import { Button } from '../../Buttons';
 import { Helper, TextInput } from '../../Inputs';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Text } from '../../Text';
-import { Card } from '../../Cards';
+import Card from '../../Card';
 
 const Root = styled(Card)`
     width: ${({ theme: { sizes } }) => sizes[15]};

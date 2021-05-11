@@ -4,10 +4,10 @@ import { interactions } from '@combase.app/styles';
 import { Link } from 'react-router-dom';
 
 import Avatar from '../../Avatar';
-import { Card } from '../../Cards';
+import Box from '../../Box';
+import Card from '../../Card';
 import { ChevronRightIcon, RoleIcon } from '../../icons';
 import { IconLabel } from '../../IconLabel';
-import { Box } from '../../Layout';
 import { Placeholder } from '../../Placeholder';
 import { Heading, Text, TextGroup } from '../../Text';
 

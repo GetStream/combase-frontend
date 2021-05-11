@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ReactEditor, useSlate } from 'slate-react';
 
-import { CommandIcon, DropdownIcon, SortIcon } from '../../../../icons';
-import { Button } from '../../../../Buttons';
-import { Box, Portal } from '../../../../Layout';
+import { CommandIcon } from '../../../../icons';
+import Box from '../../../../Box';
+import Portal from '../../../../Portal';
 import { Menu, MenuItem } from '../../../../Lists';
 import { StateDisplay } from '../../../../Feedback';
 import { Dropdown, Popover } from '../../../../Popovers';

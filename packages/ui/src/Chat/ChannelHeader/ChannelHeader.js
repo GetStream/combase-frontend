@@ -7,7 +7,8 @@ import { layout } from '@combase.app/styles';
 
 import { useScrollbars } from '../../contexts';
 import Avatar from '../../Avatar';
-import { Container, HeaderBase } from '../../Layout';
+import Container from '../../Container';
+import HeaderBase from '../../HeaderBase';
 import { IconButton } from '../../Buttons';
 import { Entity } from '../../Lists';
 import { Text } from '../../Text';

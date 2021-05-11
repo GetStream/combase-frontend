@@ -6,7 +6,7 @@ import { useBulkSelect, useEntities } from '../../hooks';
 import { Button, IconButton } from '../../Buttons';
 import { IconLabel } from '../../IconLabel';
 import { AddUsersIcon, DeleteIcon, DropdownIcon } from '../../icons';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Label } from '../../Label';
 import { Tooltip } from '../../Popovers';
 import { PageHeader } from '../../PageHeader';

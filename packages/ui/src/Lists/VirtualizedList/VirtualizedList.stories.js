@@ -13,7 +13,7 @@ import { AddUsersIcon, DropdownIcon, FilterIcon, GridViewIcon, ListViewIcon } fr
 import { Checkbox } from '../../Inputs';
 import { IconLabel } from '../../IconLabel';
 import { Label } from '../../Label';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { PageHeader } from '../../PageHeader';
 import { PageTitle } from '../../PageTitle';
 import { Text } from '../../Text';

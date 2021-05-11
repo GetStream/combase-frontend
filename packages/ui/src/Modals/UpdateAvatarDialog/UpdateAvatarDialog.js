@@ -8,10 +8,11 @@ import Cropper from 'react-easy-crop';
 
 import { useFeedsContext } from '../../contexts/Feeds';
 import { Button } from '../../Buttons';
-import { Box, Container } from '../../Layout';
+import Box from '../../Box';
+import Card from '../../Card';
+import Container from '../../Container';
 import { AddImageIcon } from '../../icons';
 import { Heading, Text } from '../../Text';
-import { Card } from '../../Cards';
 
 const Root = styled(Card)`
     width: ${({ theme: { sizes } }) => sizes[16]};

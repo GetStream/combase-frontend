@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Button } from '../../Buttons';
 import { Icon } from '../../Icon';
 import { StateDisplay } from '../../Feedback';

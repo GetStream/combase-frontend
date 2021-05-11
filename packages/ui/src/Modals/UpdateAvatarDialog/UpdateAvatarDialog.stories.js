@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 
 import { UpdateAvatarDialog } from '.';
 

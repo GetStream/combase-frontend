@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Text } from '../../Text';
 import { InfoIcon, WarningIcon } from '../../icons';
 

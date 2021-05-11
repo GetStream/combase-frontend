@@ -6,7 +6,9 @@ import { useHistory } from 'react-router-dom';
 
 import { IconButton } from '../Buttons';
 import { ArrowBackIcon, MenuIcon } from '../icons';
-import { Box, Container, HeaderBase } from '../Layout';
+import Box from '../Box';
+import Container from '../Container';
+import HeaderBase from '../HeaderBase';
 
 const Title = styled.div`
     display: flex;

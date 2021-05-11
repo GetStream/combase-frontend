@@ -6,7 +6,7 @@ import useFuse from 'react-use-fuse';
 
 import { IconButton } from '../../Buttons';
 import { DropdownIcon } from '../../icons';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Entity, ListItem, VirtualizedList } from '../../Lists';
 import { Popover, Dropdown } from '../../Popovers';
 import { Text } from '../../Text';

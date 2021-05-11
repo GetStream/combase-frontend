@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { FieldArray } from 'formik';
 import { capitalCase } from 'change-case';
 
-import { Box } from '../../Layout';
-import { Card } from '../../Cards';
+import Box from '../../Box';
+import Card from '../../Card';
 import { IconLabel } from '../../IconLabel';
 import { Button, IconButton } from '../../Buttons';
 import { Heading, Text, TextGroup } from '../../Text';

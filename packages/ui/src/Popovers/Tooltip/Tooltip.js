@@ -4,7 +4,7 @@ import { useClickAway, useMedia, useToggle } from 'react-use';
 import { animated } from 'react-spring';
 
 import { Text } from '../../Text';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 
 import { Popover } from '../Popover';
 

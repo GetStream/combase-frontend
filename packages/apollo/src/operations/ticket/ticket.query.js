@@ -60,13 +60,9 @@ export const GET_TICKETS = gql`
                         organization
                         createdAt
                         updatedAt
-                        latestMessage @client
-                        latestMessageAt @client
-                        unread @client
                     }
                 }
                 count
-                hasMore @client
             }
         }
     }

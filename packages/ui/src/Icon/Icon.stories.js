@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 
 import * as allIcons from '../icons';
-import { Box } from '../Layout';
+import Box from '../Box';
 
 import Icon from './Icon';
 

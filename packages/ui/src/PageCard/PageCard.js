@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { variant } from '@combase.app/styles';
 
-import { Card } from '../Card';
+import Card from '../Card';
 
 const PageCard = styled(Card).attrs({
     borderTopLeftRadius: ['unset', 'unset', 2],

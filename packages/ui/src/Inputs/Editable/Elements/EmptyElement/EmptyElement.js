@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Card } from '../../../../Cards';
+import Card from '../../../../Card';
 import { IconLabel } from '../../../../IconLabel';
 import { Text } from '../../../../Text';
 import { Spinner } from '../../../../Feedback';

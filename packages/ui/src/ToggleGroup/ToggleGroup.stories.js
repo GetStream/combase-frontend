@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { borderRadius, layout, shadow } from '@combase.app/styles';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 import { GridViewIcon, ListViewIcon } from '../icons';
 import { Tooltip } from '../Popovers';
 import { Text } from '../Text';

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { layout, shadow } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { List } from '../List';
 import { ListSubheader } from '../ListSubheader';
 

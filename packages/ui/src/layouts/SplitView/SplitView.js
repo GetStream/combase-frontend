@@ -4,8 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 import { useMedia } from 'react-use';
 
-import { Box } from '../../Layout';
-import { PageCard } from '../../Cards';
+import Box from '../../Box';
+import PageCard from '../../PageCard';
 
 const SplitRoot = styled(PageCard)`
     display: grid;

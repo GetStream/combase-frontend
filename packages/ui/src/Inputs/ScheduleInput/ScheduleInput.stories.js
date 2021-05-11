@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 
-import { Container } from '../../Layout';
+import Container from '../../Container';
 
 import ScheduleInput from './ScheduleInput';
 

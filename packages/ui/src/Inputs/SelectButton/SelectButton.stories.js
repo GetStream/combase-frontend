@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { MenuItem } from '../../Lists';
 
 import { SelectButton } from '.';

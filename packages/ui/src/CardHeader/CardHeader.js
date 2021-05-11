@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 import { layout } from '@combase.app/styles';
 
-import { IconLabel } from '../../IconLabel';
-import { Box } from '../../Layout';
-import { Text, TextGroup } from '../../Text';
+import { IconLabel } from '../IconLabel';
+import Box from '../Box';
+import { Text, TextGroup } from '../Text';
 
 const Root = styled(Box).attrs({
     as: animated.div,

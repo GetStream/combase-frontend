@@ -6,7 +6,8 @@ import { useTransition } from 'react-spring';
 import { useClickAway } from 'react-use';
 import { zIndex } from '@combase.app/styles';
 
-import { Box, Portal } from '../../Layout';
+import Box from '../../Box';
+import Portal from '../../Portal';
 
 const springConfig = {
     friction: 60,

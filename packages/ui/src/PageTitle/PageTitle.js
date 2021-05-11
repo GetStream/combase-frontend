@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { system } from '@combase.app/styles';
 import { animated } from 'react-spring';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 import { Heading, Text, TextGroup } from '../Text';
 import { DropdownIcon } from '../icons/index';
 import { Placeholder } from '../Placeholder';

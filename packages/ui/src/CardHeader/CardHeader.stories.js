@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { AddIcon, TagIcon } from '../../icons';
-import { Container } from '../../Layout';
+import { AddIcon, TagIcon } from '../icons';
+import Container from '../Container';
+import Card from '../Card';
 
-import {Card} from '../Card';
 import CardHeader from './CardHeader';
 
 const Root = styled(Container)`

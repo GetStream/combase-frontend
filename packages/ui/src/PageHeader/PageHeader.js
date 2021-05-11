@@ -8,7 +8,9 @@ import { useHistory } from 'react-router-dom';
 import { useScrollbars } from '../contexts';
 import { IconButton } from '../Buttons';
 import { ArrowBackIcon, MenuIcon } from '../icons';
-import { Box, Container, HeaderBase } from '../Layout';
+import Box from '../Box';
+import Container from '../Container';
+import HeaderBase from '../HeaderBase';
 import { PageTitle } from '../PageTitle';
 
 const Title = styled.div`

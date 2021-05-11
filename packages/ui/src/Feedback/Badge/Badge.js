@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { system } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 
 const iconSize = system({
     size: {

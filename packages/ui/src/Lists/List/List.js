@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { animated, useSpring } from 'react-spring';
 import { usePreviousDistinct } from 'react-use';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { DropdownIcon } from '../../icons';
 
 const Root = styled(Box).attrs({ as: animated.ul })`

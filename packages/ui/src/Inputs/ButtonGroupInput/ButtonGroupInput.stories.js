@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { capitalCase } from 'change-case';
 
 import { ButtonGroupInput } from '.';
-import { Box } from '../../Layout';
-import { Card } from '../../Cards';
+import Box from '../../Box';
+import Card from '../../Card';
 import { ListSubheader } from '../../Lists';
 
 const Root = styled(Box)`

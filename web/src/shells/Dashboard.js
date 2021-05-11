@@ -8,7 +8,7 @@ import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
 import { useReactiveMedia } from 'hooks';
-import { Conversations, Integration, Integrations, Settings } from 'screens';
+import { Conversations, Integration, Integrations, Settings, Tickets } from 'screens';
 
 import { SidebarNav } from 'components/SidebarNav';
 
@@ -58,6 +58,10 @@ const Dashboard = () => {
 					<Route 
 						path="/dashboard/conversations/:inbox/:channelId?"
 						component={Conversations} 
+					/>
+					<Route 
+						path="/dashboard/tickets"
+						component={Tickets} 
 					/>
 					<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
 				</Switch>

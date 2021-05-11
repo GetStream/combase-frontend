@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container } from '../Layout';
+import Container from '../Container';
 import { Text } from '../Text';
 
 import ListDetailSection from './ListDetailSection';

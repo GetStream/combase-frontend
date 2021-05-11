@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { system } from '@combase.app/styles';
 import { nanoid } from 'nanoid';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 
 export const animation = keyframes`
 	

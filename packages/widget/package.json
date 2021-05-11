@@ -1,7 +1,8 @@
 {
   "name": "@combase.app/widget",
   "version": "0.1.0",
-  "main": "src/index.js",
+  "main": "build/index.js",
+  "module": "src/index.js",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",

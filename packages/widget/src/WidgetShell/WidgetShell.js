@@ -45,7 +45,7 @@ const Root = styled(Card).attrs({
         top: unset;
         left: unset;
         width: ${({ theme }) => theme.sizes[17]};
-        max-height: ${({ theme }) => theme.sizes[20]};
+        max-height: ${({ theme }) => theme.sizes[19]};
         height: calc(100vh - (${({ $fabSize, theme: { sizes } }) => sizes[$fabSize]} * 2) - 4rem);
     }
 `;

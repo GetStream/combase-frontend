@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 
 export const InputRoot = styled(Box)`
     ${interactions};

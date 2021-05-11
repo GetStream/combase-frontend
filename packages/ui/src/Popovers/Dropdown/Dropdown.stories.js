@@ -6,7 +6,7 @@ import { layout, shadow } from '@combase.app/styles';
 import { Popover, Dropdown } from '..';
 import { Button, IconButton } from '../../Buttons';
 import { DropdownIcon, SortIcon } from '../../icons';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { AgentEntity, MenuItem } from '../../Lists';
 import { Text } from '../../Text';
 import {

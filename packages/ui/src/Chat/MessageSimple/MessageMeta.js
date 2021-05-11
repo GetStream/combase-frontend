@@ -4,7 +4,7 @@ import format from 'date-fns/format';
 import { useChannelReadCursors } from '@combase.app/chat';
 import { itemGap } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { IconLabel } from '../../IconLabel';
 import { Text } from '../../Text';
 import { AttachmentIcon, CommandIcon } from '../../icons';

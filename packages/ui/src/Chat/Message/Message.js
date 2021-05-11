@@ -5,9 +5,10 @@ import { useMessage, useUserRole } from '@combase.app/chat';
 import format from 'date-fns/format';
 
 import Avatar from '../../Avatar';
+import Box from '../../Box';
+import Container from '../../Container';
 import { IconLabel } from '../../IconLabel';
 import { CommandIcon } from '../../icons';
-import { Box, Container } from '../../Layout';
 import { Text } from '../../Text';
 
 import { SystemMessage } from '../SystemMessage';
@@ -75,7 +76,7 @@ export const Message = React.memo(({ index }) => {
                     {noAvatar ? (
                         <MessageDate>{format(message.created_at, 'hh:mm')}</MessageDate>
                     ) : (
-                        <Avatar avatar={message?.user?.avatar} name={message?.user?.name} size={avatarSize} />
+                        <Avatar src={message?.user?.avatar} name={message?.user?.name} size={avatarSize} />
                     )}
                 </AvatarCol>
                 <Box paddingY={noAvatar ? 1 : 0} paddingTop={noAvatar ? 1 : 2}>

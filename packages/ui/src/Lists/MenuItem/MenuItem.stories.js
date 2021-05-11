@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { IconButton } from '../../Buttons';
 import { AddIcon, AllInboxesIcon, ChevronRightIcon, InboxIcon, PriorityIcon, SearchIcon, StarIcon, TagIcon, UnassignedIcon } from '../../icons';
 import { Menu } from '../Menu';

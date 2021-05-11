@@ -2,7 +2,7 @@ import { gql } from '@combase.app/apollo';
 import styled from 'styled-components';
 import { ScrollContextProvider } from '../../contexts/Scrollbars/index';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { AgentListItem } from "../../Lists/AgentListItem";
 import { EntityListView } from "./EntityListView";
 

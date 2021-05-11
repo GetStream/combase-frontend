@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Box } from '../../../Layout';
+import Box from '../../../Box';
 
 const ChannelPreviewToggles = styled(Box).attrs({
     paddingY: 1,

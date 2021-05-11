@@ -2,13 +2,14 @@ import styled, { useTheme } from 'styled-components';
 import { Link, MemoryRouter, useHistory } from 'react-router-dom';
 import { useMedia } from 'react-use';
 
-import { Box, Container } from '../../Layout';
+import Box from '../../Box';
+import Container from '../../Container';
+import HeaderBase from '../../HeaderBase';
 import { Text } from '../../Text';
 import { useScrollbars, ScrollContextProvider, ScrollbarsWithContext } from '../../contexts';
 import { Button, IconButton } from '../../Buttons';
 import { SplitView } from './SplitView';
 import { ActivityIcon, ArrowBackIcon } from '../../icons';
-import { HeaderBase } from '../../Layout';
 import { VirtualizedList } from '../../Lists';
 import { PageHeader } from '../../PageHeader';
 import { PageTitle } from '../../PageTitle';

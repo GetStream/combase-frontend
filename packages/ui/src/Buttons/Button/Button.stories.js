@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { CheckIcon, TagIcon } from '../../icons';
 import { Text } from '../../Text';
 

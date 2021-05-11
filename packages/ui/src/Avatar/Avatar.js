@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { color, layout, system } from '@combase.app/styles';
 
-import Box from '../Layout/Box';
+import Box from '../Box';
 import { Placeholder } from '../Placeholder';
 import { Text } from '../Text';
 

@@ -4,7 +4,7 @@ import format from 'date-fns/format';
 import { itemGap } from '@combase.app/styles';
 import { useChannelReadCursors } from '@combase.app/chat';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Text } from '../../Text';
 
 import { EphemeralNotice } from '../EphemeralNotice';

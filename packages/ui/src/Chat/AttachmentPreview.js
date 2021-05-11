@@ -4,7 +4,7 @@ import prettyBytes from 'pretty-bytes';
 import { interactions, layout } from '@combase.app/styles';
 
 import { CloseIcon, FileIcon, WarningIcon } from '../icons';
-import { Box } from '../Layout';
+import Box from '../Box';
 import { IconBubble } from '../IconBubble';
 import { Placeholder } from '../Placeholder';
 import { Chip } from '../Chip';

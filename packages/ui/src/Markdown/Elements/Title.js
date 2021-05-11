@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useSlate } from 'slate-react';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Chip } from '../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../icons';
 import { AuthorEntity } from '../../Lists';

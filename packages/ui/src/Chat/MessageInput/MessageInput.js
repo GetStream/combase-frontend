@@ -4,7 +4,8 @@ import { useChannel, useChannelActions } from '@combase.app/chat';
 import { emojiIndex } from 'emoji-mart';
 import { Transforms } from 'slate';
 
-import { Box, Container } from '../../Layout';
+import Box from '../../Box';
+import Container from '../../Container';
 import { Editable, EditablePresets } from '../../Inputs';
 
 import { useComposerAttachments, useComposerTypingEvents, useComposerCommands, CommandMenu } from '../plugins';

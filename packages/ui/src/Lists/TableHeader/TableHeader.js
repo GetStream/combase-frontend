@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Checkbox } from '../../Inputs';
 import { Text } from '../../Text';
 
@@ -14,6 +14,7 @@ const Root = styled(Box)`
     justify-content: space-between;
     user-select: none;
     z-index: 9;
+	border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
     & > div {
         display: flex;

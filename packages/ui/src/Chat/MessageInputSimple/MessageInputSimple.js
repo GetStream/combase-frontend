@@ -5,7 +5,8 @@ import { borderRadius, interactions, layout, space, typography } from '@combase.
 
 import { useComposerAttachments, useComposerTypingEvents, useComposerCommands, CommandMenu } from '../plugins';
 import { IconButton } from '../../Buttons';
-import { Box, Container } from '../../Layout';
+import Box from '../../Box';
+import Container from '../../Container';
 import { ListSubheader } from '../../Lists';
 import { Editable, EditablePresets } from '../../Inputs';
 import { AttachmentIcon, ArrowUpCircleIcon, CloseCircleIcon } from '../../icons';

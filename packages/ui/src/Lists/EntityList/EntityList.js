@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { VirtualizedList } from '../VirtualizedList';
 import { VirtualizedGrid } from '../VirtualizedGrid';
 

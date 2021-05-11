@@ -15,7 +15,7 @@ import {
 } from '@udecode/slate-plugins';
 import { nanoid } from 'nanoid';
 
-import { Container } from '../../Layout';
+import Container from '../../Container';
 import { Text } from '../../Text';
 
 import { createTransformsPlugin } from './plugins/TransformsPlugin';

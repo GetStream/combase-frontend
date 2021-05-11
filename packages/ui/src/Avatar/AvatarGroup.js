@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { system } from '@combase.app/styles';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 
 const AvatarGroup = styled(Box)`
     display: grid;

@@ -1,7 +1,7 @@
 import React, { useCallback, forwardRef } from 'react';
 import styled from 'styled-components';
 
-import { Box } from '../../../Layout';
+import Box from '../../../Box';
 
 const Root = styled(Box)`
 	border: 0;

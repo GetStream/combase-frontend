@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { WarningIcon } from '../../icons';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Text } from '../../Text';
 
 import { Helper } from '../shared/Helper';

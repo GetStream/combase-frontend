@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { itemGap, layout, variant } from '@combase.app/styles';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 
 import { Text } from './Text';
 

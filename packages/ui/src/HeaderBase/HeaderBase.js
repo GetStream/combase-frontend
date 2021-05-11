@@ -4,7 +4,7 @@ import styled, { useTheme } from 'styled-components';
 import { animated } from 'react-spring';
 import { layout, variant } from '@combase.app/styles';
 
-import { useScrollbars } from '../../contexts';
+import { useScrollbars } from '../contexts';
 import Container from '../Container';
 
 const Root = styled(Container).attrs(props => ({

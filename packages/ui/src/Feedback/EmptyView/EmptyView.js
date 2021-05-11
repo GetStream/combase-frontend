@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { colorAlpha, layout, space } from '@combase.app/styles';
 
-import { Box, Container } from '../../Layout';
+import Box from '../../Box';
+import Container from '../../Container';
 import { Text } from '../../Text';
 
 const Root = styled(Box)`

@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { useMemo } from 'react';
 
-import { ScrollContextProvider, useScrollbars } from '../../contexts/Scrollbars';
+import { ScrollContextProvider, useScrollbars } from '../contexts/Scrollbars';
 
-import { useBulkSelect } from '../../hooks';
-import { Box, Container } from '../../Layout';
-import { TagListItem, VirtualizedList } from '../../Lists';
-import { Checkbox } from '../../Inputs';
-import {CardHeader} from '../CardHeader';
+import { useBulkSelect } from '../hooks';
+import Box from '../Box';
+import Container from '../Container';
+import { TagListItem, VirtualizedList } from '../Lists';
+import { Checkbox } from '../Inputs';
+import CardHeader from '../CardHeader';
 
 import Card from './Card';
 

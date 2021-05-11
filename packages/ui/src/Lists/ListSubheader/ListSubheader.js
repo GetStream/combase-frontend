@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Text } from '../../Text';
 
 export const ListSubheader = ({ children, ...rest }) => (

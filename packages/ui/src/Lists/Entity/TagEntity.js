@@ -1,4 +1,4 @@
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { ConversationsIcon, TagIcon } from '../../icons';
 import { IconLabel } from '../../IconLabel';
 import { Label } from '../../Label';

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'rc-scrollbars';
 
-import { Container } from '../../Layout';
-import { PageCard } from '../../Cards';
+import Container from '../../Container';
+import PageCard from '../../PageCard';
 
 const Wrapper = styled(PageCard).attrs({
     paddingBottom: 8,

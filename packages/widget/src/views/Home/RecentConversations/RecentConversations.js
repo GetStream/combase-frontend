@@ -56,8 +56,8 @@ const EmptyChannels = ({ loading }) => {
     }
 
     return (
-        <EmptyView color="altTextA.56" icon={<InboxIcon color="altTextA.56" size={10} />} minHeight={12} title="No Recent Conversations">
-            <Text color="altTextA.56" fontSize={2} lineHeight={4} marginTop={1}>
+        <EmptyView color="altText" icon={<InboxIcon color="altText" opacity={0.56} size={10} />} minHeight={12} title="No Recent Conversations">
+            <Text color="altText" opacity={0.56} fontSize={2} lineHeight={4} marginTop={1}>
                 Got a question? <br /> Start a new conversation! 💬
             </Text>
         </EmptyView>
@@ -81,7 +81,7 @@ const RecentConversations = () => {
                 )}
             </Box>
             <Box padding={2}>
-                <Button as={Link} variant="flat" size="sm" reverseLabel fullWidth to="/channels">
+                <Button as={Link} variant="flat" reverseLabel fullWidth to="/channels">
                     <ChevronRightIcon />
                     {hasConversations ? <Text>View all</Text> : <Text>New Conversation</Text>}
                 </Button>

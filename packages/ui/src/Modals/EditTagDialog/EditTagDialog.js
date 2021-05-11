@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 import { useMutation, UPDATE_TAG, GET_TAGS } from '@combase.app/apollo';
 
+import Box from '../../Box';
+import Card from '../../Card';
 import { Button } from '../../Buttons';
 import { TextInput } from '../../Inputs';
-import { Box } from '../../Layout';
 import { Heading, Text } from '../../Text';
-import { Card } from '../../Cards';
 import { TagIcon } from '../../icons';
 
 const Root = styled(Card)`

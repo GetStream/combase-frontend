@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { color as colorSystem, layout } from '@combase.app/styles';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 import { IconLabel } from '../IconLabel';
 
 const Root = styled(Box).attrs(props => ({

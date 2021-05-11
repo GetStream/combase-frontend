@@ -2,7 +2,7 @@ import React, { Children, cloneElement, forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { IconButton } from '../../Buttons';
 
 import { useSharedRef } from './useSharedRef';

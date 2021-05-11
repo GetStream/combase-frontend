@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { system } from '@combase.app/styles';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 
 import InputBase from '../shared/InputBase';
 import { useInput } from '../shared/useInput';

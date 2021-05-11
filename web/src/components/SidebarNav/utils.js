@@ -53,13 +53,13 @@ export const routes = [
         icon: ConversationsIcon,
         to: '/dashboard/conversations',
     },
-    // {
-    //     exact: false,
-    //     path: '/dashboard/agents',
-    //     name: 'Agents',
-    //     icon: AgentsIcon,
-    //     to: '/dashboard/agents',
-    // },
+    {
+        exact: false,
+        path: '/dashboard/tickets',
+        name: 'Tickets',
+        icon: ConversationsIcon,
+        to: '/dashboard/tickets',
+    },
     // {
     //     exact: false,
     //     path: '/dashboard/groups',

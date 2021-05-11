@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { useClickAway } from 'react-use';
 import { colorAlpha } from '@combase.app/styles';
 
-import { Box, Portal } from '../../Layout';
+import Box from '../Box';
+import Portal from '../Portal';
 
 const Root = styled(Box)`
 	${colorAlpha};
@@ -18,7 +19,7 @@ const Root = styled(Box)`
     justify-content: center;
 `;
 
-export const Modal = ({ backdrop, children, component, onClose, open, ...rest }) => {
+const Modal = ({ backdrop, children, component, onClose, open, ...rest }) => {
     const ref = useRef();
     useClickAway(ref, onClose);
 
@@ -30,3 +31,5 @@ export const Modal = ({ backdrop, children, component, onClose, open, ...rest })
         </Portal>
     );
 };
+
+export default Modal;

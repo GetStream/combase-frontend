@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ClockIcon, GroupIcon } from '../../icons';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { IconLabel } from '../../IconLabel';
 import { Helper } from '../../Inputs/shared/Helper';
 import { ListItem } from '../ListItem/ListItem';

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { colorAlpha, shadow, layout, wrapperBorderRadius } from '@combase.app/styles';
 import { animated, useSpring } from 'react-spring';
 
-import { Box } from '../Layout';
+import Box from '../Box';
 
 const Root = styled(Box)`
     ${layout};

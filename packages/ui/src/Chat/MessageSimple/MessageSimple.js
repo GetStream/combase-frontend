@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
 import { useMessage, useUserRole } from '@combase.app/chat';
 
-import { Box, Container } from '../../Layout';
+import Box from '../../Box';
+import Container from '../../Container';
 import { Text } from '../../Text';
 
 import { SystemMessage } from '../SystemMessage';

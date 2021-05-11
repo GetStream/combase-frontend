@@ -3,7 +3,7 @@ import { layout } from '@combase.app/styles';
 import styled from 'styled-components';
 import { useList } from 'react-use';
 
-import { Box } from '../../Layout';
+import Box from '../../Box';
 import { Chip } from '../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../icons';
 import { useListCursor, useSharedRef } from '../../hooks';

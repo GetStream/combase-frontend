@@ -5,7 +5,7 @@ import { itemGap } from '@combase.app/styles';
 
 import { IconButton } from '../../../Buttons';
 import { AttachmentIcon, KnowledgeBaseIcon, QuickResponseIcon, TransferIcon, ReturnIcon, SendIcon } from '../../../icons';
-import { Box } from '../../../Layout';
+import Box from '../../../Box';
 import { AttachmentPreview } from '../../AttachmentPreview';
 import { Tooltip } from '../../../Popovers';
 
