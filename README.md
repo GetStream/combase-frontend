@@ -1,35 +1,43 @@
 # Combase
 
-- ⚛️ Open-source Customer Support Dashoard (PWA) built with React
-- 🧩 Customer-Facing, Embeddable Widget
-- 🦄 UI Component Library & Styling System powered by Styled Components & Storybook
-- 👨‍🔬 Tooling Pipeline with Rollup (for shared libraries), Jest, ESLINT & more.
+-   ⚛️ Open-source Customer Support Dashoard (PWA) built with React
+-   🧩 Customer-Facing, Embeddable Widget
+-   🦄 UI Component Library & Styling System powered by Styled Components & Storybook
+-   👨‍🔬 Tooling Pipeline with Rollup (for shared libraries), Jest, ESLINT & more.
 
 ## Contents
 
-- [Contents](#contents)
-- [Setup](#setup)
-  - [Pre-Requisites](#pre-requisites)
-  - [Installation](#installation)
-  - [Workspace Tips](#workspace-tips)
-- [Usage](#usage)
-  - [UI & Styling Library](#ui-&-styling-library)
-  - [Dashboard](#dashboard)
-  - [Linting & Testing](#linting-&-testing)
+-   [Contents](#contents)
+-   [Setup](#setup)
+    -   [Pre-Requisites](#pre-requisites)
+    -   [Installation](#installation)
+    -   [Workspace Tips](#workspace-tips)
+-   [Usage](#usage)
+    -   [UI & Styling Library](#ui-&-styling-library)
+    -   [Dashboard](#dashboard)
+    -   [Linting & Testing](#linting-&-testing)
 
 ## Setup
 
 ### Pre-Requisites
 
-- Yarn ^1.x
-- Node ^14.x
+-   Yarn ^1.x
+-   Node ^14.x
 
 ### Installation
 
 ```bash
-git clone git@github.com:GetStream/combase.git
-cd combase
+git clone git@github.com:GetStream/combase-frontend.git
+cd combase-frontend
 yarn
+```
+
+**OR**
+
+```bash
+git clone git@github.com:GetStream/combase-frontend.git
+cd combase-frontend
+yarn prep
 ```
 
 ### Workspace Tips
