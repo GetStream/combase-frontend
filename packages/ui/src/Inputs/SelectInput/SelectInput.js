@@ -1,7 +1,7 @@
 import React, { cloneElement, useCallback, useState, useRef } from 'react';
 import { useToggle } from 'react-use';
 
-import { Chip } from '../../Chip';
+import Chip from '../../Chip';
 import { Popover, Dropdown } from '../../Popovers';
 import { CheckboxCheckedIcon, CheckboxIcon, CloseCircleIcon, TagIcon } from '../../icons';
 import { StateDisplay } from '../../Feedback';

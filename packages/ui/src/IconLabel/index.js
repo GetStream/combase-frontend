@@ -1,1 +1,1 @@
-export { default as IconLabel } from './IconLabel';
+export { default } from './IconLabel';

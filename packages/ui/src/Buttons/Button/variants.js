@@ -1,6 +1,6 @@
 import { variant } from '@combase.app/styles';
 
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 
 export const buttonSizeVariants = variant({
     prop: 'size',
@@ -15,6 +15,7 @@ export const buttonSizeVariants = variant({
 
 export const buttonVisualVariants = props => {
     const color = props.disabled ? 'disabled' : props.color;
+
     return variant({
         variants: {
             flat: {
@@ -28,10 +29,10 @@ export const buttonVisualVariants = props => {
                     fill: color,
                 },
                 '&:hover': {
-                    backgroundColor: ({ utils }) => props.disabled ? 'disabled' : utils.colors.fade(color, 0.04),
+                    backgroundColor: ({ colors, utils }) => props.disabled ? 'disabled' : utils.colors.fade(colors[color], 0.04),
                 },
                 '&:active': {
-                    backgroundColor: ({ utils }) => props.disabled ? 'disabled' : utils.colors.fade(color, 0.08),
+                    backgroundColor: ({ colors, utils }) => props.disabled ? 'disabled' : utils.colors.fade(colors[color], 0.08),
                 },
             },
             raised: {

@@ -7,7 +7,7 @@ import Avatar from '../../Avatar';
 import Box from '../../Box';
 import Card from '../../Card';
 import { ChevronRightIcon, RoleIcon } from '../../icons';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import Placeholder from '../../Placeholder';
 import { Heading, Text, TextGroup } from '../../Text';
 

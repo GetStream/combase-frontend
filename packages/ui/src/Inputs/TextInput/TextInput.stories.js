@@ -5,9 +5,9 @@ import useFuse from 'react-use-fuse';
 
 import { Avatar } from '../../Avatar';
 import { IconButton } from '../../Buttons';
-import { Chip } from '../../Chip';
+import Chip from '../../Chip';
 import { Badge, StateDisplay } from '../../Feedback';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { useListCursor } from '../../hooks';
 import { Popover, Dropdown } from '../../Popovers';
 import { Entity, ListItem, MenuItem } from '../../Lists';

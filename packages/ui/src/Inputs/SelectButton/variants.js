@@ -1,6 +1,6 @@
 import { variant } from '@combase.app/styles';
 
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 
 export const buttonSizeVariants = variant({
     prop: 'size',

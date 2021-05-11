@@ -4,10 +4,10 @@ import { itemGap } from '@combase.app/styles';
 
 import { useEntities } from '../../hooks';
 import { Button, IconButton } from '../../Buttons';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { AddUsersIcon, DeleteIcon } from '../../icons';
 import Box from '../../Box';
-import { Label } from '../../Label';
+import Label from '../../Label';
 import { Tooltip } from '../../Popovers';
 import PageHeader from '../../PageHeader';
 import { EntityList } from '../../Lists';

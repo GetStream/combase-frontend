@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { color as colorSystem, layout } from '@combase.app/styles';
 
 import Box from '../Box';
-import { IconLabel } from '../IconLabel';
+import IconLabel from '../IconLabel';
 
 const Root = styled(Box).attrs(props => ({
     borderRadius: 1,

@@ -11,13 +11,13 @@ import Avatar from '../../Avatar';
 import { IconButton, Button } from '../../Buttons';
 import { AddUsersIcon, DropdownIcon, FilterIcon, GridViewIcon, ListViewIcon } from '../../icons';
 import { Checkbox } from '../../Inputs';
-import { IconLabel } from '../../IconLabel';
-import { Label } from '../../Label';
+import IconLabel from '../../IconLabel';
+import Label from '../../Label';
 import Box from '../../Box';
 import PageHeader from '../../PageHeader';
 import PageTitle from '../../PageTitle';
 import { Text } from '../../Text';
-import { ToggleGroup, ToggleGroupOption } from '../../ToggleGroup';
+import ToggleGroup, { ToggleGroupOption } from '../../ToggleGroup';
 import { Tooltip } from '../../Popovers';
 
 import { VirtualizedList } from '.';

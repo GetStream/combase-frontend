@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { animated } from 'react-spring';
 import { layout } from '@combase.app/styles';
 
-import { IconLabel } from '../IconLabel';
+import IconLabel from '../IconLabel';
 import Box from '../Box';
 import { Text, TextGroup } from '../Text';
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { borderRadius, interactions, itemGap, layout } from '@combase.app/styles';
 
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import Box from '../../Box';
 import { Text } from '../../Text';
 import { useCallback } from 'react';

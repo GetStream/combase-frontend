@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 
-import Box from '../../Box';
-import { Checkbox } from '../../Inputs';
-import { Text } from '../../Text';
+import Box from '../Box';
+import { Checkbox } from '../Inputs';
+import { Text } from '../Text';
 
 const Root = styled(Box)`
 	${layout};
@@ -29,7 +29,7 @@ const Root = styled(Box)`
     }
 `;
 
-export const TableHeader = ({ checked, children, columnTemplate, indeterminate, onBulkSelect, selectable, ...rest }) => (
+const TableHeader = ({ checked, children, columnTemplate, indeterminate, onBulkSelect, selectable, ...rest }) => (
     <Root $columnTemplate={columnTemplate} $selectable={selectable} minHeight={8} paddingX={3} paddingY={1} {...rest}>
         {selectable ? (
             <div>
@@ -39,3 +39,5 @@ export const TableHeader = ({ checked, children, columnTemplate, indeterminate, 
         {children}
     </Root>
 );
+
+export default TableHeader;

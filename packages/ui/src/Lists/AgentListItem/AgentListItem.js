@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { ClockIcon, GroupIcon } from '../../icons';
 
 import Box from '../../Box';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { Helper } from '../../Inputs/shared/Helper';
 import { ListItem } from '../ListItem/ListItem';
 import { AgentEntity } from '../Entity';
-import { Chip } from '../../Chip';
+import Chip from '../../Chip';
 import {Text} from '../../Text/Text';
 
 const Groups = styled(Box)`

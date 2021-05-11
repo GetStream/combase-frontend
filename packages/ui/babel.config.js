@@ -7,7 +7,7 @@ module.exports = (api) => {
 		{
 		  bugfixes: true,
 		  browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
-		  modules: false
+		  modules: false,
 		},
 	  ],
 	  [
@@ -19,22 +19,7 @@ module.exports = (api) => {
 	];
   
 	const plugins = [
-	  ['@babel/plugin-proposal-class-properties', { loose: true }],
-	  ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
-	  [
-		'@babel/plugin-proposal-private-methods', { "loose": true }
-	  ],
-	  [
-		'@babel/plugin-transform-runtime',
-		{ useESModules: true, version: '^7.4.4' },
-	  ],
-	  '@babel/plugin-transform-react-constant-elements',
-	  [
-		  'babel-plugin-transform-react-remove-prop-types',
-		{
-			mode: 'unsafe-wrap',
-		},
-	  ],
+	  ['@babel/plugin-transform-runtime',{ useESModules: true, version: '^7.4.4' }],
 	];
   
 	return {

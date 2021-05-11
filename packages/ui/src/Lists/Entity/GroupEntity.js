@@ -1,6 +1,6 @@
-import { IconBubble } from '../../IconBubble';
+import IconBubble from '../../IconBubble';
 import { Text } from '../../Text';
-import { Label } from '../../Label';
+import Label from '../../Label';
 
 import { Entity } from './Entity';
 

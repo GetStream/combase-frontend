@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { Text, TextGroup } from '../../Text';
 import { Checkbox } from '../Checkbox';
 

@@ -19,10 +19,10 @@ export const Default = () => (
 );
 
 export const ChipWithAction = () => (
-    <Chip action={CloseCircleIcon} color="green" icon={Avatar} iconProps={iconProps} label={iconProps.name} />
+    <Chip action={CloseCircleIcon} size="sm" color="green" icon={Avatar} iconProps={iconProps} label={iconProps.name} />
 );
 
-export const AvatarChip = () => <Chip color="green" icon={Avatar} iconProps={iconProps} label={iconProps.name} />;
+export const AvatarChip = () => <Chip size="sm" color="green" icon={Avatar} iconProps={iconProps} label={iconProps.name} />;
 
 export default {
     component: Chip,

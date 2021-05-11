@@ -5,7 +5,7 @@ import { useChannel, useChannelActions } from '@combase.app/chat';
 
 import { Button } from '../../Buttons';
 import { CloseIcon, CommandIcon, RefreshIcon, SendIcon } from '../../icons';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import Box from '../../Box';
 import { Text } from '../../Text';
 

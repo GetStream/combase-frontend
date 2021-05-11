@@ -1,1 +1,1 @@
-export { default as ListDetailSection } from './ListDetailSection';
+export { default } from './ListDetailSection';

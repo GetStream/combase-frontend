@@ -5,7 +5,7 @@ import { capitalCase } from 'change-case';
 
 import Box from '../../Box';
 import Card from '../../Card';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { Button, IconButton } from '../../Buttons';
 import { Heading, Text, TextGroup } from '../../Text';
 import { AddCircleIcon, AddIcon, CloseCircleIcon } from '../../icons';

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useList } from 'react-use';
 
 import Box from '../../Box';
-import { Chip } from '../../Chip';
+import Chip from '../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../icons';
 import { useListCursor, useSharedRef } from '../../hooks';
 

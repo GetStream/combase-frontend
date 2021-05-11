@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
 import Avatar from '../../Avatar';
-import { Label } from '../../Label';
+import Label from '../../Label';
 import Box from '../../Box';
 import { Text } from '../../Text';
 import Placeholder from '../../Placeholder';

@@ -1,6 +1,6 @@
 import Box from '../Box';
 import { InfoIcon } from '../icons';
-import { IconLabel } from '../IconLabel';
+import IconLabel from '../IconLabel';
 import { Text } from '../Text';
 
 export const EphemeralNotice = () => (

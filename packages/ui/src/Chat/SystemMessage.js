@@ -3,8 +3,8 @@ import styled, { useTheme } from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
 import { InfoIcon } from '../icons';
-import { IconLabel } from '../IconLabel';
-import { Label } from '../Label';
+import IconLabel from '../IconLabel';
+import Label from '../Label';
 import Box from '../Box';
 import { Text } from '../Text';
 

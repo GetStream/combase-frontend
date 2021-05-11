@@ -3,7 +3,7 @@ import React from 'react';
 import Avatar from '../../Avatar';
 import { Entity } from '../Entity';
 import { Badge } from '../../Feedback';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { Text } from '../../Text';
 
 import { TicketListItem } from '../TicketListItem';

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
-import { IconLabel } from '../IconLabel';
+import IconLabel from '../IconLabel';
 import { ChevronRightIcon } from '../icons/chevronRight';
 import {Text} from './Text';
 

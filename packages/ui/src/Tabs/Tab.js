@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { colorAlpha, layout, space } from '@combase.app/styles';
 
 import ButtonBase from '../Buttons/shared/ButtonBase';
-import { IconLabel } from '../IconLabel';
+import IconLabel from '../IconLabel';
 import { Text } from '../Text';
 
 const Root = styled(ButtonBase)`

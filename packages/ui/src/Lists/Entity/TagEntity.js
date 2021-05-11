@@ -1,7 +1,7 @@
 import Box from '../../Box';
 import { ConversationsIcon, TagIcon } from '../../icons';
-import { IconLabel } from '../../IconLabel';
-import { Label } from '../../Label';
+import IconLabel from '../../IconLabel';
+import Label from '../../Label';
 import { Text } from '../../Text';
 
 import { Entity } from './Entity';

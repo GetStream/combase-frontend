@@ -4,7 +4,7 @@ import { WarningIcon } from '../icons';
 import { Text } from '../Text';
 import { Tooltip } from '../Popovers';
 
-import { Label } from '.';
+import Label from '.';
 
 export const Default = () => (
     <Label color="red">

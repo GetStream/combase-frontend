@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
 
 import { Spinner } from '../../Feedback';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 
 import ButtonBase from '../shared/ButtonBase';
 import { buttonSizeVariants, buttonVisualVariants } from './variants';

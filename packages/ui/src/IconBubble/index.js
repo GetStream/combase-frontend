@@ -1,1 +1,1 @@
-export { default as IconBubble } from './IconBubble'; 
+export { default } from './IconBubble'; 

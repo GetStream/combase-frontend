@@ -7,7 +7,7 @@ import format from 'date-fns/format';
 import Avatar from '../../Avatar';
 import Box from '../../Box';
 import Container from '../../Container';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { CommandIcon } from '../../icons';
 import { Text } from '../../Text';
 

@@ -100,14 +100,14 @@ const CloseButton = styled.div`
     ${interactions}
 `;
 
-const Chip = ({ action, color, children, icon: Icon, iconColor, iconProps, label, selected, onActionClick, value, ...props }) => (
-    <Root {...props} color={color} borderRadius="circle" gapLeft={1} gapRight={1} selected={selected}>
-        {Icon ? <Icon {...iconProps} color={iconColor || color} size={2} /> : null}
-        <Text fontSize={2} fontWeight="500" lineHeight={2}>
+const Chip = ({ action, color, children, icon: Icon, iconColor, iconProps, label, selected, onActionClick, size, value, ...props }) => (
+    <Root {...props} color={color} borderRadius="circle" gapLeft={1} gapRight={1} selected={selected} size={size}>
+        {Icon ? <Icon {...iconProps} color={iconColor || color} size={size === 'sm' ? 3 : 2} /> : null}
+        <Text fontSize={2} fontWeight="500" lineHeight={size === 'sm' ? 3 : 2}>
             {label}
         </Text>
         {action ? (
-            <CloseButton as={action} color={iconColor || color} interaction={selected ? undefined : 'opacity'} onClick={() => onActionClick(value || label)} size={2} />
+            <CloseButton as={action} color={iconColor || color} interaction={selected ? undefined : 'opacity'} onClick={() => onActionClick(value || label)} size={size === 'sm' ? 3 : 2} />
         ) : null}
     </Root>
 );

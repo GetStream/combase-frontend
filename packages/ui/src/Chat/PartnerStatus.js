@@ -4,7 +4,7 @@ import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import { Badge } from '../Feedback';
-import { IconLabel } from '../IconLabel';
+import IconLabel from '../IconLabel';
 import { Tooltip } from '../Popovers';
 import { Text } from '../Text';
 

@@ -5,7 +5,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import Avatar from '../../Avatar';
 import Box from '../../Box';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { ListItem } from '../../Lists/ListItem';
 import { Badge } from '../../Feedback';
 import Placeholder from '../../Placeholder';

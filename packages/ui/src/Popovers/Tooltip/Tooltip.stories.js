@@ -5,7 +5,7 @@ import { layout, shadow } from '@combase.app/styles';
 
 import { Popover, TooltipChip } from '..';
 import { InfoIcon } from '../../icons';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import Box from '../../Box';
 import { Text } from '../../Text';
 import { Tooltip } from './Tooltip';

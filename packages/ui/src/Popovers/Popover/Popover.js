@@ -100,7 +100,7 @@ export const Popover = ({ anchor, as, disablePortal, modifiers, placement: place
 
 Popover.propTypes = {
     anchor: PropTypes.object,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     onClose: PropTypes.func,
     modifiers: PropTypes.array,
     options: PropTypes.object,

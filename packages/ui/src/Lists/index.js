@@ -8,7 +8,6 @@ export * from './MenuItem';
 export * from './ListSubheader';
 export * from './Menu';
 export * from './EntityList';
-export * from './TableHeader';
 export * from './TagListItem';
 export * from './TicketListItem';
 export * from './NavigationMenuItem';

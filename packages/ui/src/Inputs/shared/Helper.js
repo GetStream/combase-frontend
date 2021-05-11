@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { InfoIcon } from '../../icons';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import Box from '../../Box';
 import { Text } from '../../Text';
 

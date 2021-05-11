@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ClockIcon, ConversationsIcon } from '../../icons';
 
 import Box from '../../Box';
-import { IconLabel } from '../../IconLabel';
+import IconLabel from '../../IconLabel';
 import { Helper } from '../../Inputs';
 import { Text } from '../../Text';
 

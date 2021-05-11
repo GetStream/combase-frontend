@@ -2,10 +2,10 @@
   "name": "@combase.app/ui",
   "version": "0.1.0",
   "main": "build/index.js",
-  "module": "src/index.js",
+  "module": "build/index.js",
   "license": "MIT",
   "scripts": {
-	"build": "yarn clean && yarn babel --config-file --extensions '.js' ./src --out-dir './build'",
+	"build": "yarn clean && yarn babel --config-file --extensions '.js' ./src --out-dir './build' && node ./scripts/postbuild-modules.js",
 	"clean": "rm -rf ./build"
   },
   "dependencies": {
