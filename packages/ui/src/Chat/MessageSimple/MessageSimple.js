@@ -5,7 +5,7 @@ import { useMessage, useUserRole } from '@combase.app/chat';
 
 import Box from '../../Box';
 import Container from '../../Container';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { SystemMessage } from '../SystemMessage';
 import { MessageAttachments } from '../MessageAttachments';

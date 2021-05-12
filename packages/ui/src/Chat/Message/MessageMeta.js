@@ -5,7 +5,7 @@ import { itemGap } from '@combase.app/styles';
 import { useChannelReadCursors } from '@combase.app/chat';
 
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { EphemeralNotice } from '../EphemeralNotice';
 import { DeliveryStatus } from '../DeliveryStatus';

@@ -9,7 +9,7 @@ import { DropdownIcon } from '../../icons';
 import Box from '../../Box';
 import { Entity, ListItem, VirtualizedList } from '../../Lists';
 import { Popover, Dropdown } from '../../Popovers';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { useListCursor } from '../../hooks';
 
 import { TextInput } from '../TextInput';

@@ -2,14 +2,8 @@ import { forwardRef, useCallback } from 'react';
 import { Form, Formik } from 'formik';
 import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
+import { Box, Button, Card, Text, Heading, TextInput, TagIcon } from '@combase.app/ui'; 
 import { useMutation, UPDATE_TAG, GET_TAGS } from '@combase.app/apollo';
-
-import Box from '../../Box';
-import Button from '../../Button';
-import Card from '../../Card';
-import { TextInput } from '../../Inputs';
-import { Heading, Text } from '../../Text';
-import { TagIcon } from '../../icons';
 
 const Root = styled(Card)`
     width: ${({ theme: { sizes } }) => sizes[14]};
@@ -34,7 +28,7 @@ const Footer = styled(Box)`
     grid-template-columns: 1fr 1fr;
 `;
 
-export const EditTagDialog = forwardRef(({ helper, initialValues, name, onClose, placeholder }, ref) => {
+const EditTagDialog = forwardRef(({ helper, initialValues, onClose, placeholder }, ref) => {
     const [handleUpdate, { loading }] = useMutation(UPDATE_TAG);
 
     const onSubmit = useCallback(
@@ -54,7 +48,7 @@ export const EditTagDialog = forwardRef(({ helper, initialValues, name, onClose,
                 console.error(error.message);
             }
         },
-        [onClose]
+        [handleUpdate, onClose]
     );
 
     return (
@@ -98,3 +92,5 @@ export const EditTagDialog = forwardRef(({ helper, initialValues, name, onClose,
         </Formik>
     );
 });
+
+export default EditTagDialog;

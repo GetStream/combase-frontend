@@ -9,7 +9,7 @@ import Box from '../../Box';
 import Container from '../../Container';
 import IconLabel from '../../IconLabel';
 import { CommandIcon } from '../../icons';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { SystemMessage } from '../SystemMessage';
 import { isEmojiMessageRegex } from '../utils/isEmojiMessageRegex';

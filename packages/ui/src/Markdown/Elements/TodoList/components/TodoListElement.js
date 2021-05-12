@@ -3,7 +3,7 @@ import { useEditor, useReadOnly } from 'slate-react';
 
 import { Box } from '../../../../Layout';
 import { Checkbox } from '../../../../Inputs/Checkbox/Checkbox';
-import { Text } from '../../../../Text';
+import Text from '../../../../Text';
 
 const Root = styled(Box)`
     display: flex;

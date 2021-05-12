@@ -50,6 +50,7 @@ export const GET_TICKETS = gql`
                 edges {
                     node {
                         _id
+						subject
                         user: userData {
                             _id
                             name

@@ -4,7 +4,7 @@ import { itemGap } from '@combase.app/styles';
 
 import Box from '../Box';
 import { CheckIcon, TagIcon } from '../icons';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import Button from './Button';
 

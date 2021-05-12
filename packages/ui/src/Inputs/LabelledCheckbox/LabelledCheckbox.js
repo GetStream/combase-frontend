@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import IconLabel from '../../IconLabel';
-import { Text, TextGroup } from '../../Text';
+import Text from '../../Text';
+import TextGroup from '../../TextGroup';
 import { Checkbox } from '../Checkbox';
 
 const Root = styled(IconLabel)`

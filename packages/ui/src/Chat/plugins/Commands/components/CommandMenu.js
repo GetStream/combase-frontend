@@ -8,7 +8,7 @@ import Portal from '../../../../Portal';
 import { Menu, MenuItem } from '../../../../Lists';
 import { StateDisplay } from '../../../../Feedback';
 import { Dropdown, Popover } from '../../../../Popovers';
-import { Code, Text } from '../../../../Text';
+import Text, { Code } from '../../../../Text';
 
 import TransferCommandSuggestions from './TransferCommandSuggestions';
 

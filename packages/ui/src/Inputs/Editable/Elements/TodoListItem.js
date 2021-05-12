@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useEditor, useReadOnly } from 'slate-react';
 
 import Box from '../../../Box';
-import { Text } from '../../../Text';
+import Text from '../../../Text';
 import { Checkbox } from '../../Checkbox';
 
 const Root = styled(Box)`

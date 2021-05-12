@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { layout, space } from '@combase.app/styles';
 
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 const Root = styled(Box)`
     ${layout};

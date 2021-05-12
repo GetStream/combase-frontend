@@ -8,7 +8,7 @@ import remark2react from 'remark-react';
 
 import syntaxTheme from './syntaxTheme';
 import { EmptyView, Spinner } from '../../Feedback';
-import { Code, Heading, Text } from '../../Text';
+import Text, { Code, Heading } from '../../Text';
 
 const Root = styled.div`
 	& > *:first-child {

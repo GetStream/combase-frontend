@@ -7,7 +7,7 @@ import Button from '../../Button';
 import { CloseIcon, CommandIcon, RefreshIcon, SendIcon } from '../../icons';
 import IconLabel from '../../IconLabel';
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 const Root = styled.div`
     ${'' /* max-width: min(80%, 22.5rem); */}

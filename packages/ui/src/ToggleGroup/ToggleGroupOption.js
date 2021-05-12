@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { space } from '@combase.app/styles';
 
 import ButtonBase from '../ButtonBase';
-import { Text } from '../Text';
+import Text from '../Text';
 
 const Root = styled(ButtonBase)`
     ${space};

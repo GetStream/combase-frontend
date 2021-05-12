@@ -5,7 +5,8 @@ import { layout } from '@combase.app/styles';
 
 import IconLabel from '../IconLabel';
 import Box from '../Box';
-import { Text, TextGroup } from '../Text';
+import Text from '../Text';
+import TextGroup from '../TextGroup';
 
 const Root = styled(Box).attrs({
     as: animated.div,

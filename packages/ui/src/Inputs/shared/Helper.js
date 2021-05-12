@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { InfoIcon } from '../../icons';
 import IconLabel from '../../IconLabel';
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 export const Helper = ({ color, icon: Icon = InfoIcon, text, paddingX, paddingY }) => (
     <Box paddingX={paddingX} paddingY={paddingY}>

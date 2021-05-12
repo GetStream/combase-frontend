@@ -5,7 +5,9 @@ import Scrollbars from 'rc-scrollbars';
 import { useToasts } from 'react-toast-notifications';
 import { useQuery, useMutation, GET_WIDGET_SETTINGS, UPDATE_WIDGET_SETTINGS } from '@combase.app/apollo';
 
-import { AddCircleIcon, Box, CloseCircleIcon, Container, FormikAutosave, IconButton, ListDetailSection, Text, TextInput, ToggleGroup, ToggleGroupOption } from '@combase.app/ui';
+import { AddCircleIcon, Box, CloseCircleIcon, Container, IconButton, ListDetailSection, Text, TextInput, ToggleGroup, ToggleGroupOption } from '@combase.app/ui';
+
+import FormikAutosave from 'components/FormikAutosave';
 
 const FieldArrayInput = styled(Box)`
 	display: grid;

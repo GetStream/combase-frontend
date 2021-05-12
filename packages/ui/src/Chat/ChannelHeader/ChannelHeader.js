@@ -11,7 +11,7 @@ import Container from '../../Container';
 import HeaderBase from '../../HeaderBase';
 import IconButton from '../../IconButton';
 import { Entity } from '../../Lists';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { ArrowBackIcon } from '../../icons';
 import Placeholder from '../../Placeholder';
 

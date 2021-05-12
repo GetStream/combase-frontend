@@ -1,18 +1,11 @@
 import { forwardRef, useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { useFormik } from 'formik';
-import { GET_CURRENT_USER, UPDATE_AGENT, useQuery, useMutation } from '@combase.app/apollo';
-import { useDropzone } from 'react-dropzone';
+import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
 import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 import Cropper from 'react-easy-crop';
 
-import { useFeedsContext } from '../../contexts/Feeds';
-import Button from '../../Button';
-import Box from '../../Box';
-import Card from '../../Card';
-import Container from '../../Container';
-import { AddImageIcon } from '../../icons';
-import { Heading, Text } from '../../Text';
+import { AddImageIcon, Button, Box, Card, Container, Heading, Text, useFeedsContext } from '@combase.app/ui';
 
 const Root = styled(Card)`
     width: ${({ theme: { sizes } }) => sizes[16]};
@@ -35,17 +28,6 @@ const Footer = styled(Box)`
     padding: ${({ theme: { space } }) => space[2]};
     grid-gap: ${({ theme: { space } }) => space[2]};
     grid-template-columns: 1fr 1fr;
-`;
-
-const Dropzone = styled(Box)`
-    ${layout};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    user-select: none;
-    cursor: pointer;
 `;
 
 const DropzoneWrapper = styled(Container)`
@@ -81,9 +63,8 @@ function dataURLtoFile(dataurl, filename) {
     return new File([u8arr], filename, { type: mime });
 }
 
-export const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose }, ref) => {
+const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose }, ref) => {
     const { data } = useQuery(GET_CURRENT_USER);
-    const [updateAvatar, { loading }] = useMutation(UPDATE_AGENT);
     const me = data?.me;
 
     const initialValues = useMemo(
@@ -124,7 +105,7 @@ export const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose },
                 console.error(error.message);
             }
         },
-        [feeds]
+        [name, onClose, onSubmit, feeds]
     );
 
     const formik = useFormik({
@@ -136,6 +117,7 @@ export const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose },
     const handleCropComplete = useCallback((crop, cropPixels) => {
         const cropped = resizeCrop(cropperRef.current.imageRef, cropPixels);
         formik.setFieldValue('record.avatar', dataURLtoFile(cropped));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(
@@ -179,7 +161,7 @@ export const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose },
                 </Button>
                 <Button
                     disabled={!formik.dirty || !formik.isValid}
-                    loading={uploading || loading}
+                    loading={uploading}
                     type="submit"
                     size="sm"
                     onClick={formik.handleSubmit}
@@ -190,3 +172,6 @@ export const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose },
         </Root>
     );
 });
+
+
+export default UpdateAvatarDialog;

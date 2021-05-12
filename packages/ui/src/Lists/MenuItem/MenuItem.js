@@ -5,7 +5,7 @@ import { borderRadius, interactions, itemGap, layout } from '@combase.app/styles
 
 import IconLabel from '../../IconLabel';
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { useCallback } from 'react';
 
 const Root = styled.li`

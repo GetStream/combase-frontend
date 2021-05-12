@@ -9,7 +9,7 @@ import IconButton from '../../IconButton';
 import { DropdownIcon, SortIcon } from '../../icons';
 import Box from '../../Box';
 import { AgentEntity, MenuItem } from '../../Lists';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import {
     AllInboxesIcon,
     InboxIcon,

@@ -60,7 +60,7 @@ export const TicketManager = ({ children }) => {
                 },
             },
         });
-    }, []);
+    }, [apollo.cache, chatClient, notificationChime]);
 
     const handleNewMessage = useCallback(
         async e => {
@@ -110,7 +110,7 @@ export const TicketManager = ({ children }) => {
                 },
             });
         },
-        [chatClient, notificationChime]
+        [activeChannel, apollo.cache, chatClient, notificationChime]
     );
 
     const handleTicketRemoved = useCallback(async e => {
@@ -132,7 +132,7 @@ export const TicketManager = ({ children }) => {
                 },
             },
         });
-    }, []);
+    }, [apollo.cache]);
 
     /** Listens for channels that you are NOT watching */
     useClientEvent('notification.message_new', handleNewMessage);

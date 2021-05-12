@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Card from '../../../../Card';
 import IconLabel from '../../../../IconLabel';
-import { Text } from '../../../../Text';
+import Text from '../../../../Text';
 import { Spinner } from '../../../../Feedback';
 
 const Root = styled(Card)`

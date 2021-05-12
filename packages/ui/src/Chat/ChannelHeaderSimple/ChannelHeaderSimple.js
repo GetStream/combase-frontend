@@ -10,7 +10,8 @@ import HeaderBase from '../../HeaderBase';
 import { ArrowBackIcon } from '../../icons';
 import IconButton from '../../IconButton';
 import Placeholder from '../../Placeholder';
-import { Text, TextGroup } from '../../Text';
+import Text from '../../Text';
+import TextGroup from '../../TextGroup';
 
 import { PartnerStatus } from '../PartnerStatus';
 import { useScrollbars } from '../../contexts/Scrollbars/useScrollbars';

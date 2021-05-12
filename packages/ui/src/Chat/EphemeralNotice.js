@@ -1,7 +1,7 @@
 import Box from '../Box';
 import { InfoIcon } from '../icons';
 import IconLabel from '../IconLabel';
-import { Text } from '../Text';
+import Text from '../Text';
 
 export const EphemeralNotice = () => (
     <Box paddingY={1}>

@@ -5,7 +5,6 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "prep": "find . -type f -name \"package.json\" ! -path \"*/node_modules/*\" -execdir yarn --silent \\;",
         "lint": "eslint . --ext .js --fix",
         "start:electron-web": "yarn workspace electron start:web",
         "start:electron": "yarn workspace electron start",

@@ -1,5 +1,5 @@
 import Container from '../../Container';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { Spinner } from '../../Feedback';
 import { ConversationsIcon } from '../../icons';
 

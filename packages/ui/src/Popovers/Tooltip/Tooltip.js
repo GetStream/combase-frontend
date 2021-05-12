@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components';
 import { useClickAway, useMedia, useToggle } from 'react-use';
 import { animated } from 'react-spring';
 
-import { Text } from '../../Text';
+import Text from '../../Text';
 import Box from '../../Box';
 
 import { Popover } from '../Popover';

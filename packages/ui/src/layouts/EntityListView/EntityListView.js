@@ -12,7 +12,7 @@ import Label from '../../Label';
 import { Tooltip } from '../../Popovers';
 import PageHeader from '../../PageHeader';
 import { EntityList } from '../../Lists';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { ScrollContextProvider } from '../../contexts';
 
 import { GroupIcon } from '../../icons/group';

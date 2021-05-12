@@ -1,5 +1,5 @@
 import Avatar from '../../Avatar';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { Entity } from './Entity';
 

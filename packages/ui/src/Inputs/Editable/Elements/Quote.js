@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../../../Text';
+import Text from '../../../Text';
 
 const Blockquote = styled(Text).attrs({
     as: 'blockquote',

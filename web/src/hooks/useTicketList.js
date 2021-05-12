@@ -108,7 +108,7 @@ export const useTicketList = (filter, sort, opts) => {
                 history.push(`/dashboard/conversations/${inbox}/${ticketId}`);
             }
         },
-        [inbox]
+        [apollo.cache, history, inbox]
     );
 
     return [data?.entities, { error, loading, onClickTicket, loadMore }];

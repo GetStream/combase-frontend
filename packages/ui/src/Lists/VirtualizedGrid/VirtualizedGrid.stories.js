@@ -6,7 +6,7 @@ import { itemGap, shadow } from '@combase.app/styles';
 import Avatar from '../../Avatar';
 import Box from '../../Box';
 import PageTitle from '../../PageTitle';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { ListItem } from '../ListItem';
 import PageHeader from '../../PageHeader';
 import { Entity } from '../Entity';

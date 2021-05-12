@@ -1,4 +1,4 @@
-import { useFormikAutosave } from '../hooks';
+import useFormikAutosave from 'hooks/useFormikAutosave';
 
 const FormikAutosave = () => {
 	useFormikAutosave();

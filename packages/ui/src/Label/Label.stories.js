@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { WarningIcon } from '../icons';
-import { Text } from '../Text';
+import Text from '../Text';
 import { Tooltip } from '../Popovers';
 
 import Label from '.';

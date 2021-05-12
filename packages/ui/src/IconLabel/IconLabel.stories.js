@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CalendarIcon } from '../icons';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import IconLabel from './IconLabel';
 

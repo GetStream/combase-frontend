@@ -3,7 +3,7 @@ import React from 'react';
 import Avatar from '../../Avatar';
 import { Badge } from '../../Feedback';
 import IconLabel from '../../IconLabel';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { AgentEntity, Entity, GroupEntity, TagEntity } from '.';
 

@@ -1,4 +1,4 @@
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 const EditorText = ({ attributes, htmlAttributes, ...rest }) => <Text {...rest} {...attributes} {...htmlAttributes} />;
 

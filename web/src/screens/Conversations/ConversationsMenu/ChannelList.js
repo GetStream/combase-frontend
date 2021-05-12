@@ -102,13 +102,9 @@ const ChannelList = () => {
     );
 
     const filters = useMemo(() => {
-        let filter = {
-            members: {
-                $in: [me?._id],
-            },
-        };
+        let filter = {};
 
-        if ((statusFilter && inbox === 'inbox') || inbox === 'starred' || inbox === 'priority') {
+        if (inbox === 'inbox' || inbox === 'starred' || inbox === 'priority') {
             filter.status = statusFilter ?? undefined;
         }
 
@@ -131,7 +127,7 @@ const ChannelList = () => {
         }
 
         return filter;
-    }, [inbox, statusFilter, me]);
+    }, [inbox, statusFilter]);
 
     const [tickets, { error, loading, onClickTicket, loadMore }] = useTicketList(filters, sort, options);
 
@@ -232,9 +228,6 @@ const ChannelList = () => {
                     {inbox !== 'unassigned' && inbox !== 'archived' ? (
                         <Container paddingBottom={3}>
                             <ToggleGroup onChange={setStatusFilter} value={statusFilter}>
-                                <ToggleGroupOption value={null}>
-                                    All
-                                </ToggleGroupOption>
                                 <ToggleGroupOption value="open">
 									Open
                                 </ToggleGroupOption>

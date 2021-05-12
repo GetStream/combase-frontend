@@ -1,11 +1,9 @@
 export * from './Chat';
 export * from './Feedback';
-export * from './FormikAutosave';
 export * from './Icon';
 export * from './Inputs';
 export * from './Lists';
 export * from './Markdown';
-export * from './Modals';
 export * from './Popovers';
 export * from './StreamLogo';
 
@@ -35,6 +33,8 @@ export { default as Portal } from './Portal';
 export { default as Snackbar } from './Snackbar';
 export { default as SidebarHeader } from './SidebarHeader';
 export { default as TableHeader } from './TableHeader';
+export { default as TextGroup } from './TextGroup';
+export { default as TextLink } from './TextLink';
 
 export {default as Tabs} from './Tabs';
 export * from './Tabs';
@@ -42,6 +42,7 @@ export * from './Tabs';
 export {default as ToggleGroup} from './ToggleGroup';
 export * from './ToggleGroup';
 
+export { default as Text } from './Text';
 export * from './Text';
 
 export * from './contexts';

@@ -6,7 +6,7 @@ import { InfoIcon } from '../icons';
 import IconLabel from '../IconLabel';
 import Label from '../Label';
 import Box from '../Box';
-import { Text } from '../Text';
+import Text from '../Text';
 
 const Root = styled(Box)`
     display: flex;

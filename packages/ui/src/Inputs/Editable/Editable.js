@@ -16,7 +16,7 @@ import {
 import { nanoid } from 'nanoid';
 
 import Container from '../../Container';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { createTransformsPlugin } from './plugins/TransformsPlugin';
 import { options } from './pluginOptions';

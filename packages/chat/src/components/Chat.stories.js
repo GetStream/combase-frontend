@@ -2,7 +2,15 @@ import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useEffectOnce } from 'react-use';
 import { StreamChat } from 'stream-chat';
-import { ChannelHeaderSimple, MessageSimple, MessageInputSimple, ScrollContextProvider, Message, ChannelHeader, MessageInput } from '@combase.app/ui';
+import { 
+	ChannelHeaderSimple, 
+	MessageSimple, 
+	MessageInputSimple, 
+	ScrollContextProvider, 
+	Message, 
+	ChannelHeader, 
+	MessageInput 
+} from '@combase.app/ui';
 
 import { Channel } from '../contexts/channel/provider';
 import { ChannelManager } from '../contexts/channelManager/provider';

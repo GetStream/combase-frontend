@@ -5,7 +5,7 @@ import Box from '../../../../Box';
 import Chip from '../../../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../../../icons';
 import { AuthorEntity } from '../../../../Lists/Entity';
-import { Heading, Text } from '../../../../Text';
+import Text, { Heading } from '../../../../Text';
 import { ChipInputBase } from '../../../shared/ChipInputBase';
 import transformToTag from '../../../shared/transformToTag';
 

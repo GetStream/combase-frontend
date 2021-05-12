@@ -7,7 +7,7 @@ import { ClockIcon, ConversationsIcon } from '../../icons';
 import Box from '../../Box';
 import IconLabel from '../../IconLabel';
 import { Helper } from '../../Inputs';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { GroupEntity } from '../Entity';
 import { ListItem } from '../ListItem';

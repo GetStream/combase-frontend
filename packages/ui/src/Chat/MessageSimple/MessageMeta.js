@@ -6,7 +6,7 @@ import { itemGap } from '@combase.app/styles';
 
 import Box from '../../Box';
 import IconLabel from '../../IconLabel';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { AttachmentIcon, CommandIcon } from '../../icons';
 
 import { DeliveryStatus } from '../DeliveryStatus';

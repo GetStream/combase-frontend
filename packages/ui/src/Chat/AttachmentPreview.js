@@ -9,7 +9,7 @@ import Placeholder from '../Placeholder';
 import IconBubble from '../IconBubble';
 import { Tooltip } from '../Popovers';
 import { Spinner } from '../Feedback';
-import { Text } from '../Text';
+import Text from '../Text';
 
 const Root = styled(Box)`
     ${layout};

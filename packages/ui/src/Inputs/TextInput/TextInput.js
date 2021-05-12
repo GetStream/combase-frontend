@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { WarningIcon } from '../../icons';
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { Helper } from '../shared/Helper';
 import InputBase from '../shared/InputBase';

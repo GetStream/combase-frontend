@@ -3,7 +3,7 @@ import { color, space, system, typography, variant } from '@combase.app/styles';
 
 import Placeholder from '../Placeholder';
 
-export const Text = styled.p`
+const Text = styled.p`
     margin: 0;
     ${space};
     ${color};
@@ -46,3 +46,5 @@ Text.defaultProps = {
     placeholderWidth: 6,
     lineHeight: 4,
 };
+
+export default Text;

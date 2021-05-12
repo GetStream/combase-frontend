@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import { itemGap, layout, variant } from '@combase.app/styles';
 
 import Box from '../Box';
+import Text from '../Text';
 
-import { Text } from './Text';
-
-export const TextGroup = styled(Box)`
+const TextGroup = styled(Box)`
     ${layout};
     & > * + * {
         ${itemGap};
@@ -29,3 +28,5 @@ TextGroup.defaultProps = {
     gapTop: 1,
     variant: '',
 };
+
+export default TextGroup;

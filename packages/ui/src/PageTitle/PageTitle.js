@@ -4,7 +4,8 @@ import { system } from '@combase.app/styles';
 import { animated } from 'react-spring';
 
 import Box from '../Box';
-import { Heading, Text, TextGroup } from '../Text';
+import Text, { Heading } from '../Text';
+import TextGroup from '../TextGroup';
 import { DropdownIcon } from '../icons/index';
 import Placeholder from '../Placeholder';
 

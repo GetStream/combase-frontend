@@ -17,7 +17,7 @@ import Label from '../../Label';
 import Box from '../../Box';
 import PageHeader from '../../PageHeader';
 import PageTitle from '../../PageTitle';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import ToggleGroup, { ToggleGroupOption } from '../../ToggleGroup';
 import { Tooltip } from '../../Popovers';
 

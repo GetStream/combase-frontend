@@ -5,7 +5,7 @@ import Box from '../../Box';
 import Chip from '../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../icons';
 import { AuthorEntity } from '../../Lists';
-import { Heading, Text } from '../../Text';
+import Text, { Heading } from '../../Text';
 import { ChipInputBase, transformToTag } from '../../Inputs/shared';
 
 const Root = styled(Box)`

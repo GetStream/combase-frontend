@@ -6,7 +6,7 @@ import Box from '../Box';
 import IconButton from '../IconButton';
 import IconBubble from '../IconBubble';
 import IconLabel from '../IconLabel';
-import { Text } from '../Text';
+import Text from '../Text';
 import { CheckCircleIcon, CloseCircleIcon, CloseIcon, InfoIcon, WarningIcon } from '../icons';
 
 const Root = styled(Box)`

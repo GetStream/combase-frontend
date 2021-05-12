@@ -5,7 +5,7 @@ import { colorAlpha, layout, space } from '@combase.app/styles';
 
 import Box from '../../Box';
 import Container from '../../Container';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 const Root = styled(Box)`
     ${layout};

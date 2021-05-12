@@ -1,4 +1,4 @@
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 const EditorLink = ({ attributes, htmlAttributes, ...rest }) => <Text as="a" {...rest} {...attributes} {...htmlAttributes} />;
 

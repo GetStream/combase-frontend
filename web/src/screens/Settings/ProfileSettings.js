@@ -6,8 +6,11 @@ import { useToasts } from 'react-toast-notifications';
 import { useDropzone } from 'react-dropzone';
 import Scrollbars from 'rc-scrollbars';
 
-import { Avatar, AddImageIcon, Box, Container, FormikAutosave, ListDetailSection, Modal, ScheduleInput, Text, TextInput, UpdateAvatarDialog } from '@combase.app/ui';
+import { Avatar, AddImageIcon, Box, Container, ListDetailSection, Modal, ScheduleInput, Text, TextInput } from '@combase.app/ui';
 import { layout } from '@combase.app/styles';
+
+import UpdateAvatarDialog from 'components/modals/UpdateAvatarDialog';
+import FormikAutosave from 'components/FormikAutosave';
 
 const AvatarRow = styled(Box)`
 	display: grid;

@@ -1,14 +1,9 @@
 import { forwardRef } from 'react';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import styled from 'styled-components';
-import { layout } from '@combase.app/styles';
 
-import Button from '../../Button';
-import { Helper, TextInput } from '../../Inputs';
-import Box from '../../Box';
-import { Text } from '../../Text';
-import Card from '../../Card';
+import {Box, Button, Card, TextInput, Text} from '@combase.app/ui';
+import { layout } from '@combase.app/styles';
 
 const Root = styled(Card)`
     width: ${({ theme: { sizes } }) => sizes[15]};
@@ -26,7 +21,7 @@ const Footer = styled(Box)`
     grid-template-columns: 1fr 1fr;
 `;
 
-export const InputDialog = forwardRef(
+const InputDialog = forwardRef(
     ({ color, helper, initialValues, label, loading, name, onClose, onSubmit, placeholder, submitLabel, validationSchema }, ref) => (
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             {formik => (
@@ -61,3 +56,5 @@ export const InputDialog = forwardRef(
         </Formik>
     )
 );
+
+export default InputDialog

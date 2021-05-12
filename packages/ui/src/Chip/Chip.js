@@ -5,7 +5,7 @@ import { interactions, itemGap, layout, variant } from '@combase.app/styles';
 
 import Box from '../Box';
 import Placeholder from '../Placeholder';
-import { Text } from '../Text';
+import Text from '../Text';
 
 // TODO: Dedupe with IconBubble
 const rootVariant = ({ color, invert }) =>

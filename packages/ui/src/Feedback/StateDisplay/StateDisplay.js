@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Box from '../../Box';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { InfoIcon, WarningIcon } from '../../icons';
 
 import Spinner from '../Spinner';

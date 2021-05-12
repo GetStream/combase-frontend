@@ -3,11 +3,12 @@ import { useFormikContext } from 'formik';
 import { useToasts } from 'react-toast-notifications';
 import debounce from 'just-debounce-it';
 
-export const useFormikAutosave = (dMs = 1500) => {
+const useFormikAutosave = (dMs = 1500) => {
 	const mounted = useRef();
 	const formik = useFormikContext();
 	const { addToast, removeAllToasts } = useToasts();
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedSubmit = useCallback(
 		debounce(() => {
 			addToast('Saving changes...', {
@@ -30,5 +31,7 @@ export const useFormikAutosave = (dMs = 1500) => {
 	// Clear any toasts on unmount.
 	useEffect(() => {
 		return removeAllToasts
-	}, []);
+	}, [removeAllToasts]);
 };
+
+export default useFormikAutosave;

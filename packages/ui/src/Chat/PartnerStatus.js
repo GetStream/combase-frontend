@@ -6,7 +6,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { Badge } from '../Feedback';
 import IconLabel from '../IconLabel';
 import { Tooltip } from '../Popovers';
-import { Text } from '../Text';
+import Text from '../Text';
 
 export const PartnerStatus = ({ lastActive, user }) => {
     const isTyping = useUserTypingIndicator(user?.id);

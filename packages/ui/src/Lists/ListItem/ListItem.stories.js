@@ -4,7 +4,7 @@ import Avatar from '../../Avatar';
 import { Entity } from '../Entity';
 import { Badge } from '../../Feedback';
 import IconLabel from '../../IconLabel';
-import { Text } from '../../Text';
+import Text from '../../Text';
 
 import { TicketListItem } from '../TicketListItem';
 import { TagListItem } from '../TagListItem';

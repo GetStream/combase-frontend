@@ -9,7 +9,8 @@ import IconLabel from '../../IconLabel';
 import { ListItem } from '../../Lists/ListItem';
 import { Badge } from '../../Feedback';
 import Placeholder from '../../Placeholder';
-import { Text, TextGroup } from '../../Text';
+import Text from '../../Text';
+import TextGroup from '../../TextGroup';
 
 import ChannelPreviewToggles from './ChannelPreviewToggles';
 

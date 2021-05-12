@@ -69,10 +69,12 @@ const FormikWizard = ({children, initialValues, onSubmit}) => {
                 >
                     {step}
                     <Pagination>
-                        {children.map((_, i) => <Dot
-                            $active={i === currentStep}
-                            key={i}
-                                                />)}
+                        {children.map((_, i) => (
+							<Dot
+								$active={i === currentStep}
+								key={i}
+							/>
+						))}
                     </Pagination>
                 </Form>
             )}

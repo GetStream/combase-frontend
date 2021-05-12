@@ -5,7 +5,7 @@ import { colorAlpha, layout, space } from '@combase.app/styles';
 
 import ButtonBase from '../ButtonBase';
 import IconLabel from '../IconLabel';
-import { Text } from '../Text';
+import Text from '../Text';
 
 const Root = styled(ButtonBase)`
     ${space};

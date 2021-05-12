@@ -40,7 +40,7 @@ import { createChatPlugin } from '../plugins/ChatPlugin';
 import { createTitlePlugin, Title } from '../plugins/TitlePlugin';
 
 import { Image, ListItem, TodoListItem, Quote } from '../Elements';
-import { Code, Text } from '../../../Text';
+import Text, { Code } from '../../../Text';
 
 export const Chat = {
     components: {

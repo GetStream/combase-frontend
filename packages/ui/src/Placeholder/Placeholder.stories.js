@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TextGroup } from '../Text';
+import TextGroup from '../TextGroup';
 
 import Placeholder from "./Placeholder";
 

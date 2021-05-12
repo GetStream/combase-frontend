@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Button from '../../Button';
 import { StateDisplay } from '../../Feedback';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { CheckboxCheckedIcon, CheckboxIcon, DropdownIcon } from '../../icons';
 import { Popover, Dropdown } from '../../Popovers';
 

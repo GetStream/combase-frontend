@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Box from '../Box';
-import { Heading, TextGroup, Text } from '../Text';
+import Text, { Heading } from '../Text';
+import TextGroup from '../TextGroup';
 
 const Root = styled(Box)`
 	display: grid;

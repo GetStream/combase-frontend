@@ -10,7 +10,7 @@ import { Helper } from '../../Inputs/shared/Helper';
 import { ListItem } from '../ListItem/ListItem';
 import { AgentEntity } from '../Entity';
 import Chip from '../../Chip';
-import {Text} from '../../Text/Text';
+import Text from '../../Text';
 
 const Groups = styled(Box)`
     display: flex;

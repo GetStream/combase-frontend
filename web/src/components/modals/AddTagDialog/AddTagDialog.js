@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { AddTagIcon, Button, InputDialog, Modal, transformToTag, Text } from '@combase.app/ui';
+import { AddTagIcon, Button, Modal, transformToTag, Text } from '@combase.app/ui';
 import { GET_CURRENT_USER, CREATE_TAG, NEW_TAG_FRAGMENT, useMutation, useQuery } from '@combase.app/apollo';
 import { useToasts } from 'react-toast-notifications';
+
+import InputDialog from 'components/modals/InputDialog';
 
 const initialValues = {
 	name: '',

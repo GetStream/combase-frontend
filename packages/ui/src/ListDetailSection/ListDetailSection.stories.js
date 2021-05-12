@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Container from '../Container';
-import { Text } from '../Text';
+import Text from '../Text';
 
 import ListDetailSection from './ListDetailSection';
 

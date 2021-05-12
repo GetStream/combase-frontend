@@ -3,7 +3,7 @@ import { layout } from '@combase.app/styles';
 
 import Box from '../Box';
 import { Checkbox } from '../Inputs';
-import { Text } from '../Text';
+import Text from '../Text';
 
 const Root = styled(Box)`
 	${layout};

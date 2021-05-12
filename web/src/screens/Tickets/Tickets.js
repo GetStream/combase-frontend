@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, DropdownIcon, EntityList, PageCard, PageHeader, TableHeader, TicketListItem, Tooltip, Text, useBulkSelect, useEntities } from "@combase.app/ui";
+import { Box, EntityList, PageCard, PageHeader, TableHeader, TicketListItem, useBulkSelect, useEntities } from "@combase.app/ui";
 import { GET_TICKETS } from '@combase.app/apollo';
 
 const ItemContainer = props => <Box {...props} paddingX={1} />;
@@ -21,22 +21,7 @@ const Tickets = () => {
 					onBulkSelect={bulkCheckbox.onChange}
 					checked={bulkCheckbox.value}
 					selectable
-				>
-					<Box>
-						<Text color="primary">{'User'}</Text>
-					</Box>
-					<Box>
-					</Box>
-					<Box>
-						<Text>Assignee</Text>
-					</Box>
-					<Box>
-						<Text color="primary">{'Status'}</Text>
-					</Box>
-					<Box>
-						<Text color="primary">{'Created'}</Text>
-					</Box>
-				</TableHeader>
+				/>
 			</PageHeader>
 			<EntityList
 				data={tickets?.edges}
@@ -51,7 +36,7 @@ const Tickets = () => {
 						avatar={ticket?.user?.avatar}
 						name={ticket?.user?.name}
 						status={ticket?.status}
-						latestMessage={ticket?.latestMessage}
+						latestMessage={ticket?.subject || ticket?.latestMessage}
 						updatedAt={ticket?.latestMessageAt || ticket?.updatedAt}
 						value={ticket?._id}
 					/>

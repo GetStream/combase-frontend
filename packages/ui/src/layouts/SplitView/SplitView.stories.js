@@ -5,7 +5,7 @@ import { useMedia } from 'react-use';
 import Box from '../../Box';
 import Container from '../../Container';
 import HeaderBase from '../../HeaderBase';
-import { Text } from '../../Text';
+import Text from '../../Text';
 import { useScrollbars, ScrollContextProvider, ScrollbarsWithContext } from '../../contexts';
 import Button from '../../Button';
 import IconButton from '../../IconButton';

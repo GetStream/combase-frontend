@@ -9,7 +9,8 @@ import Card from '../../Card';
 import { ChevronRightIcon, RoleIcon } from '../../icons';
 import IconLabel from '../../IconLabel';
 import Placeholder from '../../Placeholder';
-import { Heading, Text, TextGroup } from '../../Text';
+import Text, { Heading } from '../../Text';
+import TextGroup from '../../TextGroup';
 
 const Root = styled(Card)`
     ${interactions};
