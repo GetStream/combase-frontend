@@ -41,7 +41,6 @@ async function createModulePackages({ from, to }) {
         manifestErrorMessages.push(`'main' entry '${packageJson.main}' does not exist`);
       }
       if (manifestErrorMessages.length > 0) {
-        // TODO: AggregateError
         throw new Error(`${packageJsonPath}:\n${manifestErrorMessages.join('\n')}`);
       }
 
@@ -87,8 +86,8 @@ async function prepend(file, string) {
 async function addLicense(packageData) {
   const license = `/** @license @combase.app/ui v${packageData.version}
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the LICENSE file 
+ * in the root directory of this source tree.
 */
 `;
   await Promise.all(
@@ -114,8 +113,7 @@ async function run() {
 
     await Promise.all(
       [
-        // use enhanced readme from workspace root for `@combase.app/ui`
-        packageData.name === '@combase.app/ui' ? '../../README.md' : './README.md',
+        './README.md',
         '../../LICENSE',
       ].map((file) => includeFileInBuild(file)),
     );

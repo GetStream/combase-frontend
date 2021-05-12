@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { interactions, layout, position, system, zIndex } from '@combase.app/styles';
 
-import ButtonBase from '../shared/ButtonBase';
+import ButtonBase from '../ButtonBase';
 
 const Root = styled(ButtonBase).attrs({
     borderRadius: 'circle',

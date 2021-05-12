@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { borderRadius, layout } from '@combase.app/styles';
 import { useChannel, useChannelActions } from '@combase.app/chat';
 
-import { Button } from '../../Buttons';
+import Button from '../../Button';
 import { CloseIcon, CommandIcon, RefreshIcon, SendIcon } from '../../icons';
 import IconLabel from '../../IconLabel';
 import Box from '../../Box';

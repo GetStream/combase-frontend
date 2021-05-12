@@ -1,7 +1,7 @@
 import React from 'react';
 import { useToggle } from 'react-use';
 
-import { CloseIcon, StarIcon } from '../../icons';
+import { CloseIcon, StarIcon } from '../icons';
 
 import IconButton from "./IconButton";
 

@@ -5,8 +5,8 @@ import { layout } from '@combase.app/styles';
 import { useMutation, UPDATE_TAG, GET_TAGS } from '@combase.app/apollo';
 
 import Box from '../../Box';
+import Button from '../../Button';
 import Card from '../../Card';
-import { Button } from '../../Buttons';
 import { TextInput } from '../../Inputs';
 import { Heading, Text } from '../../Text';
 import { TagIcon } from '../../icons';

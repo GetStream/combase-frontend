@@ -7,7 +7,7 @@ import { layout } from '@combase.app/styles';
 import Cropper from 'react-easy-crop';
 
 import { useFeedsContext } from '../../contexts/Feeds';
-import { Button } from '../../Buttons';
+import Button from '../../Button';
 import Box from '../../Box';
 import Card from '../../Card';
 import Container from '../../Container';

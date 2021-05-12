@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 import { layout } from '@combase.app/styles';
 
-import { Button } from '../../Buttons';
+import Button from '../../Button';
 import { Helper, TextInput } from '../../Inputs';
 import Box from '../../Box';
 import { Text } from '../../Text';

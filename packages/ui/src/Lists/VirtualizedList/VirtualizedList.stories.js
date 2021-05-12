@@ -8,7 +8,8 @@ import { gql } from '@combase.app/apollo';
 import { useScrollbars, ScrollContextProvider } from '../../contexts/Scrollbars';
 
 import Avatar from '../../Avatar';
-import { IconButton, Button } from '../../Buttons';
+import Button from '../../Button';
+import IconButton from '../../IconButton';
 import { AddUsersIcon, DropdownIcon, FilterIcon, GridViewIcon, ListViewIcon } from '../../icons';
 import { Checkbox } from '../../Inputs';
 import IconLabel from '../../IconLabel';

@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
 import { useEntities } from '../../hooks';
-import { Button, IconButton } from '../../Buttons';
+import Button from '../../Button';
+import IconButton from '../../IconButton';
 import IconLabel from '../../IconLabel';
 import { AddUsersIcon, DeleteIcon } from '../../icons';
 import Box from '../../Box';

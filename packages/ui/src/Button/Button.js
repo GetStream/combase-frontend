@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
 
-import { Spinner } from '../../Feedback';
-import IconLabel from '../../IconLabel';
+import { Spinner } from '../Feedback';
+import IconLabel from '../IconLabel';
+import ButtonBase from '../ButtonBase';
 
-import ButtonBase from '../shared/ButtonBase';
 import { buttonSizeVariants, buttonVisualVariants } from './variants';
 
 const Root = styled(ButtonBase).attrs(() => ({

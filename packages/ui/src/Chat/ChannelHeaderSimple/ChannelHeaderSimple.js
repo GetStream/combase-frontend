@@ -8,7 +8,7 @@ import Avatar from '../../Avatar';
 import Container from '../../Container';
 import HeaderBase from '../../HeaderBase';
 import { ArrowBackIcon } from '../../icons';
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 import Placeholder from '../../Placeholder';
 import { Text, TextGroup } from '../../Text';
 

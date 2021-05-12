@@ -6,7 +6,7 @@ import { useQuery, GET_CURRENT_USER } from '@combase.app/apollo';
 import { useHistory } from 'react-router-dom';
 
 import { useScrollbars } from '../contexts';
-import { IconButton } from '../Buttons';
+import IconButton from '../IconButton';
 import { ArrowBackIcon, MenuIcon } from '../icons';
 import Box from '../Box';
 import Container from '../Container';

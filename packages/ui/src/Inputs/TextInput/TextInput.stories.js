@@ -4,7 +4,7 @@ import { useList, useToggle } from 'react-use';
 import useFuse from 'react-use-fuse';
 
 import { Avatar } from '../../Avatar';
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 import Chip from '../../Chip';
 import { Badge, StateDisplay } from '../../Feedback';
 import IconLabel from '../../IconLabel';

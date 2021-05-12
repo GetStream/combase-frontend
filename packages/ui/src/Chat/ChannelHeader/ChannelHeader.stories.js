@@ -1,7 +1,7 @@
 import React from 'react';
 import {useToggle} from 'react-use';
 
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 import { InfoIcon } from '../../icons';
 
 import { ChannelHeader } from '.';

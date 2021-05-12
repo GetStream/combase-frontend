@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
 
-import IconButton from '../../Buttons/IconButton';
+import IconButton from '../../IconButton';
 import { PriorityIcon, StarIcon } from '../../icons';
 
 import { ChannelPreview } from './ChannelPreview';

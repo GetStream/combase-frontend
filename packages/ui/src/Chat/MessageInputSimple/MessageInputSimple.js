@@ -4,7 +4,7 @@ import { useChannel, useChannelActions } from '@combase.app/chat';
 import { borderRadius, interactions, layout, space, typography } from '@combase.app/styles';
 
 import { useComposerAttachments, useComposerTypingEvents, useComposerCommands, CommandMenu } from '../plugins';
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 import Box from '../../Box';
 import Container from '../../Container';
 import { ListSubheader } from '../../Lists';

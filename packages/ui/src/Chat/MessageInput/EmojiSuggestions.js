@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSlate } from 'slate-react';
 
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 import { Helper } from '../../Inputs/shared/Helper';
 import { ListSubheader } from '../../Lists';
 

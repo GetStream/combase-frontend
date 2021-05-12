@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSlate } from 'slate-react';
 import { itemGap } from '@combase.app/styles';
 
-import { IconButton } from '../../../Buttons';
+import IconButton from '../../../IconButton';
 import { AttachmentIcon, KnowledgeBaseIcon, QuickResponseIcon, TransferIcon, ReturnIcon, SendIcon } from '../../../icons';
 import Box from '../../../Box';
 import { AttachmentPreview } from '../../AttachmentPreview';

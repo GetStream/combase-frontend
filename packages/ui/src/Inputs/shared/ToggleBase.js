@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Box from '../../Box';
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 
 import { useSharedRef } from './useSharedRef';
 

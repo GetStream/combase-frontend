@@ -4,7 +4,8 @@ import { useToggle } from 'react-use';
 import { layout, shadow } from '@combase.app/styles';
 
 import { Popover, Dropdown } from '..';
-import { Button, IconButton } from '../../Buttons';
+import Button from '../../Button';
+import IconButton from '../../IconButton';
 import { DropdownIcon, SortIcon } from '../../icons';
 import Box from '../../Box';
 import { AgentEntity, MenuItem } from '../../Lists';

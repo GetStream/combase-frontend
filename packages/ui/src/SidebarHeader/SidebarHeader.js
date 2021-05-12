@@ -4,7 +4,7 @@ import { animated } from 'react-spring';
 import { layout } from '@combase.app/styles';
 import { useHistory } from 'react-router-dom';
 
-import { IconButton } from '../Buttons';
+import IconButton from '../IconButton';
 import { ArrowBackIcon, MenuIcon } from '../icons';
 import Box from '../Box';
 import Container from '../Container';

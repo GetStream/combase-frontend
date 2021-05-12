@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { getTimeZones } from '@vvo/tzdb';
 import useFuse from 'react-use-fuse';
 
-import { IconButton } from '../../Buttons';
+import IconButton from '../../IconButton';
 import { DropdownIcon } from '../../icons';
 import Box from '../../Box';
 import { Entity, ListItem, VirtualizedList } from '../../Lists';

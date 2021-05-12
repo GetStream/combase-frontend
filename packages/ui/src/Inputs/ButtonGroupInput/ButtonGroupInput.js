@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 
 import Box from '../../Box';
-import { Button } from '../../Buttons';
+import IconButton from '../../IconButton';
 import { Icon } from '../../Icon';
 import { StateDisplay } from '../../Feedback';
 import { Text } from '../../Text';
