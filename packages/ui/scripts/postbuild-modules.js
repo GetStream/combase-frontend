@@ -119,7 +119,6 @@ async function run() {
     );
 
     await addLicense(packageData);
-	  console.log(srcPath, buildPath)
     await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {
     console.error(err);
