@@ -1,11 +1,9 @@
 import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
+import { Box, PageCard } from '@combase.app/ui';
 import { Route, Switch } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
 import { useMedia } from 'react-use';
-
-import Box from '../../Box';
-import PageCard from '../../PageCard';
 
 const SplitRoot = styled(PageCard)`
     display: grid;
@@ -26,7 +24,7 @@ const Secondary = styled(Box)`
     z-index: 4;
 `;
 
-export const SplitView = ({ children, columnTemplate, ...rest }) => {
+const SplitView = ({ children, columnTemplate, ...rest }) => {
     const theme = useTheme();
     const sideBySide = useMedia(`(min-width: ${theme.breakpoints[1]})`);
 
@@ -66,3 +64,5 @@ SplitView.propTypes = {
 SplitView.defaultProps = {
     columnTemplate: '3fr 2fr',
 };
+
+export default SplitView;

@@ -48,4 +48,3 @@ export * from './Text';
 export * from './contexts';
 export * from './icons';
 export * from './hooks';
-export * from './layouts';

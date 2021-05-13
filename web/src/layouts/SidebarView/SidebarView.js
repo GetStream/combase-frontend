@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'rc-scrollbars';
-
-import Container from '../../Container';
-import PageCard from '../../PageCard';
+import { Container, PageCard } from '@combase.app/ui';
 
 const Wrapper = styled(PageCard).attrs({
     paddingBottom: 8,
@@ -18,7 +16,7 @@ const SidebarWrapper = styled(Container)`
 	border-right: 1px solid ${({ theme }) => theme.colors.border};
 `
 
-export const SidebarView = ({ children, columnTemplate, Sidebar }) => {
+const SidebarView = ({ children, columnTemplate, Sidebar }) => {
     return (
         <Scrollbars>
 			<Wrapper columnTemplate={columnTemplate}>
@@ -37,3 +35,5 @@ SidebarView.propTypes = {
 SidebarView.defaultProps = {
     columnTemplate: '3fr 2fr',
 };
+
+export default SidebarView;

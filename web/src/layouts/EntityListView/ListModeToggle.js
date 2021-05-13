@@ -1,5 +1,5 @@
-import { ToggleGroup, ToggleGroupOption } from '../../ToggleGroup';
-import { GridViewIcon, ListViewIcon } from '../../icons'; 
+import { ToggleGroup, ToggleGroupOption } from '@combase.app/ui/ToggleGroup';
+import { GridViewIcon, ListViewIcon } from '@combase.app/ui/icons'; 
 
 export const ListModeToggle = ({ onChange, value }) => (
 	<ToggleGroup activeBackgroundColor="white" onChange={onChange} value={value}>

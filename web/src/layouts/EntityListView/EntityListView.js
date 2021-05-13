@@ -1,21 +1,8 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
+
+import { useEntities, Button, IconButton, IconLabel, AddUsersIcon, DeleteIcon, GroupIcon, Box, Label, Tooltip, PageHeader, EntityList, Text, ScrollContextProvider } from '@combase.app/ui';
 import { itemGap } from '@combase.app/styles';
-
-import { useEntities } from '../../hooks';
-import Button from '../../Button';
-import IconButton from '../../IconButton';
-import IconLabel from '../../IconLabel';
-import { AddUsersIcon, DeleteIcon } from '../../icons';
-import Box from '../../Box';
-import Label from '../../Label';
-import { Tooltip } from '../../Popovers';
-import PageHeader from '../../PageHeader';
-import { EntityList } from '../../Lists';
-import Text from '../../Text';
-import { ScrollContextProvider } from '../../contexts';
-
-import { GroupIcon } from '../../icons/group';
 
 const Root = styled(Box)`
     display: grid;
@@ -35,7 +22,7 @@ const Actions = styled.div`
 
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 
-export const EntityListView = ({
+const EntityListView = ({
     children,
     columnTemplate,
     headerBackground,
@@ -104,3 +91,5 @@ export const EntityListView = ({
         </ScrollContextProvider>
     );
 };
+
+export default EntityListView;

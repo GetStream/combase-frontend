@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, useHistory, useParams } from 'react-router-dom';
 
-import { Box, Container, SidebarView, Tabs, Tab, MarkdownRenderer } from '@combase.app/ui';
+import { Box, Container, Tabs, Tab, MarkdownRenderer } from '@combase.app/ui';
 
+import SidebarView from 'layouts/SidebarView';
 import useIntegrationDefinition from 'hooks/useIntegrationDefinition';
 
 import Sidebar from './Sidebar';

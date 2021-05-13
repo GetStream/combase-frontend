@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Route } from 'react-router-dom';
-import { SplitView } from '@combase.app/ui';
 
 import { useReactiveMedia } from 'hooks';
 
 import ConversationsMenu from './ConversationsMenu';
 
 import Conversation from 'screens/Conversation'
+import SplitView from 'layouts/SplitView';
 
 const Conversations = () => {
 	const isSm = useReactiveMedia('sm');
