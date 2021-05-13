@@ -80,7 +80,7 @@
     "@babel/register": "^7.13.16",
     "@craco/craco": "^6.1.2",
     "concurrently": "^6.0.0",
-    "electron": "12.0.5",
+    "electron": "12.0.7",
     "electron-builder": "^22.10.5",
     "electron-reloader": "^1.2.1",
     "eslint": "^7.25.0",

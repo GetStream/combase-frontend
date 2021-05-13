@@ -5,8 +5,8 @@
   "module": "build/index.js",
   "license": "MIT",
   "scripts": {
-	"build": "yarn clean && yarn babel --config-file --extensions '.js' ./src --out-dir './build' && node ./scripts/postbuild-modules.js",
-	"clean": "rm -rf ./build"
+    "build": "yarn clean && yarn babel --config-file --extensions '.js' ./src --out-dir './build' && node ./scripts/postbuild-modules.js",
+    "clean": "rm -rf ./build"
   },
   "dependencies": {
     "@combase.app/apollo": "*",
@@ -39,14 +39,14 @@
     "react-virtuoso": "^1.8.6",
     "remark-parse": "^9.0.0",
     "remark-react": "^8.0.0",
-    "slate": "^0.62.0",
+    "slate": "^0.63.0",
     "slate-history": "^0.62.0",
     "slate-hyperscript": "^0.62.0",
-    "slate-react": "^0.62.0",
+    "slate-react": "^0.63.0",
     "slugify": "^1.5.0",
     "unified": "^9.2.1",
     "use-context-selector": "^1.3.7",
-    "use-sound": "^2.1.1",
+    "use-sound": "^3.0.1",
     "yup": "^0.32.9"
   }
 }

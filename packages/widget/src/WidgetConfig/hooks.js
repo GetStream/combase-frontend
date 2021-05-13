@@ -71,8 +71,6 @@ export const useOrganizationStreamKey = organization => {
         getOrg
     );
 
-	console.log(loading, error);
-
     return [data?.organization?.stream?.key, loading, error];
 };
 

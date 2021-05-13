@@ -24,6 +24,7 @@ export const useTicketList = (filter, sort, opts) => {
             variables: {
                 filter,
             },
+			fetchPolicy: 'cache-only',
         }),
         [filter]
     );
@@ -39,7 +40,6 @@ export const useTicketList = (filter, sort, opts) => {
                     limit: opts?.limit ?? 10,
                     offset: reload ? 0 : count,
                 });
-
                 const edges = channels.map(channelToTicketEdge);
                 const overwrite = reload || count === 0;
 

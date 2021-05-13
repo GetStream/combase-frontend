@@ -16,6 +16,7 @@ const ConversationHeader = ({  onBackClick, onInfoClick, readonly, showBackBtn }
 			_id: channelId
 		}
 	}), [channelId]);
+
 	const { data: ticketQuery } = useQuery(GET_TICKET, queryOpts);
 	const ticket = ticketQuery?.organization?.ticket;
 

@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import useSound from 'use-sound';
-import { useQueue } from 'react-use';
 import { getChannel, useActiveChannel, useChatClient, useClientEvent } from '@combase.app/chat';
 import { CHANNEL_STATE_FRAGMENT, NEW_TICKET_FRAGMENT, useApolloClient } from '@combase.app/apollo';
 import uniqBy from 'lodash.uniqby';
@@ -23,7 +22,6 @@ export const TicketManager = ({ children }) => {
     const [notificationChime] = useSound(newMessageChime);
     const inBackgroundTab = useRef(false);
     const originalTitle = useRef();
-    const { add, remove, first, last, size } = useQueue(); // TODO: Snackbar (`notify` method to play chime and show snackbar - stream notification feed??)
 
     const handleNewTicket = useCallback(async e => {
         if (inBackgroundTab.current) {

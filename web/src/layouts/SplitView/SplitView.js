@@ -27,7 +27,7 @@ const Secondary = styled(Box)`
 const SplitView = ({ children, columnTemplate, ...rest }) => {
     const theme = useTheme();
     const sideBySide = useMedia(`(min-width: ${theme.breakpoints[1]})`);
-
+	;
     if (sideBySide) {
         return (
             <SplitRoot $columnTemplate={columnTemplate} {...rest}>

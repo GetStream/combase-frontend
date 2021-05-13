@@ -29,4 +29,12 @@ colors.info = colors.blue;
 colors.error = colors.red;
 colors.warning = colors.orange;
 
+colors.ticketStatus = {
+	open: colors.green,
+	closed: colors.gray,
+	archived: colors.lightSlate,
+	unassigned: colors.red,
+	new: colors.blue,
+}
+
 export default colors;

@@ -5,7 +5,7 @@ module.exports = {
 		["module-resolver", {
 			"root": ["./"],
 			"alias": {
-				"@conf": "./config"
+				"@conf": "./config",
 			}
 		}]
 	],

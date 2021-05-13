@@ -41,7 +41,7 @@ const Header = () => {
 
     return (
         <Root maxWidth={14} padding={4}>
-            <Avatar name={organization?.name} size={8} src={organization?.avatar} />
+            <Avatar name={organization?.name} size={10} src={organization?.branding?.logo} />
             <TextGroup marginTop={2} gapTop={1} paddingTop={2} paddingBottom={4}>
                 <Heading as={!organization ? Placeholder : undefined} placeholderWidth={13}>
                     {organization?.widget?.home?.title}

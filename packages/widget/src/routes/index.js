@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { ScrollContextProvider } from '@combase.app/ui/src/contexts';
+import { ScrollContextProvider } from '@combase.app/ui';
 
 import Home from '../views/Home/Home';
 import Welcome from '../views/Welcome/Welcome';

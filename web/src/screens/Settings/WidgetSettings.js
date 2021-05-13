@@ -111,6 +111,17 @@ const WidgetSettings = () => {
 								</ToggleGroup>
 							</ListDetailSection>
 							<ListDetailSection
+								title="Home Screen"
+								description="Edit the copy shown on the home screen of your Combase widget."
+							>
+								<FieldArrayInput>
+									<TextInput label="Title" name="home.title" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.home.title} />
+								</FieldArrayInput>
+								<FieldArrayInput>
+									<TextInput label="Tagline" name="home.tagline" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.home.tagline} />
+								</FieldArrayInput>
+							</ListDetailSection>
+							<ListDetailSection
 								title="Welcome Message"
 								description="Edit the message, or series of messages, that an end-user will receive upon starting a new conversation."
 							>
