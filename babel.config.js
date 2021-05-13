@@ -1,7 +1,7 @@
 module.exports = {
     plugins: [
 		'babel-plugin-styled-components', 
-		'@babel/transform-runtime',
+		['@babel/plugin-transform-runtime',{ useESModules: true, version: '^7.4.4' }],
 		["module-resolver", {
 			"root": ["./"],
 			"alias": {

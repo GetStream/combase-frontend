@@ -39,7 +39,7 @@ export const WidgetHeader = ({ action, icon, subtitle, title }) => {
             Boolean(scrollbars?.anim) && animated
                 ? {
                       height: scrollbars?.anim.value.to({
-                          output: [theme.sizes[10], theme.sizes[8]],
+                          output: [theme.sizes[12], theme.sizes[10]],
                           range: [0, scrollbars?.threshold],
                           extrapolate: 'clamp',
                       }),

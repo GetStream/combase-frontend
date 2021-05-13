@@ -10,21 +10,22 @@ import filesize from 'rollup-plugin-filesize';
 import progress from 'rollup-plugin-progress';
 
 export default {
-    external: ['@combase.app/ui', /@babel\/runtime/u],
+    external: [/@babel\/runtime/u],
     input: './src/index.js',
     output: [
         {
             file: `./dist/umd/combase.production.min.js`,
             format: 'umd',
             name: 'CombaseWidget',
-            sourcemap: 'inline',
+            sourcemap: false,
         },
     ],
     onwarn: (warning, onwarn) => warning.code === 'CIRCULAR_DEPENDENCY',
     plugins: [
+		progress(),
         json(),
         commonjs({
-            include: ['../../node_modules/**'],
+            include: /node_modules/,
         }),
         peerDepsExternal(),
         nodeResolve({
@@ -35,12 +36,11 @@ export default {
             babelHelpers: 'runtime',
             extensions: ['.js'],
             configFile: '../../babel.config.js',
-            exclude: '../../node_modules/**',
+            exclude: /node_modules/,
         }),
         //terser(),
         visualizer(),
         filesize(),
-        progress(),
         replace({
             'process.env.NODE_ENV': JSON.stringify('production'),
         }),

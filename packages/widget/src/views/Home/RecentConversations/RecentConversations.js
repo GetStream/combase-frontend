@@ -35,7 +35,7 @@ const Header = ({ loading, hasConversations }) => {
                 ) : undefined
             }
             icon={<ConversationsIcon color="blue" size={4} />}
-            minHeight={8}
+            minHeight={9}
             paddingX={[4, 4, 5]}
             paddingTop={4}
         >
