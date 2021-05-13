@@ -2,28 +2,33 @@ import babel from '@rollup/plugin-babel';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import {terser} from 'rollup-plugin-terser';
+//import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
+import filesize from 'rollup-plugin-filesize';
+import progress from 'rollup-plugin-progress';
 
 export default {
     external: ['@combase.app/ui', /@babel\/runtime/u],
     input: './src/index.js',
     output: [
         {
-            dir: `./dist`,
+            file: `./dist/umd/combase.production.min.js`,
             format: 'umd',
-			name: 'CombaseWidget'
+            name: 'CombaseWidget',
+            sourcemap: 'inline',
         },
     ],
-	onwarn: (warning, onwarn) => warning.code === 'CIRCULAR_DEPENDENCY',
+    onwarn: (warning, onwarn) => warning.code === 'CIRCULAR_DEPENDENCY',
     plugins: [
         json(),
         commonjs({
-            include: '../../node_modules/**',
+            include: ['../../node_modules/**'],
         }),
         peerDepsExternal(),
         nodeResolve({
+            browser: true,
             extensions: ['.js'],
         }),
         babel({
@@ -32,7 +37,12 @@ export default {
             configFile: '../../babel.config.js',
             exclude: '../../node_modules/**',
         }),
-		terser(),
-		visualizer(),
+        //terser(),
+        visualizer(),
+        filesize(),
+        progress(),
+        replace({
+            'process.env.NODE_ENV': JSON.stringify('production'),
+        }),
     ],
 };
