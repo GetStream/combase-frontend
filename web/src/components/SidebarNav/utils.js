@@ -1,6 +1,4 @@
 import {
-    NavigationIconButton,
-    NavigationMenuItem,
     Tooltip,
     ChevronRightIcon,
     ConversationsIcon,
@@ -8,6 +6,9 @@ import {
     DashboardIcon,
 	PluginsIcon,
 } from '@combase.app/ui';
+
+import NavigationMenuItem from 'components/NavigationMenuItem';
+import NavigationIconButton from 'components/NavigationIconButton';
 
 export const renderMenuRoute = route => (
     <NavigationMenuItem

@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
-
-import Avatar from '../../Avatar';
-import Label from '../../Label';
-import Box from '../../Box';
-import Text from '../../Text';
-import Placeholder from '../../Placeholder';
-
-import { Entity } from '../Entity';
-import { ListItem } from '../ListItem';
+import { Avatar, Entity, Label, ListItem, Box, Text, Placeholder } from '@combase.app/ui';
 
 const Status = styled(Box)`
     & * + * {
@@ -16,7 +8,7 @@ const Status = styled(Box)`
     }
 `;
 
-export const TicketListItem = ({ avatar, updatedAt, latestMessage, latestMessageAt, name, status, ...rest }) => (
+const TicketListItem = ({ avatar, updatedAt, latestMessage, latestMessageAt, name, status, ...rest }) => (
     <ListItem alignCheckbox="center" columnTemplate="max-content 1fr max-content max-content max-content" {...rest}>
         <Box paddingLeft={0} paddingRight={3}>
             <Entity icon={<Avatar name={name} size={7} src={avatar} />}>
@@ -47,3 +39,5 @@ export const TicketListItem = ({ avatar, updatedAt, latestMessage, latestMessage
         </Box>
     </ListItem>
 );
+
+export default TicketListItem;

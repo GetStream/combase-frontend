@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import { ClockIcon, GroupIcon } from '../../icons';
-
-import Box from '../../Box';
-import IconLabel from '../../IconLabel';
-import { Helper } from '../../Inputs/shared/Helper';
-import { ListItem } from '../ListItem/ListItem';
-import { AgentEntity } from '../Entity';
-import Chip from '../../Chip';
-import Text from '../../Text';
+import { ClockIcon, GroupIcon, Box, IconLabel, Helper, ListItem, AgentEntity, Chip, Text } from '@combase.app/ui';
 
 const Groups = styled(Box)`
     display: flex;

@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, EntityList, PageCard, PageHeader, TableHeader, TicketListItem, useBulkSelect, useEntities } from "@combase.app/ui";
+import { Box, EntityList, PageCard, PageHeader, TableHeader, useBulkSelect, useEntities } from "@combase.app/ui";
 import { GET_TICKETS } from '@combase.app/apollo';
+
+import TicketListItem from 'components/TicketListItem';
 
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 

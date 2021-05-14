@@ -1,16 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
+import { Avatar, Box, Card, ChevronRightIcon, RoleIcon, IconLabel, Placeholder, Text, Heading, TextGroup } from '@combase.app/ui';
 import { Link } from 'react-router-dom';
-
-import Avatar from '../../Avatar';
-import Box from '../../Box';
-import Card from '../../Card';
-import { ChevronRightIcon, RoleIcon } from '../../icons';
-import IconLabel from '../../IconLabel';
-import Placeholder from '../../Placeholder';
-import Text, { Heading } from '../../Text';
-import TextGroup from '../../TextGroup';
 
 const Root = styled(Card)`
     ${interactions};
@@ -22,11 +14,6 @@ const Root = styled(Card)`
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-`;
-
-const Meta = styled.div`
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
 `;
 
 export const AgentGridItem = ({ _id, name, role }) => {

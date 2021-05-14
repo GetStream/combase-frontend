@@ -1,27 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-import { ClockIcon, ConversationsIcon } from '../../icons';
-
-import Box from '../../Box';
-import IconLabel from '../../IconLabel';
-import { Helper } from '../../Inputs';
-import Text from '../../Text';
-
-import { GroupEntity } from '../Entity';
-import { ListItem } from '../ListItem';
-import { GroupIcon } from '../../icons/index';
-
-const Groups = styled(Box)`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    & > * + * {
-        margin-left: 0.5rem;
-    }
-`;
+import { ClockIcon, Box, IconLabel, Text, GroupEntity, ListItem, GroupIcon } from '@combase.app/ui';
 
 export const GroupListItem = ({ avatar, color, createdAt, emoji, _id, groups, memberCount, name, role, ticketCount, onClick, ...rest }) => (
     <ListItem {...rest} alignCheckbox="center" onClick={() => onClick?.(_id)}>

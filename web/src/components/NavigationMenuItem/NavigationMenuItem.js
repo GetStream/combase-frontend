@@ -1,9 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-
-import { ChevronRightIcon } from '../../icons';
-
-import { MenuItem } from '../MenuItem';
+import { MenuItem, ChevronRightIcon } from "@combase.app/ui";
 
 const defaultActions = [<ChevronRightIcon color="altText" size={[3, 3, 3, 3, 4]} key={0} />];
 

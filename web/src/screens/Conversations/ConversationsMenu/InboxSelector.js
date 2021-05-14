@@ -3,13 +3,14 @@ import {
     Badge,
     GroupIcon,
     InboxIcon,
-    NavigationMenuItem,
     MenuItem,
     PriorityIcon,
     StarIcon,
     Menu,
     UnassignedIcon,
 } from '@combase.app/ui';
+
+import NavigationMenuItem from 'components/NavigationMenuItem';
 
 const InboxSelector = ({ onClickItem }) => (
     <>

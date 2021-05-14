@@ -23,7 +23,6 @@ export { default as IconLabel } from './IconLabel';
 export { default as Label } from './Label';
 export { default as ListDetailSection } from './ListDetailSection';
 export { default as Modal } from './Modal';
-export { default as NavigationIconButton } from './NavigationIconButton';
 export { default as PageCard } from './PageCard';
 export { default as PageHeader } from './PageHeader';
 export { default as PageTitle } from './PageTitle';

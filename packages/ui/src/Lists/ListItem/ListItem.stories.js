@@ -6,9 +6,6 @@ import { Badge } from '../../Feedback';
 import IconLabel from '../../IconLabel';
 import Text from '../../Text';
 
-import { TicketListItem } from '../TicketListItem';
-import { TagListItem } from '../TagListItem';
-
 import { ListItem } from '.';
 
 export const Default = () => (
@@ -41,14 +38,6 @@ export const Selectable = () => (
             </IconLabel>
         </Entity>
     </ListItem>
-);
-
-export const Ticket = () => (
-    <TicketListItem />
-);
-
-export const Tag = () => (
-    <TagListItem name="important" />
 );
 
 export default {
