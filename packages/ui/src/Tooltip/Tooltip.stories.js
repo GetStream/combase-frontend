@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useToggle } from 'react-use';
 import { layout, shadow } from '@combase.app/styles';
 
-import { Popover, TooltipChip } from '..';
-import { InfoIcon } from '../../icons';
-import IconLabel from '../../IconLabel';
-import Box from '../../Box';
-import Text from '../../Text';
-import { Tooltip } from './Tooltip';
+import { InfoIcon } from '../icons';
+import IconLabel from '../IconLabel';
+import Box from '../Box';
+import Text from '../Text';
+import Tooltip from './Tooltip';
 
 const modifiers = [
     {

@@ -8,7 +8,8 @@ import IconButton from '../../IconButton';
 import { DropdownIcon } from '../../icons';
 import Box from '../../Box';
 import { Entity, ListItem, VirtualizedList } from '../../Lists';
-import { Popover, Dropdown } from '../../Popovers';
+import Popover from '../../Popover';
+import Dropdown from '../../Dropdown';
 import Text from '../../Text';
 import { useListCursor } from '../../hooks';
 

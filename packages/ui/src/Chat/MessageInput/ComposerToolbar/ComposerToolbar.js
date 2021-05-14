@@ -7,7 +7,7 @@ import IconButton from '../../../IconButton';
 import { AttachmentIcon, KnowledgeBaseIcon, QuickResponseIcon, TransferIcon, ReturnIcon, SendIcon } from '../../../icons';
 import Box from '../../../Box';
 import { AttachmentPreview } from '../../AttachmentPreview';
-import { Tooltip } from '../../../Popovers';
+import Tooltip from '../../../Tooltip';
 
 const Root = styled(Box)`
     display: flex;

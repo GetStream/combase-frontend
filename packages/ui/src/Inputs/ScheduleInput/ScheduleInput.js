@@ -12,7 +12,7 @@ import Text, { Heading } from '../../Text';
 import TextGroup from '../../TextGroup';
 import { AddCircleIcon, AddIcon, CloseCircleIcon } from '../../icons';
 import { ListSubheader } from '../../Lists/ListSubheader';
-import { Tooltip } from '../../Popovers';
+import Tooltip from '../../Tooltip';
 
 import { Switch } from '../Switch';
 import { TextInput } from '../TextInput';

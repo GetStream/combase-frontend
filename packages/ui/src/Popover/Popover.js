@@ -6,8 +6,8 @@ import { useTransition } from 'react-spring';
 import { useClickAway } from 'react-use';
 import { zIndex } from '@combase.app/styles';
 
-import Box from '../../Box';
-import Portal from '../../Portal';
+import Box from '../Box';
+import Portal from '../Portal';
 
 const springConfig = {
     friction: 60,
@@ -29,7 +29,7 @@ const Presentation = styled(Box)`
     pointer-events: none;
 `;
 
-export const Popover = ({ anchor, as, disablePortal, modifiers, placement: placementProp, onClose, ...rest }) => {
+const Popover = ({ anchor, as, disablePortal, modifiers, placement: placementProp, onClose, ...rest }) => {
     const [placement, setPlacement] = useState(placementProp);
     const [popperElement, setPopperElement] = useState(null);
 
@@ -110,3 +110,5 @@ Popover.defaultProps = {
     modifiers: [],
 	placement: 'bottom'
 };
+
+export default Popover;

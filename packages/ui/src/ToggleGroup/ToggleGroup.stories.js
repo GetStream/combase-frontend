@@ -4,7 +4,7 @@ import { borderRadius, layout, shadow } from '@combase.app/styles';
 
 import Box from '../Box';
 import { GridViewIcon, ListViewIcon } from '../icons';
-import { Tooltip } from '../Popovers';
+import Tooltip from '../Tooltip';
 import Text from '../Text';
 
 import ToggleGroup, { ToggleGroupOption } from '.';

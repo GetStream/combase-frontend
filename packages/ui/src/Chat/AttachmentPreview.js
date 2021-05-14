@@ -7,7 +7,7 @@ import { CloseIcon, FileIcon, WarningIcon } from '../icons';
 import Box from '../Box';
 import Placeholder from '../Placeholder';
 import IconBubble from '../IconBubble';
-import { Tooltip } from '../Popovers';
+import Tooltip from '../Tooltip';
 import { Spinner } from '../Feedback';
 import Text from '../Text';
 

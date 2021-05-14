@@ -19,7 +19,7 @@ import PageHeader from '../../PageHeader';
 import PageTitle from '../../PageTitle';
 import Text from '../../Text';
 import ToggleGroup, { ToggleGroupOption } from '../../ToggleGroup';
-import { Tooltip } from '../../Popovers';
+import Tooltip from '../../Tooltip';
 
 import { VirtualizedList } from '.';
 import { ListItem } from '../ListItem';

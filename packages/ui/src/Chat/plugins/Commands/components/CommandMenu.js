@@ -7,7 +7,8 @@ import Box from '../../../../Box';
 import Portal from '../../../../Portal';
 import { Menu, MenuItem } from '../../../../Lists';
 import { StateDisplay } from '../../../../Feedback';
-import { Dropdown, Popover } from '../../../../Popovers';
+import Dropdown from '../../../../Dropdown';
+import Popover from '../../../../Popover';
 import Text, { Code } from '../../../../Text';
 
 import TransferCommandSuggestions from './TransferCommandSuggestions';

@@ -5,7 +5,7 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import { Badge } from '../Feedback';
 import IconLabel from '../IconLabel';
-import { Tooltip } from '../Popovers';
+import Tooltip from '../Tooltip';
 import Text from '../Text';
 
 export const PartnerStatus = ({ lastActive, user }) => {

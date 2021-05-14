@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react';
 import { animated } from 'react-spring';
 
-import Box from '../../Box';
-import { Menu } from '../../Lists/Menu';
+import Box from '../Box';
+import { Menu } from '../Lists/Menu';
 
-import { getTransformOrigin } from '../utils';
+import { getTransformOrigin } from '../Popover';
 
-export const Dropdown = forwardRef(
+const Dropdown = forwardRef(
     ({ animatedValue, children, footer, gutters, header, maxWidth, minWidth, maxHeight, subheading, placement, popper }, ref) => {
         const style = {
             opacity: animatedValue,
@@ -46,3 +46,5 @@ export const Dropdown = forwardRef(
 Dropdown.defaultProps = {
     gutters: true,
 };
+
+export default Dropdown;

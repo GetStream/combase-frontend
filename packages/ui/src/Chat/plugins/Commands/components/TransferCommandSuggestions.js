@@ -9,7 +9,7 @@ import { useSlate } from 'slate-react';
 import Avatar from '../../../../Avatar';
 import { StateDisplay } from '../../../../Feedback';
 import { MenuItem } from '../../../../Lists';
-import { Dropdown } from '../../../../Popovers';
+import Dropdown from '../../../../Dropdown';
 
 const AgentIem = styled(MenuItem)`
     min-height: 2.25rem;

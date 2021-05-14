@@ -3,12 +3,9 @@ import { useTheme } from 'styled-components';
 import { useClickAway, useMedia, useToggle } from 'react-use';
 import { animated } from 'react-spring';
 
-import Text from '../../Text';
-import Box from '../../Box';
-
-import { Popover } from '../Popover';
-
-import { getTransformOrigin } from '../utils';
+import Box from '../Box';
+import Popover, { getTransformOrigin } from '../Popover';
+import Text from '../Text';
 
 const modifiers = [
     {
@@ -19,7 +16,7 @@ const modifiers = [
     },
 ];
 
-export const TooltipChip = forwardRef(({ animatedValue, mount, text, onClose, placement, popper }, ref) => {
+const TooltipChip = forwardRef(({ animatedValue, mount, text, onClose, placement, popper }, ref) => {
     useClickAway(ref, () => onClose?.());
 
     const style = {
@@ -44,7 +41,7 @@ export const TooltipChip = forwardRef(({ animatedValue, mount, text, onClose, pl
     ) : null;
 });
 
-export const Tooltip = ({ children, text, placement }) => {
+const Tooltip = ({ children, text, placement }) => {
     const [anchorRef, setAnchorRef] = useState();
     const [open, toggle] = useToggle();
     const theme = useTheme();
@@ -77,3 +74,5 @@ export const Tooltip = ({ children, text, placement }) => {
 Tooltip.defaultProps = {
     placement: 'bottom',
 };
+
+export default Tooltip;
