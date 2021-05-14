@@ -1,10 +1,8 @@
 export * from './Chat';
 export * from './Feedback';
-export * from './Icon';
 export * from './Inputs';
 export * from './Lists';
 export * from './Markdown';
-export * from './StreamLogo';
 
 export { default as Avatar } from './Avatar';
 export { default as AvatarGroup } from './AvatarGroup';
@@ -18,6 +16,7 @@ export { default as Container } from './Container';
 export { default as Dropdown } from './Dropdown';
 export { default as HeaderBase } from './HeaderBase';
 export { default as Fab } from './Fab';
+export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
 export { default as IconBubble } from './IconBubble';
 export { default as IconLabel } from './IconLabel';
@@ -33,6 +32,7 @@ export { default as Popover } from './Popover';
 export { default as Portal } from './Portal';
 export { default as Snackbar } from './Snackbar';
 export { default as SidebarHeader } from './SidebarHeader';
+export { default as StreamLogo } from './StreamLogo';
 export { default as TableHeader } from './TableHeader';
 export { default as TextGroup } from './TextGroup';
 export { default as TextLink } from './TextLink';

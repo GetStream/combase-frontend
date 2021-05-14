@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StreamLogo } from '.';
+import StreamLogo from './StreamLogo';
 
 export const Default = () => <StreamLogo size={5} />;
 

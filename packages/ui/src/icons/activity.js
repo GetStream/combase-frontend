@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon } from '../Icon';
+import Icon from '../Icon';
 
 export const ActivityIcon = props => (
   <Icon viewBox="0 0 16 16" {...props}>

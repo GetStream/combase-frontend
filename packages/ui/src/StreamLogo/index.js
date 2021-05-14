@@ -1,1 +1,1 @@
-export * from './StreamLogo';
+export { default } from './StreamLogo';

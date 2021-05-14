@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon } from '../Icon';
+import Icon from '../Icon';
 
 export const AddLinkIcon = props => (
     <Icon {...props} viewBox="0 0 24 24">
