@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import { EmptyView, Spinner, Text, Code, Heading } from '@combase.app/ui';
 import unified from 'unified';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import githubSchema from 'hast-util-sanitize/lib/github.json';
@@ -7,9 +8,6 @@ import parse from 'remark-parse';
 import remark2react from 'remark-react';
 
 import syntaxTheme from './syntaxTheme';
-import EmptyView from '../../EmptyView';
-import Spinner from '../../Spinner';
-import Text, { Code, Heading } from '../../Text';
 
 const Root = styled.div`
 	& > *:first-child {

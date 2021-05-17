@@ -22,8 +22,7 @@
             "electron",
             "packages/*",
             "storybook",
-            "web",
-            "widget-playground"
+            "web"
         ],
         "nohoist": [
             "**/electron-builder",

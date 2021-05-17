@@ -4,13 +4,20 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
+    "formik": "^2.2.6",
+    "hast-util-sanitize": "3.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "remark-parse": "^9.0.0",
+    "remark-react": "^8.0.0",
+    "unified": "^9.2.1",
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.9"
   },
   "resolutions": {
+    "hast-util-sanitize": "3.0.2",
     "babel-loader": "8.1.0",
     "jest": "26.6.0"
   },

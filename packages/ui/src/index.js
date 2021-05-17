@@ -1,6 +1,5 @@
 export * from './Chat';
 export * from './Inputs';
-export * from './Markdown';
 
 export { default as Avatar } from './Avatar';
 export { default as AvatarGroup } from './AvatarGroup';
