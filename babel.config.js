@@ -1,7 +1,6 @@
 module.exports = {
     plugins: [
 		'babel-plugin-styled-components', 
-		['@babel/plugin-transform-runtime',{ useESModules: true, version: '^7.4.4' }],
 		["module-resolver", {
 			"root": ["./"],
 			"alias": {
@@ -10,4 +9,9 @@ module.exports = {
 		}]
 	],
     presets: ['@babel/preset-env', '@babel/preset-react'],
+	"env": {
+		"production": {
+		  "plugins": ["transform-react-remove-prop-types"]
+		}
+	  }
 };

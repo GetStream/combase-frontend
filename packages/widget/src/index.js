@@ -1,11 +1,11 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
-import { WidgetConfig } from './WidgetConfig';
-import { WidgetLauncher } from './WidgetLauncher';
-import { WidgetShell } from './WidgetShell';
+// import { WidgetConfig } from './WidgetConfig';
+// import { WidgetLauncher } from './WidgetLauncher';
+// import { WidgetShell } from './WidgetShell';
 import routes from './routes';
 
 const renderRoutes = (route, i) => {
@@ -30,12 +30,14 @@ const renderRoutes = (route, i) => {
 const widgetRoutes = routes.map(renderRoutes);
 
 const CombaseWidget = ({ fabSize, organization, theme }) => (
-    <WidgetConfig organization={organization} theme={theme}>
-        <WidgetShell fabSize={fabSize} open={open}>
-            <Switch>{widgetRoutes}</Switch>
-        </WidgetShell>
-        <WidgetLauncher size={fabSize} />
-    </WidgetConfig>
+//     <WidgetConfig organization={organization} theme={theme}>
+//         <WidgetShell fabSize={fabSize} open={open}>
+            <HashRouter>
+				<Switch>{widgetRoutes}</Switch>
+			</HashRouter>
+//         </WidgetShell>
+//         <WidgetLauncher size={fabSize} />
+//     </WidgetConfig>
 );
 
 CombaseWidget.propTypes = {
