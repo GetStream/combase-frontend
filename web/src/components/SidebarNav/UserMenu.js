@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
-import { UserIcon, AgentEntity, Avatar, Box, Dropdown, LockIcon, MenuItem, Popover, SupportIcon } from '@combase.app/ui';
+import { UserIcon, Avatar, Box, Dropdown, LockIcon, MenuItem, Popover, SupportIcon } from '@combase.app/ui';
+
+import {AgentEntity} from 'components/Entities';
 
 const popperModifiers = [
     {

@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { GET_AGENTS } from '@combase.app/apollo';
 
-import { AgentListItem, Box, Button, DropdownIcon, TableHeader, Text, Tooltip, useBulkSelect, useEntities } from '@combase.app/ui';
+import { Box, Button, DropdownIcon, TableHeader, Text, Tooltip, useBulkSelect, useEntities } from '@combase.app/ui';
 
+import AgentListItem from 'components/AgentListItem';
 import EntityList from 'components/EntityList';
 
 const Root = styled(Box)`

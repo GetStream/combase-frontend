@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ClockIcon, GroupIcon, Box, IconLabel, Helper, ListItem, AgentEntity, Chip, Text } from '@combase.app/ui';
+import { ClockIcon, GroupIcon, Box, IconLabel, Helper, ListItem, Chip, Text } from '@combase.app/ui';
+
+import {AgentEntity} from 'components/Entities';
 
 const Groups = styled(Box)`
     display: flex;
@@ -26,7 +28,7 @@ const renderGroups = (groups, totalGroups) => (
     </>
 );
 
-export const AgentListItem = ({ avatar, createdAt, _id, groups, name, meta, totalGroups, ticketCount, onClick, ...rest }) => (
+const AgentListItem = ({ avatar, createdAt, _id, groups, name, meta, totalGroups, ticketCount, onClick, ...rest }) => (
     <ListItem columnTemplate="1fr 1.5fr 0.5fr 1fr" {...rest} alignCheckbox="center" onClick={() => onClick?.(_id)}>
         <Box paddingX={3}>
             <AgentEntity avatar={avatar} name={name} meta={meta} />
@@ -48,3 +50,5 @@ AgentListItem.propTypes = {
     _id: PropTypes.string,
     name: PropTypes.string,
 };
+
+export default AgentListItem;

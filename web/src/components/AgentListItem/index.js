@@ -1,1 +1,1 @@
-export * from './AgentListItem';
+export {default} from './AgentListItem';

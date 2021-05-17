@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import Box from '@combase.app/ui';
-import { VirtualizedGrid, VirtualizedList } from '@combase.app/ui';
+import { Box, VirtualizedGrid, VirtualizedList } from '@combase.app/ui';
 
 const Root = styled(Box)`
     height: 100%;

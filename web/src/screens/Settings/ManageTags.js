@@ -5,11 +5,11 @@ import { GET_TAGS, REMOVE_TAGS, NEW_TAG_FRAGMENT, useMutation } from '@combase.a
 import {
     Box,
     TableHeader,
-    TagListItem,
     useBulkSelect,
     useEntities,
 } from '@combase.app/ui';
 
+import TagListItem from 'components/TagListItem';
 import EntityList from 'components/EntityList';
 
 const Root = styled(Box)`
