@@ -4,12 +4,13 @@ import { GET_TAGS, REMOVE_TAGS, NEW_TAG_FRAGMENT, useMutation } from '@combase.a
 
 import {
     Box,
-    EntityList,
     TableHeader,
     TagListItem,
     useBulkSelect,
     useEntities,
 } from '@combase.app/ui';
+
+import EntityList from 'components/EntityList';
 
 const Root = styled(Box)`
     display: grid;

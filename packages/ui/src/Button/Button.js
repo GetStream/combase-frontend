@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
 
-import { Spinner } from '../Feedback';
+import Spinner from '../Spinner';
 import IconLabel from '../IconLabel';
 import ButtonBase from '../ButtonBase';
 

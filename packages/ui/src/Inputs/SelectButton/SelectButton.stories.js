@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
 import Box from '../../Box';
-import { MenuItem } from '../../Lists';
+import MenuItem from '../../MenuItem';
 
 import { SelectButton } from '.';
 

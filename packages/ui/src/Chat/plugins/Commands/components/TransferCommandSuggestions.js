@@ -7,8 +7,8 @@ import { useAsync, useDebounce } from 'react-use';
 import { useSlate } from 'slate-react';
 
 import Avatar from '../../../../Avatar';
-import { StateDisplay } from '../../../../Feedback';
-import { MenuItem } from '../../../../Lists';
+import StateDisplay from '../../../../StateDisplay';
+import MenuItem from '../../../../MenuItem';
 import Dropdown from '../../../../Dropdown';
 
 const AgentIem = styled(MenuItem)`

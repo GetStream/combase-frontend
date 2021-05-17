@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { MenuItem } from '../../Lists';
+import MenuItem from '../../MenuItem';
 import { Checkbox } from '../Checkbox/index';
 import SelectInput from './SelectInput';
 

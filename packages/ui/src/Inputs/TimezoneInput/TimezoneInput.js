@@ -7,11 +7,13 @@ import useFuse from 'react-use-fuse';
 import IconButton from '../../IconButton';
 import { DropdownIcon } from '../../icons';
 import Box from '../../Box';
-import { Entity, ListItem, VirtualizedList } from '../../Lists';
+import Entity from '../../Entity';
+import ListItem from '../../ListItem';
 import Popover from '../../Popover';
 import Dropdown from '../../Dropdown';
 import Text from '../../Text';
 import { useListCursor } from '../../hooks';
+import VirtualizedList from '../../VirtualizedList';
 
 import { TextInput } from '../TextInput';
 

@@ -4,10 +4,11 @@ import { useSlate } from 'slate-react';
 import Box from '../../../../Box';
 import Chip from '../../../../Chip';
 import { CloseCircleIcon, TagIcon } from '../../../../icons';
-import { AuthorEntity } from '../../../../Lists/Entity';
 import Text, { Heading } from '../../../../Text';
 import { ChipInputBase } from '../../../shared/ChipInputBase';
 import transformToTag from '../../../shared/transformToTag';
+
+import AuthorEntity from './components/AuthorEntity';
 
 const Root = styled(Box)`
     border-bottom: 1px solid ${({ theme }) => theme.colors.border};

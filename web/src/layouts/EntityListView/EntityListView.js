@@ -1,8 +1,10 @@
 import { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 
-import { useEntities, Button, IconButton, IconLabel, AddUsersIcon, DeleteIcon, GroupIcon, Box, Label, Tooltip, PageHeader, EntityList, Text, ScrollContextProvider } from '@combase.app/ui';
+import { useEntities, Button, IconButton, IconLabel, AddUsersIcon, DeleteIcon, GroupIcon, Box, Label, Tooltip, PageHeader, Text, ScrollContextProvider } from '@combase.app/ui';
 import { itemGap } from '@combase.app/styles';
+
+import EntityList from 'components/EntityList';
 
 const Root = styled(Box)`
     display: grid;

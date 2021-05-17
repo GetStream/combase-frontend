@@ -5,7 +5,7 @@ import Chip from '../../Chip';
 import Popover from '../../Popover';
 import Dropdown from '../../Dropdown';
 import { CheckboxCheckedIcon, CheckboxIcon, CloseCircleIcon, TagIcon } from '../../icons';
-import { StateDisplay } from '../../Feedback';
+import StateDisplay from '../../StateDisplay';
 
 import { ChipInputBase } from '../shared';
 import { TextInput } from '../TextInput';

@@ -7,7 +7,7 @@ import { useComposerAttachments, useComposerTypingEvents, useComposerCommands, C
 import IconButton from '../../IconButton';
 import Box from '../../Box';
 import Container from '../../Container';
-import { ListSubheader } from '../../Lists';
+import ListSubheader from '../../ListSubheader';
 import { Editable, EditablePresets } from '../../Inputs';
 import { AttachmentIcon, ArrowUpCircleIcon, CloseCircleIcon } from '../../icons';
 import { AttachmentPreview } from '../AttachmentPreview';

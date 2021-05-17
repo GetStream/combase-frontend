@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useSlate } from 'slate-react';
 
 import IconButton from '../../IconButton';
+import ListSubheader from '../../ListSubheader';
 import { Helper } from '../../Inputs/shared/Helper';
-import { ListSubheader } from '../../Lists';
 
 const Root = styled.div`
     padding-top: 0.5rem;

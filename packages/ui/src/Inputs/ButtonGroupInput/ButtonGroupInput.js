@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Box from '../../Box';
 import Button from '../../Button';
 import Icon from '../../Icon';
-import { StateDisplay } from '../../Feedback';
+import StateDisplay from '../../StateDisplay';
 import Text from '../../Text';
 
 import { useInput } from '../shared';

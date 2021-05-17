@@ -5,7 +5,7 @@ import { capitalCase } from 'change-case';
 import { ButtonGroupInput } from '.';
 import Box from '../../Box';
 import Card from '../../Card';
-import { ListSubheader } from '../../Lists';
+import ListSubheader from '../../ListSubheader'
 
 const Root = styled(Box)`
 	display: flex;

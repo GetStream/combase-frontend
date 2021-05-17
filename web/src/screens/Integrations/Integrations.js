@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useQuery, GET_INTEGRATION_DEFINITIONS } from '@combase.app/apollo';
 
-import { Box, Container, EntityList, PageCard, PageHeader, Tab, Tabs } from '@combase.app/ui';
+import { Box, Container, PageCard, PageHeader, Tab, Tabs } from '@combase.app/ui';
 
 import { IntegrationGridItem } from 'components/IntegrationGridItem';
+import EntityList from 'components/EntityList';
 
 const TabWrapper =  styled(Container)`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.border};

@@ -8,7 +8,7 @@ import Button from '../Button';
 import IconButton from '../IconButton';
 import { DropdownIcon, SortIcon } from '../icons';
 import Box from '../Box';
-import { AgentEntity, MenuItem } from '../Lists';
+import MenuItem from '../MenuItem';
 import Text from '../Text';
 import {
     AllInboxesIcon,
@@ -64,7 +64,7 @@ export const DropdownMenu = () => {
                         <MenuItem label="Newest First" onClick={() => null} />
                         <MenuItem label="Oldest First" onClick={() => null} />
                     </Popover>
-                    <Button color="text" onClick={e => setAnchorRef(e.nativeEvent.target)} variant="flat">
+                    <Button color="text" onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} variant="flat">
                         <SortIcon />
                         <Text>{'Sort'}</Text>
                         <DropdownIcon opacity={0.56} />
@@ -82,7 +82,7 @@ export const ScrollableDropdownMenu = () => {
         <div>
             <Page>
                 <Root borderRadius={2} boxShadow={6} marginX="auto" maxHeight={10} maxWidth={10} padding={4}>
-                    <Popover anchor={anchorRef} as={Dropdown} maxHeight={12} onClose={() => setAnchorRef(false)} placement="bottom-end">
+                    <Popover anchor={anchorRef} as={Dropdown} maxHeight={14} onClose={() => setAnchorRef(false)} placement="bottom-end">
                         <MenuItem label="A to Z" onClick={() => null} />
                         <MenuItem label="Z to A" onClick={() => null} />
                         <MenuItem label="Newest First" onClick={() => null} />
@@ -116,7 +116,7 @@ export const ScrollableDropdownMenu = () => {
                         <MenuItem label="Newest First" onClick={() => null} />
                         <MenuItem label="Oldest First" onClick={() => null} />
                     </Popover>
-                    <Button color="text" onClick={e => setAnchorRef(e.nativeEvent.target)} variant="flat">
+                    <Button color="text" onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} variant="flat">
                         <SortIcon />
                         <Text>{'Sort'}</Text>
                         <DropdownIcon opacity={0.56} />
@@ -154,7 +154,7 @@ export const ThemeSwitcher = () => {
                         <MenuItem icon={SwitchThemeIcon} label="Dark" onClick={() => null} />
                         <MenuItem icon={SwitchThemeIcon} label="System (auto)" onClick={() => null} />
                     </Popover>
-                    <IconButton color="text" onClick={e => setAnchorRef(e.target)} icon={SwitchThemeIcon} />
+                    <IconButton color="text" onClick={(_, e) => setAnchorRef(e.target)} icon={SwitchThemeIcon} />
                 </Root>
             </Page>
         </div>
@@ -235,7 +235,7 @@ export const InboxMenu = () => {
                             onClick={noop}
                         />
                     </Popover>
-                    <Button color="text" onClick={e => setAnchorRef(e.nativeEvent.target)} variant="flat">
+                    <Button color="text" onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} variant="flat">
                         <Text>{'Open Me'}</Text>
                         <DropdownIcon opacity={0.56} />
                     </Button>

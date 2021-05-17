@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import Card from '../../../../Card';
 import IconLabel from '../../../../IconLabel';
+import Spinner from '../../../../Spinner';
 import Text from '../../../../Text';
-import { Spinner } from '../../../../Feedback';
 
 const Root = styled(Card)`
     background-color: ${({ theme }) => theme.colors.textA[2]};

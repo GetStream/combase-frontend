@@ -11,7 +11,7 @@ import IconButton from '../../IconButton';
 import Text, { Heading } from '../../Text';
 import TextGroup from '../../TextGroup';
 import { AddCircleIcon, AddIcon, CloseCircleIcon } from '../../icons';
-import { ListSubheader } from '../../Lists/ListSubheader';
+import ListSubheader from '../../ListSubheader'
 import Tooltip from '../../Tooltip';
 
 import { Switch } from '../Switch';

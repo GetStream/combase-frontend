@@ -5,11 +5,11 @@ import useFuse from 'react-use-fuse';
 
 import IconButton from '../../IconButton';
 import Chip from '../../Chip';
-import { StateDisplay } from '../../Feedback';
 import { useListCursor } from '../../hooks';
 import Popover from '../../Popover';
 import Dropdown from '../../Dropdown';
-import { MenuItem } from '../../Lists';
+import MenuItem from '../../MenuItem';
+import StateDisplay from '../../StateDisplay';
 import { CloseCircleIcon, DropdownIcon, TagIcon } from '../../icons';
 
 import { ChipInputBase, InputBase, transformToTag } from '../shared';

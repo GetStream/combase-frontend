@@ -2,7 +2,7 @@ import React, { forwardRef, cloneElement, useCallback, useState, useRef, useMemo
 import PropTypes from 'prop-types';
 
 import Button from '../../Button';
-import { StateDisplay } from '../../Feedback';
+import StateDisplay from '../../StateDisplay';
 import Text from '../../Text';
 import { CheckboxCheckedIcon, CheckboxIcon, DropdownIcon } from '../../icons';
 import Popover from '../../Popover';

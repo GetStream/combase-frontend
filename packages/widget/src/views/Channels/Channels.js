@@ -8,11 +8,11 @@ import {
 	useBulkSelect,
 	CloseIcon,
 	EditIcon,
+	EmptyView,
 	InboxIcon,
 	Checkbox,
 	Text
 } from '@combase.app/ui';
-import { EmptyView } from '@combase.app/ui/build/Feedback';
 
 import { WidgetHeader } from '../../WidgetHeader';
 import { WidgetChannelPreview } from '../../WidgetChannelPreview';

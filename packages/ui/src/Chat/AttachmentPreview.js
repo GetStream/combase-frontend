@@ -7,8 +7,8 @@ import { CloseIcon, FileIcon, WarningIcon } from '../icons';
 import Box from '../Box';
 import Placeholder from '../Placeholder';
 import IconBubble from '../IconBubble';
+import Spinner from '../Spinner';
 import Tooltip from '../Tooltip';
-import { Spinner } from '../Feedback';
 import Text from '../Text';
 
 const Root = styled(Box)`

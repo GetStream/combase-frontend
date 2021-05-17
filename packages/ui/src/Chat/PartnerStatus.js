@@ -3,7 +3,7 @@ import { useUserTypingIndicator } from '@combase.app/chat';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-import { Badge } from '../Feedback';
+import Badge from '../Badge';
 import IconLabel from '../IconLabel';
 import Tooltip from '../Tooltip';
 import Text from '../Text';

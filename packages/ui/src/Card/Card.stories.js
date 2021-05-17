@@ -6,9 +6,12 @@ import { ScrollContextProvider, useScrollbars } from '../contexts/Scrollbars';
 import { useBulkSelect } from '../hooks';
 import Box from '../Box';
 import Container from '../Container';
-import { TagListItem, VirtualizedList } from '../Lists';
+import Entity from '../Entity';
+import ListItem from '../ListItem';
 import { Checkbox } from '../Inputs';
 import CardHeader from '../CardHeader';
+import Text from '../Text';
+import VirtualizedList from '../VirtualizedList';
 
 import Card from './Card';
 
@@ -61,7 +64,11 @@ export const Default = () => {
 					ItemContainer={ItemContainer}
 					renderItem={(i) => {
 						const _id = langs[i % langs.length];
-						return <TagListItem {...listItemProps} name={langs[i % langs.length]} value={_id} />
+						return <ListItem {...listItemProps} name={langs[i % langs.length]} value={_id}>
+							<Entity>
+								<Text>Hello</Text>
+							</Entity>
+						</ListItem>
 					}}
 				/>
 			</Card>

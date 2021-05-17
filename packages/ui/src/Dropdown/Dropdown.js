@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { animated } from 'react-spring';
 
 import Box from '../Box';
-import { Menu } from '../Lists/Menu';
+import Menu from '../Menu';
 
 import { getTransformOrigin } from '../Popover';
 

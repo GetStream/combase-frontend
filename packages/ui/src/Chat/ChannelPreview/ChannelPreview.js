@@ -4,10 +4,10 @@ import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import Avatar from '../../Avatar';
+import Badge from '../../Badge';
 import Box from '../../Box';
 import IconLabel from '../../IconLabel';
-import { ListItem } from '../../Lists/ListItem';
-import { Badge } from '../../Feedback';
+import ListItem from '../../ListItem';
 import Placeholder from '../../Placeholder';
 import Text from '../../Text';
 import TextGroup from '../../TextGroup';
