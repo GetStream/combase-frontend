@@ -2,13 +2,14 @@ import babel from '@rollup/plugin-babel';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-//import { terser } from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 import html from '@rollup/plugin-html';
 import replace from '@rollup/plugin-replace';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
 import filesize from 'rollup-plugin-filesize';
 import progress from 'rollup-plugin-progress';
+// import analyze from 'rollup-plugin-analyzer';
 
 const generateHtmlTemplate = (props) => {
 	const { publicPath, title } = props;
@@ -37,9 +38,17 @@ const generateHtmlTemplate = (props) => {
 	  <body>
 	  	<noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="root">
-		  <div data-organization="609bc3d8401085003fbaaae4" data-theme="light" data-fabSize="6" id="combase_widget_root"></div>
+		  <div id="combase_widget"></div>
 		</div>
 		${scripts}
+
+		<script type="text/javascript">
+			CombaseWidget.init({
+				el: '#combase_widget', // <-- TODO
+				organization: "609bc3d8401085003fbaaae4", // <-- replace this with your Organization ID
+				theme: 'light',
+			});
+		</script>
 	  </body>
 	</html>
 	`
@@ -80,15 +89,16 @@ export default {
 			template: generateHtmlTemplate,
 			title: 'Combase Widget',
 		}),
-        //terser(),
+        terser(),
         filesize(),
         replace({
-			'process.env.NODE_ENV': JSON.stringify('production'),
-			'process.env.BABEL_ENV': JSON.stringify('production'),
+			'process.env.NODE_ENV': JSON.stringify('development'),
+			'process.env.BABEL_ENV': JSON.stringify('development'),
         }),
 		visualizer({
 			open: false,
 			template: 'sunburst',
 		}),
+		// analyze(),
     ],
 };

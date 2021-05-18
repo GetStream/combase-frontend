@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContextSelector } from 'use-context-selector';
 import styled from 'styled-components';
 
@@ -20,7 +21,7 @@ const Root = styled(Fab)`
 const selector = ({ open, toggleWidgetCard }) => [open, toggleWidgetCard];
 export const WidgetLauncher = ({ onMouseOver, size }) => {
     const [open, setOpen] = useContextSelector(WidgetContext, selector);
-
+	
     return (
         <Portal>
             <Root icon={open ? CloseIcon : StreamLogo} onClick={() => setOpen(!open)} onMouseOver={onMouseOver} size={size} />

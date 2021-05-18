@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { useContextSelector } from 'use-context-selector';
 import { useTransition } from 'react-spring';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLocalStorage } from 'react-use';
 import { Redirect } from 'react-router-dom';
 

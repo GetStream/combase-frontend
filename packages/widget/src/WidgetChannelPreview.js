@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getMessagePreview, useChannelPartner, useChannelPreview } from '@combase.app/chat';
 import { ChannelPreview } from '@combase.app/ui';

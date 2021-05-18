@@ -1,3 +1,4 @@
+import React from 'react';
 import { useChannelManager } from '@combase.app/chat';
 import { useToggle } from 'react-use';
 

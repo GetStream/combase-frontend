@@ -1,3 +1,4 @@
+import React from 'react';
 import { useToggle } from 'react-use';
 import {
 	CloseIcon,

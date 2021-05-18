@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { useLocalStorage } from 'react-use';
 import { StreamChat } from 'stream-chat';
 import { ChannelManager, ChatProvider } from '@combase.app/chat';
-import { useClickAway, useToggle } from 'react-use';
+import { useClickAway, useLocalStorage, useToggle } from 'react-use';
 import { themes } from '@combase.app/styles';
 
 import WidgetContext from './context';

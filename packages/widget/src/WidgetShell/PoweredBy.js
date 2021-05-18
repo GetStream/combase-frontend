@@ -1,3 +1,4 @@
+import React from 'react';
 import { interactions, layout } from '@combase.app/styles';
 import styled from 'styled-components';
 
