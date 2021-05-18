@@ -26,7 +26,7 @@ const Root = styled(Box)`
 const StreamChip = styled(Box).attrs({
     as: 'a',
     borderRadius: 3,
-    minHeight: 3,
+    minHeight: 5,
     paddingX: 2,
     paddingY: 0,
 })`
@@ -40,7 +40,7 @@ const StreamChip = styled(Box).attrs({
 export const PoweredBy = () => (
     <Root paddingY={1}>
         <StreamChip color="text" interaction="highlight" href="https://getstream.io/chat" target="_blank" title="Stream Chat">
-            <StreamLogo size={3} />
+            <StreamLogo size={5} />
             <Text fontSize={2} lineHeight={2}>
                 {'Powered by '}
                 <strong>{'Stream'}</strong>

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { StreamChat } from 'stream-chat';
 import { ChannelManager, ChatProvider } from '@combase.app/chat';
@@ -25,7 +25,7 @@ const WidgetConfig = ({ children, organization, theme }) => {
     const [auth, setAuth] = useLocalStorage('auth', undefined, lsOpts);
 
     const [streamChatKey] = useOrganizationStreamKey(organization);
-	
+
     useEffect(() => {
         if (!chatClient && streamChatKey) {
             const client = new StreamChat(streamChatKey);
@@ -53,7 +53,9 @@ const WidgetConfig = ({ children, organization, theme }) => {
         [chatClient, open, toggleWidgetCard]
     );
 
-    useClickAway(shellRef, () => (open ? toggleWidgetCard(false) : undefined));
+	const handleClickAway = useCallback(() => toggleWidgetCard(open ? false : open), [open]);
+
+    useClickAway(shellRef, handleClickAway);
 
     const { filters, sort } = useMemo(
         () => ({
@@ -77,7 +79,7 @@ const WidgetConfig = ({ children, organization, theme }) => {
             <ThemeProvider theme={themes[theme]}>
                 <ChatProvider client={chatClient}>
                     <ChannelManager filters={filters} sort={sort}>
-                        {children}
+						{children}
                     </ChannelManager>
                 </ChatProvider>
             </ThemeProvider>

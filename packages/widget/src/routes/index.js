@@ -1,7 +1,7 @@
-// import { ScrollContextProvider } from '@combase.app/ui';
+import { ScrollContextProvider } from '@combase.app/ui';
 
 import Home from '../views/Home/Home';
-// import Welcome from '../views/Welcome/Welcome';
+import Welcome from '../views/Welcome/Welcome';
 // import Channels from '../views/Channels/Channels';
 // import KnowledgeBase from '../views/KnowledgeBase/KnowledgeBase';
 // import Conversation from '../views/Conversation/Conversation';
@@ -15,12 +15,12 @@ export default [
         guard: GuestGuard,
         exact: true,
     },
-    // {
-    //     path: '/welcome',
-    //     component: Welcome,
-    //     guard: AuthGuard,
-    //     exact: true,
-    // },
+    {
+        path: '/welcome',
+        component: Welcome,
+        guard: AuthGuard,
+        exact: true,
+    },
     // {
     //     path: '/channels',
     //     component: Channels,

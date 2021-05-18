@@ -1,5 +1,4 @@
 import React, { Suspense, useMemo } from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { useContextSelector } from 'use-context-selector';
 import { useTransition } from 'react-spring';
 import styled from 'styled-components';
@@ -89,16 +88,12 @@ export const WidgetShell = ({ fabSize, children }) => {
 
     const transition = useTransition(isOpen, transitionConfig);
 
-    return (
-        <MemoryRouter>
-            {transition((anim, show) => (
-                <Portal unmount={!show}>
-                    <Root $fabSize={fabSize} boxShadow={['unset', 'unset', 9]} ref={shellRef} right={[0, 0, 7]} style={anim}>
-                        <Suspense fallback={<LoadingScreen />}>{children}</Suspense>
-                        <PoweredBy />
-                    </Root>
-                </Portal>
-            ))}
-        </MemoryRouter>
-    );
+    return transition((anim, show) => (
+		<Portal unmount={!show}>
+			<Root $fabSize={fabSize} boxShadow={['unset', 'unset', 9]} ref={shellRef} right={[0, 0, 7]} style={anim}>
+				<Suspense fallback={<LoadingScreen />}>{children}</Suspense>
+				<PoweredBy />
+			</Root>
+		</Portal>
+	));
 };

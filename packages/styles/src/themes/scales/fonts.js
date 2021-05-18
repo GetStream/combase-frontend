@@ -1,8 +1,8 @@
 export const fonts = {
 	code: 'JetBrains Mono',
-	logotype: 'Inter Variable',
-    text: 'Inter Variable',
-    title: 'Inter Variable',
+	logotype: 'Inter Variable, system-ui, sans-serif',
+    text: 'Inter Variable, system-ui, sans-serif',
+    title: 'Inter Variable, system-ui, sans-serif',
 };
 
 export const fontSizes = [

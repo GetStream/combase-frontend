@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import html from '@rollup/plugin-html';
 import replace from '@rollup/plugin-replace';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import url from '@rollup/plugin-url'
 import { visualizer } from 'rollup-plugin-visualizer';
 import filesize from 'rollup-plugin-filesize';
 import progress from 'rollup-plugin-progress';
@@ -54,7 +55,7 @@ const generateHtmlTemplate = (props) => {
 	`
 };
 
-export default {
+const config = {
     external: [],
     input: './src/index.js',
     output: { 
@@ -67,6 +68,13 @@ export default {
     onwarn: (warning, onwarn) => warning.code === 'CIRCULAR_DEPENDENCY',
     plugins: [
 		progress(),
+		url({
+			// by default, rollup-plugin-url will not handle font files
+			include: ['**/*.woff', '**/*.woff2'],
+			// setting infinite limit will ensure that the files 
+			// are always bundled with the code, not copied to /dist
+			limit: Infinity,
+		}),
         json(),
         commonjs({
             include: /node_modules/,
@@ -92,8 +100,8 @@ export default {
         terser(),
         filesize(),
         replace({
-			'process.env.NODE_ENV': JSON.stringify('development'),
-			'process.env.BABEL_ENV': JSON.stringify('development'),
+			'process.env.NODE_ENV': JSON.stringify('production'),
+			'process.env.BABEL_ENV': JSON.stringify('production'),
         }),
 		visualizer({
 			open: false,
@@ -102,3 +110,5 @@ export default {
 		// analyze(),
     ],
 };
+
+export default config;
