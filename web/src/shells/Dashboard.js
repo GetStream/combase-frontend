@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import CombaseWidget from '@combase.app/widget';
 import { authenticationVar, useReactiveVar, useQuery, GET_ORGANIZATION } from '@combase.app/apollo';
 import { Box } from '@combase.app/ui';
 
@@ -66,7 +65,6 @@ const Dashboard = () => {
 					<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
 				</Switch>
 			</Root>
-			{organization ? <CombaseWidget organization={organization} /> : null}
 		</ShellProvider>
 	);
 }
