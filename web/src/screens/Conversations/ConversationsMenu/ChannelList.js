@@ -109,7 +109,13 @@ const ChannelList = () => {
         }
 
         if (inbox === 'unassigned') {
-            filter.status = 'unassigned';
+            filter = {
+				...filter,
+				$or: [
+					{ status: 'unassigned' },
+					{ status: 'new' },
+				]
+			}
         }
 
         if (inbox === 'archived') {

@@ -6,6 +6,7 @@ import { authenticationVar, useReactiveVar, useQuery, GET_ORGANIZATION } from '@
 import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
+import { TicketManager } from 'contexts/TicketManager';
 import { useReactiveMedia } from 'hooks';
 import { Conversations, Integration, Integrations, Settings, Tickets } from 'screens';
 
@@ -39,32 +40,34 @@ const Dashboard = () => {
 
 	return (
 		<ShellProvider>
-			<Root>
-				{isSm?.matches ? <SidebarNav /> : null}
-				<Switch>
-					<Route 
-						path="/dashboard/integrations/:integrationId/:page?"
-						component={Integration} 
-					/>
-					<Route 
-						path="/dashboard/integrations"
-						component={Integrations} 
-					/>
-					<Route 
-						path="/dashboard/settings/:page?"
-						component={Settings} 
-					/>
-					<Route 
-						path="/dashboard/conversations/:inbox/:channelId?"
-						component={Conversations} 
-					/>
-					<Route 
-						path="/dashboard/tickets"
-						component={Tickets} 
-					/>
-					<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
-				</Switch>
-			</Root>
+			<TicketManager>
+				<Root>
+					{isSm?.matches ? <SidebarNav /> : null}
+					<Switch>
+						<Route 
+							path="/dashboard/integrations/:integrationId/:page?"
+							component={Integration} 
+						/>
+						<Route 
+							path="/dashboard/integrations"
+							component={Integrations} 
+						/>
+						<Route 
+							path="/dashboard/settings/:page?"
+							component={Settings} 
+						/>
+						<Route 
+							path="/dashboard/conversations/:inbox/:channelId?"
+							component={Conversations} 
+						/>
+						<Route 
+							path="/dashboard/tickets"
+							component={Tickets} 
+						/>
+						<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
+					</Switch>
+				</Root>
+			</TicketManager>
 		</ShellProvider>
 	);
 }
