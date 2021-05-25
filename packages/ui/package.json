@@ -5,6 +5,7 @@
   "module": "build/index.js",
   "license": "MIT",
   "scripts": {
+    "dev": "yarn babel --config-file --extensions '.js' ./src --out-dir './build' --watch",
     "build": "yarn clean && yarn babel --config-file --extensions '.js' ./src --out-dir './build' && node ./scripts/postbuild-modules.js",
     "clean": "rm -rf ./build"
   },

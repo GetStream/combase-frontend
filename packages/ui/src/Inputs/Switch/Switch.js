@@ -45,7 +45,7 @@ const Track = styled.div`
     }
 `;
 
-export const Switch = ({ name, onBlur, onChange, onFocus, size, value }) => {
+export const Switch = ({ disabled, name, onBlur, onChange, onFocus, size, value }) => {
     const [inputProps] = useInput({
         name,
         onBlur,
@@ -56,7 +56,7 @@ export const Switch = ({ name, onBlur, onChange, onFocus, size, value }) => {
     });
     
 	return (
-        <ToggleBase {...inputProps} size={size}>
+        <ToggleBase {...inputProps} disabled={disabled} size={size}>
             <Track>
                 <Handle size={size} />
             </Track>

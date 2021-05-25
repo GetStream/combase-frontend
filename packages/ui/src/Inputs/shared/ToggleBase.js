@@ -36,7 +36,6 @@ export const ToggleBase = forwardRef((props, ref) => {
         indeterminate,
         indeterminateIcon,
         name,
-        onClick,
         onBlur,
         onChange,
         onFocus,
@@ -51,24 +50,14 @@ export const ToggleBase = forwardRef((props, ref) => {
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
 
-	const handleRootClick = e => {
+    const handleClick = (e) => {
+		if (disabled) return;
 		e.stopPropagation();
-	};
-
-    const handleClick = (_, e) => {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        internalInputRef.current?.click();
-        if (onClick) {
-            onClick(e);
-        }
+        internalInputRef.current?.click();  
     };
 
     const handleInputChange = event => {
-        event.stopPropagation();
-        event.nativeEvent.stopImmediatePropagation();
-
-        if (event.nativeEvent.defaultPrevented) {
+        if (event.nativeEvent.defaultPrevented || disabled) {
             return;
         }
 
@@ -82,7 +71,6 @@ export const ToggleBase = forwardRef((props, ref) => {
             disabled={disabled}
             onBlur={onBlur}
             onFocus={onFocus}
-			onClick={handleRootClick}
             ref={ref}
             role={undefined}
             tabIndex={null}
@@ -111,9 +99,9 @@ export const ToggleBase = forwardRef((props, ref) => {
                 <IconButton
                     color={indeterminate || value ? color : 'border'}
                     disabled={disabled}
+					onClick={handleClick}
                     // eslint-disable-next-line no-nested-ternary
                     icon={indeterminate ? indeterminateIcon || icon : value ? checkedIcon : icon}
-                    onClick={handleClick}
                     size={size}
                 />
             )}

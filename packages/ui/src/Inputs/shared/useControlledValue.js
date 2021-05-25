@@ -1,17 +1,21 @@
 import { useCallback, useRef, useState } from 'react';
 
-export const useControlledValue = ({ controlled, valueSelector = 'value' }) => {
-	const { current: isControlled } = useRef(controlled !== undefined);
+export const useControlledValue = ({ controlledValue, valueSelector = 'value', type }) => {
+	const { current: isControlled } = useRef(controlledValue !== undefined);
 	
 	// eslint-disable-next-line no-nested-ternary
-	const [valueState, setValue] = useState(isControlled ? controlled : valueSelector === 'checked' ? false : '');
-	const value = isControlled ? controlled : valueState;
+	const [internalValue, setValue] = useState(isControlled ? controlledValue : valueSelector === 'checked' ? false : '');
+	const value = isControlled ? controlledValue : internalValue;
 
-	const setUncontrolledValue = useCallback((event) => {
+	const setInternalValue = useCallback((event) => {
 		if (!isControlled) {
-			setValue(event.target[valueSelector]);
+			if (type === 'toggle') {
+				setValue(event.target[valueSelector] === 'on');
+			} else {
+				setValue(event.target[valueSelector]);
+			}
 		}
 	  }, [isControlled, valueSelector]);
 	  
-	  return [value, setUncontrolledValue]
+	  return [value, setInternalValue, isControlled]
 }
