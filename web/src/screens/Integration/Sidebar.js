@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Avatar, Box, Placeholder, SidebarHeader, TextGroup, Text, TextLink } from '@combase.app/ui';
+import { Avatar, Box, Container, Placeholder, SidebarHeader, TextGroup, Text, TextLink } from '@combase.app/ui';
 
 import useIntegrationDefinition from 'hooks/useIntegrationDefinition';
 
-const Root = styled(Box)`
+const Root = styled(Container)`
     position: sticky;
     top: ${({ theme }) => theme.sizes[10]};
 `;
@@ -19,7 +19,7 @@ const IntegrationSidebar = () => {
 				<TextGroup marginTop={4} gapTop={2}>
 					<Text
 						as={!integration?.name ? Placeholder : undefined}
-						placeholderWidth={11}
+						placeholderWidth={14}
 						fontSize={6}
 						fontWeight="700"
 						lineHeight={7}
@@ -31,8 +31,7 @@ const IntegrationSidebar = () => {
 					</Text>
 				</TextGroup>
 				<Text marginTop={7} opacity={0.56} fontSize={3} lineHeight={6} placeholderWidth={10}>
-					SendGrid provide SaaS based transactional email APIs. Integrate SendGrid into Combase today to power email tickets,
-					customer follow-ups, and much more.
+					SendGrid provide SaaS based transactional email APIs. Integrate SendGrid into Combase today to power email tickets, customer follow-ups, and much more.
 				</Text>
 			</Box>
 			<Box marginTop={7}>

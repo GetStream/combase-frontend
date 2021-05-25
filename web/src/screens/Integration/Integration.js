@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'rc-scrollbars';
 
-import { Box, Container } from '@combase.app/ui';
+import { Box, Container, PageCard } from '@combase.app/ui';
 
 import useIntegrationDefinition from 'hooks/useIntegrationDefinition';
 import MarkdownRenderer from 'components/MarkdownRenderer';
@@ -10,7 +10,7 @@ import MarkdownRenderer from 'components/MarkdownRenderer';
 import Sidebar from './Sidebar';
 import ConfigurationForm from './ConfigurationForm';
 
-const Root = styled(Box)`
+const Root = styled(PageCard)`
 	display: grid;
 	grid-template-columns: 25% 1fr .625fr;
 `
@@ -26,7 +26,7 @@ const Integration = () => {
 		<Root>
 			<Sidebar />
 			<Scrollbars>
-				<Container paddingTop={10} minHeight="100%">
+				<Container paddingTop={12} paddingBottom={12} minHeight="100%">
 					<MarkdownRenderer md={integration?.about} />
 				</Container>
 			</Scrollbars>
