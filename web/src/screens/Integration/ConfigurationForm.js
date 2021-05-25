@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { Box, Button, EmptyView, Heading, Switch, Spinner, Placeholder, Text, TextGroup, TextInput } from '@combase.app/ui';
+import { Box, Button, EmptyView, Heading, Switch, Text, TextGroup, TextLink, TextInput } from '@combase.app/ui';
 import { layout } from '@combase.app/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -143,7 +143,7 @@ const ConfigurationForm = () => {
 							integration?.integrationData?.credentials?.map?.(({ name }) => (
 								<TextGroup key={name} marginY={4} gapTop={2}>
 									<Text  fontSize={3} lineHeight={3}>
-										{name}
+										{configuration[name].label}
 									</Text>
 									<Text  fontSize={2} lineHeight={2} opacity={0.56} fontWeight="600">
 										*********************
@@ -151,6 +151,9 @@ const ConfigurationForm = () => {
 								</TextGroup>
 							))
 						}
+						<TextLink marginTop={4} color="red">
+							Unlink Credentials
+						</TextLink>
 					</Box>
 				)
 			}
