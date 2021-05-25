@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import {
     Avatar,
@@ -23,7 +23,7 @@ import {
 	MenuItem,
 } from '@combase.app/ui';
 import { useParams } from 'react-router-dom';
-import { useQuery, GET_TICKET } from '@combase.app/apollo';
+import { useQuery, GET_TICKET_DRAWER } from '@combase.app/apollo';
 // import { ActivityFeed } from 'components/ActivityFeed';
 
 const Root = styled(Box)`
@@ -80,8 +80,12 @@ const renderChip = ({ node = {} }, actions, i, cursor) => (
 
 const DetailDrawer = ({ onClose }) => {
     const { channelId } = useParams();
-    const { data } = useQuery(GET_TICKET, { variables: { _id: channelId } });
+    const { data } = useQuery(GET_TICKET_DRAWER, { fetchPolicy: 'cache-and-network', variables: { _id: channelId } });
+
     const { tags, user } = data?.organization?.ticket || {};
+    const activeIntegrations = data?.organization?.integrations?.edges;
+
+	const integrationActions = useMemo(() => activeIntegrations?.filter?.(({ node: { parentDefinition }}) => !!parentDefinition?.actions?.length)?.flatMap?.(({ node: { parentDefinition, uid } }) => parentDefinition.actions.map((action) => ({ ...action, plugin: uid }))) || [], [activeIntegrations]);
 
     return (
         <Root>
@@ -125,10 +129,14 @@ const DetailDrawer = ({ onClose }) => {
                         value={tags || []}
                     />
 				</Container>
-				<Container marginY={6}>
-					<ListSubheader>Actions</ListSubheader>
-					<MenuItem icon={Avatar} iconProps={{ name: 'Zendesk'}} label="Escalate to Zendesk" />
-				</Container>
+				{
+					integrationActions?.length ? (
+						<Container marginY={6}>
+							<ListSubheader>Actions</ListSubheader>
+							{integrationActions.map((action) => <MenuItem icon={Avatar} iconProps={{ name: action.plugin}} label={action.label} />)}
+						</Container>
+					) : null
+				}
             </Box>
             <FeedWrapper>
                 {/* <ActivityFeed headerBackground="surface" feed={`ticket:${channelId}`} subtitle="Powered by Stream" title="Ticket Activity" /> */}
