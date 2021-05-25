@@ -16,10 +16,6 @@ const Root = styled(Card).attrs({
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-
-    & ${Chip} {
-        margin-top: 1rem;
-    }
 `;
 
 const Footer = styled.div`
@@ -37,7 +33,7 @@ export const IntegrationGridItem = ({ icon, enabled, id, name, version }) => (
 			<Heading marginBottom={1} as={!name ? Placeholder : undefined} fontSize={5} lineHeight={6}>
 				{name}
 			</Heading>
-			<Chip label={`v${version}`} />
+			<Chip marginTop={4} label={`v${version}`} />
 		</Box>
 		<Footer>
 			<IconLabel color="altText" reverse>
