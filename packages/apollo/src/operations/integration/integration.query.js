@@ -22,6 +22,10 @@ export const GET_INTEGRATION_DEFINITIONS = gql`
             internal {
                 version
             }
+			integrationData {
+				_id
+				enabled
+			}
         }
     }
 `;
@@ -38,6 +42,13 @@ export const GET_INTEGRATION_DEFINITION = gql`
                 name
                 version
             }
+			integrationData {
+				_id
+				enabled
+				credentials {
+					name
+				}
+			}
         }
     }
 `;

@@ -30,25 +30,25 @@ const Footer = styled.div`
     justify-content: space-between;
 `;
 
-export const IntegrationGridItem = ({ icon, id, name, version }) => (
-    <Root to={`/dashboard/integrations/${id}`}>
-        <Avatar borderRadius="circle" name={name} size={10} />
-        <Box paddingY={3} marginBottom={4}>
-            <Heading marginBottom={1} as={!name ? Placeholder : undefined} fontSize={5} lineHeight={6}>
-                {name}
-            </Heading>
-            <Chip label={`v${version}`} />
-        </Box>
-        <Footer>
-            <IconLabel color="altText" reverse>
-                <ChevronRightIcon />
-                <Text>View Plugin</Text>
-            </IconLabel>
-            <Tooltip text="Inactive">
-                <Badge color="border" />
-            </Tooltip>
-        </Footer>
-    </Root>
+export const IntegrationGridItem = ({ icon, enabled, id, name, version }) => (
+	<Root to={`/dashboard/integrations/${id}`}>
+		<Avatar borderRadius="circle" name={name} size={10} />
+		<Box paddingY={3} marginBottom={4}>
+			<Heading marginBottom={1} as={!name ? Placeholder : undefined} fontSize={5} lineHeight={6}>
+				{name}
+			</Heading>
+			<Chip label={`v${version}`} />
+		</Box>
+		<Footer>
+			<IconLabel color="altText" reverse>
+				<ChevronRightIcon />
+				<Text>View Plugin</Text>
+			</IconLabel>
+			<Tooltip text={enabled ? "Active" : "Inactive"}>
+				<Badge color={enabled ? "green" : "border"} />
+			</Tooltip>
+		</Footer>
+	</Root>
 );
 
 IntegrationGridItem.propTypes = {

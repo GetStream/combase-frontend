@@ -24,9 +24,8 @@ const ConfigurationForm = () => {
     const integrationId = params.integrationId;
 
 	const [integration] = useIntegrationDefinition(integrationId);
-	const {data} = useQuery(LOOKUP_INTEGRATION, { fetchPolicy: 'cache-and-network', variables: { uid: integrationId } });
-	const enabled = data?.integrationLookup?.enabled;
-	console.log(data);
+	const enabled = integration?.integrationData?.enabled;
+	
 	const [createIntegration, { loading: creating, error: createError }] = useMutation(CREATE_INTEGRATION);
 	const [toggleIntegration, { loading: toggling, error: toggleError }] = useMutation(TOGGLE_INTEGRATION);
 	const configuration = integration?.configuration;
@@ -62,7 +61,7 @@ const ConfigurationForm = () => {
 
 	const validationSchema = useMemo(() => {
 		let obj = {};
-		Object.entries(configuration).forEach(([name, { required, type }]) => {
+		Object.entries(configuration || {}).forEach(([name, { required, type }]) => {
 			switch (type) {
 				case 'String':
 				default:
@@ -91,7 +90,7 @@ const ConfigurationForm = () => {
 	}, [integration, createIntegration]);
 
 	const handleToggle = useCallback(async (e) => {
-		if (toggling) {
+		if (toggling || !integration?.integrationData) {
 			return;
 		}
 		try {
@@ -99,21 +98,21 @@ const ConfigurationForm = () => {
 				optimisticResponse: {
 					__typename: 'Mutation',
 					integration: {
-						_id: data?.integrationLookup?._id,
+						_id: integration?.integrationData?._id,
 						enabled: !enabled,
 						__typename: 'Integration',
 					},
 				},
 				refetchQueries: [{ query: LOOKUP_INTEGRATION, variables: { uid: integrationId } }],
 				variables: {
-					_id: data?.integrationLookup?._id,
+					_id: integration?.integrationData?._id,
 					enabled: !enabled
 				}
 			})
 		} catch (error) {
 			console.error(error.message);
 		}
-	}, [data, integrationId, enabled, toggleIntegration, toggling]);
+	}, [integration, integrationId, enabled, toggleIntegration, toggling]);
 
 	const formik = useFormik({
 		initialValues,
@@ -128,10 +127,10 @@ const ConfigurationForm = () => {
 				<Heading fontSize={5} lineHeight={5} fontWeight="800">
 					Configuration Settings
 				</Heading>
-				<Switch disabled={!data?.integrationLookup && !formik.isValid} name="enabled" onChange={handleToggle} value={enabled}  />
+				<Switch disabled={!integration?.integrationData && !formik.isValid} name="enabled" onChange={handleToggle} value={enabled}  />
 			</Header>
 			{
-				!data?.integrationLookup ? fields.length ? (
+				!integration?.integrationData ? fields.length ? (
 					<Box as="form" paddingY={6} onSubmit={formik.handleSubmit}>
 						{fields.map((field, i) => <TextInput key={i} {...field} onBlur={formik.handleBlur} onChange={formik.handleChange} onFocus={formik.handleFocus} value={formik.values[field.name]} />)}
 						<Box marginTop={4}>
@@ -141,7 +140,7 @@ const ConfigurationForm = () => {
 				) : <EmptyView title="No configuration required." /> : (
 					<Box>
 						{
-							data?.integrationLookup?.credentials?.map?.(({ name }) => (
+							integration?.integrationData?.credentials?.map?.(({ name }) => (
 								<TextGroup key={name} marginY={4} gapTop={2}>
 									<Text  fontSize={3} lineHeight={3}>
 										{name}

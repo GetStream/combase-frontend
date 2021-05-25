@@ -57,6 +57,7 @@ const Integrations = () => {
 						id={integration?.id}
 						name={integration?.name}
 						version={integration?.internal?.version}
+						enabled={integration?.integrationData?.enabled}
 					/>
 				)}
 				totalCount={integrations?.length}
