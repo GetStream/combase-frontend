@@ -3,8 +3,7 @@ import { Box, Menu, PageHeader } from '@combase.app/ui';
 
 import { useReactiveMedia } from 'hooks';
 
-import ChannelList from './ChannelList';
-import InboxSelector from './InboxSelector';
+import ChannelList, { InboxSelector } from './ChannelList';
 
 const Root = styled.div`
     height: 100%;

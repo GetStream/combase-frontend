@@ -3,35 +3,22 @@ import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { Route, useParams } from 'react-router-dom';
 import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
-import { itemGap, layout } from '@combase.app/styles';
 import {
-    ArchiveIcon,
     Box,
     ChannelPreview,
-    Checkbox,
     Container,
     ConversationsIcon,
-    CloseIcon,
     Dropdown,
-    EditIcon,
     EmptyView,
-    IconButton,
-    PageHeader,
-    StarIcon,
-    PriorityIcon,
     Popover,
     ScrollContextProvider,
-    Spinner,
-    ToggleGroup,
-    ToggleGroupOption,
     TicketLabelToggle,
-    Tooltip,
     VirtualizedList,
     useBulkSelect,
-	SortIcon,
 } from '@combase.app/ui';
 
 import { useReactiveMedia, useTicketList, useTicketLabelToggles } from 'hooks';
+import ChannelListHeader from './ChannelListHeader';
 import InboxSelector from './InboxSelector';
 
 const Root = styled.div`
@@ -40,19 +27,9 @@ const Root = styled.div`
     grid-template-rows: min-content 1fr;
 `;
 
-const SpinnerWrapper = styled(Box)`
-    ${layout.size};
-`;
-
 const ItemContainer = styled(Box).attrs({
     paddingX: 2,
 })``;
-
-const BulkActions = styled(Box)`
-	& > * + * {
-		${itemGap};	
-	}
-`
 
 const sort = { last_message_at: -1 };
 const options = {
@@ -72,7 +49,6 @@ const ChannelList = () => {
 
     const isSm = useReactiveMedia('sm');
     const isXl = useReactiveMedia('xl');
-	
 	const isSmallViewport = !isSm?.matches;
 
     const popoverModifiers = useMemo(
@@ -173,79 +149,23 @@ const ChannelList = () => {
 		);
 	}, [selectableItemProps, setPriority, starTicket, onClickTicket, tickets]);
 
+	const onTitleClick = useCallback((e) => setMenuAnchor(e.target), []);
+	
     return (
         <ScrollContextProvider type="px">
             <Root>
-                <PageHeader
-                    showOrganization={!selectable && isSm?.matches && !isXl?.matches}
-                    leftIcon={
-                        selectable ? (
-                            <Box marginRight={isSm?.matches ? 4 : 0}>
-                                <Checkbox {...bulkCheckboxProps} />
-                            </Box>
-                        ) : undefined
-                    }
-                    actions={
-                        <BulkActions gapLeft={2}>
-                            {selected?.length ? (
-                                <>
-                                    <Tooltip text={`Star ${selected?.length} Tickets`}>
-                                        <IconButton color="yellow" icon={StarIcon} onClick={console.log} size={4} />
-                                    </Tooltip>
-                                    <Tooltip text={`Set ${selected?.length} Tickets as Mid-Priority`}>
-                                        <IconButton color="red" icon={PriorityIcon} onClick={console.log} size={4} />
-                                    </Tooltip>
-                                    <Tooltip text={`Archive ${selected?.length} Tickets`}>
-                                        <IconButton color="altText" icon={ArchiveIcon} onClick={console.log} size={4} />
-                                    </Tooltip>
-                                </>
-                            ) : null}
-                            {loading ? (
-                                <SpinnerWrapper size={6}>
-                                    <Spinner size={5} />
-                                </SpinnerWrapper>
-                            ) : (
-                                <>
-									<Tooltip text="Sort">
-										<IconButton
-											color={'altText'}
-											size={4}
-											icon={SortIcon}
-										/>
-									</Tooltip>
-									<Tooltip text={selectable ? 'Cancel' : 'Edit'}>
-										<IconButton
-											color={selectable ? 'red' : 'altText'}
-											size={4}
-											icon={selectable ? CloseIcon : EditIcon}
-											onClick={toggleSelectable}
-										/>
-									</Tooltip>
-								</>
-                            )}
-                        </BulkActions>
-                    }
-                    animated={isSmallViewport}
-                    centered={isSmallViewport}
-                    hideLeftAction={isSm?.matches && !selectable}
-                    reverse={selectable || isSmallViewport}
-                    title={inbox}
-                    subtitle={selectable ? `${selected?.length || 0} selected` : !isSm?.matches ? `${tickets?.count || 0} tickets` : undefined}
-                    onTitleClick={!selectable && !isXl.matches ? e => setMenuAnchor(e.target) : null}
-                >
-                    {inbox !== 'unassigned' && inbox !== 'archived' ? (
-                        <Container paddingBottom={3}>
-                            <ToggleGroup onChange={setStatusFilter} value={statusFilter}>
-                                <ToggleGroupOption value="open">
-									Open
-                                </ToggleGroupOption>
-                                <ToggleGroupOption value="closed">
-                                    Closed
-                                </ToggleGroupOption>
-                            </ToggleGroup>
-                        </Container>
-                    ) : null}
-                </PageHeader>
+                <ChannelListHeader 
+					bulkCheckboxProps={bulkCheckboxProps}
+					inbox={inbox}
+					loading={loading} 
+					selectable={selectable}
+					selected={selected}
+					onChangeStatus={setStatusFilter}
+					onEditClick={toggleSelectable}
+					onTitleClick={onTitleClick}
+					status={statusFilter}
+					totalCount={tickets?.count || 0} 
+				/>
                 <Popover
                     anchor={menuAnchor}
                     as={Dropdown}
