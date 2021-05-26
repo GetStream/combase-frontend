@@ -115,6 +115,7 @@ const ConfigurationForm = () => {
 	}, [integration, integrationId, enabled, toggleIntegration, toggling]);
 
 	const formik = useFormik({
+		enableReinitialize: true,
 		initialValues,
 		onSubmit: handleSubmit,
 		validationSchema,

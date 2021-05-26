@@ -24,7 +24,6 @@ export const useTicketList = (filter, sort, opts) => {
             variables: {
                 filter,
             },
-			fetchPolicy: 'cache-only',
         }),
         [filter]
     );
@@ -92,7 +91,8 @@ export const useTicketList = (filter, sort, opts) => {
 
     useEffect(() => {
         loadMore(true);
-    }, [loadMore, queryOpts]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [queryOpts]);
 
     const onClickTicket = useCallback(
         ticketId => {
@@ -108,7 +108,7 @@ export const useTicketList = (filter, sort, opts) => {
                 history.push(`/dashboard/conversations/${inbox}/${ticketId}`);
             }
         },
-        [apollo.cache, history, inbox]
+        [inbox]
     );
 
     return [data?.entities, { error, loading, onClickTicket, loadMore }];

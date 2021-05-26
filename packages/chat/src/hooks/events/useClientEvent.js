@@ -7,7 +7,7 @@ export const useClientEvent = (event, handler) => {
 
     useEffect(() => {
         client.on(event, handler);
-		console.log(client);
+
         return () => {
             client.off(event, handler);
         };
