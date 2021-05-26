@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import {
     Avatar,
@@ -23,7 +23,7 @@ import {
 	MenuItem,
 } from '@combase.app/ui';
 import { useParams } from 'react-router-dom';
-import { useQuery, GET_TICKET_DRAWER } from '@combase.app/apollo';
+import { INTEGRATION_ACTION, useQuery, useMutation, GET_TICKET_DRAWER } from '@combase.app/apollo';
 // import { ActivityFeed } from 'components/ActivityFeed';
 
 const Root = styled(Box)`
@@ -81,12 +81,21 @@ const renderChip = ({ node = {} }, actions, i, cursor) => (
 const DetailDrawer = ({ onClose }) => {
     const { channelId } = useParams();
     const { data } = useQuery(GET_TICKET_DRAWER, { fetchPolicy: 'cache-and-network', variables: { _id: channelId } });
-
-    const { tags, user } = data?.organization?.ticket || {};
+	const [fireAction] = useMutation(INTEGRATION_ACTION);
+	
+   	const { tags, user } = data?.organization?.ticket || {};
     const activeIntegrations = data?.organization?.integrations?.edges;
 
 	const integrationActions = useMemo(() => activeIntegrations?.filter?.(({ node: { parentDefinition }}) => !!parentDefinition?.actions?.length)?.flatMap?.(({ node: { parentDefinition, uid } }) => parentDefinition.actions.map((action) => ({ ...action, plugin: uid }))) || [], [activeIntegrations]);
 
+	const handleTriggerAction = useCallback(async (action) => {
+		try {
+			const { trigger: [trigger], payload } = action;
+			await fireAction({ variables: { trigger, payload } });
+		} catch (error) {
+			console.error(error.message);
+		}
+	}, []);
     return (
         <Root>
             <Box>
@@ -133,7 +142,7 @@ const DetailDrawer = ({ onClose }) => {
 					integrationActions?.length ? (
 						<Container marginY={6}>
 							<ListSubheader>Actions</ListSubheader>
-							{integrationActions.map((action) => <MenuItem icon={Avatar} iconProps={{ name: action.plugin}} label={action.label} />)}
+							{integrationActions.map((action) => <MenuItem icon={Avatar} iconProps={{ name: action.plugin }} label={action.label} onClick={() => handleTriggerAction(action)} />)}
 						</Container>
 					) : null
 				}

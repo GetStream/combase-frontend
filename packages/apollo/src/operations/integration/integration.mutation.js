@@ -23,3 +23,9 @@ export const TOGGLE_INTEGRATION = gql`
 		}
 	}
 `;
+
+export const INTEGRATION_ACTION = gql`
+	mutation fireIntegrationAction($trigger: String!, $payload: JSON) {
+		integrationAction(trigger: $trigger, payload: $payload)
+	}
+`;
