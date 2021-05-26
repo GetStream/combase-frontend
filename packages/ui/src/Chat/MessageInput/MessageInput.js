@@ -115,7 +115,7 @@ export const MessageInput = props => {
         if (!text && !attachments?.length) {
             return;
         }
-        // TODO: Optimistically add message to the list with failed/retry - may as well run messages through apollo but not cache them.
+        // TODO: Optimistically add message to the list with failed/retry - may as well run messages through apollo but not cache them between conversations.
         clearEditor();
 
         await sendMessage({

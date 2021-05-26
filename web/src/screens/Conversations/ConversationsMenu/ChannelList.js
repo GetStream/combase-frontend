@@ -139,7 +139,7 @@ const ChannelList = () => {
 
     const fresh = !tickets?.edges?.length && loading;
     const totalCount = fresh ? 12 : tickets?.edges?.length;
-	console.log(tickets.edges);
+	
     const [selectableItemProps, bulkCheckboxProps, selected] = useBulkSelect(tickets?.edges, selectable);
     const handleEndReached = useCallback(() => {
 		return tickets?.hasMore && loadMore()

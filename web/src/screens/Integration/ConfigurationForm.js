@@ -39,6 +39,7 @@ const ConfigurationForm = () => {
 			label: opts.label || '',
 			placeholder: opts.placeholder || '',
 			type: opts.inputType || '',
+			disabled: opts.external || false,
 		}))
 	}, [configuration]);
 

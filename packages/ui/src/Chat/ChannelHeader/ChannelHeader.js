@@ -88,7 +88,7 @@ export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, 
                 <Main>
                     {showBackBtn ? <BackBtn size={4} icon={ArrowBackIcon} onClick={onBackClick} /> : null}
                     <Entity icon={<Avatar name={user?.name} size={7} src={user?.avatar} />}>
-                        <Text as={!user?.name ? Placeholder : undefined}>{user?.name}</Text>
+                        <Text as={!user?.name ? Placeholder : undefined} placeholderWidth={11}>{user?.name}</Text>
                         <PartnerStatus lastActive={lastActive} user={user} />
                     </Entity>
                 </Main>
