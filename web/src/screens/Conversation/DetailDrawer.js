@@ -91,11 +91,18 @@ const DetailDrawer = ({ onClose }) => {
 	const handleTriggerAction = useCallback(async (action) => {
 		try {
 			const { trigger: [trigger], payload } = action;
-			await fireAction({ variables: { trigger, payload } });
+			await fireAction({ 
+				variables: { 
+					trigger, 
+					payload: {
+						ticket: channelId,
+					}
+				} 
+			});
 		} catch (error) {
 			console.error(error.message);
 		}
-	}, []);
+	}, [fireAction, channelId]);
     return (
         <Root>
             <Box>
