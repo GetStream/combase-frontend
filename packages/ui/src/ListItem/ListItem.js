@@ -48,11 +48,7 @@ const ListItem = ({ active, alignCheckbox, columnTemplate, children, interaction
                 {selectable ? (
                     <CheckboxInput
                         $alignCheckbox={alignCheckbox}
-                        onChange={() => {
-							if (onSelect) {
-								onSelect(value);
-							}
-                        }}
+                        onChange={() => onSelect?.(value)}
                         value={isSelected}
 						size={4}
                     />

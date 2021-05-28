@@ -56,7 +56,7 @@ export const Switch = ({ disabled, name, onBlur, onChange, onFocus, size, value 
     });
     
 	return (
-        <ToggleBase {...inputProps} disabled={disabled} size={size}>
+        <ToggleBase {...inputProps} type="button" disabled={disabled} size={size}>
             <Track>
                 <Handle size={size} />
             </Track>

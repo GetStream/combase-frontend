@@ -110,7 +110,7 @@ const DetailDrawer = ({ onClose }) => {
 		} catch (error) {
 			console.error(error.message);
 		}
-	}, [fireAction, channelId]);
+	}, [addToast, fireAction, channelId]);
 
     return (
         <Root>
