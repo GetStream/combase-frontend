@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
+import { useToasts } from 'react-toast-notifications';
 import {
     Avatar,
     Box,
@@ -82,6 +83,7 @@ const DetailDrawer = ({ onClose }) => {
     const { channelId } = useParams();
     const { data } = useQuery(GET_TICKET_DRAWER, { fetchPolicy: 'cache-and-network', variables: { _id: channelId } });
 	const [fireAction] = useMutation(INTEGRATION_ACTION);
+	const { addToast } = useToasts();
 	
    	const { tags, user } = data?.organization?.ticket || {};
     const activeIntegrations = data?.organization?.integrations?.edges;
@@ -90,7 +92,8 @@ const DetailDrawer = ({ onClose }) => {
 
 	const handleTriggerAction = useCallback(async (action) => {
 		try {
-			const { trigger: [trigger], payload } = action;
+			const { label, trigger: [trigger], payload } = action;
+			
 			await fireAction({ 
 				variables: { 
 					trigger, 
@@ -99,10 +102,16 @@ const DetailDrawer = ({ onClose }) => {
 					}
 				} 
 			});
+
+			addToast(`"${label}" fired.`, {
+				appearance: 'success',
+				autoDismiss: true,
+			});
 		} catch (error) {
 			console.error(error.message);
 		}
 	}, [fireAction, channelId]);
+
     return (
         <Root>
             <Box>
