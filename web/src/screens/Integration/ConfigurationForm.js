@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { Box, Button, EmptyView, Heading, Switch, Text, TextGroup, TextLink, TextInput } from '@combase.app/ui';
+import { Box, Button, EmptyView, Heading, Switch, Spinner, Text, TextGroup, TextLink, TextInput } from '@combase.app/ui';
 import { layout } from '@combase.app/styles';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -23,7 +23,7 @@ const ConfigurationForm = () => {
 	const params = useParams();
     const integrationId = params.integrationId;
 
-	const [integration] = useIntegrationDefinition(integrationId);
+	const [integration, { loading }] = useIntegrationDefinition(integrationId);
 	const enabled = integration?.integrationData?.enabled;
 	
 	const [createIntegration, { loading: creating, error: createError }] = useMutation(CREATE_INTEGRATION);
@@ -129,7 +129,7 @@ const ConfigurationForm = () => {
 				<Heading fontSize={5} lineHeight={5} fontWeight="800">
 					Configuration Settings
 				</Heading>
-				<Switch disabled={!integration?.integrationData && !formik.isValid} name="enabled" onChange={handleToggle} value={enabled}  />
+				{loading ? <Spinner color="altText" /> : <Switch disabled={!integration?.integrationData && !formik.isValid} name="enabled" onChange={handleToggle} value={enabled}  />}
 			</Header>
 			{
 				!integration?.integrationData ? fields.length ? (
