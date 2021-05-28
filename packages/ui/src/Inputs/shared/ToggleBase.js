@@ -50,10 +50,10 @@ export const ToggleBase = forwardRef((props, ref) => {
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
 
-    const handleClick = (_, e) => {
+    const handleClick = (e) => {
 		if (disabled) return;
 		e.stopPropagation();
-        internalInputRef.current?.click();  
+        internalInputRef.current?.click(e);  
     };
 
     const handleInputChange = event => {
