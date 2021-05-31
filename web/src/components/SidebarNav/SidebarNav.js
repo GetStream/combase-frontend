@@ -4,7 +4,7 @@ import { layout } from '@combase.app/styles';
 import { Box, StreamLogo } from '@combase.app/ui';
 
 import SidebarGroup from './SidebarGroup';
-import StatusBadge from './StatusBadge';
+// import StatusBadge from './StatusBadge';
 import ThemeToggle from './ThemeToggle';
 import UserMenu from './UserMenu';
 import { routes, renderIconRoute } from './utils';
@@ -42,7 +42,7 @@ export const SidebarNav = ({ as, children, logoTo, ...rest }) => (
                 <ThemeToggle />
             </div>
             <div>
-                <StatusBadge />
+                {/* <StatusBadge /> */}
             </div>
         </SidebarGroup>
         <UserMenu />

@@ -40,34 +40,32 @@ const Dashboard = () => {
 
 	return (
 		<ShellProvider>
-			<TicketManager>
-				<Root>
-					{isSm?.matches ? <SidebarNav /> : null}
-					<Switch>
-						<Route 
-							path="/dashboard/integrations/:integrationId/:page?"
-							component={Integration} 
-						/>
-						<Route 
-							path="/dashboard/integrations"
-							component={Integrations} 
-						/>
-						<Route 
-							path="/dashboard/settings/:page?"
-							component={Settings} 
-						/>
-						<Route 
-							path="/dashboard/conversations/:inbox/:channelId?"
-							component={Conversations} 
-						/>
-						<Route 
-							path="/dashboard/tickets"
-							component={Tickets} 
-						/>
-						<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
-					</Switch>
-				</Root>
-			</TicketManager>
+			<Root>
+				{isSm?.matches ? <SidebarNav /> : null}
+				<Switch>
+					<Route 
+						path="/dashboard/integrations/:integrationId/:page?"
+						component={Integration} 
+					/>
+					<Route 
+						path="/dashboard/integrations"
+						component={Integrations} 
+					/>
+					<Route 
+						path="/dashboard/settings/:page?"
+						component={Settings} 
+					/>
+					<Route 
+						path="/dashboard/conversations/:inbox/:channelId?"
+						component={Conversations} 
+					/>
+					<Route 
+						path="/dashboard/tickets"
+						component={Tickets} 
+					/>
+					<Route path={`/dashboard/conversations`} render={conversationsRedirect} />
+				</Switch>
+			</Root>
 		</ShellProvider>
 	);
 }

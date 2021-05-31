@@ -4,8 +4,8 @@ import { useMedia } from 'react-use';
 import { ThemeProvider } from 'styled-components';
 import { connect as feedsClient } from 'getstream';
 import { ToastProvider } from 'react-toast-notifications';
+import { Chat } from 'stream-chat-react';
 
-import { ChatProvider } from '@combase.app/chat';
 import { LoadingScreen, FeedsProvider, Snackbar } from '@combase.app/ui';
 import { themes } from '@combase.app/styles';
 import { themeVar, useReactiveVar, useQuery, GET_CURRENT_USER } from '@combase.app/apollo';
@@ -15,7 +15,7 @@ const toastComponents = {
 }
 
 const createAuthedChatClient = ({ me: user, organization }) => {
-    const client = new StreamChat(organization.stream.key, null, null, { location: 'us-east' });
+    const client = StreamChat.getInstance(organization.stream.key);
 
     client.connectUser(
         {
@@ -73,9 +73,9 @@ export const ShellProvider = ({ children }) => {
         <ThemeProvider theme={themes[theme]}>
             <ToastProvider components={toastComponents}>
 				<FeedsProvider client={feedsClient}>
-					<ChatProvider client={chatClient}>
+					<Chat client={chatClient}>
 						{children}
-					</ChatProvider>
+					</Chat>
 				</FeedsProvider>
 			</ToastProvider>
         </ThemeProvider>

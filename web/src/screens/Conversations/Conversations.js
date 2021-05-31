@@ -26,7 +26,7 @@ const Conversations = () => {
 
 	return (
 		<SplitView columnTemplate={columnTemplate}>
-			<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
+			{/* <ConversationsMenu exact path="/dashboard/conversations/:inbox" /> */}
 			<Route path="/dashboard/conversations/:inbox/:channelId" component={Conversation} />
 		</SplitView>
 	);
