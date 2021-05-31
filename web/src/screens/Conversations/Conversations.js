@@ -18,7 +18,7 @@ const Conversations = () => {
 		}
 
 		if (isSm?.matches) {
-			return `minmax(20%, 20rem) 1fr`;
+			return `minmax(25%, 23rem) 1fr`;
 		}
 
 		return '1fr';

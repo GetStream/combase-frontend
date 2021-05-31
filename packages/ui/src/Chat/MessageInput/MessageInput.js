@@ -13,7 +13,6 @@ import ComposerToolbar from './ComposerToolbar';
 import EmojiSuggestions from './EmojiSuggestions';
 
 const Root = styled(Container).attrs({
-    paddingX: [3, 3, 5],
     paddingBottom: [3, 3, 5],
 })`
     min-height: 3.5rem;
@@ -134,7 +133,7 @@ export const MessageInput = props => {
     const disabled = props.disabled || !text || slashCommandEnabled;
 
     return (
-        <Root ref={props.rootRef} maxWidth={18} variant="contain">
+        <Root ref={props.rootRef} maxWidth={21} variant="contain">
             <Card>
                 <Input
                     Header={<TriggerRow>{emojiMatch?.groups?.emoji ? <EmojiSuggestions {...getEmojiSelectorProps()} /> : null}</TriggerRow>}

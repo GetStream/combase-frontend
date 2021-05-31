@@ -8,15 +8,14 @@ import {
 	MessageInputSimple, 
 	ScrollContextProvider, 
 	Message, 
+	MessageList, 
 	ChannelHeader, 
 	MessageInput 
 } from '@combase.app/ui';
 
-import { Channel } from '../contexts/channel/provider';
-import { ChannelManager } from '../contexts/channelManager/provider';
-import { ChatProvider } from '../contexts/client/provider';
-
-import { MessageList } from './MessageList';
+import { Channel } from './contexts/channel/provider';
+import { ChannelManager } from './contexts/channelManager/provider';
+import { ChatProvider } from './contexts/client/provider';
 
 const Wrapper = styled.div`
     height: 100%;

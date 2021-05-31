@@ -18,7 +18,7 @@ import { MessageAttachments } from '../MessageAttachments';
 import { MessageDate } from './MessageDate';
 import { MessageMeta } from './MessageMeta';
 
-const avatarSize = 7;
+const avatarSize = 8;
 
 const Root = styled(Container).attrs({
     gridGap: 3,
@@ -66,7 +66,7 @@ export const Message = React.memo(({ index }) => {
             <Root
                 $ours={isMyMessage}
                 color="text"
-                maxWidth={18}
+                maxWidth={21}
                 variant="contain"
                 data-date={noAvatar && message?.created_at ? format(message.created_at, 'eeee, p') : undefined}
                 data-grouping={grouping}
@@ -74,12 +74,12 @@ export const Message = React.memo(({ index }) => {
             >
                 <AvatarCol paddingY={2}>
                     {noAvatar ? (
-                        <MessageDate>{format(message.created_at, 'hh:mm')}</MessageDate>
+                        <MessageDate>{format(message.created_at, 'hh:mma')}</MessageDate>
                     ) : (
                         <Avatar src={message?.user?.avatar} name={message?.user?.name} size={avatarSize} />
                     )}
                 </AvatarCol>
-                <Box paddingY={noAvatar ? 1 : 0} paddingTop={noAvatar ? 1 : 2}>
+                <Box paddingY={noAvatar ? 1 : 0} paddingTop={noAvatar ? 1 : 3}>
                     {!noAvatar ? (
                         <MessageMeta
                             date={message?.created_at}
@@ -89,7 +89,7 @@ export const Message = React.memo(({ index }) => {
                             type={message?.type}
                         />
                     ) : null}
-                    <Box paddingTop={!noAvatar ? 'small' : 0}>
+                    <Box paddingTop={!noAvatar ? 1 : 0}>
                         <MessageText largeEmoji={largeEmoji}>{message?.text}</MessageText>
                         {message?.attachments?.length ? <MessageAttachments message={message} /> : null}
                         {message?.command ? (

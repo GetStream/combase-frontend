@@ -8,4 +8,5 @@ export const MessageDate = styled(Text).attrs({
 	lineHeight: 2,
 })`
     opacity: 0.5;
+	text-transform: lowercase;
 `;

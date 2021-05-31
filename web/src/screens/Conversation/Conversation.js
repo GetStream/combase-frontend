@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
 import { useToggle } from 'react-use';
-import { Box, EmptyView, LoadingScreen, Message, MessageInput, ScrollContextProvider } from '@combase.app/ui';
-import { useChatClient, Channel, MessageList } from '@combase.app/chat';
+import { Box, EmptyView, LoadingScreen, Message, MessageInput, MessageList, ScrollContextProvider } from '@combase.app/ui';
+import { useChatClient, Channel } from '@combase.app/chat';
 
 import ConversationHeader from 'components/ConversationHeader';
 import { useReactiveMedia } from 'hooks';
