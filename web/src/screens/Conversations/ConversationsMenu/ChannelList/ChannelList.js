@@ -137,6 +137,7 @@ const ChannelList = () => {
 						updatedAt={ticket?.latestMessageAt}
 						unread={ticket?.unread}
 						disabled={!ticket?._id}
+						status={ticket?.status}
 						toggles={[
 							<TicketLabelToggle className={ticket?.starred ? "active" : undefined} type="star" onChange={(e) => starTicket(e, ticket?._id)} value={ticket?.starred || false} />,
 							<TicketLabelToggle className={ticket?.priority ? "active" : undefined} type="priority" onChange={e => setPriority(e, ticket?._id)} value={ticket?.priority || 0} />,

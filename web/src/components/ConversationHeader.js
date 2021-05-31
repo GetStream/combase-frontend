@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import { useQuery, GET_TICKET } from '@combase.app/apollo';
 import { ChannelHeader, IconButton, InfoIcon, TicketLabelToggle, Tooltip } from '@combase.app/ui';
 import { useChannelPartner, useUserTypingIndicator } from '@combase.app/chat';
-import { useTicketLabelToggles } from 'hooks';
+import { useReactiveMedia, useTicketLabelToggles } from 'hooks';
 
 const ConversationHeader = ({  onBackClick, onInfoClick, readonly, showBackBtn }) => {
 	const { channelId } = useParams()
     const partner = useChannelPartner();
     const isTyping = useUserTypingIndicator(partner?.user.id);
+
+	const isSm = useReactiveMedia('sm');
 
 	const queryOpts = useMemo(() => ({
 		fetchPolicy: 'cache-and-network',
@@ -29,6 +31,8 @@ const ConversationHeader = ({  onBackClick, onInfoClick, readonly, showBackBtn }
             lastActive={partner?.user?.last_active}
             onBackClick={onBackClick}
             showBackBtn={showBackBtn}
+			isMobile={!isSm?.matches}
+			onTitleClick={onInfoClick}
             toggles={[
                 <Tooltip key={0} text="Star Conversation">
                     <TicketLabelToggle type="star" onChange={(e) => starTicket(e, channelId)} value={ticket?.starred || false} />

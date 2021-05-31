@@ -14,6 +14,7 @@ import IconButton from '../../IconButton';
 import Text from '../../Text';
 import { ArrowBackIcon } from '../../icons';
 import Placeholder from '../../Placeholder';
+import TextGroup from '../../TextGroup';
 
 import { PartnerStatus } from '../PartnerStatus';
 
@@ -35,6 +36,13 @@ const Actions = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+`;
+
+const PartnerDetails = styled(TextGroup)`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 `;
 
 const ActionGroup = styled.div`
@@ -64,7 +72,7 @@ const BackBtn = styled(IconButton)`
     margin-right: 1rem;
 `;
 
-export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, toggles, user }) => {
+export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackClick, onTitleClick, showBackBtn, toggles, user }) => {
     const theme = useTheme();
     const scrollbars = useScrollbars();
 
@@ -87,11 +95,21 @@ export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, 
             <Wrapper maxWidth={21} style={style}>
                 <Main>
                     {showBackBtn ? <BackBtn size={4} icon={ArrowBackIcon} onClick={onBackClick} /> : null}
-                    <Entity icon={<Avatar name={user?.name} size={8} src={user?.avatar} />}>
-                        <Text as={!user?.name ? Placeholder : undefined} placeholderWidth={11}>{user?.name}</Text>
-                        <PartnerStatus lastActive={lastActive} user={user} />
-                    </Entity>
+                    {!isMobile ? (
+						<Entity>
+							<Text as={!user?.name ? Placeholder : undefined} fontSize={4} lineHeight={6} fontWeight="600" placeholderWidth={11}>{user?.name}</Text>
+							<PartnerStatus lastActive={lastActive} user={user} />
+						</Entity>
+					) : null}
                 </Main>
+				{
+					isMobile ? (
+						<PartnerDetails variant="centered" onClick={onTitleClick}>
+							<Text as={!user?.name ? Placeholder : undefined} fontSize={4} lineHeight={5} fontWeight="600" placeholderWidth={11}>{user?.name}</Text>
+							<PartnerStatus lastActive={lastActive} showBadge={false} user={user} />
+						</PartnerDetails>
+					) : null
+				}
                 <Actions>
                     {children && !showBackBtn ? (
                         <>

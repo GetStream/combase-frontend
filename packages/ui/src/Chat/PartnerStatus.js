@@ -8,7 +8,7 @@ import IconLabel from '../IconLabel';
 import Tooltip from '../Tooltip';
 import Text from '../Text';
 
-export const PartnerStatus = ({ lastActive, user }) => {
+export const PartnerStatus = ({ lastActive, showBadge, user }) => {
     const isTyping = useUserTypingIndicator(user?.id);
 
     const subtext = useMemo(() => {
@@ -30,7 +30,7 @@ export const PartnerStatus = ({ lastActive, user }) => {
     return (
         <Tooltip text={lastActive ? `Last seen ${formatDistanceToNow(parseISO(lastActive))} ago` : null}>
             <IconLabel>
-                {!isTyping ? <Badge color={user?.online ? 'green' : 'border'} /> : null}
+                {!isTyping && showBadge ? <Badge color={user?.online ? 'green' : 'border'} /> : null}
                 <Text color="altText" fontWeight="400" fontSize={2} lineHeight={2}>
                     {subtext}
                 </Text>
@@ -38,3 +38,7 @@ export const PartnerStatus = ({ lastActive, user }) => {
         </Tooltip>
     );
 };
+
+PartnerStatus.defaultProps = {
+	showBadge: true,
+}
