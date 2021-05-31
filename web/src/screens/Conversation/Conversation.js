@@ -50,10 +50,10 @@ const Conversation = ({ match, readonly, showBackBtn }) => {
 					<Channel channel={channel} key={channelId}>
 						<ConversationHeader
 							baseUrl={match?.url}
-							onBackClick={() => history.goBack()}
+							onBackClick={history.goBack}
 							readonly={readonly}
 							onInfoClick={toggleDrawer}
-							showBackBtn={showBackBtn || match.isExact && !isSm?.matches}
+							showBackBtn={(showBackBtn || match.isExact) && !isSm?.matches}
 						/>
 						<MessageList renderItem={renderItem} />
 						{!readonly ? <MessageInput placeholder="Type a message" /> : null}

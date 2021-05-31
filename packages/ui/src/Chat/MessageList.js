@@ -41,6 +41,7 @@ const MessageList = ({ renderItem }) => {
 
     return (
 		<VirtualizedList
+			alignToBottom
 			firstItemIndex={firstItemIndex}
 			followOutput="smooth"
 			initialTopMostItemIndex={messages?.length - 1}
