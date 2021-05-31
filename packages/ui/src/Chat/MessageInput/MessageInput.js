@@ -13,6 +13,7 @@ import ComposerToolbar from './ComposerToolbar';
 import EmojiSuggestions from './EmojiSuggestions';
 
 const Root = styled(Container).attrs({
+    paddingTop: [3, 3, 5],
     paddingBottom: [3, 3, 5],
 })`
     min-height: 3.5rem;
