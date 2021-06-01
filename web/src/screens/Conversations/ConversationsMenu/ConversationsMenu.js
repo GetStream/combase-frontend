@@ -50,6 +50,7 @@ const ConversationMenu = () => {
 					onChangeStatus={setStatus}
 				/>
 				<ChannelList 
+					filters={{ status }}
 					List={CombaseChannelList}
 					Preview={CombaseChannelPreview}
 				/>
