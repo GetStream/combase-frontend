@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Avatar, Box, Container, Text } from '@combase.app/ui'
 import { interactions } from '@combase.app/styles'
-import { useMessageContext } from 'stream-chat-react';
+import { useComponentContext, useMessageContext } from 'stream-chat-react';
 import format from 'date-fns/format';
 
 import MessageDate from './MessageDate';
@@ -17,6 +17,37 @@ const Root = styled(Container).attrs({
     display: grid;
     grid-template-columns: ${({ theme }) => theme.sizes[avatarSize]} 1fr;
     grid-auto-rows: min-content;
+
+	.str-chat__message-attachment {
+		overflow: hidden;
+		width: 100%;
+		max-width: 375px;
+		border-radius: 16px;
+		margin: 8px auto 8px 0;
+		padding: 0;
+	}
+
+	.str-chat__gallery {
+		margin: 5px 0;
+		display: inline-flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		overflow: hidden;
+	}
+
+	.str-chat__gallery-image {
+		width: 150px;
+		height: 150px;
+		background: white;
+		margin-bottom: 1px;
+		margin-right: 1px;
+	}
+
+	.str-chat__gallery-image img {
+		width: inherit;
+		height: inherit;
+		object-fit: cover;
+	}
 `;
 
 const AvatarCol = styled(Box)`
@@ -44,7 +75,11 @@ const Message = (props) => {
 	const { groupStyles: [grouping], getMessageActions, isMyMessage, message, ...rest } = useMessageContext();
 	const isOwned = isMyMessage();
 	const noAvatar = message?.type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
-	
+	console.log(rest)
+	const {
+		Attachment
+	} = useComponentContext();
+
 	return (
 		<Root
 			color="text"
@@ -72,6 +107,7 @@ const Message = (props) => {
 					/>
 				) : null}
 				<MessageText>{message.text}</MessageText>
+				<Attachment attachments={message.attachments} />
 			</Box>
 		</Root>
 	);
