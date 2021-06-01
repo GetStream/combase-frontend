@@ -38,14 +38,6 @@ export const cache = new InMemoryCache({
                 me: {
                     fields: {
                         keyFields: ['_id'],
-						online: {
-							read: (existing) => {
-								return existing || false;
-							},
-							merge: (_, incoming) => {
-								return incoming;
-							}
-						}
                     },
                 },
                 tickets: {
