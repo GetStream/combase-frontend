@@ -17,7 +17,7 @@ const toastComponents = {
 }
 
 const createAuthedChatClient = ({ me: user, organization }) => {
-    const client = StreamChat.getInstance(organization.stream.key);
+    const client = StreamChat.getInstance(organization.stream.key, null, { location: 'us-east' });
 
     client.connectUser(
         {
@@ -36,7 +36,7 @@ const createAuthedFeedsClient = ({ me: user, organization }) => {
 
 export const ShellProvider = ({ children }) => {
     const {data} = useQuery(GET_CURRENT_USER);
-	console.log(data?.me);
+
     /**
      * @name Theme
      */
