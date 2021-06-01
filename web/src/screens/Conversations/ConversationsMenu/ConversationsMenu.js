@@ -39,7 +39,7 @@ const ConversationMenu = () => {
 	const { inbox } = useParams();
 
 	const [status, setStatus] = useState('open');
-	console.log(isXl?.matches);
+
     return (
         <Root>
             {isXl?.matches ? <InboxMenu /> : null}

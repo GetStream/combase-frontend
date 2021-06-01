@@ -10,6 +10,8 @@ import { LoadingScreen, FeedsProvider, Snackbar } from '@combase.app/ui';
 import { themes } from '@combase.app/styles';
 import { themeVar, useReactiveVar, useQuery, GET_CURRENT_USER } from '@combase.app/apollo';
 
+import ApolloChatSync from 'components/ApolloChatSync';
+
 const toastComponents = {
 	Toast: Snackbar,
 }
@@ -34,7 +36,7 @@ const createAuthedFeedsClient = ({ me: user, organization }) => {
 
 export const ShellProvider = ({ children }) => {
     const {data} = useQuery(GET_CURRENT_USER);
-
+	console.log(data?.me);
     /**
      * @name Theme
      */
@@ -74,7 +76,9 @@ export const ShellProvider = ({ children }) => {
             <ToastProvider components={toastComponents}>
 				<FeedsProvider client={feedsClient}>
 					<Chat client={chatClient}>
-						{children}
+						<ApolloChatSync>
+							{children}
+						</ApolloChatSync>
 					</Chat>
 				</FeedsProvider>
 			</ToastProvider>

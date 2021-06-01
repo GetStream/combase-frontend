@@ -38,6 +38,14 @@ export const cache = new InMemoryCache({
                 me: {
                     fields: {
                         keyFields: ['_id'],
+						online: {
+							read: (existing) => {
+								return existing || false;
+							},
+							merge: (_, incoming) => {
+								return incoming;
+							}
+						}
                     },
                 },
                 tickets: {
@@ -93,6 +101,18 @@ export const cache = new InMemoryCache({
              */
             keyFields: ['name'],
         },
+		Agent: {
+			fields: {
+				online: {
+					read(existing = false) {
+						return existing;
+					},
+					merge(_, incoming) {
+						return incoming;
+					}
+				}
+			}
+		},
         Organization: {
             fields: {
                 agent: {
