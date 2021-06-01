@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useToggle } from 'react-use';
 import { Avatar, Box, ChannelHeader, Container, IconButton, InfoIcon, Spinner, TicketLabelToggle, Tooltip } from '@combase.app/ui';
 import { Channel, MessageInput, MessageList, Window, useChatContext } from 'stream-chat-react';
 
@@ -10,10 +11,13 @@ import SystemMessage from 'components/SystemMessage';
 import Message from 'components/Message';
 import MessageComposer from 'components/MessageComposer';
 
+import DetailDrawer from './DetailDrawer';
+
 const Root  = styled(Box)`
 	height: 100%;
 	display: grid;
 	grid-template-rows: 1fr;
+	grid-template-columns: 1fr ${({ drawer }) => (drawer ? `minmax(20%, 20rem)` : '')};
 	
 	& > div, .str-chat__container {
 		height: 100%;
@@ -53,13 +57,15 @@ const LoadingIndicator = styled(Container).attrs(() => ({
 `
 
 const Conversation = () => {
+	const [drawerOpen, toggleDrawer] = useToggle(false);
+
 	const { channel } = useChatContext()
 	
 	const isSm = useReactiveMedia('sm');
 	const [starTicket, setPriority] = useTicketLabelToggles();
 	
 	return (
-		<Root>
+		<Root drawer={drawerOpen}>
 			<Channel 
 				Avatar={Avatar}
 				DateSeparator={DateSeparator}
@@ -70,7 +76,7 @@ const Conversation = () => {
 			>
 				<ChannelWrapper>
 					<ChannelHeader 
-						isMobile={!isSm?.matches} 
+						isMobile={!isSm?.matches}
 						toggles={[
 							<Tooltip key={0} text="Star Conversation">
 								<TicketLabelToggle type="star" onChange={(e) => starTicket(e, channel.id)} value={channel?.data?.starred || false} />
@@ -81,13 +87,14 @@ const Conversation = () => {
 						]}
 					>
 						<Tooltip text="More Info">
-							<IconButton color="altText" size={4} icon={InfoIcon} />
+							<IconButton color="altText" size={4} icon={InfoIcon} onClick={toggleDrawer} />
 						</Tooltip>
 					</ChannelHeader>
 					<MessageList shouldGroupByUser />
 					<MessageInput grow />
 				</ChannelWrapper>
 			</Channel>
+			{drawerOpen ? <DetailDrawer onClose={toggleDrawer} /> : null}
 		</Root>
 	);
 };
