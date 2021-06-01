@@ -95,7 +95,7 @@ const Message = (props) => {
 	const { groupStyles: [grouping], getMessageActions, isMyMessage, message, ...rest } = useMessageContext();
 	const isOwned = isMyMessage();
 	const noAvatar = message?.type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
-	console.log(rest)
+
 	const {
 		Attachment
 	} = useComponentContext();

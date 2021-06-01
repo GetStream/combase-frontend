@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { 
 	ChannelList, 
+	useChatContext
 } from 'stream-chat-react';
 import { useParams } from 'react-router-dom';
-import { Box, PageHeader, Menu, ScrollbarsWithContext } from '@combase.app/ui';
-import {Scrollbars} from 'rc-scrollbars';
+import { Box, ConversationsIcon, PageHeader, Menu, ScrollbarsWithContext, StateDisplay } from '@combase.app/ui';
 
 import { useReactiveMedia } from 'hooks';
 
@@ -34,11 +34,51 @@ const InboxMenu = () => (
     </Box>
 );
 
+const EmptyState = (props) => {
+	const chat = useChatContext();
+	console.log(chat);
+	return <StateDisplay icon={ConversationsIcon} size={8} text="No Conversations" />
+}
+
 const ConversationMenu = () => {
     const isXl = useReactiveMedia('xl');
 	const { inbox } = useParams();
 
 	const [status, setStatus] = useState('open');
+
+	const filters = useMemo(() => {
+        let filter = {};
+
+        if (inbox === 'inbox' || inbox === 'starred' || inbox === 'priority') {
+            filter.status = status ?? undefined;
+        }
+
+        if (inbox === 'unassigned') {
+            filter = {
+				...filter,
+				$or: [
+					{ status: 'unassigned' },
+					{ status: 'new' },
+				]
+			}
+        }
+
+        if (inbox === 'archived') {
+            filter.status = 'archived';
+        }
+
+        if (inbox === 'starred') {
+            filter[inbox] = true;
+        }
+
+        if (inbox === 'priority') {
+            filter[inbox] = {
+                $gt: 0,
+            };
+        }
+
+        return filter;
+    }, [inbox, status]);
 
     return (
         <Root>
@@ -50,7 +90,8 @@ const ConversationMenu = () => {
 					onChangeStatus={setStatus}
 				/>
 				<ChannelList 
-					filters={{ status }}
+					filters={filters}
+					EmptyStateIndicator={EmptyState}
 					List={CombaseChannelList}
 					Preview={CombaseChannelPreview}
 				/>
