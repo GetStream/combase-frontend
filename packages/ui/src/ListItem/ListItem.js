@@ -4,10 +4,12 @@ import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
 import Box from '../Box';
+import ButtonBase from '../ButtonBase';
 import {Checkbox} from '../Inputs/Checkbox';
 
-const Root = styled(Box)`
+const Root = styled(ButtonBase)`
     padding: 0.125rem 0;
+	width: 100%;
 `;
 
 const Wrapper = styled(Box)`
@@ -24,17 +26,11 @@ const CheckboxInput = styled(Checkbox)`
     align-self: ${({ $alignCheckbox }) => $alignCheckbox};
 `;
 
-const ListItem = ({ active, alignCheckbox, columnTemplate, children, interaction, onClick, onSelect, selectable, value, ...rest }) => {
+const ListItem = ({ active, alignCheckbox, buttonRef, columnTemplate, children, interaction, onClick, onSelect, selectable, value, ...rest }) => {
     const isSelected = rest?.isSelected?.(value);
 
-    const handleClick = e => {
-        if (!e.nativeEvent.defaultPrevented && onClick) {
-            onClick(e);
-        }
-    };
-
     return (
-        <Root {...rest} onClick={handleClick}>
+        <Root {...rest} ref={buttonRef} onClick={onClick}>
             <Wrapper
                 active={active}
                 $columnTemplate={columnTemplate}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { useTheme } from 'styled-components';
 import { animated } from 'react-spring';
 import { layout } from '@combase.app/styles';
+import { useChannelStateContext, useChatContext } from 'stream-chat-react';
 
 import { useScrollbars } from '../../contexts';
 import Avatar from '../../Avatar';
@@ -89,6 +90,10 @@ export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackCli
                 : null,
         [animated, scrollbars, theme]
     );
+	
+	const { client } = useChatContext();
+	const { members } = useChannelStateContext();
+	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
 
     return (
         <Root maxWidth={21} minHeight={11}>
@@ -97,7 +102,7 @@ export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackCli
                     {showBackBtn ? <BackBtn size={4} icon={ArrowBackIcon} onClick={onBackClick} /> : null}
                     {!isMobile ? (
 						<Entity>
-							<Text as={!user?.name ? Placeholder : undefined} fontSize={4} lineHeight={6} fontWeight="600" placeholderWidth={11}>{user?.name}</Text>
+							<Text as={!partner?.user?.name ? Placeholder : undefined} fontSize={4} lineHeight={6} fontWeight="600" placeholderWidth={11}>{partner?.user?.name}</Text>
 							<PartnerStatus lastActive={lastActive} user={user} />
 						</Entity>
 					) : null}
@@ -105,7 +110,7 @@ export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackCli
 				{
 					isMobile ? (
 						<PartnerDetails variant="centered" onClick={onTitleClick}>
-							<Text as={!user?.name ? Placeholder : undefined} fontSize={4} lineHeight={5} fontWeight="600" placeholderWidth={11}>{user?.name}</Text>
+							<Text as={!partner?.user?.name ? Placeholder : undefined} fontSize={4} lineHeight={5} fontWeight="600" placeholderWidth={11}>{partner?.user?.name}</Text>
 							<PartnerStatus lastActive={lastActive} showBadge={false} user={user} />
 						</PartnerDetails>
 					) : null

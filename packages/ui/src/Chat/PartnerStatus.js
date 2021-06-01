@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useUserTypingIndicator } from '@combase.app/chat';
+import { useTypingContext } from 'stream-chat-react';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
@@ -9,7 +10,8 @@ import Tooltip from '../Tooltip';
 import Text from '../Text';
 
 export const PartnerStatus = ({ lastActive, showBadge, user }) => {
-    const isTyping = useUserTypingIndicator(user?.id);
+	const {typing} = useTypingContext();
+	const isTyping = typing[user?.id];
 
     const subtext = useMemo(() => {
         if (isTyping) {

@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Route } from 'react-router-dom';
 
 import { useReactiveMedia } from 'hooks';
 
@@ -26,8 +25,8 @@ const Conversations = () => {
 
 	return (
 		<SplitView columnTemplate={columnTemplate}>
-			{/* <ConversationsMenu exact path="/dashboard/conversations/:inbox" /> */}
-			<Route path="/dashboard/conversations/:inbox/:channelId" component={Conversation} />
+			<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
+			<Conversation path="/dashboard/conversations/:inbox/:channelId" />
 		</SplitView>
 	);
 }

@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { ApolloProvider } from '@combase.app/apollo';
 import { themes } from '@combase.app/styles';
 
+// import 'stream-chat-react/dist/css/index.css';
+
 import {Auth, Dashboard} from './shells';
 
 function App() {
