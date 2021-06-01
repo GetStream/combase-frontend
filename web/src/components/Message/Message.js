@@ -27,6 +27,26 @@ const Root = styled(Container).attrs({
 		padding: 0;
 	}
 
+	.str-chat__message-attachment--image {
+		margin: 8px 0;
+		max-width: 480px;
+		height: auto;
+		max-height: 300px;
+		max-width: 100%;
+		cursor: zoom-in;
+
+		& img {
+			border-radius: 16px;
+			height: inherit;
+			width: auto;
+			max-height: inherit;
+			max-width: 100%;
+			display: block;
+			object-fit: cover;
+			overflow: hidden;
+		}
+	}
+
 	.str-chat__gallery {
 		margin: 5px 0;
 		display: inline-flex;
