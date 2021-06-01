@@ -46,7 +46,6 @@ const ChannelListHeader = ({
 
 	return (
 		<PageHeader
-			backgroundColor="surface"
 			showOrganization={!selectable && isSm?.matches && !isXl?.matches}
 			leftIcon={
 				selectable ? (
@@ -74,6 +73,7 @@ const ChannelListHeader = ({
 				</BulkActions>
 			}
 			animated={isSmallViewport}
+			backgroundColor={isSmallViewport ? "background" : "surface"}
 			// centered={isSmallViewport}
 			hideLeftAction={isSm?.matches && !selectable}
 			reverse={selectable || isSmallViewport}
