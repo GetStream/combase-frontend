@@ -3,17 +3,10 @@ import styled from 'styled-components';
 import { FileUploadButton, ImageDropzone } from 'react-file-utils';
 import {
 	ChatAutoComplete,
-	EmojiIconLarge,
-	EmojiPicker,
-	SendButton,
-	Tooltip,
-	useChannelStateContext,
-	useMessageInputContext,
-	useTranslationContext,
 } from 'stream-chat-react';
 import { Box, Container } from '@combase.app/ui'; 
 
-import ComposerToolbar from './ComposerToolbar'
+import ComposerToolbar from '../ComposerToolbar'
 
 const Root = styled(Container).attrs({
     paddingTop: [3, 3, 5],
@@ -48,19 +41,7 @@ const Card = styled(Box).attrs({
 	}
 `;
 
-const MessageInput = (props) => {
-	const {
-		closeEmojiPicker,
-		cooldownRemaining,
-		emojiPickerIsOpen,
-		handleEmojiKeyDown,
-		handleSubmit,
-		isUploadEnabled,
-		maxFilesLeft,
-		openEmojiPicker,
-		uploadNewFiles,
-	} = useMessageInputContext();
-
+const MessageComposer = (props) => {
 	return (
 		<Root>
 			<Card>
@@ -71,4 +52,4 @@ const MessageInput = (props) => {
 	);
 }
 
-export default MessageInput;
+export default MessageComposer;
