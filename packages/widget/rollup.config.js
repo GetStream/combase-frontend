@@ -5,6 +5,7 @@ import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import html from '@rollup/plugin-html';
 import replace from '@rollup/plugin-replace';
+import image from '@rollup/plugin-image';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import url from '@rollup/plugin-url'
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -46,7 +47,7 @@ const generateHtmlTemplate = (props) => {
 		<script type="text/javascript">
 			CombaseWidget.init({
 				el: '#combase_widget', // <-- TODO
-				organization: "609bc3d8401085003fbaaae4", // <-- replace this with your Organization ID
+				organization: "60b0c9215716b8022249ed7e", // <-- replace this with your Organization ID
 				theme: 'light',
 			});
 		</script>
@@ -97,11 +98,12 @@ const config = {
 			template: generateHtmlTemplate,
 			title: 'Combase Widget',
 		}),
-        terser(),
+		image(),
+        // terser(),
         filesize(),
         replace({
-			'process.env.NODE_ENV': JSON.stringify('production'),
-			'process.env.BABEL_ENV': JSON.stringify('production'),
+			'process.env.NODE_ENV': JSON.stringify('development'),
+			'process.env.BABEL_ENV': JSON.stringify('development'),
         }),
 		visualizer({
 			open: false,

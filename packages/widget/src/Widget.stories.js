@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Widget from '.';
+import Widget from './main';
 
 const Root = styled.div`
 	width: 100vw;
