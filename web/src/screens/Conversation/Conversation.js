@@ -12,6 +12,7 @@ import Message from 'components/Message';
 import MessageComposer from 'components/MessageComposer';
 
 import DetailDrawer from './DetailDrawer';
+import EditMessageComposer from 'components/EditMessageComposer';
 
 const Root  = styled(Box)`
 	height: 100%;
@@ -69,6 +70,7 @@ const Conversation = () => {
 			<Channel 
 				Avatar={Avatar}
 				DateSeparator={DateSeparator}
+				EditMessageInput={EditMessageComposer}
 				LoadingIndicator={LoadingIndicator}
 				Message={Message}
 				MessageSystem={SystemMessage}

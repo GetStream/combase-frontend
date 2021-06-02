@@ -27,7 +27,7 @@ const InboxSelector = ({ onClickItem }) => (
                 onClick={onClickItem}
             />
         </Menu>
-        <Menu>
+        {/* <Menu>
             <MenuItem icon={GroupIcon} label="Groups">
                 <MenuItem iconColor="red" iconSize={0} icon={Badge} label="React" onClick={onClickItem} />
                 <MenuItem iconColor="yellow" iconSize={0} icon={Badge} label="DevRel" onClick={onClickItem} />
@@ -35,7 +35,7 @@ const InboxSelector = ({ onClickItem }) => (
                 <MenuItem iconColor="teal" iconSize={0} icon={Badge} label="Marketing" onClick={onClickItem} />
                 <MenuItem iconColor="green" iconSize={0} icon={Badge} label="Android" onClick={onClickItem} />
             </MenuItem>
-        </Menu>
+        </Menu> */}
     </>
 );
 

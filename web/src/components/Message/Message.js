@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Avatar, Box, Container, Text } from '@combase.app/ui'
 import { interactions } from '@combase.app/styles'
-import { useComponentContext, useMessageContext } from 'stream-chat-react';
+import { MessageInput, useComponentContext, useMessageContext } from 'stream-chat-react';
 import format from 'date-fns/format';
 
+import MessageActions from './MessageActions';
 import MessageDate from './MessageDate';
 import MessageMeta from './MessageMeta';
 
@@ -92,12 +93,21 @@ const MessageText = styled(Text).attrs(({ largeEmoji }) => ({
 }))``;
 
 const Message = (props) => {
-	const { groupStyles: [grouping], getMessageActions, isMyMessage, message, ...rest } = useMessageContext();
+	const { 
+		editing,
+		groupStyles: [grouping], 
+		isMyMessage, 
+		message,
+		clearEditingState,
+	} = useMessageContext();
+
 	const isOwned = isMyMessage();
-	const noAvatar = message?.type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
+	const type = message?.type;
+	const noAvatar = type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
 
 	const {
-		Attachment
+		Attachment,
+		EditMessageInput,
 	} = useComponentContext();
 
 	return (
@@ -105,9 +115,9 @@ const Message = (props) => {
 			color="text"
 			maxWidth={21}
 			variant="contain"
-			paddingTop={1} 
+			paddingTop={noAvatar ? 1 : 2} 
 			paddingBottom={1}
-			interaction={message?.type !== 'ephemeral' ? 'hover' : undefined}
+			interaction={type !== 'ephemeral' ? 'hover' : undefined}
 		>
 			<AvatarCol>
 				{noAvatar ? (
@@ -123,12 +133,25 @@ const Message = (props) => {
 						name={isOwned ? 'You' : message?.user?.name}
 						ours={isOwned}
 						status={message?.status}
-						type={message?.type}
+						type={type}
 					/>
 				) : null}
-				<MessageText>{message.text}</MessageText>
-				<Attachment attachments={message.attachments} />
+				{
+					!editing ? (
+						<>
+							<MessageText>{message.text}</MessageText>
+							<Attachment attachments={message.attachments} />
+						</>
+					) : (
+						<MessageInput
+							clearEditingState={clearEditingState}
+							Input={EditMessageInput}
+							message={message}
+						/>
+					)
+				}
 			</Box>
+			{type !== 'deleted' ? <MessageActions /> : null}
 		</Root>
 	);
 }

@@ -35,8 +35,6 @@ const InboxMenu = () => (
 );
 
 const EmptyState = (props) => {
-	const chat = useChatContext();
-	console.log(chat);
 	return <StateDisplay icon={ConversationsIcon} size={8} text="No Conversations" />
 }
 
