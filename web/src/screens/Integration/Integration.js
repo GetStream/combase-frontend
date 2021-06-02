@@ -1,58 +1,41 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Route, Switch, useHistory, useParams } from 'react-router-dom';
+import { Scrollbars } from 'rc-scrollbars';
 
-import { Box, Container, Tabs, Tab } from '@combase.app/ui';
+import { Box, Container, PageCard } from '@combase.app/ui';
 
-import SidebarView from 'layouts/SidebarView';
 import useIntegrationDefinition from 'hooks/useIntegrationDefinition';
 import MarkdownRenderer from 'components/MarkdownRenderer';
 
 import Sidebar from './Sidebar';
+import ConfigurationForm from './ConfigurationForm';
 
-const TabWrapper =  styled(Container)`
-	border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-	min-height: 4rem;
-    display: flex;
-    align-items: flex-end;
+const Root = styled(PageCard)`
+	display: grid;
+	grid-template-columns: 25% 1fr .625fr;
+`
+
+const ConfigWrapper =  styled(Container)`
+	border-left: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const Integration = () => {
 	const [integration] = useIntegrationDefinition();
-	
-	const history = useHistory();
-	const params = useParams();
-
-	const handleTabChange = useCallback(
-		slug => {
-			history.push(
-				slug
-					? `/integrations/${params.integrationId}/${slug}`
-					: `/integrations/${params.integrationId}`,
-				{
-					preserve: false,
-				}
-			);
-		},
-		[history, params]
-	);
 
 	return (
-		<SidebarView columnTemplate="25% 1fr" Sidebar={<Sidebar />}>
-			<Box>
-				<TabWrapper variant="fluid">
-					<Tabs onChange={handleTabChange} value={params.page}>
-						<Tab label="About" value={undefined} />
-						<Tab label="Configuration" value="configuration" />
-					</Tabs>
-				</TabWrapper>
-				<Container paddingTop={10} minHeight="100%">
-					<Switch>
-						<Route>{() => <MarkdownRenderer md={integration?.about} />}</Route>
-					</Switch>
+		<Root>
+			<Sidebar />
+			<Scrollbars>
+				<Container paddingTop={12} paddingBottom={12} minHeight="100%">
+					<MarkdownRenderer md={integration?.about} />
 				</Container>
-			</Box>		
-		</SidebarView>
+			</Scrollbars>
+			<ConfigWrapper>
+				<Scrollbars>
+					<ConfigurationForm />
+				</Scrollbars>
+			</ConfigWrapper>
+		</Root>
 	);
 };
 

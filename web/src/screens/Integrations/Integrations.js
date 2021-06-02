@@ -16,6 +16,9 @@ const GridContainer = styled(Container).attrs(props => ({
     variant: 'fluid',
 }))`
     &.virtuoso-grid-list {
+		height: auto;
+		padding-top: ${({ theme }) => theme.space[4]} !important;
+		padding-bottom: ${({ theme }) => theme.space[4]} !important;
         display: grid;
         grid-auto-rows: minmax(min-content, max-content);
         grid-template-columns: repeat(4, 1fr);
@@ -37,7 +40,7 @@ const Integrations = () => {
 				title="Integrations" 
 				showOrganization
 			>
-				<TabWrapper variant="fluid" marginBottom={4}>
+				<TabWrapper variant="fluid">
 					<Tabs onChange={setFilterCategory} value={filterCategory}>
 						<Tab label="All" value={undefined} />
 						<Tab label="CRM" value="crm" />
@@ -57,6 +60,7 @@ const Integrations = () => {
 						id={integration?.id}
 						name={integration?.name}
 						version={integration?.internal?.version}
+						enabled={integration?.integrationData?.enabled}
 					/>
 				)}
 				totalCount={integrations?.length}

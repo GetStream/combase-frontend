@@ -10,7 +10,7 @@ const Root = styled(Box)`
 	grid-template-columns: 1fr;
 	grid-gap: ${({ theme }) => theme.space[3]};
 
-	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {	
+	@media (min-width: ${({ theme }) => theme.breakpoints.md}) {	
 		grid-template-columns: ${({ theme }) => theme.sizes[16]} 1fr;
 		grid-gap: ${({ theme }) => theme.sizes[14]};
 	} 

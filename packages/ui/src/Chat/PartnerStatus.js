@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useUserTypingIndicator } from '@combase.app/chat';
+import { useTypingContext } from 'stream-chat-react';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
@@ -8,8 +9,9 @@ import IconLabel from '../IconLabel';
 import Tooltip from '../Tooltip';
 import Text from '../Text';
 
-export const PartnerStatus = ({ lastActive, user }) => {
-    const isTyping = useUserTypingIndicator(user?.id);
+export const PartnerStatus = ({ lastActive, showBadge, user }) => {
+	const {typing} = useTypingContext();
+	const isTyping = typing[user?.id];
 
     const subtext = useMemo(() => {
         if (isTyping) {
@@ -30,7 +32,7 @@ export const PartnerStatus = ({ lastActive, user }) => {
     return (
         <Tooltip text={lastActive ? `Last seen ${formatDistanceToNow(parseISO(lastActive))} ago` : null}>
             <IconLabel>
-                {!isTyping ? <Badge color={user?.online ? 'green' : 'border'} /> : null}
+                {!isTyping && showBadge ? <Badge color={user?.online ? 'green' : 'border'} /> : null}
                 <Text color="altText" fontWeight="400" fontSize={2} lineHeight={2}>
                     {subtext}
                 </Text>
@@ -38,3 +40,7 @@ export const PartnerStatus = ({ lastActive, user }) => {
         </Tooltip>
     );
 };
+
+PartnerStatus.defaultProps = {
+	showBadge: true,
+}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { border, color, shadow, space, zIndex } from '@combase.app/styles';
+import { border, color, display, layout, shadow, space, zIndex } from '@combase.app/styles';
 
 const Box = styled.div`
     margin: 0;
@@ -10,6 +10,8 @@ const Box = styled.div`
 
     ${border};
     ${color};
+    ${display};
+    ${layout};
     ${space};
     ${shadow.boxShadow};
     ${zIndex};

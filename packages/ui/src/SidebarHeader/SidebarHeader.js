@@ -52,10 +52,10 @@ const PageHeader = forwardRef(({ actions, animated, backgroundColor, children, c
                         marginRight={4}
                         icon={goBack ? ArrowBackIcon : MenuIcon}
                         onClick={goBack ? history.goBack : undefined}
-                        size={4}
+                        size={5}
                     />
                 </Title>
-                {actions || <DummyIcon size={4} />}
+                {actions || <DummyIcon size={5} />}
             </Wrapper>
             {children}
         </HeaderBase>

@@ -41,10 +41,10 @@ export const MessageMeta = ({ className, date, name, ours, status, type }) => {
 
     return (
         <Root className={className} gapLeft={2}>
-            <Text as="span" fontWeight="600" fontSize={3} lineHeight={3}>
+            <Text as="span" fontWeight="600" fontSize="15px" lineHeight={5}>
                 {name}
             </Text>
-            {date ? <MessageDate marginLeft={1}>{format(date, 'p')}</MessageDate> : null}
+            {date ? <MessageDate fontSize={2} lineHeight={2} marginLeft={1}>{format(date, 'p')}</MessageDate> : null}
             {isEphemeral && ours ? <EphemeralNotice /> : null}
 			{!isEphemeral && ours ? <DeliveryStatus sending={status === 'sending'} read={isRead} /> : null}
         </Root>

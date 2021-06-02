@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Scrollbars } from 'rc-scrollbars'; 
 
 const VirtuosoScroller = forwardRef(({ children, onScroll, ...rest}, ref) => {

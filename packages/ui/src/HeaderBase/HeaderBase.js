@@ -12,7 +12,7 @@ const Root = styled(Container).attrs(props => ({
     borderBottomLeftRadius: props.fluid ? [2, 2, 'unset'] : 2,
     borderBottomRightRadius: props.fluid ? [2, 2, 'unset'] : 2,
     gutters: false,
-    zIndex: 1,
+    zIndex: 2,
     variant: props.fluid ? 'fluid' : undefined,
 }))`
     ${layout};
@@ -37,28 +37,27 @@ const Root = styled(Container).attrs(props => ({
 const HeaderBase = ({ animated, backgroundColor, border, children, className, fluid, maxWidth, variant }) => {
     const scrollbars = useScrollbars();
     const theme = useTheme();
-
+	const doAnimate = Boolean(scrollbars?.anim) && animated;
     const style = useMemo(
         () =>
-            Boolean(scrollbars?.anim) && animated
-                ? {
+            doAnimate
+                ? ({
                       backgroundColor: scrollbars?.anim.value.to({
                           output: [theme.colors[backgroundColor || 'background'], theme.colors.surface],
                           range: [0, scrollbars?.threshold],
                           extrapolate: 'clamp',
                       }),
                       boxShadow: scrollbars?.anim.value.to({
-                          output: [`0px 1px 0px 0px rgba(0, 0, 0, ${border ? '0.05' : '0'})`, `0px 4px 20px -16px rgba(0, 0, 0, 0.16)`],
+                          output: [`0px 1px 0px 0px rgba(0, 0, 0, ${border ? '0.05' : '0'})`, `0px 4px 20px -12px rgba(0, 0, 0, 0.16)`],
                           range: [0, scrollbars?.threshold],
                           extrapolate: 'clamp',
                       }),
-                  }
-                : null,
-        [animated, backgroundColor, scrollbars, theme]
+                  }) : undefined,
+        [doAnimate, backgroundColor, scrollbars, theme]
     );
 
     return (
-        <Root maxWidth={maxWidth} fluid={fluid} variant={!scrollbars ? variant : undefined} gutter={false} className={className} style={style}>
+        <Root backgroundColor={backgroundColor} maxWidth={maxWidth} fluid={fluid} variant={!scrollbars ? variant : undefined} gutter={false} className={className} style={style}>
             {children}
         </Root>
     );

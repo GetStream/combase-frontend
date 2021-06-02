@@ -13,6 +13,7 @@ export const GET_CURRENT_USER = gql`
             }
             avatar
             streamToken
+			online @client
         }
 
         organization {

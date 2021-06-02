@@ -19,7 +19,7 @@ export const TicketLabelToggle = forwardRef(({ className, disabled, name, onBlur
     const color = type === 'star' ? 'yellow' : 'red';
 
     const handleChange = useCallback(
-        e => {
+        (e) => {
             if (type === 'priority') {
                 const overrideEvent = {
                     target: {

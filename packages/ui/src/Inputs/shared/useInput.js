@@ -3,13 +3,20 @@ import { nanoid } from 'nanoid';
 
 import { useControlledValue } from './useControlledValue';
 
-export const useInput = ({ name, onChange: handleChange, onBlur: handleBlur, onFocus: handleFocus, onKeyDown, type, value: valueProp }) => {
+export const useInput = ({ 
+	name, 
+	onChange: handleChange, 
+	onBlur: handleBlur, 
+	onFocus: handleFocus, 
+	onKeyDown, 
+	type, 
+	value: valueProp 
+}) => {
     const id = useMemo(() => `${name}_${nanoid(6)}`, [name]);
 
     const valueSelector = type === 'toggle' ? 'checked' : 'value';
-
     const [value, setInternalValue] = useControlledValue({
-        controlled: valueProp,
+        controlledValue: valueProp,
         valueSelector,
     });
 
@@ -53,10 +60,10 @@ export const useInput = ({ name, onChange: handleChange, onBlur: handleBlur, onF
             setInternalValue(e);
 
             if (handleChange) {
-                handleChange(e);
+				handleChange(e);
             }
         },
-        [handleChange, valueSelector]
+        [handleChange, type, value]
     );
 
     const inputProps = useMemo(
@@ -69,9 +76,9 @@ export const useInput = ({ name, onChange: handleChange, onBlur: handleBlur, onF
             onKeyDown,
             value
         }),
-        [id, name, onBlur, onChange, onFocus, onKeyDown, value, valueSelector]
+        [id, name, onBlur, onChange, onFocus, onKeyDown, value]
     );
-
+		
     return [
         inputProps,
         {

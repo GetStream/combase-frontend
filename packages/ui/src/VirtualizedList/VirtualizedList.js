@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Virtuoso } from 'react-virtuoso';
@@ -19,15 +19,18 @@ const style = {
 const VirtualizedList = forwardRef(
     ({ EmptyPlaceholder, ItemContainer, ListContainer, data, onScroll, endReached, loading, renderItem, totalCount, ...rest }, ref) => {
         const scrollbars = useContext(ScrollContext);
+		
+		const components = useMemo(() => ({
+			EmptyPlaceholder: () =>
+				EmptyPlaceholder ? <EmptyPlaceholder /> : <StateDisplay loading={loading} text={loading ? null : undefined} />,
+			Item: ItemContainer || Item,
+			List: ListContainer || undefined,
+			Scroller: VirtuosoScroller,
+		}), [EmptyPlaceholder, loading, ItemContainer, ListContainer]);
+
         return (
             <Virtuoso
-                components={{
-                    EmptyPlaceholder: () =>
-                        EmptyPlaceholder ? <EmptyPlaceholder /> : <StateDisplay loading={loading} text={loading ? null : undefined} />,
-                    Item: ItemContainer || Item,
-                    List: ListContainer || undefined,
-                    Scroller: VirtuosoScroller,
-                }}
+                components={components}
                 data={data}
                 endReached={endReached}
                 itemContent={renderItem}

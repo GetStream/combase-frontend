@@ -10,7 +10,7 @@
         "watch": "rollup -c -w"
     },
     "dependencies": {
-        "@apollo/client": "^3.3.15",
+        "@apollo/client": "^3.3.19",
         "apollo-link-queue": "^3.1.0",
         "apollo-link-serialize": "^3.1.2",
         "apollo3-cache-persist": "^0.9.1",

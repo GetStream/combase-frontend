@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
-import { Channel, MessageList, useChatClient } from '@combase.app/chat';
-import { ChannelHeaderSimple, MessageInputSimple, MessageSimple, ScrollContextProvider } from '@combase.app/ui';
+import { Channel, useChatClient } from '@combase.app/chat';
+import { ChannelHeaderSimple, MessageInputSimple, MessageList, MessageSimple, ScrollContextProvider } from '@combase.app/ui';
 
 const Root = styled.div`
     height: 100%;

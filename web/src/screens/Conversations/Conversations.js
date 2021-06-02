@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Route } from 'react-router-dom';
 
 import { useReactiveMedia } from 'hooks';
 
@@ -18,7 +17,7 @@ const Conversations = () => {
 		}
 
 		if (isSm?.matches) {
-			return `minmax(20%, 20rem) 1fr`;
+			return `minmax(25%, 23rem) 1fr`;
 		}
 
 		return '1fr';
@@ -27,7 +26,7 @@ const Conversations = () => {
 	return (
 		<SplitView columnTemplate={columnTemplate}>
 			<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
-			<Route path="/dashboard/conversations/:inbox/:channelId" component={Conversation} />
+			<Conversation path="/dashboard/conversations/:inbox/:channelId" />
 		</SplitView>
 	);
 }

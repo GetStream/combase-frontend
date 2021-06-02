@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useReducer, useRef, useState, useMemo } from 'react';
+import React, { useCallback, useLayoutEffect, useReducer, useRef, useState } from 'react';
 import throttle from 'lodash.throttle';
 import { nanoid } from 'nanoid';
 

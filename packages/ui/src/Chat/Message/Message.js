@@ -18,7 +18,7 @@ import { MessageAttachments } from '../MessageAttachments';
 import { MessageDate } from './MessageDate';
 import { MessageMeta } from './MessageMeta';
 
-const avatarSize = 7;
+const avatarSize = 8;
 
 const Root = styled(Container).attrs({
     gridGap: 3,
@@ -45,9 +45,9 @@ const AvatarCol = styled(Box)`
 `;
 
 const MessageText = styled(Text).attrs(({ largeEmoji }) => ({
-    fontSize: !largeEmoji ? 3 : 7,
+    fontSize: !largeEmoji ? '15px' : 7,
     fontWeight: 400,
-    lineHeight: !largeEmoji ? 5 : 8,
+    lineHeight: !largeEmoji ? 6 : 8,
 }))``;
 
 export const Message = React.memo(({ index }) => {
@@ -62,47 +62,47 @@ export const Message = React.memo(({ index }) => {
     }
 
     return (
-        <Box paddingTop={grouping === 'top' || grouping === 'single' ? 2 : 0} paddingBottom={0}>
-            <Root
-                $ours={isMyMessage}
-                color="text"
-                maxWidth={18}
-                variant="contain"
-                data-date={noAvatar && message?.created_at ? format(message.created_at, 'eeee, p') : undefined}
-                data-grouping={grouping}
-                interaction={message?.type !== 'ephemeral' ? 'hover' : undefined}
-            >
-                <AvatarCol paddingY={2}>
-                    {noAvatar ? (
-                        <MessageDate>{format(message.created_at, 'hh:mm')}</MessageDate>
-                    ) : (
-                        <Avatar src={message?.user?.avatar} name={message?.user?.name} size={avatarSize} />
-                    )}
-                </AvatarCol>
-                <Box paddingY={noAvatar ? 1 : 0} paddingTop={noAvatar ? 1 : 2}>
-                    {!noAvatar ? (
-                        <MessageMeta
-                            date={message?.created_at}
-                            name={isMyMessage ? 'You' : message?.user?.name}
-                            ours={isMyMessage}
-                            status={message?.status}
-                            type={message?.type}
-                        />
-                    ) : null}
-                    <Box paddingTop={!noAvatar ? 'small' : 0}>
-                        <MessageText largeEmoji={largeEmoji}>{message?.text}</MessageText>
-                        {message?.attachments?.length ? <MessageAttachments message={message} /> : null}
-                        {message?.command ? (
-                            <Box paddingTop={1}>
-                                <IconLabel color="blue" fontFamily="title">
-                                    <CommandIcon />
-                                    <Text variant="label">{`${message?.command}: ${message?.args}`}</Text>
-                                </IconLabel>
-                            </Box>
-                        ) : null}
-                    </Box>
-                </Box>
-            </Root>
-        </Box>
+		<Root
+			$ours={isMyMessage}
+			color="text"
+			maxWidth={21}
+			variant="contain"
+			paddingTop={1} 
+			paddingBottom={1}
+			data-date={noAvatar && message?.created_at ? format(message.created_at, 'eeee, p') : undefined}
+			data-grouping={grouping}
+			interaction={message?.type !== 'ephemeral' ? 'hover' : undefined}
+		>
+			<AvatarCol>
+				{noAvatar ? (
+					<MessageDate fontSize={2} lineHeight={6}>{format(message.created_at, 'hh:mma')}</MessageDate>
+				) : (
+					<Avatar src={message?.user?.avatar} name={message?.user?.name} size={avatarSize} />
+				)}
+			</AvatarCol>
+			<Box>
+				{!noAvatar ? (
+					<MessageMeta
+						date={message?.created_at}
+						name={isMyMessage ? 'You' : message?.user?.name}
+						ours={isMyMessage}
+						status={message?.status}
+						type={message?.type}
+					/>
+				) : null}
+				<Box>
+					<MessageText largeEmoji={largeEmoji}>{message?.text}</MessageText>
+					{message?.attachments?.length ? <MessageAttachments message={message} /> : null}
+					{message?.command ? (
+						<Box paddingTop={1}>
+							<IconLabel color="blue" fontFamily="title">
+								<CommandIcon />
+								<Text variant="label">{`${message?.command}: ${message?.args}`}</Text>
+							</IconLabel>
+						</Box>
+					) : null}
+				</Box>
+			</Box>
+		</Root>
     );
 });

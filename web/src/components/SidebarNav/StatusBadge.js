@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Badge, Dropdown, MenuItem, Popover, Switch, Tooltip } from '@combase.app/ui';
-import { useConnectionStatus } from '@combase.app/chat';
+import { useQuery, GET_CURRENT_USER } from '@combase.app/apollo';
 
 const popperModifiers = [
     {
@@ -13,7 +13,9 @@ const popperModifiers = [
 
 const StatusBadge = () => {
     const [anchorRef, setAnchorRef] = useState();
-    const online = useConnectionStatus();
+    const { data } = useQuery(GET_CURRENT_USER);
+
+	const {online} = data?.me || {};
 
     return (
         <>

@@ -85,7 +85,7 @@ const Editable = forwardRef(
         return (
             <Slate {...props} {...slateProps}>
                 {Header || null}
-                <Container>
+                <Container variant="fluid">
                     <SlateEditable {...editableProps} placeholder={placeholder} />
                     {children}
                 </Container>

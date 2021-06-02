@@ -7,6 +7,7 @@ import Avatar from '../../Avatar';
 import Badge from '../../Badge';
 import Box from '../../Box';
 import IconLabel from '../../IconLabel';
+import Label from '../../Label';
 import ListItem from '../../ListItem';
 import Placeholder from '../../Placeholder';
 import Text from '../../Text';
@@ -30,12 +31,14 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+	align-items: flex-start;
 `;
 
 const Header = styled(Box)`
     display: flex;
     flex-direction: row;
     align-items: center;
+	align-self: stretch;
 
     ${TextGroup} {
         display: flex;
@@ -71,6 +74,7 @@ export const ChannelPreview = ({
     partnerName,
     selectable,
     selected,
+	status,
     toggles,
     unread,
     updatedAt,
@@ -107,10 +111,13 @@ export const ChannelPreview = ({
 						{toggles?.length ? <Toggles>{toggles}</Toggles> : null}
                     </Header>
                     {!compact ? (
-                        <Preview marginTop={1} placeholderWidth={11} as={!message ? Placeholder : undefined} variant="clamped" lineClamp={3}>
+                        <Preview marginTop={1} placeholderWidth={11} as={!message ? Placeholder : undefined} variant="clamped" lineClamp={1}>
                             {message}
                         </Preview>
                     ) : null}
+					<Box marginTop={2}>
+						<Label color={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
+					</Box>
                 </Content>
             </Wrapper>
         </Root>

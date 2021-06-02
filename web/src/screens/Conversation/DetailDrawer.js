@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
+import { useToasts } from 'react-toast-notifications';
 import {
     Avatar,
     Box,
@@ -23,7 +24,7 @@ import {
 	MenuItem,
 } from '@combase.app/ui';
 import { useParams } from 'react-router-dom';
-import { useQuery, GET_TICKET } from '@combase.app/apollo';
+import { INTEGRATION_ACTION, useQuery, useMutation, GET_TICKET_DRAWER } from '@combase.app/apollo';
 // import { ActivityFeed } from 'components/ActivityFeed';
 
 const Root = styled(Box)`
@@ -80,14 +81,42 @@ const renderChip = ({ node = {} }, actions, i, cursor) => (
 
 const DetailDrawer = ({ onClose }) => {
     const { channelId } = useParams();
-    const { data } = useQuery(GET_TICKET, { variables: { _id: channelId } });
-    const { tags, user } = data?.organization?.ticket || {};
+    const { data } = useQuery(GET_TICKET_DRAWER, { fetchPolicy: 'cache-and-network', variables: { _id: channelId } });
+	const [fireAction] = useMutation(INTEGRATION_ACTION);
+	const { addToast } = useToasts();
+	
+   	const { tags, user } = data?.organization?.ticket || {};
+    const activeIntegrations = data?.organization?.integrations?.edges;
+
+	const integrationActions = useMemo(() => activeIntegrations?.filter?.(({ node: { parentDefinition }}) => !!parentDefinition?.actions?.length)?.flatMap?.(({ node: { parentDefinition, uid } }) => parentDefinition.actions.map((action) => ({ ...action, plugin: uid }))) || [], [activeIntegrations]);
+
+	const handleTriggerAction = useCallback(async (action) => {
+		try {
+			const { label, trigger: [trigger], payload } = action;
+			
+			await fireAction({ 
+				variables: { 
+					trigger, 
+					payload: {
+						ticket: channelId,
+					}
+				} 
+			});
+
+			addToast(`"${label}" fired.`, {
+				appearance: 'success',
+				autoDismiss: true,
+			});
+		} catch (error) {
+			console.error(error.message);
+		}
+	}, [addToast, fireAction, channelId]);
 
     return (
         <Root>
             <Box>
                 <PageHeader
-					backgroundColor="text"
+					hideLeftAction
 					hideTitle
                     actions={[<IconButton color="altText" icon={CloseIcon} onClick={onClose} />]}
                 />
@@ -125,10 +154,14 @@ const DetailDrawer = ({ onClose }) => {
                         value={tags || []}
                     />
 				</Container>
-				<Container marginY={6}>
-					<ListSubheader>Actions</ListSubheader>
-					<MenuItem icon={Avatar} iconProps={{ name: 'Zendesk'}} label="Escalate to Zendesk" />
-				</Container>
+				{
+					integrationActions?.length ? (
+						<Container marginY={6}>
+							<ListSubheader>Actions</ListSubheader>
+							{integrationActions.map((action) => <MenuItem icon={Avatar} iconProps={{ name: action.plugin }} label={action.label} onClick={() => handleTriggerAction(action)} />)}
+						</Container>
+					) : null
+				}
             </Box>
             <FeedWrapper>
                 {/* <ActivityFeed headerBackground="surface" feed={`ticket:${channelId}`} subtitle="Powered by Stream" title="Ticket Activity" /> */}

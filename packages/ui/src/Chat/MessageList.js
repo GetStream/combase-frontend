@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { EmptyView, VirtualizedList } from '@combase.app/ui';
+import { useChannelMessages, useIsMounted } from '@combase.app/chat';
 
-import { useChannelMessages, useIsMounted } from '../hooks';
+import VirtualizedList from '../VirtualizedList';
 
 const listStyle = {
     height: '100%',
@@ -10,7 +10,7 @@ const listStyle = {
 
 const START_INDEX = 99;
 
-export const MessageList = ({ renderItem }) => {
+const MessageList = ({ renderItem }) => {
 	const [messages, { loading, loadingMore, loadMore, hasMore }] = useChannelMessages();
     const [firstItemIndex, setFirstItemIndex] = useState(START_INDEX);
 	
@@ -41,6 +41,7 @@ export const MessageList = ({ renderItem }) => {
 
     return (
 		<VirtualizedList
+			alignToBottom
 			firstItemIndex={firstItemIndex}
 			followOutput="smooth"
 			initialTopMostItemIndex={messages?.length - 1}
@@ -54,3 +55,5 @@ export const MessageList = ({ renderItem }) => {
 		/>
     );
 };
+
+export default MessageList;

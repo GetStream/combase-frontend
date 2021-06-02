@@ -26,7 +26,8 @@ export const TicketManager = ({ children }) => {
     const handleNewTicket = useCallback(async e => {
         if (inBackgroundTab.current) {
             document.title = `🆕 New Conversation • ${originalTitle.current}`;
-        }
+		}
+
         notificationChime();
 
         const channel = await getChannel(chatClient, 'combase', e.channel_id);
@@ -91,7 +92,6 @@ export const TicketManager = ({ children }) => {
                         });
 
                         /** The we force unique by the __ref from apollo, and reorder so the updatedTicket is first in the list */
-
                         const updatedTicketEdge = {
                             node: updatedTicket,
                             __typename: 'TicketEdge',

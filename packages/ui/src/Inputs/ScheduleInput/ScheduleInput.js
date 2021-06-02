@@ -23,7 +23,7 @@ const Grid = styled(Box)``;
 const Times = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr ${({ theme }) => theme.space[10]};
-    grid-column-gap: 1.5rem;
+    grid-column-gap: .75rem;
     max-width: ${({ theme }) => theme.sizes[17]};
     & > div:last-child {
         display: flex;

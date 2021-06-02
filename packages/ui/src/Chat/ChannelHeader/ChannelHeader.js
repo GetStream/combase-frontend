@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled, { useTheme } from 'styled-components';
 import { animated } from 'react-spring';
 import { layout } from '@combase.app/styles';
+import { useChannelStateContext, useChatContext } from 'stream-chat-react';
 
 import { useScrollbars } from '../../contexts';
 import Avatar from '../../Avatar';
@@ -14,6 +15,7 @@ import IconButton from '../../IconButton';
 import Text from '../../Text';
 import { ArrowBackIcon } from '../../icons';
 import Placeholder from '../../Placeholder';
+import TextGroup from '../../TextGroup';
 
 import { PartnerStatus } from '../PartnerStatus';
 
@@ -35,6 +37,13 @@ const Actions = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+`;
+
+const PartnerDetails = styled(TextGroup)`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 `;
 
 const ActionGroup = styled.div`
@@ -64,7 +73,7 @@ const BackBtn = styled(IconButton)`
     margin-right: 1rem;
 `;
 
-export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, toggles, user }) => {
+export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackClick, onTitleClick, showBackBtn, toggles, user }) => {
     const theme = useTheme();
     const scrollbars = useScrollbars();
 
@@ -81,17 +90,31 @@ export const ChannelHeader = ({ children, lastActive, onBackClick, showBackBtn, 
                 : null,
         [animated, scrollbars, theme]
     );
+	
+	const { client } = useChatContext();
+	const { members } = useChannelStateContext();
+	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
 
     return (
-        <Root maxWidth={18} minHeight={11}>
-            <Wrapper maxWidth={18} style={style}>
+        <Root maxWidth={21} minHeight={11}>
+            <Wrapper maxWidth={21} style={style}>
                 <Main>
                     {showBackBtn ? <BackBtn size={4} icon={ArrowBackIcon} onClick={onBackClick} /> : null}
-                    <Entity icon={<Avatar name={user?.name} size={7} src={user?.avatar} />}>
-                        <Text as={!user?.name ? Placeholder : undefined}>{user?.name}</Text>
-                        <PartnerStatus lastActive={lastActive} user={user} />
-                    </Entity>
+                    {!isMobile ? (
+						<Entity>
+							<Text as={!partner?.user?.name ? Placeholder : undefined} fontSize={4} lineHeight={6} fontWeight="600" placeholderWidth={11}>{partner?.user?.name}</Text>
+							<PartnerStatus lastActive={lastActive} user={user} />
+						</Entity>
+					) : null}
                 </Main>
+				{
+					isMobile ? (
+						<PartnerDetails variant="centered" onClick={onTitleClick}>
+							<Text as={!partner?.user?.name ? Placeholder : undefined} fontSize={4} lineHeight={5} fontWeight="600" placeholderWidth={11}>{partner?.user?.name}</Text>
+							<PartnerStatus lastActive={lastActive} showBadge={false} user={user} />
+						</PartnerDetails>
+					) : null
+				}
                 <Actions>
                     {children && !showBackBtn ? (
                         <>

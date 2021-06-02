@@ -4,7 +4,7 @@ import { useQuery, GET_INTEGRATION_DEFINITION } from '@combase.app/apollo';
 
 const useIntegrationDefinition = integrationIdProp => {
     const params = useParams();
-    const integrationId = params?.integrationId || integrationIdProp;
+    const integrationId = integrationIdProp || params?.integrationId;
 
     const queryOpts = useMemo(
         () => ({
