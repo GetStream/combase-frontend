@@ -41,7 +41,7 @@ const Header = () => {
     const isContained = useWidgetIsContained();
 
     return (
-        <Root maxWidth={14} padding={4}>
+        <Root padding={4}>
             <Avatar name={organization?.name} size={10} src={organization?.branding?.logo} />
             <TextGroup marginTop={2} gapTop={1} paddingTop={2} paddingBottom={4}>
                 <Heading as={!organization ? Placeholder : undefined} placeholderWidth={13}>

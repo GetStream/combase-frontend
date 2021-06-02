@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { StreamChat } from 'stream-chat';
-import { ChannelManager, ChatProvider } from '@combase.app/chat';
+import { Chat } from 'stream-chat-react';
 import { useClickAway, useLocalStorage, useToggle } from 'react-use';
 import { themes } from '@combase.app/styles';
 
@@ -10,8 +10,8 @@ import { useOrganizationStreamKey } from './hooks';
 
 const lsOpts = {
     raw: false,
-    serializer: value => JSON.stringify(value),
-    deserializer: str => JSON.parse(str),
+    serializer: JSON.stringify,
+    deserializer: JSON.parse,
 };
 
 /**
@@ -57,19 +57,6 @@ const WidgetConfig = ({ children, organization, theme }) => {
 
     useClickAway(shellRef, handleClickAway);
 
-    const { filters, sort } = useMemo(
-        () => ({
-            filters: {
-                type: 'combase',
-                members: { $in: [chatClient?.userID] },
-            },
-            sort: {
-                last_message_at: -1,
-            },
-        }),
-        [chatClient]
-    );
-
     if (context.loading || !chatClient?.user) {
         return null;
     }
@@ -77,11 +64,9 @@ const WidgetConfig = ({ children, organization, theme }) => {
     return (
         <WidgetContext.Provider value={context}>
             <ThemeProvider theme={themes[theme]}>
-                <ChatProvider client={chatClient}>
-                    <ChannelManager filters={filters} sort={sort}>
-						{children}
-                    </ChannelManager>
-                </ChatProvider>
+                <Chat client={chatClient}>
+					{children}
+                </Chat>
             </ThemeProvider>
         </WidgetContext.Provider>
     );
