@@ -145,6 +145,7 @@ const Message = (props) => {
 					) : (
 						<MessageInput
 							clearEditingState={clearEditingState}
+							grow
 							Input={EditMessageInput}
 							message={message}
 						/>
