@@ -115,9 +115,11 @@ export const ChannelPreview = ({
                             {message}
                         </Preview>
                     ) : null}
-					<Box marginTop={2}>
-						<Label color={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
-					</Box>
+					{!compact ? (
+						<Box marginTop={2}>
+							<Label color={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
+						</Box>
+					) : null}
                 </Content>
             </Wrapper>
         </Root>
