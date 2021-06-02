@@ -5,7 +5,7 @@ import { ChannelList, useChatContext } from 'stream-chat-react';
 
 import Header from './Header';
 import NewConversation from './NewConversation';
-// import RecentConversations from './RecentConversations';
+import RecentConversations from './RecentConversations';
 import WelcomeForm from './WelcomeForm';
 
 import { useAuth } from '../../WidgetConfig';
@@ -44,6 +44,7 @@ const Home = () => {
 				) : (
 					<Widgets paddingX={3} paddingBottom={3}>
 						<NewConversation />
+						<RecentConversations />
 					</Widgets>
 				)}
             </ScrollbarsWithContext>

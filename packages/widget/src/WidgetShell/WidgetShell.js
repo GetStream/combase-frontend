@@ -54,7 +54,7 @@ const isOpenSelector = ({ open }) => open;
 
 export const WidgetShell = ({ fabSize, children }) => {
     const shellRef = useContextSelector(WidgetContext, shellRefSelector);
-    const isOpen = true || useContextSelector(WidgetContext, isOpenSelector);
+    const isOpen = useContextSelector(WidgetContext, isOpenSelector);
 
     const isContained = useWidgetIsContained();
 
