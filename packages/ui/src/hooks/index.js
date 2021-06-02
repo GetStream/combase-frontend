@@ -3,5 +3,5 @@ export * from './useEntities';
 export * from './useListCursor';
 export * from './useSharedRef';
 export * from './usePreservedLocation';
-export * from './useChatEvent';
+export * from './useClientEvent';
 export * from './useChannelEvent';
