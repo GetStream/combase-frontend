@@ -1,79 +1,77 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useChannelManager } from '@combase.app/chat';
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import { useChatContext } from 'stream-chat-react';
 import {
 	Box,
-	Button,
 	Card,
 	CardHeader,
-	ChannelPreview,
-	EmptyView,
 	IconButton,
 	Spinner,
 	AddIcon,
-	ChevronRightIcon,
-	ConversationsIcon,
-	InboxIcon,
-	Text,
-	Tooltip
+	SendIcon,
 } from '@combase.app/ui';
 import { InputBase } from '@combase.app/ui/src/Inputs';
 
 import { useCreateTicket } from '../../../WidgetConfig';
-import { WidgetChannelPreview } from '../../../WidgetChannelPreview';
 
-const Header = ({ loading, hasConversations }) => {
-    const [requestState, createTicket] = useCreateTicket();
+const InputWrapper = styled(Box)`
+	display: grid;
+	grid-template-columns: 1fr min-content;
+	grid-auto-rows: 1fr;
+`;
 
-    return (
-        <CardHeader
-            action={
-                loading || requestState?.loading ? (
-                    <Spinner size={4} />
-                ) : undefined
-            }
-            icon={<AddIcon color="blue" size={4} />}
-            minHeight={9}
-            paddingX={[4, 4, 5]}
-            paddingTop={4}
-        >
-            Start a conversation
-        </CardHeader>
-    );
-};
+const SendWrapper = styled(Box)`
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+`
 
-const EmptyChannels = ({ loading }) => {
-    if (loading) {
-        return (
-            <>
-                <ChannelPreview compact />
-                <ChannelPreview compact />
-                <ChannelPreview compact />
-            </>
-        );
-    }
-
-    return (
-        <EmptyView color="altText" icon={<InboxIcon color="altText" opacity={0.56} size={10} />} minHeight={12} title="No Recent Conversations">
-            <Text color="altText" opacity={0.56} fontSize={2} lineHeight={4} marginTop={1}>
-                Got a question? <br /> Start a new conversation! 💬
-            </Text>
-        </EmptyView>
-    );
-};
+const Header = ({ loading }) => (
+	<CardHeader
+		action={
+			loading ? (
+				<Spinner size={4} />
+			) : undefined
+		}
+		icon={<AddIcon color="blue" size={4} />}
+		minHeight={9}
+		paddingX={[4, 4, 5]}
+		paddingTop={4}
+	>
+		Start a conversation
+	</CardHeader>
+);
 
 const NewConversation = () => {
-    const { channels, status } = useChannelManager();
+	const [{ loading }, createTicket] = useCreateTicket();
+	const { setActiveChannel } = useChatContext();
 
-    const hasConversations = channels?.length;
-    const isLoading = status.loading || status.refreshing;
+	const handleSubmit = useCallback(async (e) => {
+		e.preventDefault();
+		
+		const [{ value: message }] = e.target;
+		const variables = {
+			record: {
+				message,
+			}
+		};
+	
+		const channel = await createTicket(variables)
+		setActiveChannel(channel);
+	}, [setActiveChannel]);
 
     return (
         <Card boxShadow={2}>
-            <Header hasConversations={hasConversations} loading={isLoading} />
-            <Box paddingX={[1, 1, 2]}>
-                <InputBase label="Message" />
-            </Box>
+            <Header loading={loading} />
+			<InputWrapper as="form" onSubmit={handleSubmit}>
+				<InputBase name="message" placeholder="Type your message..." minHeight={4} paddingX={5} paddingTop={2} paddingBottom={6} label="Message" />
+				<SendWrapper minWidth={9} paddingBottom={6}>
+					<IconButton
+						type="submit"
+						icon={SendIcon}
+					/>
+				</SendWrapper>
+			</InputWrapper>
         </Card>
     );
 };

@@ -2,7 +2,8 @@ import { useTheme } from 'styled-components';
 import { useAsyncFn, useMedia } from 'react-use';
 import { useHistory } from 'react-router-dom';
 import useSWR from 'swr';
-import { getChannel, useChatClient } from '@combase.app/chat';
+import { getChannel } from '@combase.app/chat';
+import { useChatContext } from 'stream-chat-react';
 import { GraphQLClient } from 'graphql-request';
 import { useContextSelector } from 'use-context-selector';
 
@@ -75,22 +76,21 @@ export const useOrganizationStreamKey = organization => {
 };
 
 const authSelector = ({ auth, setAuth }) => [auth, setAuth];
+export const useAuth = () => useContextSelector(WidgetContext, authSelector);
+
 export const useCreateTicket = () => {
-    const history = useHistory();
     const organization = useContextSelector(WidgetContext, selector);
-    const [auth, setAuth] = useContextSelector(WidgetContext, authSelector);
-    const chatClient = useChatClient();
+    const [auth, setAuth] = useAuth();
+    const { client: chatClient } = useChatContext();
 
     return useAsyncFn(
-        async values => {
+        async variables => {
             try {
-                let variables = values || { record: {} };
-
-                if (!variables?.user && !variables?.record?.user) {
+				if (!variables.user) {
                     variables.record = {
-                        ...variables.record,
-                        user: auth.user,
-                    };
+						...variables.record,
+						user: auth.user,
+					}
                 }
 
                 const headers = {
@@ -121,14 +121,14 @@ export const useCreateTicket = () => {
                         token: data?.ticketCreate?.user?.record?.streamToken,
                     });
 
-                    chatClient.disconnect();
+                    chatClient.disconnectUser();
                     await chatClient.connectUser({ id: data.ticketCreate.user.record._id }, data.ticketCreate.user.record.streamToken);
                 }
 
                 const ticketId = data?.ticketCreate.record._id;
-                await getChannel(chatClient, 'combase', ticketId);
+                const channel = await getChannel(chatClient, 'combase', ticketId);
 
-                history.push(`/c/${data?.ticketCreate.record._id}`);
+                return channel;
             } catch (error) {
                 console.error(error);
             }

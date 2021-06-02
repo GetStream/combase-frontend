@@ -1,35 +1,67 @@
 import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
-import { Channel, useChatClient } from '@combase.app/chat';
-import { ChannelHeaderSimple, MessageInputSimple, MessageList, MessageSimple, ScrollContextProvider } from '@combase.app/ui';
+import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
+import { 
+	Avatar,
+	Box,
+	Button,
+	ChannelHeaderSimple,
+	MessageInputSimple,
+	MessageSimple,
+	ScrollContextProvider,
+	Text
+} from '@combase.app/ui';
 
-const Root = styled.div`
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-rows: min-content 1fr min-content;
-    grid-template-columns: 100%;
+const Root  = styled(Box)`
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr ${({ drawer }) => (drawer ? `minmax(20%, 20rem)` : '')};
+	
+	& > div, .str-chat__container {
+		height: 100%;
+	}
+
+	& .str-chat-channel {
+		height: 100%;
+	}
+
+	& .str-chat__list {
+		position: relative;
+		flex: 1 1;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+`;
+
+const ChannelWrapper = styled(Box)`
+	height: 100%;
+	display: grid;
+	grid-template-rows: min-content 1fr min-content;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 `;
 
 const ConversationScreen = () => {
-    const client = useChatClient();
-    const { channelID } = useParams();
-    const history = useHistory();
+    const { channel, setActiveChannel } = useChatContext();
 
     const renderItem = useCallback(index => <MessageSimple index={index} />, []);
-
-    const channel = useMemo(() => client.channel('combase', channelID), [channelID]);
-
-    if (!channel) return null;
 
     return (
         <ScrollContextProvider type="px">
 			<Root>
-				<Channel channel={channel}>
-					<ChannelHeaderSimple onBackClick={history.goBack} />
-					{channel?.state?.messages ? <MessageList renderItem={renderItem} /> : null}
-					<MessageInputSimple placeholder="Type a message" />
+				<Channel
+					Avatar={Avatar}
+				>
+					<ChannelWrapper>
+						<MessageList shouldGroupByUser />
+						<MessageInput grow />
+					</ChannelWrapper>
 				</Channel>
 			</Root>
 		</ScrollContextProvider>

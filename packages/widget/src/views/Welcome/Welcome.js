@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
-import { Form, Formik } from 'formik';
 
 import {
 	Avatar,
@@ -80,51 +79,47 @@ const Welcome = () => {
                     </Tooltip>
                 </TextGroup>
             </Header>
-            <Formik initialValues={initialValues} onSubmit={onSubmit}>
-                {formik => (
-                    <Root as={Form} onSubmit={formik.handleSubmit} gapTop={2}>
-                        <TextInput
-                            disabled={disabled}
-                            forceFocus
-                            focusedPlaceholder="e.g. Luke"
-                            label="Name"
-                            name="user.name"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            value={formik.values.name}
-                        />
-                        <TextInput
-                            disabled={disabled}
-                            forceFocus
-                            focusedPlaceholder="e.g. luke@combase.app"
-                            label="Email"
-                            name="user.email"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            value={formik.values.email}
-                        />
-                        <TextInput
-                            disabled={disabled}
-                            textarea
-                            rows={6}
-                            maxRows={10}
-                            forceFocus
-                            focusedPlaceholder="Let us know how we can help!"
-                            label="Message"
-                            name="record.message"
-                            onBlur={formik.handleBlur}
-                            onChange={formik.handleChange}
-                            value={formik.values.message}
-                        />
-                        <FlexFill />
-                        <Submit paddingY={4}>
-                            <Button disabled={disabled} loading={loading} type="submit">
-                                <Text>Start Conversation</Text>
-                            </Button>
-                        </Submit>
-                    </Root>
-                )}
-            </Formik>
+            <Root as="form" onSubmit={(e) => e.preventDefault()} gapTop={2}>
+				<TextInput
+					disabled={disabled}
+					forceFocus
+					focusedPlaceholder="e.g. Luke"
+					label="Name"
+					name="user.name"
+					onBlur={formik.handleBlur}
+					onChange={formik.handleChange}
+					value={formik.values.name}
+				/>
+				<TextInput
+					disabled={disabled}
+					forceFocus
+					focusedPlaceholder="e.g. luke@combase.app"
+					label="Email"
+					name="user.email"
+					onBlur={formik.handleBlur}
+					onChange={formik.handleChange}
+					value={formik.values.email}
+				/>
+				<TextInput
+					disabled={disabled}
+					textarea
+					rows={6}
+					maxRows={10}
+					forceFocus
+					focusedPlaceholder="Let us know how we can help!"
+					label="Message"
+					name="record.message"
+					onBlur={formik.handleBlur}
+					onChange={formik.handleChange}
+					value={formik.values.message}
+				/>
+				<FlexFill />
+				<Submit paddingY={4}>
+					<Button disabled={disabled} loading={loading} type="submit">
+						<Text>Start Conversation</Text>
+					</Button>
+				</Submit>
+			</Root>
         </ScrollbarsWithContext>
     );
 };

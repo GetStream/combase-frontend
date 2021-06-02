@@ -11,7 +11,7 @@ import { buttonSizeVariants, buttonVisualVariants } from './variants';
 
 const Root = styled(ButtonBase).attrs(() => ({
     borderRadius: 3,
-    minHeight: 8,
+    minHeight: 9,
     paddingX: 4,
     paddingY: 0,
 }))`
@@ -23,9 +23,10 @@ const Root = styled(ButtonBase).attrs(() => ({
     border: 0;
     margin: 0;
     outline: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
     text-align: center;
     text-decoration: none;
     user-select: none;
@@ -35,6 +36,7 @@ const Root = styled(ButtonBase).attrs(() => ({
 
 	${IconLabel} {
 		pointer-events: none;
+		width: 100%;
 	}
 
     ${buttonSizeVariants};
@@ -43,11 +45,7 @@ const Root = styled(ButtonBase).attrs(() => ({
 
 const Button = forwardRef(({ children, loading, reverseLabel, ...props }, ref) => (
 	<Root {...props} interaction={props.variant === 'raised' ? variant : 'highlight'} ref={ref}>
-		{!loading ? (
-			<IconLabel gap={1} color={props.disabled ? 'disabled' : undefined} reverse={reverseLabel} size={3}>
-				{children}
-			</IconLabel>
-		) : (
+		{!loading ? children : (
 			<Spinner color="white" size={4} />
 		)}
 	</Root>
@@ -66,6 +64,7 @@ Button.defaultProps = {
     disabled: false,
     type: 'button',
     variant: 'raised',
+	size: 'sm',
     fullWidth: false,
 };
 

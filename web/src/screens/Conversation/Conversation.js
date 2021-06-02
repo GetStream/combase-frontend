@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { Avatar, Box, ChannelHeader, Container, IconButton, InfoIcon, Spinner, TicketLabelToggle, Tooltip } from '@combase.app/ui';
-import { Channel, MessageInput, MessageList, Window, useChatContext } from 'stream-chat-react';
+import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
 
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 

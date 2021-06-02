@@ -5,7 +5,10 @@ import { ChannelList, useChatContext } from 'stream-chat-react';
 
 import Header from './Header';
 import NewConversation from './NewConversation';
-import RecentConversations from './RecentConversations';
+// import RecentConversations from './RecentConversations';
+import WelcomeForm from './WelcomeForm';
+
+import { useAuth } from '../../WidgetConfig';
 
 const Root = styled(Box)``;
 
@@ -16,7 +19,8 @@ const Widgets = styled(Box)`
 `;
 
 const Home = () => {
-	const { client } = useChatContext();
+	const { channel, client } = useChatContext();
+	const [auth] = useAuth();
 
 	const { filters, sort } = useMemo(
         () => ({
@@ -35,11 +39,13 @@ const Home = () => {
         <Root>
             <ScrollbarsWithContext>
                 <Header />
-				<ChannelList filters={filters} sort={sort} />
-                {/* <Widgets paddingX={3} paddingBottom={3}>
-                    <NewConversation />
-                    <RecentConversations />
-                </Widgets> */}
+				{!auth ? (
+					<WelcomeForm />
+				) : (
+					<Widgets paddingX={3} paddingBottom={3}>
+						<NewConversation />
+					</Widgets>
+				)}
             </ScrollbarsWithContext>
         </Root>
     );

@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useChatContext } from 'stream-chat-react';
 
 // import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ import { WidgetConfig } from './WidgetConfig';
 import { WidgetLauncher } from './WidgetLauncher';
 import { WidgetShell } from './WidgetShell';
 
+import Conversation from './views/Conversation';
 import Home from './views/Home';
 
 // import routes from './routes';
@@ -35,10 +36,19 @@ import Home from './views/Home';
 
 // const widgetRoutes = routes.map(renderRoute);
 
+const Router = () => {
+	const { channel } = useChatContext();
+	return !channel ? (
+		<Home />
+	) : (
+		<Conversation />
+	);
+};
+
 const CombaseWidget = ({ fabSize, organization, theme }) => (
     <WidgetConfig organization={organization} theme={theme}>
         <WidgetShell fabSize={fabSize} open={open}>
-        	<Home />
+        	<Router />
         </WidgetShell>
         <WidgetLauncher size={fabSize} />
 		<GlobalStyle />
