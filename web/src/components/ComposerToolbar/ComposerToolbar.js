@@ -6,12 +6,15 @@ import { itemGap } from '@combase.app/styles';
 import { 
 	AttachmentIcon,
 	Box, 
+	Button,
+	CloseIcon,
 	IconButton,
 	KnowledgeBaseIcon,
 	QuickResponseIcon,
 	TransferIcon,
 	ReturnIcon,
 	SendIcon,
+	Text,
 	Tooltip,
 } from '@combase.app/ui';
 
@@ -142,8 +145,9 @@ const ReturnPrompt = styled(props => <ReturnIcon {...props} $color="altText" />)
     transition: 240ms all ${({ theme }) => theme.ease};
 `;
 
-const ComposerToolbar = ({ disabled }) => {
+const ComposerToolbar = ({ editMode, disabled }) => {
 	const {
+		clearEditingState,
 		closeEmojiPicker,
 		cooldownRemaining,
 		emojiPickerIsOpen,
@@ -164,31 +168,50 @@ const ComposerToolbar = ({ disabled }) => {
 		<Wrapper>
 			<UploadsPreview />
 			<Root marginTop={4} paddingBottom={4}>
-				<ActionGroup gapLeft={3}>
-						<FileUploadButton
-							accepts={acceptedFiles}
-							disabled={maxFilesLeft === 0}
-							handleFiles={uploadNewFiles}
-							multiple={multipleUploads}
-						>
-							<Tooltip text="Add Attachment" placement="top">
-								<IconButton color="altText" fillAlpha={0.56} icon={AttachmentIcon} onClick={openFileDialog} size={4} />
+				{
+					!editMode ? (
+						<ActionGroup gapLeft={3}>
+							<FileUploadButton
+								accepts={acceptedFiles}
+								disabled={maxFilesLeft === 0}
+								handleFiles={uploadNewFiles}
+								multiple={multipleUploads}
+							>
+								<Tooltip text="Add Attachment" placement="top">
+									<IconButton color="altText" fillAlpha={0.56} icon={AttachmentIcon} onClick={openFileDialog} size={4} />
+								</Tooltip>
+							</FileUploadButton>
+							<Tooltip text="Transfer Ticket" placement="top">
+								<IconButton color="altText" fillAlpha={0.56} icon={TransferIcon} size={4} />
 							</Tooltip>
-						</FileUploadButton>
-					<Tooltip text="Transfer Ticket" placement="top">
-						<IconButton color="altText" fillAlpha={0.56} icon={TransferIcon} size={4} />
-					</Tooltip>
-					<Tooltip text="Quick Responses" placement="top">
-						<IconButton color="altText" fillAlpha={0.56} icon={QuickResponseIcon} size={4} />
-					</Tooltip>
-					<Tooltip text="Search FAQ" placement="top">
-						<IconButton color="altText" fillAlpha={0.56} icon={KnowledgeBaseIcon} size={4} />
-					</Tooltip>
-				</ActionGroup>
-				<ActionGroup gapLeft={3}>
-					<ReturnPrompt color="altText" $show={text} size={3} />
-					<IconButton color="primary" fillAlpha={!text ? 0.2 : 1} disabled={!text} icon={SendIcon} onClick={(_, e) => handleSubmit(e)} size={4} />
-				</ActionGroup>
+							<Tooltip text="Quick Responses" placement="top">
+								<IconButton color="altText" fillAlpha={0.56} icon={QuickResponseIcon} size={4} />
+							</Tooltip>
+							<Tooltip text="Search FAQ" placement="top">
+								<IconButton color="altText" fillAlpha={0.56} icon={KnowledgeBaseIcon} size={4} />
+							</Tooltip>
+						</ActionGroup>
+					) : (
+						<ActionGroup gapLeft={3}>
+							<FileUploadButton
+								accepts={acceptedFiles}
+								disabled={maxFilesLeft === 0}
+								handleFiles={uploadNewFiles}
+								multiple={multipleUploads}
+							>
+								<Tooltip text="Add Attachment" placement="top">
+									<IconButton color="altText" fillAlpha={0.56} icon={AttachmentIcon} onClick={openFileDialog} size={4} />
+								</Tooltip>
+							</FileUploadButton>
+						</ActionGroup>
+					)
+				}
+				<Box display="flex" alignItems="center">
+					<ActionGroup gapLeft={3}>
+						<ReturnPrompt color="altText" $show={text} size={3} />
+						<IconButton color="primary" fillAlpha={!text ? 0.2 : 1} disabled={!text} icon={SendIcon} onClick={(_, e) => handleSubmit(e)} size={4} />
+					</ActionGroup>
+				</Box>
 			</Root>
 		</Wrapper>
 	);
