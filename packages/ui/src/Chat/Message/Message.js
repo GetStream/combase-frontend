@@ -11,7 +11,6 @@ import IconLabel from '../../IconLabel';
 import { CommandIcon } from '../../icons';
 import Text from '../../Text';
 
-import { SystemMessage } from '../SystemMessage';
 import { isEmojiMessageRegex } from '../utils/isEmojiMessageRegex';
 
 import { MessageAttachments } from '../MessageAttachments';
@@ -56,10 +55,6 @@ export const Message = React.memo(({ index }) => {
     const { isMyMessage } = useUserRole(message);
     const noAvatar = message?.type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
     const largeEmoji = useMemo(() => isEmojiMessageRegex.test(message?.text), [message]);
-
-    if (message && (message.type === 'system' || message.display === 'system')) {
-        return <SystemMessage text={message?.text} type={message.type} />;
-    }
 
     return (
 		<Root
