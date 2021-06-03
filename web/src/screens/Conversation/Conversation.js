@@ -1,12 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
-import { Avatar, Box, ChannelHeader, Container, IconButton, InfoIcon, Spinner, TicketLabelToggle, Tooltip } from '@combase.app/ui';
+import { 
+	Avatar, 
+	Box, 
+	ChannelHeader, 
+	Container,
+	DateSeparator, 
+	IconButton, 
+	InfoIcon, 
+	Spinner, 
+	TicketLabelToggle, 
+	Tooltip 
+} from '@combase.app/ui';
 import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
 
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 
-import DateSeparator from 'components/DateSeparator';
 import SystemMessage from 'components/SystemMessage';
 import Message from 'components/Message';
 import MessageComposer from 'components/MessageComposer';
@@ -25,7 +35,7 @@ const Root  = styled(Box)`
 	}
 
 	& .str-chat-channel {
-		max-height: 100vh
+		max-height: 100vh;
 	}
 
 	& .str-chat__list {
