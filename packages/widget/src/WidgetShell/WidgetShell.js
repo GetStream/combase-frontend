@@ -38,7 +38,7 @@ const Root = styled(Card).attrs({
     overflow: hidden;
     z-index: 999;
     display: grid;
-    grid-template-rows: 1fr ${({ theme }) => theme.space[7]};
+    grid-template-rows: minmax(0, 1fr) ${({ theme }) => theme.space[7]};
 
     @media (min-width: ${({ theme }) => theme.breakpoints[1]}) {
         top: unset;

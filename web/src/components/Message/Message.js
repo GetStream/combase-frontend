@@ -115,8 +115,8 @@ const Message = (props) => {
 			color="text"
 			maxWidth={21}
 			variant="contain"
-			paddingTop={noAvatar ? 1 : 2} 
-			paddingBottom={1}
+			paddingTop={noAvatar ? 1 : 3} 
+			paddingBottom={noAvatar ? 1 : 2}
 			interaction={type !== 'ephemeral' ? 'hover' : undefined}
 		>
 			<AvatarCol>

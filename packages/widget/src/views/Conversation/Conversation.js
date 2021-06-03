@@ -1,24 +1,22 @@
-import React, { useCallback, useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
 import { 
 	Avatar,
 	Box,
-	Button,
 	ChannelHeaderSimple,
 	DateSeparator,
 	MessageInputSimple,
 	MessageSimple,
 	ScrollContextProvider,
 	SystemMessage,
-	Text
 } from '@combase.app/ui';
 
 const Root  = styled(Box)`
 	height: 100%;
 	width: 100%;
 	display: grid;
-	grid-template-rows: 1fr;
+	grid-template-rows: minmax(0, 1fr);
 	grid-template-columns: 1fr ${({ drawer }) => (drawer ? `minmax(20%, 20rem)` : '')};
 	
 	& > div, .str-chat__container {
@@ -50,9 +48,7 @@ const ChannelWrapper = styled(Box)`
 `;
 
 const ConversationScreen = () => {
-    const { channel, setActiveChannel } = useChatContext();
-
-    const renderItem = useCallback(index => <MessageSimple index={index} />, []);
+    const { setActiveChannel } = useChatContext();
 
     return (
         <ScrollContextProvider type="px">
@@ -66,7 +62,7 @@ const ConversationScreen = () => {
 				>
 					<ChannelWrapper>
 						<ChannelHeaderSimple onBackClick={() => setActiveChannel(null)} />
-						<MessageList shouldGroupByUser />
+						<MessageList onScroll={console.log} shouldGroupByUser />
 						<MessageInput grow />
 					</ChannelWrapper>
 				</Channel>
