@@ -133,8 +133,10 @@ const ScheduleInput = ({ canSave, onChange, onSubmit, name, value }) => {
                 {index + 1 === value?.length ? (
                     <Footer>
                         <Button variant="flat" onClick={() => push(newScheduleData)}>
-							<AddIcon />
-                            <Text>Add Schedule Entry</Text>
+							<IconLabel color="white">
+								<AddIcon />
+								<Text>Add Schedule Entry</Text>
+							</IconLabel>
                         </Button>
                     </Footer>
                 ) : null}

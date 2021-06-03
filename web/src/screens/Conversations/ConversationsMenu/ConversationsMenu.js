@@ -1,17 +1,23 @@
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { 
-	ChannelList, 
-	useChatContext
+	ChannelList
 } from 'stream-chat-react';
 import { useParams } from 'react-router-dom';
-import { Box, ConversationsIcon, PageHeader, Menu, ScrollbarsWithContext, StateDisplay } from '@combase.app/ui';
+import { 
+	Box, 
+	ChannelPreview,
+	ConversationsIcon, 
+	PageHeader, 
+	Menu, 
+	ScrollbarsWithContext, 
+	StateDisplay 
+} from '@combase.app/ui';
 
 import { useReactiveMedia } from 'hooks';
 
 import ChannelListHeader from './ChannelListHeader';
 import CombaseChannelList from './CombaseChannelList';
-import CombaseChannelPreview from './CombaseChannelPreview';
 import InboxSelector from './InboxSelector';
 
 const Root = styled.div`
@@ -91,7 +97,7 @@ const ConversationMenu = () => {
 					filters={filters}
 					EmptyStateIndicator={EmptyState}
 					List={CombaseChannelList}
-					Preview={CombaseChannelPreview}
+					Preview={ChannelPreview}
 				/>
 			</ScrollbarsWithContext>
         </Root>

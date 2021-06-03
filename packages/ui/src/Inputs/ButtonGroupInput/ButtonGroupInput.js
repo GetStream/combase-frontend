@@ -50,7 +50,7 @@ export const ButtonGroupInput = ({ name, options, onBlur, onChange, onFocus, val
 	const renderItem = useCallback(({ icon, label, value }) => (
 		<Options size="xs" key={value} color={inputProps.value?.includes(value) ? 'primary' : 'text'} variant={inputProps.value?.includes(value) ? 'raised' : 'flat'} onClick={() => onClick(value)} type="button">
 			{icon ? <Icon icon={icon} /> : null}
-			<Text>{label}</Text>
+			<Text color="white">{label}</Text>
 		</Options>
 	), [inputProps.value, onClick])
 
