@@ -1,6 +1,7 @@
 export * from './ChannelHeader';
 export * from './ChannelHeaderSimple';
 export { default as ChannelPreview } from './ChannelPreview';
+export { default as DateSeparator } from './DateSeparator';
 export * from './Message';
 export * from './MessageSimple';
 export * from './MessageInput';
