@@ -95,7 +95,7 @@ const MessageText = styled(Text).attrs(({ largeEmoji }) => ({
 const Message = (props) => {
 	const { 
 		editing,
-		groupStyles: [grouping], 
+		groupStyles: [grouping = 'single'] = [], 
 		isMyMessage, 
 		message,
 		clearEditingState,
