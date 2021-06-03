@@ -38,6 +38,8 @@ const EmptyChannels = () => {
     );
 };
 
+const Paginator = ({ children }) => children;
+
 const Home = () => {
 	const { client } = useChatContext();
 	const [auth] = useAuth();
@@ -86,7 +88,7 @@ const Home = () => {
 							EmptyStateIndicator={EmptyChannels}
 							List={RecentConversations} 
 							LoadingIndicator={LoadingChannels}
-							Paginator={({ children }) => children}
+							Paginator={Paginator}
 							Preview={WidgetChannelPreview}
 						/>
 					</Widgets>
