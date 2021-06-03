@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import format from 'date-fns/format';
-import { useMessage, useUserRole } from '@combase.app/chat';
+import { useMessageContext } from 'stream-chat-react';
 
 import Box from '../../Box';
 import Container from '../../Container';
@@ -65,17 +65,21 @@ const Root = styled(Container)`
 `;
 
 export const MessageSimple = React.memo(({ index }) => {
-    const [message, grouping] = useMessage(index);
-    const { isMyMessage } = useUserRole(message);
+    const { 
+		editing,
+		groupStyles: [grouping = 'single'] = [], 
+		isMyMessage, 
+		message,
+		clearEditingState,
+	} = useMessageContext();
 
-    if (message && (message.type === 'system' || message.display === 'system')) {
-        return <SystemMessage text={message?.text} type={message.type} />;
-    }
+	const isOwned = isMyMessage();
+	const type = message?.type;
 
     return (
         <Root
             $grouping={grouping}
-            $ours={isMyMessage}
+            $ours={isOwned}
             data-date={message?.created_at ? format(message.created_at, 'eeee') : undefined}
             data-grouping={grouping}
         >
@@ -85,7 +89,7 @@ export const MessageSimple = React.memo(({ index }) => {
                 </Box>
             ) : null}
             {!message?.command && message?.text ? (
-                <MessageBubble $grouping={grouping} $ours={isMyMessage} className={grouping}>
+                <MessageBubble $grouping={grouping} $ours={isOwned} className={grouping}>
                     <Text fontSize={[2, 2, 3]} lineHeight={[4, 4, 5]}>
                         {message?.text}
                     </Text>
@@ -97,7 +101,7 @@ export const MessageSimple = React.memo(({ index }) => {
                     attachments={message?.attachments}
                     command={message?.command}
                     date={message?.created_at}
-                    ours={isMyMessage}
+                    ours={isOwned}
                     type={message?.type}
                 />
             ) : null}
