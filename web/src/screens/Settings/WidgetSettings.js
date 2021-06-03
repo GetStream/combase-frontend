@@ -140,6 +140,15 @@ const WidgetSettings = () => {
 								/>
 							</ListDetailSection>
 							<ListDetailSection
+								title="Allowed Paths"
+								description="Only show the widget on specific paths of your site."
+							>
+								<FieldArray 
+									name="domains"
+									render={renderFieldArray}
+								/>
+							</ListDetailSection>
+							<ListDetailSection
 								title="Trusted Domains"
 								description="Provide a list of whitelisted domains for the chat widget, so it can only be displayed on your owned pages."
 							>
