@@ -2,11 +2,11 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 
-import { InfoIcon } from '../icons';
-import IconLabel from '../IconLabel';
-import Label from '../Label';
-import Box from '../Box';
-import Text from '../Text';
+import Box from '../../Box';
+import {InfoIcon} from '../../icons';
+import IconLabel from '../../IconLabel';
+import Label from '../../Label';
+import Text from '../../Text';
 
 const Root = styled(Box)`
     display: flex;
@@ -32,14 +32,15 @@ const Root = styled(Box)`
     }
 `;
 
-export const SystemMessage = React.memo(({ text, type }) => {
+const SystemMessage = React.memo(({ message }) => {
     const theme = useTheme();
+
     return (
         <Root gapTop={1} paddingY={3}>
-            <Label color={theme.dark ? 'textA.8' : 'primary'}>
-                <Text fontSize={2}>{text}</Text>
+            <Label color={theme.dark ? 'text' : 'primary'} textColor={theme.dark ? 'text' : 'primary'} colorAlpha={0.08}>
+                <Text fontSize={2}>{message.text}</Text>
             </Label>
-            {type === 'ephemeral' ? (
+            {message.type === 'ephemeral' ? (
                 <IconLabel>
                     <InfoIcon color="warning" size={1} />
                     <Text color="altText" variant="label">
@@ -53,3 +54,5 @@ export const SystemMessage = React.memo(({ text, type }) => {
         </Root>
     );
 });
+
+export default SystemMessage;

@@ -10,6 +10,7 @@ import {
 	IconButton, 
 	InfoIcon, 
 	Spinner, 
+	SystemMessage,
 	TicketLabelToggle, 
 	Tooltip 
 } from '@combase.app/ui';
@@ -17,7 +18,6 @@ import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-
 
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 
-import SystemMessage from 'components/SystemMessage';
 import Message from 'components/Message';
 import MessageComposer from 'components/MessageComposer';
 

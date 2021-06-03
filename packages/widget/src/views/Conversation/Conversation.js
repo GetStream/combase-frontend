@@ -10,6 +10,7 @@ import {
 	MessageInputSimple,
 	MessageSimple,
 	ScrollContextProvider,
+	SystemMessage,
 	Text
 } from '@combase.app/ui';
 
@@ -60,6 +61,7 @@ const ConversationScreen = () => {
 					Avatar={Avatar}
 					DateSeparator={DateSeparator}
 					Message={MessageSimple}
+					MessageSystem={SystemMessage}
 					Input={MessageInputSimple}
 				>
 					<ChannelWrapper>
