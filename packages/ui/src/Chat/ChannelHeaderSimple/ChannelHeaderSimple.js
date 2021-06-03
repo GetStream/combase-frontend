@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { animated } from 'react-spring';
-import { useChannelManager, useChannelMembers, useChannelPartner } from '@combase.app/chat';
+import { useChatContext, useChannelStateContext } from 'stream-chat-react';
 import { layout } from '@combase.app/styles';
 
 import Avatar from '../../Avatar';
@@ -43,11 +43,6 @@ const Name = styled(Text)`
 `;
 
 export const ChannelHeaderSimple = ({ onBackClick }) => {
-    const channelManager = useChannelManager();
-    const members = useChannelMembers();
-    const partner = useChannelPartner(members);
-    const user = channelManager?.members?.[partner?.user?.id];
-
     const theme = useTheme();
     const scrollbars = useScrollbars();
 
@@ -65,15 +60,19 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
         [animated, scrollbars, theme]
     );
 
+	const { client } = useChatContext();
+	const { members } = useChannelStateContext();
+	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
+
     return (
         <Root maxWidth={19} minHeight={9}>
             <Wrapper maxWidth={19} style={style}>
                 <IconButton icon={ArrowBackIcon} onClick={onBackClick} size={5} />
                 <TextGroup variant="centered">
-                    <Name as={!user?.name ? Placeholder : 'p'}>{user?.name}</Name>
-                    <PartnerStatus user={user} />
+                    <Name as={!partner?.user?.name ? Placeholder : 'p'}>{partner?.user?.name}</Name>
+                    <PartnerStatus user={partner?.user} />
                 </TextGroup>
-                <Avatar name={user?.name} size={6} src={user?.image} />
+                <Avatar name={partner?.user?.name} size={7} src={partner?.user?.image} />
             </Wrapper>
         </Root>
     );
