@@ -1,1 +1,1 @@
-export * from './ChannelPreview';
+export { default } from './ChannelPreview';

@@ -43,9 +43,7 @@ const Preview = styled(Text)`
     font-variation-settings: 'wght' 400;
 `;
 
-const compact = false;
-
-const CombaseChannelPreview = ({ active, channel, children, displayImage, displayTitle, lastMessage, latestMessage, setActiveChannel, watchers, unread, ...rest }) => {
+const CombaseChannelPreview = ({ active, channel, compact, displayImage, displayTitle, lastMessage, latestMessage, setActiveChannel, watchers, unread }) => {
 	const buttonRef = useRef();
 
 	const { status } = channel.data;

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
@@ -10,10 +10,9 @@ import IconLabel from '../../IconLabel';
 import Label from '../../Label';
 import ListItem from '../../ListItem';
 import Placeholder from '../../Placeholder';
-import Text from '../../Text';
 import TextGroup from '../../TextGroup';
+import Text from '../../Text';
 
-import ChannelPreviewToggles from './ChannelPreviewToggles';
 
 const Root = styled(ListItem)``;
 
@@ -23,6 +22,7 @@ const Wrapper = styled(Box)`
     align-items: ${({ $compact }) => ($compact ? 'center' : 'flex-start')};
     user-select: none;
     cursor: pointer;
+	text-align: left;
 `;
 
 const Content = styled.div`
@@ -47,72 +47,59 @@ const Header = styled(Box)`
     }
 `;
 
-const Toggles = styled(ChannelPreviewToggles)`
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    ${Root}:hover & > span:not(.active) {
-        display: block !important;
-    }
-`;
-
 const Preview = styled(Text)`
     opacity: ${({ $unread }) => ($unread ? 1 : 0.5)};
     font-variation-settings: 'wght' 400;
 `;
 
-export const ChannelPreview = ({
-    active,
-    className,
-    compact,
-    isSelected,
-    message,
-    onClick,
-    onSelect,
-    partnerAvatar,
-    partnerName,
-    selectable,
-    selected,
-	status,
-    toggles,
-    unread,
-    updatedAt,
-    value,
-    ...rest
-}) => {
-    const fromNow = useMemo(
-        () => (updatedAt ? `${formatDistanceToNow(typeof updatedAt === 'string' ? parseISO(updatedAt) : updatedAt)} ago` : null),
-        [updatedAt]
+const CombaseChannelPreview = ({ active, channel, compact, displayImage, displayTitle, lastMessage, latestMessage, setActiveChannel, watchers, unread }) => {
+	const buttonRef = useRef();
+
+	const { status } = channel?.data || {};
+	const { updated_at } = lastMessage || {};
+
+	const fromNow = useMemo(
+        () => (updated_at ? `${formatDistanceToNow(typeof updated_at === 'string' ? parseISO(updated_at) : updated_at)} ago` : null),
+        [updated_at]
     );
-    return (
-        <Root active={active} isSelected={isSelected} selectable={selectable} value={value} onSelect={onSelect} {...rest}>
-            <Wrapper $compact={compact} borderRadius={2} className={className} onClick={onClick}>
-                <Avatar name={partnerName} size={8} src={partnerAvatar} />
-                <Content>
-                    <Header>
+
+	const onSelectChannel = () => {
+		if (setActiveChannel) {
+		  setActiveChannel(channel, watchers);
+		}
+		if (buttonRef.current) {
+			buttonRef.current.blur();
+		}
+	};
+
+	return (
+		<Root active={active} buttonRef={buttonRef} onClick={onSelectChannel}>
+			<Wrapper>
+				<Avatar name={displayTitle} size={8} src={displayImage} />
+				<Content>
+					<Header>
                         <TextGroup paddingY="small" gapTop={1} minHeight={7}>
-                            <Text as={partnerName ? 'p' : Placeholder} fontSize={4} lineHeight={4} placeholderWidth={10}>
-                                {partnerName}
+                            <Text as={displayTitle ? 'p' : Placeholder} fontSize={4} lineHeight={4} placeholderWidth={10}>
+                                {displayTitle}
                             </Text>
                             <IconLabel>
-                                {unread ? <Badge color={(compact && !message) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
+                                {unread ? <Badge color={(compact && !latestMessage) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
                                 <Text
-                                    as={(compact && !message) || (!compact && !fromNow) ? Placeholder : null}
+                                    as={(compact && !latestMessage) || (!compact && !fromNow) ? Placeholder : null}
                                     fontSize={compact ? 3 : 2}
                                     lineHeight={compact ? 3 : 4}
                                     opacity={0.64}
                                     variant={compact ? 'clamped' : 0}
                                 >
-                                    {compact ? message : fromNow}
+                                    {compact ? latestMessage : fromNow}
                                 </Text>
                             </IconLabel>
                         </TextGroup>
-						{toggles?.length ? <Toggles>{toggles}</Toggles> : null}
-                    </Header>
-                    {!compact ? (
-                        <Preview marginTop={1} placeholderWidth={11} as={!message ? Placeholder : undefined} variant="clamped" lineClamp={1}>
-                            {message}
+						{/* {toggles?.length ? <Toggles>{toggles}</Toggles> : null} */}
+					</Header>
+					{!compact ? (
+                        <Preview marginTop={1} placeholderWidth={11} as={!latestMessage ? Placeholder : undefined} variant="clamped" lineClamp={1}>
+                            {latestMessage}
                         </Preview>
                     ) : null}
 					{!compact ? (
@@ -120,8 +107,10 @@ export const ChannelPreview = ({
 							<Label color={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
 						</Box>
 					) : null}
-                </Content>
-            </Wrapper>
-        </Root>
-    );
+				</Content>
+			</Wrapper>
+		</Root>
+	);
 };
+
+export default CombaseChannelPreview;
