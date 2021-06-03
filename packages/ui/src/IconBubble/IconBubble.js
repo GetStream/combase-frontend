@@ -1,27 +1,11 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { color, layout, system, variant } from '@combase.app/styles';
+import { color, childColorVariants, parentColorVariants, layout, system, variant } from '@combase.app/styles';
 
 import Box from '../Box';
 import Placeholder from '../Placeholder';
 import Text from '../Text';
-
-const rootVariant = ({ color, invert }) => variant({
-	variants: {
-		ghost: {
-			backgroundColor: ({ colors, utils }) => utils.colors.fade(color.startsWith('#') ? color : colors[color], 0.08),
-		},
-		filled: {
-			backgroundColor: invert ? 'surface' : color
-		},
-		border: {
-			borderWidth: 'thin',
-			borderStyle: 'solid',
-			borderColor: color,
-		},
-	}
-})
 
 const Root = styled(Box)`
 	${color};
@@ -31,7 +15,7 @@ const Root = styled(Box)`
     background-size: cover;
     justify-content: center;
     align-items: center;
-	${rootVariant};
+	${parentColorVariants};
 `;
 
 const Icon = styled.svg`
@@ -44,21 +28,7 @@ const Icon = styled.svg`
 			}
 		})
 	};
-	${({ color, invert }) => variant({
-		variants: {
-			ghost: {
-				color,
-			},
-			border: {
-				color,
-			},
-			filled: {
-				'& path': {
-					fill: invert ? color : 'surface'
-				}
-			},
-		}
-	})}
+	${childColorVariants};
 `;
 
 const Initials = styled(Text)`

@@ -7,9 +7,17 @@ import Tooltip from '../Tooltip';
 import Label from '.';
 
 export const Default = () => (
-    <Label color="red">
-        <Text variant="label">{'Important'}</Text>
-    </Label>
+    <>
+		<Label color="red">
+			<Text variant="label">{'Important'}</Text>
+		</Label>
+		<Label color="red" variant="border">
+			<Text variant="label">{'Important'}</Text>
+		</Label>
+		<Label color="red" variant="ghost">
+			<Text variant="label">{'Important'}</Text>
+		</Label>
+	</>
 );
 export const IconLabel = () => (
     <Tooltip text="Something went wrong!">

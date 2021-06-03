@@ -1,7 +1,6 @@
 import React, { useMemo, useRef } from 'react';
-import styled from 'styled-components';
-import parseISO from 'date-fns/parseISO';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import styled, { useTheme } from 'styled-components';
+import { formatDateFromNow } from '../../utils';
 
 import Avatar from '../../Avatar';
 import Badge from '../../Badge';
@@ -70,7 +69,7 @@ const CombaseChannelPreview = ({
 	const { updated_at } = lastMessage || {};
 
 	const fromNow = useMemo(
-        () => (updated_at ? `${formatDistanceToNow(typeof updated_at === 'string' ? parseISO(updated_at) : updated_at)} ago` : null),
+        () => formatDateFromNow(updated_at),
         [updated_at]
     );
 
@@ -115,7 +114,7 @@ const CombaseChannelPreview = ({
                     ) : null}
 					{!compact ? (
 						<Box marginTop={2}>
-							<Label color={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
+							<Label variant="ghost" color={`ticketStatus.${status}`} colorAlpha={0.08} textColor={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
 						</Box>
 					) : null}
 				</Content>

@@ -1,17 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { color, fill, system, itemGap } from '@combase.app/styles';
+import { color, itemGap } from '@combase.app/styles';
 
 import Box from '../Box';
-import Text from '../Text';
-
-const iconFill = system({
-	iconColor: {
-		property: 'fill',
-		scale: 'colors'
-	}
-})
 
 const IconLabel = styled(Box).attrs(props => ({
     gapRight: props.reverse ? props.gap : 0,
@@ -20,20 +12,10 @@ const IconLabel = styled(Box).attrs(props => ({
     display: flex;
     flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
     align-items: center;
+	${color};
 
     & > * + * {
         ${itemGap};
-    }
-
-    & ${Text} {
-        ${color.color};
-    }
-
-    svg {
-        path {
-			${fill};
-            ${iconFill};
-        }
     }
 `;
 
@@ -48,6 +30,7 @@ IconLabel.propTypes = {
 };
 
 IconLabel.defaultProps = {
+	color: 'green',
     gap: 1,
 };
 

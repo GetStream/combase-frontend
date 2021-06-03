@@ -1,10 +1,10 @@
-import { system, variant } from 'styled-system';
+import { get, system, variant } from 'styled-system';
 
 export const wrapperBorderRadius = system({
     borderRadius: {
         property: 'borderRadius',
         scale: 'radii',
-        transform: (v, scale) => `calc(${scale[v]} + 0.2rem)`,
+        transform: (v, scale) => `calc(${get(scale, v)} + 0.2rem)`,
     },
 });
 
@@ -19,25 +19,58 @@ export const colorAlpha = system({
     backgroundColor: {
         property: 'backgroundColor',
         scale: 'colors',
-		transform: (v, scale, { backgroundColorAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], backgroundColorAlpha),
+		transform: (v, scale, { backgroundColorAlpha = 1, theme }) => theme.utils.colors.fade(get(scale, v), backgroundColorAlpha),
     },
     color: {
         property: 'color',
         scale: 'colors',
-		transform: (v, scale, { colorAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], colorAlpha),
+		transform: (v, scale, { colorAlpha = 1, theme }) => theme.utils.colors.fade(get(scale, v), colorAlpha),
     },
+});
+
+export const parentColorVariants = ({ color, invert }) => variant({
+	variants: {
+		ghost: {
+			backgroundColor: ({ colors, utils }) => utils.colors.fade(color.startsWith('#') ? color : get(colors, color), 0.08),
+		},
+		filled: {
+			backgroundColor: invert ? 'surface' : color
+		},
+		border: {
+			borderWidth: 'thin',
+			borderStyle: 'solid',
+			borderColor: color,
+		},
+	}
+});
+
+export const childColorVariants = ({ color, invert }) => variant({
+	variants: {
+		ghost: {
+			color: ({ colors }) => get(colors, color),
+		},
+		border: {
+			color: ({ colors }) => get(colors, color),
+		},
+		filled: {
+			color: invert ? ({ colors }) => get(colors, color) : 'surface',
+			'& path': {
+				fill: invert ? ({ colors }) => get(colors, color) : 'surface'
+			}
+		},
+	}
 });
 
 export const fill = system({
     color: {
         property: 'fill',
         scale: 'colors',
-		transform: (v, scale, { fillAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], fillAlpha),
+		transform: (v, scale, { fillAlpha = 1, theme }) => theme.utils.colors.fade(get(scale, v), fillAlpha),
     },
     fill: {
         property: 'fill',
         scale: 'colors',
-		transform: (v, scale, { fillAlpha = 1, theme }) => theme.utils.colors.fade(scale[v], fillAlpha),
+		transform: (v, scale, { fillAlpha = 1, theme }) => theme.utils.colors.fade(get(scale, v), fillAlpha),
     },
 });
 

@@ -37,7 +37,7 @@ const SystemMessage = React.memo(({ message }) => {
 
     return (
         <Root gapTop={1} paddingY={3}>
-            <Label color={theme.dark ? 'text' : 'primary'} textColor={theme.dark ? 'text' : 'primary'} colorAlpha={0.08}>
+            <Label variant="ghost" color={theme.dark ? 'text' : 'primary'} textColor={theme.dark ? 'text' : 'primary'} colorAlpha={0.08}>
                 <Text fontSize={2}>{message.text}</Text>
             </Label>
             {message.type === 'ephemeral' ? (

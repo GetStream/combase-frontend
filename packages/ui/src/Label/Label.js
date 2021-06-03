@@ -1,21 +1,19 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { color as colorSystem, colorAlpha, layout } from '@combase.app/styles';
-
+import { childColorVariants, parentColorVariants, layout } from '@combase.app/styles';
 import Box from '../Box';
 import IconLabel from '../IconLabel';
 
-const Root = styled(Box).attrs(props => ({
+const Root = styled(Box).attrs({
     borderRadius: 1,
     fontWeight: 600,
     gapLeft: 1,
     minWidth: 2,
     paddingX: 2,
     paddingY: 1,
-}))`
-    ${colorSystem.backgroundColor};
-	${colorAlpha};
+})`
+	${parentColorVariants};
     ${layout.minWidth};
     ${layout.minHeight};
 
@@ -25,11 +23,17 @@ const Root = styled(Box).attrs(props => ({
     user-select: none;
 `;
 
-const Label = forwardRef(({ colorAlpha, children, color, reverseLabel, size, textColor, ...props }, ref) => (
-    <Root {...props} backgroundColor={color} backgroundColorAlpha={colorAlpha} ref={ref}>
-        <IconLabel color={textColor} gap={1} reverse={reverseLabel}>
+const StyledIconLabel = styled(IconLabel)`
+	& p, & svg {
+		${childColorVariants};
+	}
+`;
+
+const Label = forwardRef(({ children, color, reverseLabel, size, variant, ...props }, ref) => (
+    <Root {...props} color={color} ref={ref} variant={variant}>
+        <StyledIconLabel color={color} variant={variant} gap={1} reverse={reverseLabel}>
             {children}
-        </IconLabel>
+        </StyledIconLabel>
     </Root>
 ));
 
@@ -37,12 +41,14 @@ Label.propTypes = {
     color: PropTypes.string,
     reverseLabel: PropTypes.bool,
     textColor: PropTypes.string,
+	variant: PropTypes.oneOf(['ghost', 'filled', 'border'])
 };
 
 Label.defaultProps = {
     color: 'red',
     fontFamily: 'text',
-	textColor: 'white'
+	textColor: 'white',
+	variant: 'filled'
 };
 
 export default Label;

@@ -37,7 +37,7 @@ const setOpenSelector = ({ toggleWidgetCard }) => toggleWidgetCard;
 const Header = () => {
     const [organization] = useOrganization();
     const setOpen = useContextSelector(WidgetContext, setOpenSelector);
-
+	
     const isContained = useWidgetIsContained();
 
     return (
