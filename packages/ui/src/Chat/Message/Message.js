@@ -1,21 +1,17 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { interactions } from '@combase.app/styles';
-import { useMessage, useUserRole } from '@combase.app/chat';
+import { interactions } from '@combase.app/styles'
+import { MessageInput, useComponentContext, useMessageContext } from 'stream-chat-react';
 import format from 'date-fns/format';
 
 import Avatar from '../../Avatar';
 import Box from '../../Box';
 import Container from '../../Container';
-import IconLabel from '../../IconLabel';
-import { CommandIcon } from '../../icons';
 import Text from '../../Text';
 
-import { isEmojiMessageRegex } from '../utils/isEmojiMessageRegex';
-
-import { MessageAttachments } from '../MessageAttachments';
-import { MessageDate } from './MessageDate';
-import { MessageMeta } from './MessageMeta';
+import MessageActions from './MessageActions';
+import MessageDate from './MessageDate';
+import MessageMeta from './MessageMeta';
 
 const avatarSize = 8;
 
@@ -26,6 +22,57 @@ const Root = styled(Container).attrs({
     display: grid;
     grid-template-columns: ${({ theme }) => theme.sizes[avatarSize]} 1fr;
     grid-auto-rows: min-content;
+
+	.str-chat__message-attachment {
+		overflow: hidden;
+		width: 100%;
+		max-width: 375px;
+		border-radius: 16px;
+		margin: 8px auto 8px 0;
+		padding: 0;
+	}
+
+	.str-chat__message-attachment--image {
+		margin: 8px 0;
+		max-width: 480px;
+		height: auto;
+		max-height: 300px;
+		max-width: 100%;
+		cursor: zoom-in;
+
+		& img {
+			border-radius: 16px;
+			height: inherit;
+			width: auto;
+			max-height: inherit;
+			max-width: 100%;
+			display: block;
+			object-fit: cover;
+			overflow: hidden;
+		}
+	}
+
+	.str-chat__gallery {
+		margin: 5px 0;
+		display: inline-flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		overflow: hidden;
+	}
+
+	.str-chat__gallery-image {
+		width: 150px;
+		height: 150px;
+		background: white;
+		margin-bottom: 1px;
+		margin-right: 1px;
+	}
+
+	.str-chat__gallery-image img {
+		width: inherit;
+		height: inherit;
+		object-fit: cover;
+	}
 `;
 
 const AvatarCol = styled(Box)`
@@ -49,24 +96,32 @@ const MessageText = styled(Text).attrs(({ largeEmoji }) => ({
     lineHeight: !largeEmoji ? 6 : 8,
 }))``;
 
-export const Message = React.memo(({ index }) => {
-    const [message, grouping] = useMessage(index);
+const Message = (props) => {
+	const { 
+		editing,
+		groupStyles: [grouping = 'single'] = [], 
+		isMyMessage, 
+		message,
+		clearEditingState,
+	} = useMessageContext();
 
-    const { isMyMessage } = useUserRole(message);
-    const noAvatar = message?.type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
-    const largeEmoji = useMemo(() => isEmojiMessageRegex.test(message?.text), [message]);
+	const isOwned = isMyMessage();
+	const type = message?.type;
+	const noAvatar = type === 'ephemeral' || (grouping !== 'top' && grouping !== 'single');
 
-    return (
+	const {
+		Attachment,
+		EditMessageInput,
+	} = useComponentContext();
+
+	return (
 		<Root
-			$ours={isMyMessage}
 			color="text"
 			maxWidth={21}
 			variant="contain"
-			paddingTop={1} 
-			paddingBottom={1}
-			data-date={noAvatar && message?.created_at ? format(message.created_at, 'eeee, p') : undefined}
-			data-grouping={grouping}
-			interaction={message?.type !== 'ephemeral' ? 'hover' : undefined}
+			paddingTop={noAvatar ? 1 : 3} 
+			paddingBottom={noAvatar ? 1 : 2}
+			interaction={type !== 'ephemeral' ? 'hover' : undefined}
 		>
 			<AvatarCol>
 				{noAvatar ? (
@@ -79,25 +134,31 @@ export const Message = React.memo(({ index }) => {
 				{!noAvatar ? (
 					<MessageMeta
 						date={message?.created_at}
-						name={isMyMessage ? 'You' : message?.user?.name}
-						ours={isMyMessage}
+						name={isOwned ? 'You' : message?.user?.name}
+						ours={isOwned}
 						status={message?.status}
-						type={message?.type}
+						type={type}
 					/>
 				) : null}
-				<Box>
-					<MessageText largeEmoji={largeEmoji}>{message?.text}</MessageText>
-					{message?.attachments?.length ? <MessageAttachments message={message} /> : null}
-					{message?.command ? (
-						<Box paddingTop={1}>
-							<IconLabel color="blue" fontFamily="title">
-								<CommandIcon />
-								<Text variant="label">{`${message?.command}: ${message?.args}`}</Text>
-							</IconLabel>
-						</Box>
-					) : null}
-				</Box>
+				{
+					!editing ? (
+						<>
+							<MessageText>{message.text}</MessageText>
+							<Attachment attachments={message.attachments} />
+						</>
+					) : (
+						<MessageInput
+							clearEditingState={clearEditingState}
+							grow
+							Input={EditMessageInput}
+							message={message}
+						/>
+					)
+				}
 			</Box>
+			{type !== 'deleted' ? <MessageActions /> : null}
 		</Root>
-    );
-});
+	);
+}
+
+export default Message;

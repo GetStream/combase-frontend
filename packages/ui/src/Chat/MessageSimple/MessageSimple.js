@@ -64,7 +64,7 @@ const Root = styled(Container)`
     ${({ $grouping }) => rootStyles[$grouping]?.() || ''};
 `;
 
-export const MessageSimple = React.memo(({ index }) => {
+const MessageSimple = React.memo(({ index }) => {
     const { 
 		editing,
 		groupStyles: [grouping = 'single'] = [], 
@@ -108,3 +108,5 @@ export const MessageSimple = React.memo(({ index }) => {
         </Root>
     );
 });
+
+export default MessageSimple;

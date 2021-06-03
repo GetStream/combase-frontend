@@ -1,8 +1,16 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useMessageContext } from 'stream-chat-react';
-import { Box, ButtonBase, DeleteIcon, EditIcon, EmojiIcon, MoreIcon } from '@combase.app/ui';
 import { interactions } from '@combase.app/styles';
+
+import Box from '../../Box';
+import ButtonBase from '../../ButtonBase';
+import {
+	DeleteIcon,
+	EditIcon,
+	EmojiIcon,
+	MoreIcon,
+} from '../../icons';
 
 const Root = styled(Box)`
 	display: none;

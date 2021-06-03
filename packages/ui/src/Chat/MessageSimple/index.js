@@ -1,1 +1,1 @@
-export * from './MessageSimple';
+export { default } from './MessageSimple';

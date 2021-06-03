@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FileUploadButton, ImageDropzone } from 'react-file-utils';
 import {
 	ChatAutoComplete,
 } from 'stream-chat-react';
-import { Box, Container } from '@combase.app/ui'; 
+
+import Box from '../../Box';
+import Container from '../../Container';
 
 import ComposerToolbar from '../ComposerToolbar'
 
-const Root = styled(Box).attrs({
-    paddingTop: [3],
-    paddingBottom: [3],
+const Root = styled(Container).attrs({
+    paddingTop: [3, 3, 5],
+    paddingBottom: [3, 3, 5],
 	maxWidth: 21
 })`
     min-height: 3.5rem;
@@ -41,15 +42,15 @@ const Card = styled(Box).attrs({
 	}
 `;
 
-const EditMessageComposer = (props) => {
+const MessageComposer = (props) => {
 	return (
 		<Root>
 			<Card>
 				<ChatAutoComplete />
-				<ComposerToolbar editMode />
+				<ComposerToolbar />
 			</Card>
    		</Root>
 	);
 }
 
-export default EditMessageComposer;
+export default MessageComposer;

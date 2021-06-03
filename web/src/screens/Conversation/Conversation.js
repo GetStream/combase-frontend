@@ -7,8 +7,11 @@ import {
 	ChannelHeader, 
 	Container,
 	DateSeparator, 
+	EditMessageComposer,
 	IconButton, 
 	InfoIcon, 
+	Message,
+	MessageComposer,
 	Spinner, 
 	SystemMessage,
 	TicketLabelToggle, 
@@ -18,11 +21,7 @@ import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-
 
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 
-import Message from 'components/Message';
-import MessageComposer from 'components/MessageComposer';
-
 import DetailDrawer from './DetailDrawer';
-import EditMessageComposer from 'components/EditMessageComposer';
 
 const Root  = styled(Box)`
 	height: 100%;

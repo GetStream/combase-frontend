@@ -10,6 +10,7 @@ const Root = styled(Box)`
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	user-select: none;
 `;
 
 const Chip = styled(Box)`

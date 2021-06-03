@@ -1,10 +1,12 @@
 export * from './ChannelHeader';
 export * from './ChannelHeaderSimple';
+export { default as ComposerToolbar } from './ComposerToolbar';
 export { default as ChannelPreview } from './ChannelPreview';
 export { default as DateSeparator } from './DateSeparator';
-export * from './Message';
-export * from './MessageSimple';
-export * from './MessageInput';
+export { default as EditMessageComposer } from './EditMessageComposer';
+export { default as Message } from './Message';
+export { default as MessageSimple } from './MessageSimple';
+export { default as MessageComposer } from './MessageComposer';
 export * from './MessageInputSimple';
 export { default as MessageList } from './MessageList';
 export { default as SystemMessage } from './SystemMessage';

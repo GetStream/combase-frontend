@@ -62,7 +62,7 @@ const ConversationScreen = () => {
 				>
 					<ChannelWrapper>
 						<ChannelHeaderSimple onBackClick={() => setActiveChannel(null)} />
-						<MessageList onScroll={console.log} shouldGroupByUser />
+						<MessageList shouldGroupByUser />
 						<MessageInput grow />
 					</ChannelWrapper>
 				</Channel>

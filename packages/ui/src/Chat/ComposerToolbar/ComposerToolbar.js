@@ -1,22 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useChannelActionContext, useChannelStateContext, useMessageInputContext, UploadsPreview } from 'stream-chat-react';
+import { useChannelStateContext, useMessageInputContext, UploadsPreview } from 'stream-chat-react';
 import { FileUploadButton } from 'react-file-utils';
 import { itemGap } from '@combase.app/styles';
-import { 
+
+import Box from '../../Box';
+import IconButton from '../../IconButton';
+import {
 	AttachmentIcon,
-	Box, 
-	Button,
-	CloseIcon,
-	IconButton,
 	KnowledgeBaseIcon,
 	QuickResponseIcon,
 	TransferIcon,
 	ReturnIcon,
-	SendIcon,
-	Text,
-	Tooltip,
-} from '@combase.app/ui';
+	SendIcon
+} from '../../icons';
+import Tooltip from '../../Tooltip';
 
 const Wrapper = styled(Box)`
 	.rfu-image-previewer {
