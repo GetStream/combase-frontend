@@ -57,8 +57,10 @@ const ConversationScreen = () => {
 			<Root>
 				<Channel
 					Avatar={Avatar}
+					Message={MessageSimple}
 				>
 					<ChannelWrapper>
+						<ChannelHeaderSimple onBackClick={() => setActiveChannel(null)} />
 						<MessageList shouldGroupByUser />
 						<MessageInput grow />
 					</ChannelWrapper>
