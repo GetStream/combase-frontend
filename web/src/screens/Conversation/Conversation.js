@@ -49,7 +49,7 @@ const ChannelWrapper = styled(Box)`
 `;
 
 const LoadingIndicator = styled(Container).attrs(() => ({
-	children: () => <Spinner size={4} />,
+	children: () => <Spinner size={5} />,
 	paddingY: 4,
 }))`
 	display: flex;

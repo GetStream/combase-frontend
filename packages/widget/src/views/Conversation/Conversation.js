@@ -6,6 +6,7 @@ import {
 	Box,
 	Button,
 	ChannelHeaderSimple,
+	DateSeparator,
 	MessageInputSimple,
 	MessageSimple,
 	ScrollContextProvider,
@@ -57,7 +58,9 @@ const ConversationScreen = () => {
 			<Root>
 				<Channel
 					Avatar={Avatar}
+					DateSeparator={DateSeparator}
 					Message={MessageSimple}
+					Input={MessageInputSimple}
 				>
 					<ChannelWrapper>
 						<ChannelHeaderSimple onBackClick={() => setActiveChannel(null)} />
