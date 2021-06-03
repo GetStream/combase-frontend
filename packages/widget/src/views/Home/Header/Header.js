@@ -60,7 +60,7 @@ const Header = () => {
             </TextGroup>
             <Available padding={4}>
                 {!isContained ? <IconButton icon={CloseIcon} size={5} onClick={() => setOpen(false)} /> : null}
-                <AvatarGroup size={5}>
+                <AvatarGroup>
                     {organization?.availableAgents?.slice?.(0, 5)?.map?.(({ _id, name }) => (
                         <Avatar key={_id} size={5} name={name.display} />
                     ))}
