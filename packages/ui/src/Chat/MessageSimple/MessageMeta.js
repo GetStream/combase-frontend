@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import format from 'date-fns/format';
-import { useChannelReadCursors } from '@combase.app/chat';
 import { itemGap } from '@combase.app/styles';
 
 import Box from '../../Box';
@@ -23,21 +22,8 @@ export const Root = styled(Box)`
     }
 `;
 
-const useIsRead = date => {
-    const cursors = useChannelReadCursors();
-
-    /** Uses Array.some to check if _any_ of the chat partners haven't read the message */
-    /** Combase is 1:1-chat so this only ever really checks one user. - needs changing if we add additional users. */
-    const hasSomeUnread = useMemo(() => Object.values(cursors || {}).some(({ last_read }) => last_read?.getTime() < date?.getTime()), [
-        cursors,
-        date,
-    ]);
-
-    return !hasSomeUnread;
-};
-
 export const MessageMeta = ({ args, attachments, className, command, date, ours, type }) => {
-    const isRead = useIsRead(date);
+    const isRead = false;
     const isEphemeral = type === 'ephemeral';
 
     return (
