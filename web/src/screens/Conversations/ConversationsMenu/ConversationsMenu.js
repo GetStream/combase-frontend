@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { 
-	ChannelList
+	ChannelList,
+	useChatContext,
 } from 'stream-chat-react';
 import { useParams } from 'react-router-dom';
 import { 
@@ -25,10 +26,6 @@ const Root = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-
-    @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
-        grid-template-columns: 0.75fr 1fr;
-    }
 `;
 
 const InboxMenu = () => (
@@ -45,7 +42,7 @@ const EmptyState = (props) => {
 }
 
 const ConversationMenu = () => {
-    const isXl = useReactiveMedia('xl');
+	const { client } = useChatContext();
 	const { inbox } = useParams();
 
 	const [status, setStatus] = useState('open');
@@ -53,11 +50,7 @@ const ConversationMenu = () => {
 	const filters = useMemo(() => {
         let filter = {};
 
-        if (inbox === 'inbox' || inbox === 'starred' || inbox === 'priority') {
-            filter.status = status ?? undefined;
-        }
-
-        if (inbox === 'unassigned') {
+        if (status === 'queued') {
             filter = {
 				...filter,
 				$or: [
@@ -65,28 +58,25 @@ const ConversationMenu = () => {
 					{ status: 'new' },
 				]
 			}
-        }
+        } else {
+			//? TODO: If admin, show all?
+			filter.status = status ?? undefined;
+			filter.members = {
+				$in: [client.userID]
+			}
+		}
 
-        if (inbox === 'archived') {
+        if (inbox === 'archive') {
             filter.status = 'archived';
         }
 
-        if (inbox === 'starred') {
-            filter[inbox] = true;
-        }
-
-        if (inbox === 'priority') {
-            filter[inbox] = {
-                $gt: 0,
-            };
-        }
+		// TODO Star & Priority Filters (ChannelSearch)
 
         return filter;
-    }, [inbox, status]);
+    }, [inbox, status, client]);
 
     return (
         <Root>
-            {isXl?.matches ? <InboxMenu /> : null}
 			<ScrollbarsWithContext>
 				<ChannelListHeader 
 					inbox={inbox} 
