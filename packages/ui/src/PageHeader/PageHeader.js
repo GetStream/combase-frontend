@@ -106,7 +106,7 @@ const PageHeader = forwardRef(
                             <PageTitle
                                 centered={centered}
                                 reverse={reverse}
-                                subtitle={showOrganization ? data?.organization?.name : subtitle || ''}
+                                subtitle={showOrganization ? data?.organization?.name : subtitle}
                                 title={title}
                                 onClick={onTitleClick}
                                 style={pageTitleStyle}
