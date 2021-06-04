@@ -2,14 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
+	AllInboxesIcon,
 	Box,
 	Checkbox,
+	CheckboxCheckedIcon,
+	Chip,
 	CloseIcon,
 	Container,
 	EditIcon,
 	IconButton,
+	IconLabel,
+	InboxIcon,
 	PageHeader,
 	Spinner,
+	Text,
 	ToggleGroup,
 	ToggleGroupOption,
 	Tooltip
@@ -46,7 +52,6 @@ const ChannelListHeader = ({
 
 	return (
 		<PageHeader
-			showOrganization={!selectable && isSm?.matches && !isXl?.matches}
 			leftIcon={
 				selectable ? (
 					<Box marginRight={3}>
@@ -77,22 +82,42 @@ const ChannelListHeader = ({
 			// centered={isSmallViewport}
 			hideLeftAction={isSm?.matches && !selectable}
 			reverse={selectable || isSmallViewport}
-			title={inbox}
-			subtitle={selectable ? `${selected?.length || 0} selected` : !isSm?.matches ? `${totalCount || 0} tickets` : undefined}
+			title={inbox !== 'archive' ? "Conversations" : "Archive"}
+			subtitle={undefined}
 			onTitleClick={!selectable && !isXl.matches ? onTitleClick : null}
 		>
-			{inbox !== 'unassigned' && inbox !== 'archived' ? (
-				<Container paddingBottom={3}>
-					<ToggleGroup onChange={onChangeStatus} value={status}>
-						<ToggleGroupOption value="open">
-							Open
-						</ToggleGroupOption>
-						<ToggleGroupOption value="closed">
-							Closed
-						</ToggleGroupOption>
-					</ToggleGroup>
-				</Container>
-			) : null}
+			{
+				inbox !== 'archive' ? (
+					<Container paddingBottom={3}>
+						<ToggleGroup onChange={onChangeStatus} value={status}>
+							<ToggleGroupOption value="queued">
+								<Tooltip text="Queue">
+									<IconLabel>
+										<AllInboxesIcon size={4} color={status === 'queued' ? 'primary' : 'altText'} />
+										<Chip label="99+" />
+									</IconLabel>
+								</Tooltip>
+							</ToggleGroupOption>
+							<ToggleGroupOption value="open">
+								<Tooltip text="Assigned to You">
+									<IconLabel>
+										<InboxIcon color={status === 'open' ? 'primary' : 'altText'} size={4} />
+										<Chip label="99+" />
+									</IconLabel>
+								</Tooltip>
+							</ToggleGroupOption>
+							<ToggleGroupOption value="closed">
+								<Tooltip text="Done">
+									<IconLabel>
+										<CheckboxCheckedIcon color={status === 'closed' ? 'primary' : 'altText'} size={4} />
+										<Chip label="99+" />
+									</IconLabel>
+								</Tooltip>
+							</ToggleGroupOption>
+						</ToggleGroup>
+					</Container>
+				) : null
+			}
 		</PageHeader>
 	)
 };
