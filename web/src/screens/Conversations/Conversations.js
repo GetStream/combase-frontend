@@ -9,19 +9,14 @@ import SplitView from 'layouts/SplitView';
 
 const Conversations = () => {
 	const isSm = useReactiveMedia('sm');
-	const isXl = useReactiveMedia('xl');
 
 	const columnTemplate = useMemo(() => {
-		if (isXl?.matches) {
-			return `minmax(35%, 35rem) 1fr`;
-		}
-
 		if (isSm?.matches) {
 			return `minmax(25%, 23rem) 1fr`;
 		}
 
 		return '1fr';
-	}, [isSm, isXl]);
+	}, [isSm]);
 
 	return (
 		<SplitView columnTemplate={columnTemplate}>
