@@ -11,7 +11,6 @@ import { routes, renderIconRoute } from './utils';
 
 const Root = styled(Box).attrs({
     as: 'nav',
-    paddingX: 2,
     paddingY: 3,
 })`
     ${layout};
@@ -33,11 +32,11 @@ export const SidebarNav = ({ as, children, logoTo, ...rest }) => (
                 <StreamLogo color="primary" size={6} />
             </NavLink>
         </Box>
-        <SidebarGroup marginTop={2} gap={3}>
+        <SidebarGroup marginTop={1} gap={0}>
             {routes.map(renderIconRoute)}
         </SidebarGroup>
         <FlexFill />
-        <SidebarGroup marginY={4}>
+        <SidebarGroup gap={5} marginY={5}>
             <div>
                 <ThemeToggle />
             </div>
