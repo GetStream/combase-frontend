@@ -11,6 +11,7 @@ import ListItem from '../../ListItem';
 import Placeholder from '../../Placeholder';
 import TextGroup from '../../TextGroup';
 import Text from '../../Text';
+import { formatTime } from '../../utils/formatDate';
 
 
 const Root = styled(ListItem)``;
@@ -36,8 +37,9 @@ const Content = styled.div`
 const Header = styled(Box)`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 	align-self: stretch;
+	justify-content: space-between;
 
     ${TextGroup} {
         display: flex;
@@ -69,7 +71,7 @@ const CombaseChannelPreview = ({
 	const { updated_at } = lastMessage || {};
 
 	const fromNow = useMemo(
-        () => formatDateFromNow(updated_at),
+        () => formatTime(updated_at),
         [updated_at]
     );
 
@@ -87,31 +89,34 @@ const CombaseChannelPreview = ({
 			<Wrapper>
 				<Avatar name={displayTitle} size={8} src={displayImage} />
 				<Content>
-					<Header>
-                        <TextGroup paddingY="small" gapTop={1} minHeight={7}>
-                            <Text as={displayTitle ? 'p' : Placeholder} fontSize={4} lineHeight={4} placeholderWidth={10}>
-                                {displayTitle}
-                            </Text>
-                            <IconLabel>
-                                {unread ? <Badge color={(compact && !latestMessage) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
-                                <Text
-                                    as={(compact && !latestMessage) || (!compact && !fromNow) ? Placeholder : null}
-                                    fontSize={compact ? 3 : 2}
-                                    lineHeight={compact ? 3 : 4}
-                                    opacity={0.64}
-                                    variant={compact ? 'clamped' : 0}
-                                >
-                                    {compact ? latestMessage : fromNow}
-                                </Text>
-                            </IconLabel>
-                        </TextGroup>
-						{/* {toggles?.length ? <Toggles>{toggles}</Toggles> : null} */}
+					<Header paddingY="small">
+						<Text as={displayTitle ? 'p' : Placeholder} fontSize={4} lineHeight={4} placeholderWidth={10}>
+							{displayTitle}
+						</Text>
+						<IconLabel>
+							{unread ? <Badge color={(compact && !latestMessage) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
+							<Text
+								color={unread ? 'primary' : 'altText'}
+								as={!fromNow ? Placeholder : null}
+								fontSize={compact ? 3 : 2}
+								lineHeight={compact ? 3 : 4}
+								opacity={unread ? 1 : 0.64}
+								variant={compact ? 'clamped' : undefined}
+							>
+								{fromNow}
+							</Text>
+						</IconLabel>
 					</Header>
-					{!compact ? (
-                        <Preview marginTop={1} placeholderWidth={11} as={!latestMessage ? Placeholder : undefined} variant="clamped" lineClamp={1}>
-                            {latestMessage}
-                        </Preview>
-                    ) : null}
+					<Text
+						marginTop={1}
+						as={!latestMessage ? Placeholder : null}
+						placeholderWidth={10}
+						opacity={unread ? 1 : 0.5}
+						variant="clamped"
+						fontWeight="400"
+					>
+						{latestMessage}
+					</Text>
 					{!compact ? (
 						<Box marginTop={2}>
 							<Label variant="ghost" color={`ticketStatus.${status}`} colorAlpha={0.08} textColor={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>

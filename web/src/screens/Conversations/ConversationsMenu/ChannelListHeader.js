@@ -15,7 +15,6 @@ import {
 	InboxIcon,
 	PageHeader,
 	Spinner,
-	Text,
 	ToggleGroup,
 	ToggleGroupOption,
 	Tooltip
