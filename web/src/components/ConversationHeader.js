@@ -45,11 +45,6 @@ const ConversationHeader = ({  onBackClick, onInfoClick, readonly, showBackBtn }
         >
             {!readonly && onInfoClick ? (
                 <>
-					{ticket?.status === 'unassigned' ? (
-						<SelectButton>
-							<MenuItem label="JavaScript" value="js" />
-						</SelectButton>
-					) : null}
                     <Tooltip text="More Info">
                         <IconButton color="altText" size={4} icon={InfoIcon} onClick={onInfoClick} />
                     </Tooltip>

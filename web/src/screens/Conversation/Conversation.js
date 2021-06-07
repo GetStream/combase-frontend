@@ -103,12 +103,16 @@ const Conversation = () => {
 							</Tooltip>,
 						]}
 					>
-						<Button size="xs" variant="flat" color="altText" onClick={() => setTicketToAssign(channel.id)}>
-							<IconLabel>
-								<Text>Assign to</Text>
-								<DropdownIcon />
-							</IconLabel>
-						</Button>
+						{
+							channel.data.status === 'unassigned' ? (
+								<Button size="xs" variant="flat" color="altText" onClick={() => setTicketToAssign(channel.id)}>
+									<IconLabel>
+										<Text>Assign to</Text>
+										<DropdownIcon />
+									</IconLabel>
+								</Button>
+							) : null
+						}
 						<Tooltip text="More Info">
 							<IconButton color="altText" size={4} icon={InfoIcon} onClick={toggleDrawer} />
 						</Tooltip>
