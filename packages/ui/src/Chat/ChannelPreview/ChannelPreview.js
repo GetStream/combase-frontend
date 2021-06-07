@@ -1,6 +1,7 @@
 import React, { useMemo, useRef } from 'react';
-import styled, { useTheme } from 'styled-components';
-import { formatDateFromNow } from '../../utils';
+import styled from 'styled-components';
+import { itemGap } from '@combase.app/styles';
+import { formatTime } from '../../utils';
 
 import Avatar from '../../Avatar';
 import Badge from '../../Badge';
@@ -11,8 +12,7 @@ import ListItem from '../../ListItem';
 import Placeholder from '../../Placeholder';
 import TextGroup from '../../TextGroup';
 import Text from '../../Text';
-import { formatTime } from '../../utils/formatDate';
-
+import TextLink from '../../TextLink';
 
 const Root = styled(ListItem)``;
 
@@ -48,9 +48,13 @@ const Header = styled(Box)`
     }
 `;
 
-const Preview = styled(Text)`
-    opacity: ${({ $unread }) => ($unread ? 1 : 0.5)};
-    font-variation-settings: 'wght' 400;
+const ChannelMeta = styled(Box)`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	& > * + * { 
+		${itemGap};
+	}
 `;
 
 const CombaseChannelPreview = ({ 
@@ -118,9 +122,9 @@ const CombaseChannelPreview = ({
 						{latestMessage}
 					</Text>
 					{!compact ? (
-						<Box marginTop={2}>
+						<ChannelMeta gapLeft={3} marginTop={2}>
 							<Label variant="ghost" color={`ticketStatus.${status}`} colorAlpha={0.08} textColor={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
-						</Box>
+						</ChannelMeta>
 					) : null}
 				</Content>
 			</Wrapper>

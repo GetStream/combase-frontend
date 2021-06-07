@@ -1,5 +1,14 @@
 import { gql } from '@apollo/client';
 
+export const ASSIGN_TICKET = gql`
+	mutation assignTicket($ticket: MongoID!, $agent: MongoID!, $status: EnumTicketStatus) {
+		ticketAssign(ticket: $ticket, agent: $agent, status: $status) {
+			_id
+			status
+		}
+	}
+`;
+
 export const STAR_TICKET = gql`
 	mutation starTicket($_id: MongoID!, $starred: Boolean!) {
 		ticketStar(_id: $_id, starred: $starred) {

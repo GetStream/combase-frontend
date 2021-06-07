@@ -6,6 +6,7 @@ import ConversationsMenu from './ConversationsMenu';
 
 import Conversation from 'screens/Conversation'
 import SplitView from 'layouts/SplitView';
+import AssignTicket from 'contexts/AssignTicket';
 
 const Conversations = () => {
 	const isSm = useReactiveMedia('sm');
@@ -19,10 +20,12 @@ const Conversations = () => {
 	}, [isSm]);
 
 	return (
-		<SplitView columnTemplate={columnTemplate}>
-			<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
-			<Conversation path="/dashboard/conversations/:inbox/:channelId" />
-		</SplitView>
+		<AssignTicket>
+			<SplitView columnTemplate={columnTemplate}>
+				<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
+				<Conversation path="/dashboard/conversations/:inbox/:channelId" />
+			</SplitView>
+		</AssignTicket>
 	);
 }
 

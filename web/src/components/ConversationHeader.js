@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, GET_TICKET } from '@combase.app/apollo';
-import { ChannelHeader, IconButton, InfoIcon, TicketLabelToggle, Tooltip } from '@combase.app/ui';
+import { ChannelHeader, IconButton, InfoIcon, MenuItem, SelectButton, TicketLabelToggle, Tooltip } from '@combase.app/ui';
 import { useChannelPartner, useUserTypingIndicator } from '@combase.app/chat';
 import { useReactiveMedia, useTicketLabelToggles } from 'hooks';
 
@@ -45,6 +45,11 @@ const ConversationHeader = ({  onBackClick, onInfoClick, readonly, showBackBtn }
         >
             {!readonly && onInfoClick ? (
                 <>
+					{ticket?.status === 'unassigned' ? (
+						<SelectButton>
+							<MenuItem label="JavaScript" value="js" />
+						</SelectButton>
+					) : null}
                     <Tooltip text="More Info">
                         <IconButton color="altText" size={4} icon={InfoIcon} onClick={onInfoClick} />
                     </Tooltip>

@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { 
 	Avatar, 
 	Box, 
+	Button,
 	ChannelHeader, 
 	Container,
 	DateSeparator, 
+	DropdownIcon,
 	EditMessageComposer,
 	IconButton, 
+	IconLabel,
 	InfoIcon, 
 	Message,
 	MessageComposer,
 	Spinner, 
 	SystemMessage,
+	Text,
 	TicketLabelToggle, 
 	Tooltip 
 } from '@combase.app/ui';
@@ -22,6 +26,7 @@ import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 
 import DetailDrawer from './DetailDrawer';
+import { AssignTicketContext } from 'contexts/AssignTicket';
 
 const Root  = styled(Box)`
 	height: 100%;
@@ -64,10 +69,11 @@ const LoadingIndicator = styled(Container).attrs(() => ({
 	display: flex;
 	align-items: center;
 	justify-content: center;
-`
+`;
 
 const Conversation = () => {
 	const [drawerOpen, toggleDrawer] = useToggle(false);
+	const [_, setTicketToAssign] = useContext(AssignTicketContext);
 
 	const { channel } = useChatContext()
 	
@@ -97,6 +103,12 @@ const Conversation = () => {
 							</Tooltip>,
 						]}
 					>
+						<Button size="xs" variant="flat" color="altText" onClick={() => setTicketToAssign(channel.id)}>
+							<IconLabel>
+								<Text>Assign to</Text>
+								<DropdownIcon />
+							</IconLabel>
+						</Button>
 						<Tooltip text="More Info">
 							<IconButton color="altText" size={4} icon={InfoIcon} onClick={toggleDrawer} />
 						</Tooltip>

@@ -15,6 +15,7 @@ import {
 	InboxIcon,
 	PageHeader,
 	Spinner,
+	Text,
 	ToggleGroup,
 	ToggleGroupOption,
 	Tooltip
@@ -78,7 +79,6 @@ const ChannelListHeader = ({
 			}
 			animated={isSmallViewport}
 			backgroundColor={isSmallViewport ? "background" : "surface"}
-			// centered={isSmallViewport}
 			hideLeftAction={isSm?.matches && !selectable}
 			reverse={selectable || isSmallViewport}
 			title={inbox !== 'archive' ? "Conversations" : "Archive"}
@@ -90,28 +90,22 @@ const ChannelListHeader = ({
 					<Container paddingBottom={3}>
 						<ToggleGroup onChange={onChangeStatus} value={status}>
 							<ToggleGroupOption value="queued">
-								<Tooltip text="Queue">
-									<IconLabel>
-										<AllInboxesIcon size={4} color={status === 'queued' ? 'primary' : 'altText'} />
-										<Chip label="99+" />
-									</IconLabel>
-								</Tooltip>
+								<IconLabel>
+									<AllInboxesIcon size={4} color={status === 'queued' ? 'primary' : 'altText'} />
+									<Text color={status === 'queued' ? 'primary' : 'altText'}>Queue</Text>
+								</IconLabel>
 							</ToggleGroupOption>
 							<ToggleGroupOption value="open">
-								<Tooltip text="Assigned to You">
-									<IconLabel>
-										<InboxIcon color={status === 'open' ? 'primary' : 'altText'} size={4} />
-										<Chip label="99+" />
-									</IconLabel>
-								</Tooltip>
+								<IconLabel>
+									<InboxIcon color={status === 'open' ? 'primary' : 'altText'} size={4} />
+									<Text color={status === 'open' ? 'primary' : 'altText'}>Inbox</Text>
+								</IconLabel>
 							</ToggleGroupOption>
 							<ToggleGroupOption value="closed">
-								<Tooltip text="Done">
-									<IconLabel>
-										<CheckboxCheckedIcon color={status === 'closed' ? 'primary' : 'altText'} size={4} />
-										<Chip label="99+" />
-									</IconLabel>
-								</Tooltip>
+								<IconLabel>
+									<CheckboxCheckedIcon color={status === 'closed' ? 'primary' : 'altText'} size={4} />
+									<Text color={status === 'closed' ? 'primary' : 'altText'}>Done</Text>
+								</IconLabel>
 							</ToggleGroupOption>
 						</ToggleGroup>
 					</Container>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
@@ -12,11 +12,11 @@ const Root = styled(IconLabel)`
     user-select: none;
 `;
 
-const TextLink = ({ children, ...props }) => (
-    <Root {...props} interaction="opacity">
-        <Text>{children}</Text>
-        <ChevronRightIcon />
+const TextLink = forwardRef(({ as, className, color, children, onClick, size, style, to }, ref) => (
+    <Root as={as} className={className} style={style} interaction="opacity" ref={ref} onClick={onClick} to={to}>
+        <Text color={color} fontSize={size} lineHeight={size}>{children}</Text>
+        <ChevronRightIcon color={color} size={size} />
     </Root>
-);
+));
 
 export default TextLink;
