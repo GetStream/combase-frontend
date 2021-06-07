@@ -5,7 +5,7 @@ import { Box, Button, Card, CardHeader, Container, ListItem, Modal, SearchToolba
 import {
 	InstantSearch,
 	Hits,
-	SearchBox,
+	connectSearchBox,
   } from 'react-instantsearch-dom';
 import { algolia } from 'utils/search';
 import { layout } from '@combase.app/styles';
@@ -36,6 +36,10 @@ const Footer = styled(Box).attrs({
     align-items: center;
     justify-content: flex-end;
 `;
+
+const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
+	return <SearchToolbar onChange={e => refine(e.target.value)} onClear={() => refine('')} value={currentRefinement} />
+});
 
 const AssignTicketModalInner = forwardRef((props, ref) => {
 	const [toAssign, setTicketToAssign] = useContext(AssignTicketContext);
@@ -73,7 +77,7 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 				<Container>
 					<SearchBox />
 				</Container>
-				<List minHeight={15}>
+				<List minHeight={15} paddingX={3}>
 					<Hits hitComponent={AgentResult} />
 				</List>
 				{/* <List minHeight={15}>
