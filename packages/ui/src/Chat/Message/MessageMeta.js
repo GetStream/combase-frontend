@@ -26,7 +26,6 @@ const MessageMeta = ({ className, date, name, ours, status, type }) => {
                 {name}
             </Text>
             {date ? <MessageDate fontSize={2} lineHeight={2} marginLeft={1}>{format(date, 'p')}</MessageDate> : null}
-			{type === 'deleted' ? <Text fontSize={2} lineHeight={2}>Deleted</Text> : null}
         </Root>
     );
 };

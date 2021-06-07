@@ -143,7 +143,7 @@ const Message = (props) => {
 				{
 					!editing ? (
 						<>
-							<MessageText>{message.text}</MessageText>
+							<MessageText opacity={type!=='deleted' ? 1 : 0.5}>{type === "deleted" ? 'Message Deleted' : message.text}</MessageText>
 							<Attachment attachments={message.attachments} />
 						</>
 					) : (
