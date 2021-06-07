@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { 
 	ChannelList,
@@ -42,7 +42,7 @@ const EmptyState = (props) => {
 }
 
 const ConversationMenu = () => {
-	const { client } = useChatContext();
+	const { client, setActiveChannel } = useChatContext();
 	const { inbox } = useParams();
 
 	const [status, setStatus] = useState('open');
@@ -75,6 +75,37 @@ const ConversationMenu = () => {
         return filter;
     }, [inbox, status, client]);
 
+	const removeChannelFromList = useCallback((setChannels, updated) => {
+		setChannels(prev => {
+			return prev.filter(({ id }) => updated.channel_id !== id);
+		});
+	}, []);
+
+	const onChannelUpdated = useCallback((setChannels, updated) => {
+		if (status === 'queued') {
+			if (updated.channel.status === 'open' || updated.channel.status === 'closed') {
+				// If status is queued and the updated channel is no longer unassigned,
+				// remove it from the list of channels.
+				removeChannelFromList(setChannels, updated);
+				setActiveChannel(null);
+			}
+		}
+
+		if (status === 'open') {
+			if (updated.channel.status !== 'open') {
+				removeChannelFromList(setChannels, updated);
+				setActiveChannel(null);
+			}
+		}
+		
+		if (status === 'closed') {
+			if (updated.channel.status !== 'closed') {
+				removeChannelFromList(setChannels, updated);
+				setActiveChannel(null);
+			}
+		}
+	}, [removeChannelFromList, status]);
+
     return (
         <Root>
 			<ScrollbarsWithContext>
@@ -84,7 +115,9 @@ const ConversationMenu = () => {
 					onChangeStatus={setStatus}
 				/>
 				<ChannelList 
+					allowNewMessagesFromUnfilteredChannels={false}
 					filters={filters}
+					onChannelUpdated={onChannelUpdated}
 					EmptyStateIndicator={EmptyState}
 					List={CombaseChannelList}
 					Preview={ChannelPreview}
