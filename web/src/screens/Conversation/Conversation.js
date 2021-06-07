@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import { useToggle } from 'react-use';
 import { 
 	Avatar, 
@@ -72,10 +73,13 @@ const LoadingIndicator = styled(Container).attrs(() => ({
 `;
 
 const Conversation = () => {
+	const { channelId } = useParams();
 	const [drawerOpen, toggleDrawer] = useToggle(false);
 	const [_, setTicketToAssign] = useContext(AssignTicketContext);
 
-	const { channel } = useChatContext()
+	const { channel } = useChatContext();
+
+	console.log(channelId);
 	
 	const isSm = useReactiveMedia('sm');
 	const [starTicket, setPriority] = useTicketLabelToggles();

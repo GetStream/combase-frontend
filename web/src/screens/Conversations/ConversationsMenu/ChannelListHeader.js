@@ -42,8 +42,7 @@ const ChannelListHeader = ({
 	selectable, 
 	selected, 
 	status,
-	onEditClick, 
-	totalCount 
+	onEditClick
 }) => {
 	const isSm = useReactiveMedia('sm');
     const isXl = useReactiveMedia('xl');

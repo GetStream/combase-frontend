@@ -1,5 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
+import { useHistory, useParams } from 'react-router-dom';
 import { itemGap } from '@combase.app/styles';
 import { formatTime } from '../../utils';
 
@@ -70,6 +71,8 @@ const CombaseChannelPreview = ({
 	unread 
 }) => {
 	const buttonRef = useRef();
+	const history = useHistory();
+	const { inbox } = useParams();
 
 	const { status } = channel?.data || {};
 	const { updated_at } = lastMessage || {};
@@ -82,6 +85,7 @@ const CombaseChannelPreview = ({
 	const onSelectChannel = () => {
 		if (setActiveChannel) {
 		  setActiveChannel(channel, watchers);
+		  history.push(`/dashboard/conversations/${inbox}/${channel.id}`)
 		}
 		if (buttonRef.current) {
 			buttonRef.current.blur();

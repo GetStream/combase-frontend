@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { 
 	ChannelList,
 	useChatContext,
 } from 'stream-chat-react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { 
 	Box, 
 	ChannelPreview,
@@ -14,8 +14,6 @@ import {
 	ScrollbarsWithContext, 
 	StateDisplay 
 } from '@combase.app/ui';
-
-import { useReactiveMedia } from 'hooks';
 
 import ChannelListHeader from './ChannelListHeader';
 import CombaseChannelList from './CombaseChannelList';
@@ -43,9 +41,16 @@ const EmptyState = (props) => {
 
 const ConversationMenu = () => {
 	const { client, setActiveChannel } = useChatContext();
-	const { inbox } = useParams();
+	const history = useHistory();
+	const { channelId, inbox } = useParams();
 
 	const [status, setStatus] = useState('open');
+
+	useEffect(() => {
+		setActiveChannel(null);
+		history.push(`/dashboard/conversations/${inbox}`);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [inbox, status]);
 
 	const filters = useMemo(() => {
         let filter = {};
@@ -87,25 +92,22 @@ const ConversationMenu = () => {
 				// If status is queued and the updated channel is no longer unassigned,
 				// remove it from the list of channels.
 				removeChannelFromList(setChannels, updated);
-				setActiveChannel(null);
 			}
 		}
 
 		if (status === 'open') {
 			if (updated.channel.status !== 'open') {
 				removeChannelFromList(setChannels, updated);
-				setActiveChannel(null);
 			}
 		}
 		
 		if (status === 'closed') {
 			if (updated.channel.status !== 'closed') {
 				removeChannelFromList(setChannels, updated);
-				setActiveChannel(null);
 			}
 		}
 	}, [removeChannelFromList, status]);
-
+	
     return (
         <Root>
 			<ScrollbarsWithContext>
@@ -116,6 +118,8 @@ const ConversationMenu = () => {
 				/>
 				<ChannelList 
 					allowNewMessagesFromUnfilteredChannels={false}
+					setActiveChannelOnMount={false}
+					customActiveChannel={channelId}
 					filters={filters}
 					onChannelUpdated={onChannelUpdated}
 					EmptyStateIndicator={EmptyState}
