@@ -73,14 +73,11 @@ const LoadingIndicator = styled(Container).attrs(() => ({
 `;
 
 const Conversation = () => {
-	const { channelId } = useParams();
 	const [drawerOpen, toggleDrawer] = useToggle(false);
 	const [_, setTicketToAssign] = useContext(AssignTicketContext);
 
 	const { channel } = useChatContext();
 
-	console.log(channelId);
-	
 	const isSm = useReactiveMedia('sm');
 	const [starTicket, setPriority] = useTicketLabelToggles();
 	
