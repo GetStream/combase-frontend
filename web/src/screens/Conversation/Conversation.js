@@ -104,7 +104,7 @@ const Conversation = () => {
 						]}
 					>
 						{
-							channel.data.status === 'unassigned' ? (
+							channel?.data.status === 'unassigned' ? (
 								<Button size="xs" variant="flat" color="altText" onClick={() => setTicketToAssign(channel.id)}>
 									<IconLabel>
 										<Text>Assign to</Text>
