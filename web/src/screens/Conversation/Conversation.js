@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
 import { useToggle } from 'react-use';
 import { 
 	Avatar, 
@@ -22,7 +21,7 @@ import {
 	TicketLabelToggle, 
 	Tooltip 
 } from '@combase.app/ui';
-import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
+import { Channel, MessageInput, MessageList, useChatContext, useChannelStateContext } from 'stream-chat-react';
 
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 
@@ -80,7 +79,7 @@ const Conversation = () => {
 
 	const isSm = useReactiveMedia('sm');
 	const [starTicket, setPriority] = useTicketLabelToggles();
-	
+
 	return (
 		<Root drawer={drawerOpen}>
 			<Channel 

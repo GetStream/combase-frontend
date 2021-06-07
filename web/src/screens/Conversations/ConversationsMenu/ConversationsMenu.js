@@ -7,7 +7,6 @@ import {
 import { Route, useHistory, useParams } from 'react-router-dom';
 import { 
 	Box, 
-	ChannelPreview,
 	ConversationsIcon, 
 	PageHeader, 
 	Menu, 
@@ -17,6 +16,7 @@ import {
 
 import ChannelListHeader from './ChannelListHeader';
 import CombaseChannelList from './CombaseChannelList';
+import CombaseChannelPreview from './CombaseChannelPreview';
 import InboxSelector from './InboxSelector';
 
 const Root = styled.div`
@@ -132,7 +132,7 @@ const ConversationMenu = () => {
 								onChannelUpdated={onChannelUpdated}
 								EmptyStateIndicator={EmptyState}
 								List={CombaseChannelList}
-								Preview={ChannelPreview}
+								Preview={CombaseChannelPreview}
 							/>
 						)
 					}
