@@ -7,14 +7,14 @@ import Box from '../../Box';
 
 import InputBase from '../shared/InputBase';
 import { useInput } from '../shared/useInput';
-import { SearchIcon } from '../../icons/search';
+import { CloseIcon, SearchIcon } from '../../icons';
+import IconButton from '../../IconButton';
 
 const Root = styled(Box)`
     position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+	grid-auto-rows: 1fr;
     overflow: hidden;
     font-family: ${({ theme }) => theme.fonts.text};
     font-variation-settings: 'wght' 500;
@@ -33,10 +33,6 @@ const Root = styled(Box)`
 `;
 
 const Icon = styled(Box)`
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +55,7 @@ export const SearchToolbar = forwardRef(
             name,
             onBlur,
             onChange,
+			onClear,
             onFocus,
             onKeyDown,
             placeholder,
@@ -87,11 +84,14 @@ export const SearchToolbar = forwardRef(
                         {...inputProps}
                         {...rest}
                         ref={inputRef}
+						paddingRight={0}
                         $hasValue={hasValue}
                         minHeight={8}
-                        paddingX={8}
                         placeholder="Search"
                     />
+					<Icon width={8}>
+                        {inputProps.value ? <IconButton icon={CloseIcon} color="error" onClick={onClear} size={4} /> : null}
+                    </Icon>
                 </Root>
             </Box>
         );
@@ -106,6 +106,7 @@ SearchToolbar.propTypes = {
     name: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onClear: PropTypes.func,
     onEnter: PropTypes.func,
     required: PropTypes.bool,
     type: PropTypes.string,
