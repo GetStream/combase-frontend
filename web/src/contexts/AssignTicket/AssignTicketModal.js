@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useMutation, ASSIGN_TICKET } from '@combase.app/apollo';
-import { Box, Button, Card, CardHeader, Container, ListItem, Modal, SearchToolbar, Text, VirtualizedList } from '@combase.app/ui';
+import { AssignIcon, Box, Button, Card, CardHeader, Container, ListItem, Modal, SearchToolbar, Text, VirtualizedList } from '@combase.app/ui';
 import {
 	InstantSearch,
 	Hits,
@@ -33,8 +33,8 @@ const Footer = styled(Box).attrs({
     padding: 3,
 })`
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+	flex-direction: column;
+    align-items: stretch;
 `;
 
 const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
@@ -65,7 +65,7 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 		const { email, name, objectID } = hit || {}
 		return (
 			<ListItem onClick={() => handleAssignTicket(objectID)}>
-				<AgentEntity name={name.full} meta={email} />
+				<AgentEntity name={name?.full} meta={email} />
 			</ListItem>
 		);
 	}, [handleAssignTicket]);
@@ -73,7 +73,7 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 	return (
 		<InstantSearch indexName="AGENTS" searchClient={algolia}>
 			<Root ref={ref} boxShadow={8} role="dialog" width={16}>
-				<CardHeader>{'Assign Ticket To...'}</CardHeader>
+				<CardHeader paddingX={5} icon={<AssignIcon size={5} />}>{'Assign Ticket To...'}</CardHeader>
 				<Container>
 					<SearchBox />
 				</Container>
@@ -100,8 +100,8 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 					/>
 				</List> */}
 				<Footer>
-					<Button onClick={onClose} size="sm">
-						<Text>Done</Text>
+					<Button color="error" onClick={onClose} size="xs" variant="flat">
+						<Text color="error">Cancel</Text>
 					</Button>
 				</Footer>
 			</Root>

@@ -22,7 +22,7 @@ const Conversations = () => {
 	return (
 		<AssignTicket>
 			<SplitView columnTemplate={columnTemplate}>
-				<ConversationsMenu exact path="/dashboard/conversations/:inbox/:channelId?" />
+				<ConversationsMenu exact path="/dashboard/conversations/:inbox" />
 				<Conversation path="/dashboard/conversations/:inbox/:channelId" />
 			</SplitView>
 		</AssignTicket>

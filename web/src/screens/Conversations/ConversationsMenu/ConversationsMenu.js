@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { 
 	ChannelList,
 	useChatContext,
 } from 'stream-chat-react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Route, useHistory, useParams } from 'react-router-dom';
 import { 
 	Box, 
 	ChannelPreview,
@@ -41,14 +41,19 @@ const EmptyState = (props) => {
 
 const ConversationMenu = () => {
 	const { client, setActiveChannel } = useChatContext();
+	const mounted = useRef();
 	const history = useHistory();
-	const { channelId, inbox } = useParams();
+	const { inbox } = useParams();
 
 	const [status, setStatus] = useState('open');
 
 	useEffect(() => {
-		setActiveChannel(null);
-		history.push(`/dashboard/conversations/${inbox}`);
+		if (mounted.current) {
+			setActiveChannel(null);
+			history.push(`/dashboard/conversations/${inbox}`);
+		} else {
+			mounted.current = true;
+		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [inbox, status]);
 
@@ -116,16 +121,22 @@ const ConversationMenu = () => {
 					status={status}
 					onChangeStatus={setStatus}
 				/>
-				<ChannelList 
-					allowNewMessagesFromUnfilteredChannels={false}
-					setActiveChannelOnMount={false}
-					customActiveChannel={channelId}
-					filters={filters}
-					onChannelUpdated={onChannelUpdated}
-					EmptyStateIndicator={EmptyState}
-					List={CombaseChannelList}
-					Preview={ChannelPreview}
-				/>
+				<Route path="/dashboard/conversations/:inbox/:channelId?">
+					{
+						({ match }) => (
+							<ChannelList 
+								allowNewMessagesFromUnfilteredChannels={false}
+								setActiveChannelOnMount={false}
+								customActiveChannel={match.params.channelId}
+								filters={filters}
+								onChannelUpdated={onChannelUpdated}
+								EmptyStateIndicator={EmptyState}
+								List={CombaseChannelList}
+								Preview={ChannelPreview}
+							/>
+						)
+					}
+				</Route>
 			</ScrollbarsWithContext>
         </Root>
     );

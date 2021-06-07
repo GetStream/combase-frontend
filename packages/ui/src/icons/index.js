@@ -13,6 +13,7 @@ export * from './archive';
 export * from './arrowBack';
 export * from './attachment';
 export * from './arrowUpCircle';
+export * from './assign';
 export * from './bold';
 export * from './calendar';
 export * from './check';
