@@ -48,18 +48,10 @@ const Header = styled(Box)`
     }
 `;
 
-const ChannelMeta = styled(Box)`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	& > * + * { 
-		${itemGap};
-	}
-`;
-
 const ChannelPreview = ({ 
 	active, 
 	channel, 
+	children,
 	compact, 
 	displayImage, 
 	displayTitle, 
@@ -123,11 +115,7 @@ const ChannelPreview = ({
 					>
 						{latestMessage}
 					</Text>
-					{!compact ? (
-						<ChannelMeta gapLeft={3} marginTop={2}>
-							<Label variant="ghost" color={`ticketStatus.${status}`} colorAlpha={0.08} textColor={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
-						</ChannelMeta>
-					) : null}
+					{children}
 				</Content>
 			</Wrapper>
 		</Root>
