@@ -1,12 +1,15 @@
-import React, { forwardRef, useCallback, useContext, useState } from 'react';
+import React, { forwardRef, useCallback, useContext } from 'react';
 import styled from 'styled-components';
-import { useMutation, ASSIGN_TICKET } from '@combase.app/apollo';
-import { AssignIcon, Box, Button, Card, CardHeader, Container, ListItem, Modal, SearchToolbar, Text, VirtualizedList } from '@combase.app/ui';
+import { useMutation, ASSIGN_TICKET, GET_ORGANIZATION, useQuery } from '@combase.app/apollo';
+import { AssignIcon, Box, Button, Card, CardHeader, Container, IconBubble, ListItem, Modal, SearchToolbar, Text, VirtualizedList } from '@combase.app/ui';
 import {
+	Configure as AlgoliaConfig,
 	InstantSearch,
 	Hits,
+	connectHits,
 	connectSearchBox,
   } from 'react-instantsearch-dom';
+import { Scrollbars } from 'rc-scrollbars';
 import { algolia } from 'utils/search';
 import { layout } from '@combase.app/styles';
 
@@ -14,7 +17,8 @@ import { AgentEntity } from 'components/Entities';
 import { AssignTicketContext } from './context';
 
 const Root = styled(Card)`
-
+	display: grid;
+    grid-template-rows: min-content 1fr min-content;
 `;
 
 const List = styled(Box)`
@@ -25,6 +29,8 @@ const List = styled(Box)`
 	& ul {
 		margin: 0;
 		padding: 0;
+		padding-left: ${({ theme }) => theme.space[3]};
+		padding-right: ${({ theme }) => theme.space[3]};
 		list-style: none;
 	}
 `;
@@ -35,16 +41,45 @@ const Footer = styled(Box).attrs({
     display: flex;
 	flex-direction: column;
     align-items: stretch;
+	border-top: 1px solid ${({ theme }) => theme.colors.border};
 `;
+
+const ItemContainer = styled(Box).attrs({
+    paddingX: 2,
+})``;
 
 const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
 	return <SearchToolbar onChange={e => refine(e.target.value)} onClear={() => refine('')} value={currentRefinement} />
 });
 
+const HitList = connectHits(({ onClickHit, hits }) => {
+	console.log(hits);
+	return (
+		<List minHeight={16}>
+			<VirtualizedList
+				ItemContainer={ItemContainer}
+				// loading={loading || searching}
+				data={hits}
+				renderItem={(a, hit = {}) => {
+					console.log(a, hit)
+					return (
+						<ListItem interaction="highlight" onClick={() => onClickHit(hit?.objectID)} columnTemplate="1fr min-content">
+							<AgentEntity name={hit.name?.display} meta={hit.email} />
+						</ListItem>
+					);
+				}}
+			/>
+		</List>
+	)
+});
+
 const AssignTicketModalInner = forwardRef((props, ref) => {
 	const [toAssign, setTicketToAssign] = useContext(AssignTicketContext);
+	const { data } = useQuery(GET_ORGANIZATION);
 	const [assignTicket] = useMutation(ASSIGN_TICKET);
 	const onClose = () => setTicketToAssign(null);
+
+	const organization = data?.organization || {};
 
 	const handleAssignTicket = useCallback(async (agent) => {
 		try {
@@ -72,32 +107,17 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 
 	return (
 		<InstantSearch indexName="AGENTS" searchClient={algolia}>
-			<Root ref={ref} boxShadow={8} role="dialog" width={16}>
-				<CardHeader paddingX={5} icon={<AssignIcon size={5} />}>{'Assign Ticket To...'}</CardHeader>
+			<Root ref={ref} boxShadow={8} role="dialog" maxHeight={18} width={17}>
+				<CardHeader paddingX={5} paddingY={5} icon={<IconBubble icon={AssignIcon} size={8} />}>{'Assign Ticket to...'}</CardHeader>
 				<Container>
 					<SearchBox />
+					<AlgoliaConfig filters={`organization:${organization._id}`} />
 				</Container>
-				<List minHeight={15} paddingX={3}>
-					<Hits hitComponent={AgentResult} />
-				</List>
-				{/* <List minHeight={15}>
-					<VirtualizedList
-						ItemContainer={ItemContainer}
-						loading={loading || searching}
-						data={query ? results : entities?.edges}
-						renderItem={(a, { node = {} } = {}) => {
-							return (
-								<ListItem interaction="highlight" onClick={e => handleAdd(e, node?._id)} columnTemplate="1fr min-content">
-									<AgentEntity name={node.name?.display} meta={node.email} />
-									{selectedAgents.includes(node?._id) ? (
-										<Button onClick={e => handleRemove(e, node?._id)} variant="flat" size="xs" color="error">
-											<Text variant="label">Remove</Text>
-										</Button>
-									) : null}
-								</ListItem>
-							);
-						}}
-					/>
+				<HitList onClickHit={handleAssignTicket} />
+				{/* <List minHeight={16}>
+					<Scrollbars>
+						<Hits hitComponent={AgentResult} />
+					</Scrollbars>
 				</List> */}
 				<Footer>
 					<Button color="error" onClick={onClose} size="xs" variant="flat">
