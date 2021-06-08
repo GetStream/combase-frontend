@@ -6,6 +6,8 @@ import Text from '../Text';
 
 const TextGroup = styled(Box)`
     ${layout};
+	text-align: left;
+	
     & > * + * {
         ${itemGap};
     }
