@@ -6,6 +6,7 @@ import { useTranslationContext } from 'stream-chat-react';
 
 import Box from '../../Box';
 import Text from '../../Text';
+import TextLink from '../../TextLink';
 import { WarningIcon } from '../../icons';
 
 import MessageDate from './MessageDate';
@@ -32,17 +33,13 @@ const MessageMeta = ({ className, date, errorStatusCode, onRetry, name, ours, st
             </Text>
             {date ? <MessageDate fontSize={2} lineHeight={2} marginLeft={1}>{format(date, 'p')}</MessageDate> : null}
 			{status === 'failed' ? (
-              <button
-                className='str-chat__message-team-failed'
-                data-testid='message-team-failed'
-                onClick={errorStatusCode !== 403 ? onRetry : undefined}
-              >
-                <WarningIcon />
+              <TextLink color="error">
                 {errorStatusCode !== 403
                   ? t('Message Failed · Click to try again')
                   : t('Message Failed · Unauthorized')}
-              </button>
+              </TextLink>
             ) : null}
+			<MessageStatus />
         </Root>
     );
 };

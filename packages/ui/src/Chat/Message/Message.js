@@ -12,6 +12,7 @@ import Text from '../../Text';
 import MessageActions from './MessageActions';
 import MessageDate from './MessageDate';
 import MessageMeta from './MessageMeta';
+import MessageStatus from './MessageStatus';
 
 const avatarSize = 8;
 
@@ -83,10 +84,16 @@ const AvatarCol = styled(Box)`
         align-self: flex-start;
         font-variation-settings: 'wght' 300;
         opacity: 0;
+		display: none;
     }
+
+	& > ${MessageStatus} {
+		align-self: center;
+	}
 
     ${Root}:hover & > ${MessageDate} {
         opacity: 0.5;
+		display: inherit;
     }
 `;
 
@@ -126,7 +133,10 @@ const Message = () => {
 		>
 			<AvatarCol>
 				{noAvatar ? (
-					<MessageDate fontSize={2} lineHeight={6}>{format(message.created_at, 'hh:mma')}</MessageDate>
+					<>
+						<MessageDate fontSize={2} lineHeight={6}>{format(message.created_at, 'hh:mma')}</MessageDate>
+						<MessageStatus />
+					</>
 				) : (
 					<Avatar src={message?.user?.avatar} name={message?.user?.name} size={avatarSize} />
 				)}
