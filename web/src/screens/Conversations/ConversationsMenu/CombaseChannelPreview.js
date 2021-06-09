@@ -31,8 +31,8 @@ const CombaseChannelPreview = (props) => {
 		const agent = Object.values(channel?.state?.members || []).find(({ role }) => role !== 'owner');
 		return {
 			borderRadius: 'circle',
-			name: agent.user.id === me?._id ? 'You' : agent.user.name,
-			src: agent.user.avatar,
+			name: agent?.user.id === me?._id ? 'You' : agent?.user.name,
+			src: agent?.user.avatar,
 		};
 	}, [channel, me]);
 
@@ -40,7 +40,7 @@ const CombaseChannelPreview = (props) => {
 		<ChannelPreview {...props} onSelectChannel={onSelectChannel}>
 			<ChannelMeta marginTop={2}>
 				<Label variant="ghost" color={`ticketStatus.${status}`} colorAlpha={0.08} textColor={`ticketStatus.${status}`}><Text fontSize={2} lineHeight={2}>{status}</Text></Label>
-				{status !== 'unassigned' ? <Chip size="xs" color="primary" icon={Avatar} iconProps={iconProps} label={iconProps.name} /> : null}
+				{status !== 'unassigned' && status !== 'new' ? <Chip size="xs" color="primary" icon={Avatar} iconProps={iconProps} label={iconProps.name} /> : null}
 			</ChannelMeta>
 		</ChannelPreview>
 	);
