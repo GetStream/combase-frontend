@@ -96,11 +96,12 @@ const MessageText = styled(Text).attrs(({ largeEmoji }) => ({
     lineHeight: !largeEmoji ? 6 : 8,
 }))``;
 
-const Message = (props) => {
+const Message = () => {
 	const { 
 		editing,
 		groupStyles: [grouping = 'single'] = [], 
 		isMyMessage, 
+		handleRetry,
 		message,
 		clearEditingState,
 	} = useMessageContext();
@@ -134,7 +135,9 @@ const Message = (props) => {
 				{!noAvatar ? (
 					<MessageMeta
 						date={message?.created_at}
+						errorStatusCode={message?.errorStatusCode}
 						name={isOwned ? 'You' : message?.user?.name}
+						onRetry={() => handleRetry(message)}
 						ours={isOwned}
 						status={message?.status}
 						type={type}

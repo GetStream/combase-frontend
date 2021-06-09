@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import { 
@@ -21,7 +21,8 @@ import {
 	TicketLabelToggle, 
 	Tooltip 
 } from '@combase.app/ui';
-import { Channel, MessageInput, MessageList, useChatContext, useChannelStateContext } from 'stream-chat-react';
+import { itemGap } from '@combase.app/styles';
+import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
 
 import { useTicketLabelToggles, useReactiveMedia } from 'hooks';
 
@@ -71,6 +72,37 @@ const LoadingIndicator = styled(Container).attrs(() => ({
 	justify-content: center;
 `;
 
+const UnassignedMsg = styled(Box)`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	& > * + * {
+		${itemGap};
+	}
+`;
+
+const CombaseMessageInput = () => {
+	const { channel } = useChatContext();
+	const [_, setTicketToAssign] = useContext(AssignTicketContext);
+
+	return <MessageComposer>
+		{
+			channel.data.status === 'unassigned' ? (
+				<UnassignedMsg gapLeft={3} paddingTop={2}>
+					<IconLabel>
+						<InfoIcon color="warning" />
+						<Text color="altText">This ticket is currently unassigned</Text>
+					</IconLabel>
+					<Button size="xs" variant="flat" onClick={() => setTicketToAssign(channel.id)}>
+						<Text color="primary">Assign to...</Text>
+					</Button>
+				</UnassignedMsg>
+			) : null
+		}
+	</MessageComposer>
+};
+
 const Conversation = () => {
 	const [drawerOpen, toggleDrawer] = useToggle(false);
 	const [_, setTicketToAssign] = useContext(AssignTicketContext);
@@ -89,7 +121,7 @@ const Conversation = () => {
 				LoadingIndicator={LoadingIndicator}
 				Message={Message}
 				MessageSystem={SystemMessage}
-				Input={MessageComposer}
+				Input={CombaseMessageInput}
 			>
 				<ChannelWrapper>
 					<ChannelHeader 
@@ -107,7 +139,7 @@ const Conversation = () => {
 							channel?.data.status === 'unassigned' ? (
 								<Button size="xs" variant="flat" color="altText" onClick={() => setTicketToAssign(channel.id)}>
 									<IconLabel>
-										<Text>Assign to</Text>
+										<Text>Assign Ticket</Text>
 										<DropdownIcon />
 									</IconLabel>
 								</Button>

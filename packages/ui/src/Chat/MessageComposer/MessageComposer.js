@@ -42,10 +42,11 @@ const Card = styled(Box).attrs({
 	}
 `;
 
-const MessageComposer = (props) => {
+const MessageComposer = ({ children }) => {
 	return (
 		<Root>
 			<Card>
+				{children}
 				<ChatAutoComplete />
 				<ComposerToolbar />
 			</Card>

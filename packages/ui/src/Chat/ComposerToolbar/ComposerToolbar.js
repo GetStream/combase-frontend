@@ -185,9 +185,9 @@ const ComposerToolbar = ({ editMode, disabled }) => {
 							<Tooltip text="Quick Responses" placement="top">
 								<IconButton color="altText" fillAlpha={0.56} icon={QuickResponseIcon} size={4} />
 							</Tooltip>
-							<Tooltip text="Search FAQ" placement="top">
+							{/* <Tooltip text="Search FAQ" placement="top">
 								<IconButton color="altText" fillAlpha={0.56} icon={KnowledgeBaseIcon} size={4} />
-							</Tooltip>
+							</Tooltip> */}
 						</ActionGroup>
 					) : (
 						<ActionGroup gapLeft={3}>
