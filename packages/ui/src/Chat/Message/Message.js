@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles'
-import { MessageInput, useComponentContext, useMessageContext } from 'stream-chat-react';
+import { MessageInput, useComponentContext, useMessageContext, renderText as defaultRenderText } from 'stream-chat-react';
 import format from 'date-fns/format';
 
 import Avatar from '../../Avatar';
@@ -82,7 +82,7 @@ const AvatarCol = styled(Box)`
 
     & > ${MessageDate} {
         align-self: flex-start;
-        font-variation-settings: 'wght' 300;
+        font-variation-settings: 'wght' 500;
         opacity: 0;
 		display: none;
     }
@@ -97,11 +97,14 @@ const AvatarCol = styled(Box)`
     }
 `;
 
-const MessageText = styled(Text).attrs(({ largeEmoji }) => ({
-    fontSize: !largeEmoji ? '15px' : 7,
-    fontWeight: 400,
-    lineHeight: !largeEmoji ? 6 : 8,
-}))``;
+const MessageText = styled(Box)`
+	& p {
+		margin: 0;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: ${({ theme }) => theme.fontSizes[6]};
+	}
+`;
 
 const Message = () => {
 	const { 
@@ -111,6 +114,7 @@ const Message = () => {
 		handleRetry,
 		message,
 		clearEditingState,
+		renderText = defaultRenderText,
 	} = useMessageContext();
 
 	const isOwned = isMyMessage();
@@ -156,7 +160,7 @@ const Message = () => {
 				{
 					!editing ? (
 						<>
-							<MessageText opacity={type!=='deleted' ? 1 : 0.5}>{type === "deleted" ? 'Message Deleted' : message.text}</MessageText>
+							<MessageText>{renderText(message.text)}</MessageText>
 							<Attachment attachments={message.attachments} />
 						</>
 					) : (
