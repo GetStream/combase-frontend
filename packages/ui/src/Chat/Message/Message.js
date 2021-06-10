@@ -103,6 +103,7 @@ const MessageText = styled(Box)`
 		font-size: 15px;
 		font-weight: 400;
 		line-height: ${({ theme }) => theme.fontSizes[6]};
+		font-family: ${({ theme }) => theme.fonts.text};
 	}
 `;
 

@@ -12,7 +12,6 @@ const IconLabel = styled(Box).attrs(props => ({
     display: flex;
     flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
     align-items: center;
-	${color};
 
     & > * + * {
         ${itemGap};
@@ -20,7 +19,6 @@ const IconLabel = styled(Box).attrs(props => ({
 `;
 
 IconLabel.propTypes = {
-    color: PropTypes.string,
     icon: PropTypes.oneOfType([PropTypes.element, PropTypes.func, PropTypes.node]),
     iconColor: PropTypes.string,
     iconSize: PropTypes.number,
@@ -30,7 +28,6 @@ IconLabel.propTypes = {
 };
 
 IconLabel.defaultProps = {
-	color: 'green',
     gap: 1,
 };
 

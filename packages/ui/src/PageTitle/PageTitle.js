@@ -45,6 +45,7 @@ const Spacer = styled(Box)`
 
 const PageTitle = ({ centered, color, reverse, subtitle, marginBottom, onClick, style, title }) => (
     <Root
+		id="pageTitleRoot"
         variant={centered ? 'centered' : null}
         gapTop={reverse ? 0 : 'small'}
         gapBottom={reverse ? 'small' : 0}

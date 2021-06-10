@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Button from '../../Button';
 import StateDisplay from '../../StateDisplay';
+import IconLabel from '../../IconLabel';
 import Text from '../../Text';
 import { CheckboxCheckedIcon, CheckboxIcon, DropdownIcon } from '../../icons';
 import Popover from '../../Popover';
@@ -78,9 +79,11 @@ export const SelectButton = forwardRef(
         return (
             <>
                 <InputBase type="hidden" ref={inputRef} {...inputProps} />
-                <Button {...props} onClick={(v, e) => setAnchorRef(e.nativeEvent.target)} reverseLabel>
-                    <DropdownIcon />
-                    <Text>{label}</Text>
+                <Button {...props} onClick={(v, e) => setAnchorRef(e.nativeEvent.target)}>
+                    <IconLabel>
+						<Text>{label}</Text>
+						<DropdownIcon />
+					</IconLabel>
                 </Button>
                 <Popover
                     anchor={anchorRef}

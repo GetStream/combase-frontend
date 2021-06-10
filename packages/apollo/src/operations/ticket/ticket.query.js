@@ -126,24 +126,10 @@ export const GET_TICKET = gql`
     }
 `;
 
-export const GET_TICKET_DRAWER = gql`
+export const GET_TICKET_DRAWER_ACTIONS = gql`
     query getTicketDrawer($_id: MongoID!) {
         organization {
 			_id
-			ticket(_id: $_id) {
-				_id
-				user: userData {
-					_id
-					name
-					email
-				}
-				tags
-				status
-				starred
-				priority
-				createdAt
-			}
-
 			integrations(filter: {
 				enabled: true,
 			}) {
@@ -169,13 +155,28 @@ export const GET_TICKET_DRAWER = gql`
 
 export const GET_TICKET_PARTNER = gql`
     query getTicketPartner($_id: MongoID!) {
-        ticket(_id: $_id) {
-            _id
-            user: userData {
-                _id
-                name
-                email
-            }
-        }
+        organization {
+			_id
+			ticket(_id: $_id) {
+				_id
+				user: userData {
+					_id
+					name
+					email
+				}
+			}
+		}
+    }
+`;
+
+export const GET_TICKET_TAGS = gql`
+    query getTicketTags($_id: MongoID!) {
+        organization {
+			_id
+			ticket(_id: $_id) {
+				_id
+				tags
+			}
+		}
     }
 `;
