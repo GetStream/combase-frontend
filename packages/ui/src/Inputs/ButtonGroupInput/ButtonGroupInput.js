@@ -15,7 +15,7 @@ const Root = styled(Box)`
 	flex-wrap: wrap;
 `;
 
-const Options = styled(Button)`
+const Option = styled(Button)`
 	margin-right: .25rem;
 	margin-bottom: .25rem;
 `;
@@ -47,12 +47,15 @@ export const ButtonGroupInput = ({ name, options, onBlur, onChange, onFocus, val
 		});
 	}, [inputProps, name]);
 
-	const renderItem = useCallback(({ icon, label, value }) => (
-		<Options size="xs" key={value} color={inputProps.value?.includes(value) ? 'primary' : 'text'} variant={inputProps.value?.includes(value) ? 'raised' : 'flat'} onClick={() => onClick(value)} type="button">
-			{icon ? <Icon icon={icon} /> : null}
-			<Text color="white">{label}</Text>
-		</Options>
-	), [inputProps.value, onClick])
+	const renderItem = useCallback(({ icon, label, value }) => {
+		const color = inputProps.value?.includes(value) ? 'white' : 'primary';
+		return (
+			<Option size="xs" key={value} color="primary" variant={inputProps.value?.includes(value) ? 'raised' : 'flat'} onClick={() => onClick(value)} type="button">
+				{icon ? <Icon icon={icon} /> : null}
+				<Text color={color}>{label}</Text>
+			</Option>
+		);
+	}, [inputProps.value, onClick])
 
 	return options?.length ? (
 		<Root {...rest}>
