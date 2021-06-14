@@ -1,5 +1,4 @@
 export * from './Checkbox';
-export { default as ColorInput } from './ColorInput';
 export * from './Editable';
 export * from './LabelledCheckbox';
 export * from './ScheduleInput';

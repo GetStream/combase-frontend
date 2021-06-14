@@ -1,69 +1,74 @@
-import React, { useState, useRef } from 'react';
-import { useToggle } from 'react-use';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
-import InputColor from 'react-input-color';
+import { border } from '@combase.app/styles';
 
-import { TextInput } from '../TextInput';
+import Box from '../../Box';
+import Text from '../../Text';
+import TextGroup from '../../TextGroup';
 
-const ColorPicker = styled(InputColor)`
-    border: 0 !important;
-    background-color: ${({ theme }) => theme.colors.surface}!important;
-    width: ${({ theme }) => theme.sizes[5]} !important;
-    height: ${({ theme }) => theme.sizes[5]} !important;
+import { useInput } from '../shared/useInput';
 
-    &,
-    & > span {
-        border-radius: 50% !important;
-    }
+const Root = styled(Box)`
+	display: grid;
+	grid-template-columns: min-content 1fr;
+	grid-gap: ${({ theme }) => theme.space[3]};
+	cursor: pointer;
 `;
 
-const ColorInput = props => {
-    const [anchorRef, setAnchorRef] = useState();
-    const inputRef = useRef();
-    const [open, toggleDropdown] = useToggle();
+const Content = styled(TextGroup)`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+`;
 
-    const handleClose = () => {
-        toggleDropdown(false);
-    };
+const Input = styled.input`
+	width: ${({ theme }) => theme.sizes[10]};
+	height: ${({ theme }) => theme.sizes[10]};
+	-webkit-appearance: none;
+	border: none;
+	border-radius: 50%;
 
-    const handleFocus = () => {
-        toggleDropdown(true);
-    };
+	&::-webkit-color-swatch-wrapper {
+		padding: 0;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	&::-webkit-color-swatch {
+		border: none;
+	}
+`;
 
-    return (
-        <TextInput
-            {...props}
-            disabled
-            showDisabled={false}
-            onFocus={handleFocus}
-            onClick={handleFocus}
-            inputRef={inputRef}
-            ref={setAnchorRef}
-            forceFocus
-        >
-            <ColorPicker initialValue={props.value || ''} onChange={({ hex }) => inputRef.current?.change?.(hex)} placement="right" />
-        </TextInput>
-    );
-};
+const ColorInput = (props) => {
+	const {
+		label,
+		name, 
+		onBlur,
+		onChange,
+		onFocus,
+		onKeyDown,
+		value,
+	} = props;
 
-ColorInput.propTypes = {
-    error: PropTypes.string,
-    focusedPlaceholder: PropTypes.string,
-    helper: PropTypes.string,
-    label: PropTypes.string,
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onEnter: PropTypes.func,
-    required: PropTypes.bool,
-    type: PropTypes.string,
-    value: PropTypes.any,
-};
+	const [inputProps, { focused, hasValue }] = useInput({
+		name,
+		onBlur,
+		onChange,
+		onFocus,
+		onKeyDown,
+		value,
+	});
 
-ColorInput.defaultProps = {
-    focusedPlaceholder: '',
-    type: 'text',
-};
+	return (
+		<Root>
+			<Input {...inputProps} type="color" />
+			<Content>
+				<Text color="altText" fontWeight="400">
+					{label}:
+				</Text>
+				<Text>{inputProps.value || '#000000'}</Text>
+			</Content>
+		</Root>
+	);
+}
 
 export default ColorInput;
