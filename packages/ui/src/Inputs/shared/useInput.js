@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { useControlledValue } from './useControlledValue';
 
 export const useInput = ({ 
+	initialValue, // Sets the initial internal value when NOT controlled
 	name, 
 	onChange: handleChange, 
 	onBlur: handleBlur, 
@@ -17,6 +18,7 @@ export const useInput = ({
     const valueSelector = type === 'toggle' ? 'checked' : 'value';
     const [value, setInternalValue] = useControlledValue({
         controlledValue: valueProp,
+		initialValue,
         valueSelector,
     });
 
