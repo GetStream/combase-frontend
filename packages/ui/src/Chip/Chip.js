@@ -1,29 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { interactions, itemGap, layout, variant } from '@combase.app/styles';
+import { interactions, itemGap, layout, parentColorVariants, childColorVariants, variant } from '@combase.app/styles';
 
 import Box from '../Box';
 import Placeholder from '../Placeholder';
 import Text from '../Text';
-
-// TODO: Dedupe with IconBubble
-const rootVariant = ({ color, invert }) =>
-    variant({
-        variants: {
-            ghost: {
-                backgroundColor: ({ colors, utils }) => utils.colors.fade(color.startsWith('#') ? color : colors[color], 0.08),
-            },
-            filled: {
-                backgroundColor: invert ? 'surface' : color,
-            },
-            border: {
-                borderWidth: 'thin',
-                borderStyle: 'solid',
-                borderColor: color,
-            },
-        },
-    });
 
 const Root = styled(Box)`
     ${layout.maxHeight};
@@ -31,64 +13,22 @@ const Root = styled(Box)`
     align-items: center;
     border-radius: 2rem;
     user-select: none;
+    ${layout};
+	${parentColorVariants};
 
-    & svg > path {
-        ${({ color, invert }) =>
-            variant({
-                variants: {
-                    ghost: {
-                        color,
-                    },
-                    border: {
-                        color,
-                    },
-                    filled: {
-                        '& path': {
-                            fill: invert ? color : 'surface',
-                        },
-                    },
-                },
-            })}
+    & svg {
+		${childColorVariants};
     }
 
     & > ${Text} {
         ${itemGap};
-        ${({ color, invert }) =>
-            variant({
-                variants: {
-                    ghost: {
-                        color,
-                    },
-                    border: {
-                        color,
-                    },
-                    filled: {
-                        color: invert ? color : 'surface',
-                    },
-                },
-            })}
+        ${childColorVariants};
     }
 
     &${Placeholder} {
         width: 4rem;
         height: ${({ size }) => size}rem;
     }
-
-    ${variant({
-        prop: 'size',
-        variants: {
-            xs: {
-                maxHeight: 4,
-                padding: 1,
-            },
-            sm: {
-                maxHeight: 5,
-                padding: 2,
-            },
-        },
-    })}
-
-    ${rootVariant}
 `;
 
 const CloseButton = styled.div`
@@ -101,8 +41,8 @@ const CloseButton = styled.div`
 `;
 
 const Chip = ({ action, color, children, icon: Icon, iconColor, iconProps, label, selected, onActionClick, size, value, ...props }) => (
-    <Root {...props} color={color} borderRadius="circle" gapLeft={1} gapRight={1} selected={selected} size={size}>
-        {Icon ? <Icon {...iconProps} color={iconColor || color} size={size === 'sm' ? 3 : 2} /> : null}
+    <Root {...props} color={color} borderRadius="circle" gapLeft={1} gapRight={1} padding="small" selected={selected} size={size}>
+        {Icon ? <Icon {...iconProps} color={color} size={size === 'sm' ? 3 : 2} /> : null}
         <Text fontSize={2} fontWeight="500" lineHeight={size === 'sm' ? 3 : 2}>
             {label}
         </Text>
@@ -128,7 +68,7 @@ Chip.defaultProps = {
     color: 'primary',
     label: '',
     size: 'xs',
-    variant: 'ghost',
+    variant: 'filled',
 };
 
 export default Chip;
