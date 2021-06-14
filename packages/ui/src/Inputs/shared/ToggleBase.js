@@ -1,15 +1,11 @@
-import React, { Children, cloneElement, forwardRef, useRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Box from '../../Box';
 import IconButton from '../../IconButton';
 
 import { useSharedRef } from './useSharedRef';
-
-const Root = styled(Box)`
-    cursor: pointer;
-`;
+import { useControlledValue } from './useControlledValue';
 
 const Input = styled.input`
     position: absolute;
@@ -20,24 +16,25 @@ const Input = styled.input`
     left: 0;
     margin: 0;
     padding: 0;
-    z-index: 0;
+    z-index: 1;
+	cursor: inherit;
 `;
 
 export const ToggleBase = forwardRef((props, ref) => {
     const {
+		checkedColor,
         checkedIcon,
-        children,
         className,
         color,
+		checked: checkedProp,
         disabled,
         icon,
         id,
         inputRef: externalInputRef,
-        indeterminate,
-        indeterminateIcon,
         name,
         onBlur,
         onChange,
+		onClick,
         onFocus,
         readOnly,
         required,
@@ -45,80 +42,69 @@ export const ToggleBase = forwardRef((props, ref) => {
         tabIndex,
         type,
         value,
-        ...other
     } = props;
+
+	const [checked, setInternalValue] = useControlledValue({
+		controlledValue: checkedProp,
+        valueSelector: 'checked',
+	});
+
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
 
-    const handleClick = (_, e) => {
-		if (disabled) return;
-		e.stopPropagation();
-        internalInputRef.current?.click(e);  
-    };
-
     const handleInputChange = event => {
-        if (event.nativeEvent.defaultPrevented || disabled) {
+        if (event.nativeEvent.defaultPrevented) {
             return;
         }
 
-        onChange(event);
+		setInternalValue(event);
+        
+		if (onChange) {
+			onChange(event);
+		}
     };
-	
+
     return (
-        <Root
-            as="span"
+        <IconButton
             className={className}
+			color={checked ? checkedColor : color}
             disabled={disabled}
             onBlur={onBlur}
             onFocus={onFocus}
+			icon={checked ? checkedIcon || icon : icon}
             ref={ref}
             role={undefined}
             tabIndex={null}
-            {...other}
+			value={value}
+			type={type}
+			size={size}
         >
             <Input
-                checked={value}
+                checked={checked}
                 disabled={disabled}
                 id={id}
                 name={name}
                 onChange={handleInputChange}
                 readOnly={readOnly}
                 ref={inputRef}
+				onClick={onClick}
                 required={required}
                 tabIndex={tabIndex}
                 type="checkbox"
+				value={value}
             />
-            {children ? (
-                cloneElement(Children.only(children), {
-                    checked: value,
-                    onClick: handleClick,
-                    size,
-                    value,
-                })
-            ) : (
-                <IconButton
-                    color={indeterminate || value ? color : 'border'}
-                    disabled={disabled}
-					onClick={handleClick}
-                    // eslint-disable-next-line no-nested-ternary
-                    icon={indeterminate ? indeterminateIcon || icon : value ? checkedIcon : icon}
-                    size={size}
-                />
-            )}
-        </Root>
+        </IconButton>
     );
 });
 
 ToggleBase.propTypes = {
-    checkedIcon: PropTypes.func,
+ 	checkedColor: PropTypes.func,
     className: PropTypes.string,
+	checkedIcon: PropTypes.func,
     color: PropTypes.string,
-    defaultChecked: PropTypes.bool,
     disabled: PropTypes.bool,
     icon: PropTypes.func,
     id: PropTypes.string,
-    indeterminate: PropTypes.bool,
-    indeterminateIcon: PropTypes.func,
     inputProps: PropTypes.object,
     name: PropTypes.string,
     onBlur: PropTypes.func,
@@ -128,11 +114,12 @@ ToggleBase.propTypes = {
     required: PropTypes.bool,
     size: PropTypes.number,
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    type: PropTypes.oneOf(['button']),
+    type: PropTypes.oneOf(['button', 'submit']),
 	value: PropTypes.bool,
 };
 
 ToggleBase.defaultProps = {
-    color: 'primary',
+	checkedColor: 'primary',
+    color: 'border',
     type: 'button',
 };
