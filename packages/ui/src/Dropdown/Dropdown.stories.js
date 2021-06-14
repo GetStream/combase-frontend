@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { layout, shadow } from '@combase.app/styles';
 
 import Dropdown from './Dropdown';
-import Popover from '../Popover';
+import Popover, { usePopoverState } from '../Popover';
 import Button from '../Button';
 import IconButton from '../IconButton';
+import IconLabel from '../IconLabel';
 import { DropdownIcon, SortIcon } from '../icons';
 import Box from '../Box';
 import MenuItem from '../MenuItem';
@@ -46,16 +47,17 @@ const Root = styled(Box)`
 const noop = () => {};
 
 export const DropdownMenu = () => {
-    const [anchorRef, setAnchorRef] = useState();
+	const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
 
     return (
         <div>
             <Page>
                 <Root marginX="auto" padding={4}>
                     <Popover
-                        anchor={anchorRef}
+                        anchor={anchorRef.current}
                         as={Dropdown}
-                        onClose={() => setAnchorRef(false)}
+						open={open}
+                        onClose={() => toggleOpen(false)}
                         placement="bottom-end"
                         subheading="Sorting options"
                     >
@@ -64,10 +66,12 @@ export const DropdownMenu = () => {
                         <MenuItem label="Newest First" onClick={() => null} />
                         <MenuItem label="Oldest First" onClick={() => null} />
                     </Popover>
-                    <Button color="text" onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} variant="flat">
-                        <SortIcon />
-                        <Text>{'Sort'}</Text>
-                        <DropdownIcon opacity={0.56} />
+                    <Button ref={anchorRef} color="text" onClick={toggleOpen} variant="flat">
+                        <IconLabel>
+							<SortIcon />
+							<Text>{'Sort'}</Text>
+							<DropdownIcon opacity={0.56} />
+						</IconLabel>
                     </Button>
                 </Root>
             </Page>
@@ -76,13 +80,13 @@ export const DropdownMenu = () => {
 };
 
 export const ScrollableDropdownMenu = () => {
-    const [anchorRef, setAnchorRef] = useState();
+	const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
 
     return (
         <div>
             <Page>
                 <Root borderRadius={2} boxShadow={6} marginX="auto" maxHeight={10} maxWidth={10} padding={4}>
-                    <Popover anchor={anchorRef} as={Dropdown} maxHeight={14} onClose={() => setAnchorRef(false)} placement="bottom-end">
+                    <Popover anchor={anchorRef.current} as={Dropdown} maxHeight={14} open={open} onClose={() => toggleOpen(false)} placement="bottom-end">
                         <MenuItem label="A to Z" onClick={() => null} />
                         <MenuItem label="Z to A" onClick={() => null} />
                         <MenuItem label="Newest First" onClick={() => null} />
@@ -116,10 +120,12 @@ export const ScrollableDropdownMenu = () => {
                         <MenuItem label="Newest First" onClick={() => null} />
                         <MenuItem label="Oldest First" onClick={() => null} />
                     </Popover>
-                    <Button color="text" onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} variant="flat">
-                        <SortIcon />
-                        <Text>{'Sort'}</Text>
-                        <DropdownIcon opacity={0.56} />
+                    <Button ref={anchorRef} color="text" onClick={toggleOpen} variant="flat">
+                        <IconLabel>
+							<SortIcon />
+							<Text>{'Sort'}</Text>
+							<DropdownIcon opacity={0.56} />
+						</IconLabel>
                     </Button>
                 </Root>
             </Page>
@@ -135,18 +141,19 @@ const mods = [
     },
 ];
 export const ThemeSwitcher = () => {
-    const [anchorRef, setAnchorRef] = useState(null);
+	const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
 
     return (
         <div>
             <Page>
                 <Root borderRadius={2} boxShadow={6} marginX="auto" maxHeight={10} maxWidth={10} padding={4}>
                     <Popover
-                        anchor={anchorRef}
+                        anchor={anchorRef.current}
                         as={Dropdown}
                         modifiers={mods}
                         maxHeight={12}
-                        onClose={() => setAnchorRef(false)}
+						open={open}
+                        onClose={() => toggleOpen(false)}
                         placement="right-end"
                         subheading="UI Theme"
                     >
@@ -154,7 +161,7 @@ export const ThemeSwitcher = () => {
                         <MenuItem icon={SwitchThemeIcon} label="Dark" onClick={() => null} />
                         <MenuItem icon={SwitchThemeIcon} label="System (auto)" onClick={() => null} />
                     </Popover>
-                    <IconButton color="text" onClick={(_, e) => setAnchorRef(e.target)} icon={SwitchThemeIcon} />
+                    <IconButton ref={anchorRef} color="text" onClick={toggleOpen} icon={SwitchThemeIcon} />
                 </Root>
             </Page>
         </div>
@@ -162,22 +169,23 @@ export const ThemeSwitcher = () => {
 };
 
 export const AccountMenu = () => {
-    const [anchorRef, setAnchorRef] = useState(null);
-
+    const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
+	
     return (
         <div>
             <Page>
                 <Root borderRadius={2} boxShadow={6} marginX="auto" maxHeight={10} maxWidth={10} padding={4}>
                     <Popover
-                        anchor={anchorRef}
+                        anchor={anchorRef.current}
                         as={Dropdown}
                         modifiers={mods}
-                        onClose={() => setAnchorRef(false)}
+						open={open}
+                        onClose={() => toggleOpen(false)}
                         placement="right-end"
                         subheading="Your Combase"
                         header={
                             <Box padding={2} marginBottom={1}>
-                                <AgentEntity name="Luke" role="Customer Support" />
+                                
                             </Box>
                         }
                     >
@@ -185,7 +193,7 @@ export const AccountMenu = () => {
                         <MenuItem icon={SupportIcon} color="textA.64" label="Help" onClick={() => null} variant="sm" />
                         <MenuItem icon={LockIcon} color="red" label="Logout" onClick={() => null} variant="sm" />
                     </Popover>
-                    <Avatar color="text" name="Luke" onClick={e => setAnchorRef(e.target)} icon={SwitchThemeIcon} />
+                    <Avatar ref={anchorRef} color="text" name="Luke" onClick={toggleOpen} icon={SwitchThemeIcon} />
                 </Root>
             </Page>
         </div>
@@ -193,13 +201,13 @@ export const AccountMenu = () => {
 };
 
 export const InboxMenu = () => {
-    const [anchorRef, setAnchorRef] = useState();
+	const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
 
     return (
         <div>
             <Page>
                 <Root marginX="auto" padding={4}>
-                    <Popover anchor={anchorRef} as={Dropdown} onClose={() => setAnchorRef(false)} placement="bottom-end" subheading="Inboxes">
+                    <Popover anchor={anchorRef.current} open={open} as={Dropdown} onClose={() => toggleOpen(false)} placement="bottom" subheading="Inboxes">
                         <MenuItem
                             actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
                             icon={AllInboxesIcon}
@@ -235,9 +243,11 @@ export const InboxMenu = () => {
                             onClick={noop}
                         />
                     </Popover>
-                    <Button color="text" onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} variant="flat">
-                        <Text>{'Open Me'}</Text>
-                        <DropdownIcon opacity={0.56} />
+                    <Button ref={anchorRef} color="text" onClick={toggleOpen} variant="flat">
+                        <IconLabel>
+							<Text>{'Open Me'}</Text>
+							<DropdownIcon opacity={0.56} />
+						</IconLabel>
                     </Button>
                 </Root>
             </Page>
