@@ -1,10 +1,10 @@
-import { Children, cloneElement, forwardRef, useState } from 'react';
+import { Children, cloneElement, forwardRef } from 'react';
 import { useTheme } from 'styled-components';
-import { useClickAway, useMedia, useToggle } from 'react-use';
+import { useClickAway, useMedia } from 'react-use';
 import { animated } from 'react-spring';
 
 import Box from '../Box';
-import Popover, { getTransformOrigin } from '../Popover';
+import Popover, { getTransformOrigin, usePopoverState } from '../Popover';
 import Text from '../Text';
 
 const modifiers = [
@@ -42,8 +42,7 @@ const TooltipChip = forwardRef(({ animatedValue, mount, text, onClose, placement
 });
 
 const Tooltip = ({ children, text, placement }) => {
-    const [anchorRef, setAnchorRef] = useState();
-    const [open, toggle] = useToggle();
+    const [anchorRef, { open, toggle }] = usePopoverState();
     const theme = useTheme();
     const enabled = useMedia(`(min-width: ${theme.breakpoints[1]})`);
 
@@ -51,7 +50,7 @@ const Tooltip = ({ children, text, placement }) => {
     if (!text || !enabled) return children;
 	
     const child = cloneElement(Children.only(children), {
-		ref: setAnchorRef,
+		ref: anchorRef,
         onMouseEnter: () => toggle(true),
         onMouseLeave: () => toggle(false),
     });
@@ -60,8 +59,9 @@ const Tooltip = ({ children, text, placement }) => {
         <>
             {child}
             <Popover
-                anchor={open ? anchorRef : undefined}
+                anchor={anchorRef.current}
                 as={TooltipChip}
+				open={open}
                 text={text}
                 placement={placement}
                 modifiers={modifiers}
