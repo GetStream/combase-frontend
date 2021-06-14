@@ -29,7 +29,7 @@ const Presentation = styled(Box)`
     pointer-events: none;
 `;
 
-const Popover = ({ anchor, as, disablePortal, modifiers, placement: placementProp, onClose, ...rest }) => {
+const Popover = ({ anchor, as, disablePortal, modifiers, open, placement: placementProp, onClose, ...rest }) => {
     const [placement, setPlacement] = useState(placementProp);
     const [popperElement, setPopperElement] = useState(null);
 
@@ -70,8 +70,7 @@ const Popover = ({ anchor, as, disablePortal, modifiers, placement: placementPro
     );
 
     const popper = usePopper(anchor, popperElement, popperOptions);
-
-    const transition = useTransition(anchor, transitionConfig);
+    const transition = useTransition(open, transitionConfig);
 
     useClickAway({ current: popperElement }, e => {
         if (anchor?.contains?.(e.target)) {
