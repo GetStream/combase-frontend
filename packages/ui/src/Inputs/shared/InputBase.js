@@ -12,7 +12,6 @@ const Input = styled.input`
     background-color: transparent;
     padding-right: ${({ $trailingIcon }) => ($trailingIcon ? 2.5 : 0.75)}rem;
     color: ${({ theme }) => theme.colors.text};
-    width: 100%;
     ${({ disabled, showDisabled }) =>
         disabled && showDisabled
             ? `
@@ -27,17 +26,6 @@ const Input = styled.input`
 `;
 export const InputBase = forwardRef(
     ({ children, id, name, onBlur, onChange, onClick, onFocus, placeholder, textarea, type, value, ...rest }, ref) => {
-        useImperativeHandle(ref, () => ({
-            change: value => {
-                onChange({
-                    target: {
-                        name,
-                        value,
-                    },
-                });
-            },
-        }));
-
         return (
             <Input
                 as={textarea ? 'textarea' : undefined}
@@ -45,10 +33,10 @@ export const InputBase = forwardRef(
                 fontFamily="text"
                 fontSize={3}
                 name={name}
+                minHeight={10}
                 onBlur={onBlur}
                 onChange={onChange}
                 onFocus={onFocus}
-                minHeight={10}
                 placeholder={placeholder}
                 ref={ref}
                 type={type}
@@ -62,6 +50,7 @@ export const InputBase = forwardRef(
 InputBase.defaultProps = {
     disabled: false,
     showDisabled: true,
+	width: '100%',
 };
 
 export default InputBase;
