@@ -14,6 +14,7 @@ const Root = styled(Box)`
     pointer-events: auto;
     overflow-y: auto;
     overflow-x: hidden;
+	backface-visibility: none;
 
     & > ul {
         position: relative;
