@@ -59,10 +59,11 @@ const MenuItem = ({
     const handleClick = useCallback(
         e => {
             if (onClick) {
-                onClick(value, e);
+				e.target.value = value;
+                onClick(e);
             }
         },
-        [onClick]
+        [onClick, value]
     );
 
     const sm = variant === 'sm';
