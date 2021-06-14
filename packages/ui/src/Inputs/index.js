@@ -8,5 +8,4 @@ export * from './SelectInput';
 export * from './shared';
 export * from './Switch';
 export * from './TextInput';
-export * from './TicketLabelToggle';
 export * from './TimezoneInput';

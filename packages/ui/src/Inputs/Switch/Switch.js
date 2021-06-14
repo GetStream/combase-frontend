@@ -23,6 +23,7 @@ const Handle = styled.div`
 
 const Track = styled.div`
     position: relative;
+	cursor: pointer;
     top: 0;
     left: 0;
     width: ${getTrackWidth}rem;
@@ -56,8 +57,8 @@ export const Switch = ({ disabled, name, onBlur, onChange, onFocus, size, value 
     });
     
 	return (
-        <ToggleBase {...inputProps} type="button" disabled={disabled} size={size}>
-            <Track>
+        <ToggleBase {...inputProps} type="button" disabled={disabled}>
+            <Track size={size}>
                 <Handle size={size} />
             </Track>
         </ToggleBase>

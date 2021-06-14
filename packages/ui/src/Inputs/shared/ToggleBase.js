@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React, { Children, cloneElement, forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -24,6 +24,7 @@ export const ToggleBase = forwardRef((props, ref) => {
     const {
 		checkedColor,
         checkedIcon,
+		children,
         className,
         color,
 		checked: checkedProp,
@@ -58,13 +59,19 @@ export const ToggleBase = forwardRef((props, ref) => {
         }
 
 		setInternalValue(event);
-        
+
 		if (onChange) {
 			onChange(event);
 		}
     };
 
-    return (
+    return children ? cloneElement(Children.only(children), {
+		onClick: (event) => {
+			event.target.checked = !checked;
+			handleInputChange(event)
+		},
+		checked,
+	}) : (
         <IconButton
             className={className}
 			color={checked ? checkedColor : color}
