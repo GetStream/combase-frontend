@@ -56,8 +56,7 @@ const Root = styled(ButtonBase)`
     }
 `;
 
-const IconButton = forwardRef(({ as, className, children, color, fillAlpha, disabled, icon: Icon, onClick, size, style, ...rest }, ref) => {
-    return (
+const IconButton = forwardRef(({ as, className, children, color, fillAlpha, disabled, icon: Icon, onClick, size, style, ...rest }, ref) => (
         <Root
             as={as}
             className={className}
@@ -69,13 +68,15 @@ const IconButton = forwardRef(({ as, className, children, color, fillAlpha, disa
             style={style}
             {...rest}
         >
+            {Icon ? (
+				<div>
+					<Icon fillAlpha={fillAlpha} color={disabled ? 'disabled' : color} size={size} />
+				</div>
+			) : null}
 			{children}
-            <div>
-                <Icon fillAlpha={fillAlpha} color={disabled ? 'disabled' : color} size={size} />
-            </div>
         </Root>
-    );
-});
+    )
+);
 
 IconButton.propTypes = {
     as: PropTypes.string,
