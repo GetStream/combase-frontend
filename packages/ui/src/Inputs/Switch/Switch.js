@@ -17,7 +17,7 @@ const Handle = styled.div`
     height: ${getDotSize}rem;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.colors.background};
-    transition: transform 320ms ${({ theme }) => theme.easing.move};
+    transition: transform 240ms ${({ theme }) => theme.easing.move};
     will-change: transform;
 `;
 
@@ -34,7 +34,7 @@ const Track = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 320ms ${({ theme }) => theme.easing.ping};
+    transition: background 240ms ${({ theme }) => theme.easing.ping};
 
     & ${Handle} {
         transform: translate3d(${props => (props.checked ? `${getXValue(props)}rem` : 0)}, 0, 0);
@@ -46,7 +46,7 @@ const Track = styled.div`
     }
 `;
 
-export const Switch = ({ disabled, name, onBlur, onChange, onFocus, size, value }) => {
+export const Switch = ({ disabled, inputRef, name, onBlur, onChange, onFocus, size, value }) => {
     const [inputProps] = useInput({
         name,
         onBlur,
@@ -55,9 +55,9 @@ export const Switch = ({ disabled, name, onBlur, onChange, onFocus, size, value 
         type: 'toggle',
         value,
     });
-    
+
 	return (
-        <ToggleBase {...inputProps} type="button" disabled={disabled}>
+        <ToggleBase {...inputProps} inputRef={inputRef} type="button" disabled={disabled}>
             <Track size={size}>
                 <Handle size={size} />
             </Track>

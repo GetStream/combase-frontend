@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, forwardRef, useRef } from 'react';
+import React, { Children, cloneElement, forwardRef, useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -53,6 +53,16 @@ export const ToggleBase = forwardRef((props, ref) => {
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
 
+	// useImperativeHandle(ref, () => ({
+	// 	current: iconButtonRef.current,
+	// 	toggle: () => handleInputChange({
+	// 		target: {
+	// 			name,
+	// 			checked: !checked
+	// 		}
+	// 	})
+	// }))
+
     const handleInputChange = event => {
         if (event.nativeEvent.defaultPrevented) {
             return;
@@ -71,6 +81,7 @@ export const ToggleBase = forwardRef((props, ref) => {
 			handleInputChange(event)
 		},
 		checked,
+		ref: inputRef,
 	}) : (
         <IconButton
             className={className}

@@ -14,6 +14,7 @@ export const Checkbox = ({
     icon,
     indeterminate,
     indeterminateIcon,
+	inputRef,
     name,
     onBlur,
     onChange,
@@ -35,6 +36,7 @@ export const Checkbox = ({
         <ToggleBase
             className={className}
             {...inputProps}
+			inputRef={inputRef}
             checkedIcon={checkedIcon}
             disabled={disabled}
             icon={indeterminate ? indeterminateIcon : icon}
