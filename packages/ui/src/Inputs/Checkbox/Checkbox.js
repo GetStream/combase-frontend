@@ -6,8 +6,10 @@ import { useInput } from '../shared/useInput';
 import { ToggleBase } from '../shared/ToggleBase';
 
 export const Checkbox = ({
-    checkedIcon,
+	activeColor,
+	checkedIcon,
     className,
+	color,
     disabled,
     icon,
     indeterminate,
@@ -35,16 +37,16 @@ export const Checkbox = ({
             {...inputProps}
             checkedIcon={checkedIcon}
             disabled={disabled}
-            icon={icon}
+            icon={indeterminate ? indeterminateIcon : icon}
+			color={indeterminate || inputProps.value ? activeColor : color}
 			type="button"
-            indeterminate={indeterminate}
-            indeterminateIcon={indeterminateIcon}
             size={size}
         />
     );
 };
 
 Checkbox.propTypes = {
+	activeColor: PropTypes.string,
     error: PropTypes.string,
     helper: PropTypes.string,
     indeterminate: PropTypes.bool,
@@ -58,6 +60,8 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
+	activeColor: 'primary',
+	color: 'border',
     checkedIcon: CheckboxCheckedIcon,
     icon: CheckboxIcon,
     indeterminateIcon: CheckboxIndeterminateIcon,

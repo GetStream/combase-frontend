@@ -11,7 +11,7 @@ const Root = styled(Box)`
 	min-height: 100vh;
 `
 
-export const Default = () => <Checkbox size={16} />;
+export const Default = () => <Checkbox size={8} />;
 
 export default {
     component: Checkbox,
