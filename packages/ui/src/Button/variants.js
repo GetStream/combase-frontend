@@ -9,8 +9,11 @@ export const buttonSizeVariants = variant({
             minHeight: 7,
             paddingX: 3,
             paddingY: 0,
-			borderRadius: 2,
+			borderRadius: 3,
         },
+		sm: {
+			borderRadius: 1
+		}
     },
 });
 
