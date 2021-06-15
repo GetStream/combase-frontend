@@ -11,6 +11,7 @@ export const GET_CURRENT_USER = gql`
                 full
                 display
             }
+			email
             avatar
             streamToken
 			online @client
