@@ -74,14 +74,14 @@ const MenuItem = ({
                 active={active}
                 borderRadius={1}
                 className={className}
-                color="text"
+                color={color}
                 interaction={onClick ? 'highlight' : undefined}
-                minHeight={sm ? 6 : [7, 7, 7, 7, 8]}
+                minHeight={sm ? 6 : 8}
                 onClick={handleClick}
             >
-                <IconLabel iconColor={iconColor || color} color={color} gap={sm ? 2 : [2, 2, 2, 2, 3]}>
-                    {Icon ? <Icon {...iconProps} color={iconColor || color} size={iconSize || sm ? 3 : [3, 3, 3, 3, 4]} /> : null}
-                    <Text fontSize={sm ? 3 : [3, 3, 3, 3, 4]} lineHeight={sm ? 3 : [3, 3, 3, 3, 4]}>
+                <IconLabel iconColor={iconColor || color} color={color} gap={sm ? 2 : 3}>
+                    {Icon ? <Icon {...iconProps} color={iconColor || color} size={iconSize || sm ? 3 : 4} /> : null}
+                    <Text color={color} fontSize={sm ? 3 : 4} lineHeight={sm ? 3 : 4}>
                         {label}
                     </Text>
                 </IconLabel>
