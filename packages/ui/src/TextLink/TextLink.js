@@ -12,11 +12,15 @@ const Root = styled(IconLabel)`
     user-select: none;
 `;
 
-const TextLink = forwardRef(({ as, className, color, children, onClick, size, style, to }, ref) => (
-    <Root as={as} className={className} style={style} interaction="opacity" ref={ref} onClick={onClick} to={to}>
+const TextLink = forwardRef(({ as, className, color, children, reverse, icon: Icon, onClick, size, style, to, ...rest }, ref) => (
+    <Root reverse={reverse} as={as} className={className} style={style} interaction="opacity" ref={ref} onClick={onClick} to={to} {...rest}>
         <Text color={color} fontSize={size} lineHeight={size}>{children}</Text>
-        <ChevronRightIcon color={color} size={size} />
+        <Icon color={color} size={size} />
     </Root>
 ));
+
+TextLink.defaultProps = {
+	icon: ChevronRightIcon,
+}
 
 export default TextLink;

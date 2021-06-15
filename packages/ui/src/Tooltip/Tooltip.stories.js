@@ -29,7 +29,7 @@ const Root = styled(Box)`
 
 export const TooltipExample = () => {
     return (
-        <Root borderRadius={2} boxShadow={6} marginX="auto" maxWidth={15} padding={4}>
+        <Root borderRadius={2} boxShadow={6} marginX="auto" maxWidth={16} padding={4}>
             <Tooltip
 				text="I'm a tooltip!"
             >

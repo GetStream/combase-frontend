@@ -1,6 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Route, Switch, useHistory, useParams } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Box, PageHeader, ListItem, Menu, PageCard } from '@combase.app/ui';
 import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
 import { Scrollbars } from 'rc-scrollbars';
@@ -22,28 +22,11 @@ const Navigation =  styled(Scrollbars)`
 `;
 
 const Settings = () => {
-	const history = useHistory();
-	const params = useParams();
-	
 	const { data } = useQuery(GET_CURRENT_USER);
-
-	const handleTabChange = useCallback(
-		slug => {
-			history.push(
-				slug
-					? `/dashboard/settings/${slug}`
-					: `/dashboard/settings/`,
-				{
-					preserve: false,
-				}
-			);
-		},
-		[history]
-	);
 
 	return (
 		<PageCard>
-			<SplitView columnTemplate="minmax(25%, 23rem) 1fr">
+			<SplitView columnTemplate="minmax(25%, 20rem) 1fr">
 				<Navigation>
 					<Scrollbars>
 						<PageHeader 

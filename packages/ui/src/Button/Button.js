@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { colorAlpha, interactions, layout, shadow, variant } from '@combase.app/styles';
 
+import Box from '../Box';
 import Spinner from '../Spinner';
 import IconLabel from '../IconLabel';
 import ButtonBase from '../ButtonBase';
+import Text from '../Text';
 
 import { buttonSizeVariants, buttonVisualVariants } from './variants';
 
@@ -34,20 +36,35 @@ const Root = styled(ButtonBase).attrs(() => ({
     width: ${({ fullWidth }) => (fullWidth ? '100%' : undefined)};
 	cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
-	${IconLabel} {
+	${IconLabel}, ${Text} {
 		pointer-events: none;
 		width: 100%;
+		visibility: ${({ $loading }) => $loading ? 'hidden' : 'visible'};
 	}
 
     ${buttonSizeVariants};
     ${buttonVisualVariants};
 `;
 
+const LoadingWrapper = styled(Box)`
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+
 const Button = forwardRef(({ children, loading, reverseLabel, ...props }, ref) => (
-	<Root {...props} interaction={props.variant === 'raised' ? variant : 'highlight'} ref={ref}>
-		{!loading ? children : (
-			<Spinner color="white" size={4} />
-		)}
+	<Root {...props} $loading={loading} interaction={props.variant === 'raised' ? variant : 'highlight'} ref={ref}>
+		{children}
+		{loading ? (
+			<LoadingWrapper>
+				<Spinner color="white" size={4} />
+			</LoadingWrapper>
+		) : null}
 	</Root>
 ));
 

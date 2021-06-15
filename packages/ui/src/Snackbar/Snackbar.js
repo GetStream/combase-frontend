@@ -54,7 +54,7 @@ const animStates = (placement) => ({
 const Snackbar = ({ appearance, children, onDismiss, placement, transitionState }) => {
 	const Icon = iconMap[appearance];
 	return (
-		<Root backgroundColor="surface" boxShadow={2} width={16} style={animStates(placement)[transitionState]} padding={4} paddingRight={6} borderRadius={2}>
+		<Root backgroundColor="surface" boxShadow={2} width={17} style={animStates(placement)[transitionState]} padding={4} paddingRight={6} borderRadius={2}>
 			<IconLabel marginRight={8} gap={2}>
 				{/* <Icon size={5} color="text" /> */}
 				<IconBubble color={appearance} icon={Icon} />

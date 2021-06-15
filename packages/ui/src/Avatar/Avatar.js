@@ -42,7 +42,7 @@ const Initials = styled(Text)`
 const Avatar = forwardRef(({ avatarStyle, backgroundColor, name, size, src, variant, ...props }, ref) => (
 	<Root
 		as={!src && !name ? Placeholder : 'div'}
-		backgroundColor={backgroundColor}
+		backgroundColor={!src ? backgroundColor : null}
 		borderRadius={variant}
 		height={size}
 		width={size}

@@ -130,7 +130,7 @@ const UpdateAvatarDialog = forwardRef(({ file, name, onSubmit, onClose }, ref) =
     );
 
     return (
-        <Root boxShadow={8} padding={1} role="dialog" ref={ref}>
+        <Root minWidth={17} role="dialog" ref={ref}>
             <Box padding={4}>
                 <IconBubble backgroundColor="primaryA.8" borderRadius="50%" marginBottom={4} size={5}>
                     <AddImageIcon color="primary" size={4} />
