@@ -12,6 +12,7 @@ export const sizes = [
 	'3.5rem',
 	'4rem',
 	'5rem',
+	'7rem',
 	'9rem',
 	'12rem',
 	'15rem',
