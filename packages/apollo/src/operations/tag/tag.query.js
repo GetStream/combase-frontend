@@ -12,6 +12,7 @@ export const GET_TAGS = gql`
                         organization
                     }
                 }
+				count
             }
         }
     }
