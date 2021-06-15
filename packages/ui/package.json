@@ -31,6 +31,7 @@
     "react-dropzone": "^11.3.2",
     "react-easy-crop": "^3.3.3",
     "react-input-color": "^4.0.0",
+    "react-instantsearch-dom": "^6.11.1",
     "react-spring": "^9.1.2",
     "react-syntax-highlighter": "^15.4.3",
     "react-toast-notifications": "^2.4.4",
