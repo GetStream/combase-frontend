@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { system } from '@combase.app/styles';
+import { connectSearchBox } from 'react-instantsearch-dom';
 
 import Box from '../../Box';
 
@@ -117,3 +118,7 @@ SearchToolbar.defaultProps = {
     focusedPlaceholder: '',
     type: 'text',
 };
+
+export const AlgoliaSearchToolbar = connectSearchBox(({ currentRefinement, refine }) => {
+	return <SearchToolbar onChange={e => refine(e.target.value)} onClear={() => refine('')} value={currentRefinement} />
+});
