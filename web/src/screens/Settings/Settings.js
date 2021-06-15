@@ -1,26 +1,31 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Route, Switch, useHistory, useParams } from 'react-router-dom';
-import { AddUsersIcon, Button, Chip, PageHeader, Tabs, Tab, Text, Container, PageCard } from '@combase.app/ui';
-import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
+import { Box, PageHeader, ListItem, Menu, PageCard } from '@combase.app/ui';
+import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
+import { Scrollbars } from 'rc-scrollbars';
 
-import AddTagDialog from 'components/modals/AddTagDialog';
+import {AgentEntity} from 'components/Entities';
+import NavigationMenuItem from 'components/NavigationMenuItem';
 
 import ProfileSettings from './ProfileSettings';
 import OrganizationSettings from './OrganizationSettings';
 import WidgetSettings from './WidgetSettings';
 import ManageTags from './ManageTags';
 import ManageUsers from './ManageUsers';
+import { SplitView } from 'layouts';
 
-const TabWrapper =  styled(Container)`
-	border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+const Navigation =  styled(Scrollbars)`
+	display: grid;
+	grid-template-rows: min-content 1fr;
+	height: 100%;
 `;
 
 const Settings = () => {
 	const history = useHistory();
 	const params = useParams();
 	
-	const { data } = useQuery(GET_ORGANIZATION_PROFILE);
+	const { data } = useQuery(GET_CURRENT_USER);
 
 	const handleTabChange = useCallback(
 		slug => {
@@ -37,49 +42,48 @@ const Settings = () => {
 	);
 
 	return (
-		<PageCard variant="withHeader">
-			<PageHeader 
-				variant="fluid" 
-				title="Settings" 
-				showOrganization 
-				actions={[
-					<Switch>
-						<Route 
-							exact 
-							path="/dashboard/settings/tags" 
-							component={AddTagDialog}
+		<PageCard>
+			<SplitView columnTemplate="minmax(25%, 23rem) 1fr">
+				<Navigation>
+					<Scrollbars>
+						<PageHeader 
+							backgroundColor="surface"
+							variant="fluid" 
+							title="Settings"
 						/>
-						<Route 
-							exact 
-							path="/dashboard/settings/users" 
-							render={() => (
-								<Button size="xs">
-									<AddUsersIcon />
-									<Text>Invite Agents</Text>
-								</Button>
-							)}
-						/>
-					</Switch>,
-				]}
-			>
-				<TabWrapper variant="fluid">
-					<Tabs onChange={handleTabChange} value={params.page}>
-						<Tab label="Profile" value="profile" />
-						<Tab label="Organization" value="organization" />
-						<Tab reverseLabel icon={<Chip color="text" label={data?.organization?.agents?.count} />} label="Agents" value="users" />
-						<Tab reverseLabel icon={<Chip color="text" label={data?.organization?.tags?.count} />} label="Tags" value="tags" />
-						<Tab label="Widget" value="widget" />
-						<Tab label="API" value="api" />
-					</Tabs>
-				</TabWrapper>
-			</PageHeader>
-			<Switch>
-				<Route path="/dashboard/settings/profile" component={ProfileSettings} />
-				<Route path="/dashboard/settings/organization" component={OrganizationSettings} />
-				<Route path="/dashboard/settings/tags" component={ManageTags} />
-				<Route path="/dashboard/settings/users" component={ManageUsers} />
-				<Route path="/dashboard/settings/widget" component={WidgetSettings} />
-			</Switch>
+						<Box paddingX={2}>
+							<ListItem>
+								<AgentEntity name={data?.me?.name?.full} meta={data?.me?.email} />
+							</ListItem>
+						</Box>
+						<Menu paddingX={[2, 2, 3]}>
+							<NavigationMenuItem label="Edit Profile" to="/dashboard/settings/profile" />
+							<NavigationMenuItem label="Edit Availability" to="/dashboard/settings/availability" />
+						</Menu>
+						<Menu subheading="Preferences" paddingX={[2, 2, 3]}>
+							<NavigationMenuItem label="Appearance" to="/dashboard/settings/appearance" />
+							<NavigationMenuItem label="Notifications" to="/dashboard/settings/notifications" />
+							<NavigationMenuItem label="Email Settings" to="/dashboard/settings/email" />
+						</Menu>
+						<Menu subheading="Organization" paddingX={[2, 2, 3]}>
+							<NavigationMenuItem label="Manage Agents" to="/dashboard/settings/organization/agents" />
+							<NavigationMenuItem label="Manage Tags" to="/dashboard/settings/organization/tags" />
+							<NavigationMenuItem label="Quick Responses" to="/dashboard/settings/organization/quick-responses" />
+						</Menu>
+						<Menu subheading="Widget" paddingX={[2, 2, 3]}>
+							<NavigationMenuItem label="Display Preferences" to="/dashboard/settings/widget" />
+							<NavigationMenuItem label="Defaults" to="/dashboard/settings/widget" />
+						</Menu>
+					</Scrollbars>
+				</Navigation>			
+				<Switch>
+					<Route path="/dashboard/settings/profile" component={ProfileSettings} />
+					<Route path="/dashboard/settings/organization" component={OrganizationSettings} />
+					<Route path="/dashboard/settings/tags" component={ManageTags} />
+					<Route path="/dashboard/settings/users" component={ManageUsers} />
+					<Route path="/dashboard/settings/widget" component={WidgetSettings} />
+				</Switch>
+			</SplitView>
 		</PageCard>
 	)
 }
