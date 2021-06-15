@@ -1,15 +1,12 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import { useMutation, ASSIGN_TICKET, GET_ORGANIZATION, useQuery } from '@combase.app/apollo';
-import { AssignIcon, Box, Button, Card, CardHeader, Container, IconBubble, ListItem, Modal, SearchToolbar, Text, VirtualizedList } from '@combase.app/ui';
+import { AssignIcon, Box, Button, Card, CardHeader, Container, IconBubble, ListItem, Modal, AlgoliaSearchToolbar, Text, VirtualizedList } from '@combase.app/ui';
 import {
 	Configure as AlgoliaConfig,
 	InstantSearch,
-	Hits,
 	connectHits,
-	connectSearchBox,
   } from 'react-instantsearch-dom';
-import { Scrollbars } from 'rc-scrollbars';
 import { algolia } from 'utils/search';
 import { layout } from '@combase.app/styles';
 
@@ -47,10 +44,6 @@ const Footer = styled(Box).attrs({
 const ItemContainer = styled(Box).attrs({
     paddingX: 2,
 })``;
-
-const SearchBox = connectSearchBox(({ currentRefinement, refine }) => {
-	return <SearchToolbar onChange={e => refine(e.target.value)} onClear={() => refine('')} value={currentRefinement} />
-});
 
 const HitList = connectHits(({ onClickHit, hits }) => {
 	console.log(hits);
@@ -110,7 +103,7 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 			<Root ref={ref} boxShadow={8} role="dialog" maxHeight={18} width={17}>
 				<CardHeader paddingX={5} paddingY={5} icon={<IconBubble icon={AssignIcon} size={8} />}>{'Assign Ticket to...'}</CardHeader>
 				<Container>
-					<SearchBox />
+					<AlgoliaSearchToolbar />
 					<AlgoliaConfig filters={`organization:${organization._id}`} />
 				</Container>
 				<HitList onClickHit={handleAssignTicket} />
