@@ -25,7 +25,7 @@ const Modal = ({ backdrop, children, component, onClose, open, ...rest }) => {
 
     return (
         <Portal unmount={!open}>
-            <Root backgroundColorAlpha={0.8} backgroundColor={backdrop ? 'background' : undefined} role="presentation">
+            <Root backgroundColorAlpha={0.6} backgroundColor={backdrop ? 'background' : undefined} role="presentation">
                 {createElement(component, { children, onClose, ref, ...rest })}
             </Root>
         </Portal>
