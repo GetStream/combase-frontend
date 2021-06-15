@@ -130,7 +130,7 @@ const Message = () => {
 	return (
 		<Root
 			color="text"
-			maxWidth={21}
+			maxWidth={22}
 			variant="contain"
 			paddingTop={noAvatar ? 1 : 3} 
 			paddingBottom={noAvatar ? 1 : 2}

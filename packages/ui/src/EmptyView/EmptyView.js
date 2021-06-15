@@ -26,7 +26,7 @@ const Label = styled(Text)`
 
 const EmptyView = forwardRef(({ backgroundColor, children, colorAlpha, color, error, gap, icon, iconColor, loading, size, title, ...rest }, ref) => (
     <Root {...rest} backgroundColor={backgroundColor} borderRadius={3} ref={ref}>
-        <Container maxWidth={16}>
+        <Container maxWidth={17}>
             {icon || null}
             {title ? (
                 <Label color={color} opacity={colorAlpha} fontWeight="600" marginBottom={gap} fontSize={4}>

@@ -65,8 +65,8 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
 	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
 
     return (
-        <Root maxWidth={19} minHeight={9}>
-            <Wrapper maxWidth={19} style={style}>
+        <Root maxWidth={20} minHeight={9}>
+            <Wrapper maxWidth={20} style={style}>
                 <IconButton icon={ArrowBackIcon} onClick={onBackClick} size={5} />
                 <TextGroup variant="centered">
                     <Name as={!partner?.user?.name ? Placeholder : 'p'}>{partner?.user?.name}</Name>

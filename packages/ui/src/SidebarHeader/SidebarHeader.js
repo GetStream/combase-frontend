@@ -44,7 +44,7 @@ const PageHeader = forwardRef(({ actions, animated, backgroundColor, children, c
             className={className}
             fluid={fluid}
             ref={ref}
-            maxWidth={fluid ? undefined : 19}
+            maxWidth={fluid ? undefined : 20}
         >
             <Wrapper gutter={gutter} variant="fluid" minHeight={10}>
                 <Title>

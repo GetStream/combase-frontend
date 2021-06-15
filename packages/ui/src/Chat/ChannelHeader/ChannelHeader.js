@@ -96,8 +96,8 @@ export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackCli
 	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
 
     return (
-        <Root maxWidth={21} minHeight={11}>
-            <Wrapper maxWidth={21} style={style}>
+        <Root maxWidth={22} minHeight={11}>
+            <Wrapper maxWidth={22} style={style}>
                 <Main>
                     {showBackBtn ? <BackBtn size={4} icon={ArrowBackIcon} onClick={onBackClick} /> : null}
                     {!isMobile ? (

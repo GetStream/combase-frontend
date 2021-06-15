@@ -88,7 +88,7 @@ const PageHeader = forwardRef(
                 className={className}
                 fluid={fluid}
                 ref={ref}
-                maxWidth={fluid ? undefined : 19}
+                maxWidth={fluid ? undefined : 20}
             >
                 <Wrapper variant="fluid" minHeight={11} style={style}>
                     <Title>
