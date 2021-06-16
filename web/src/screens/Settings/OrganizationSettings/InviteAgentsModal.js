@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import styled from 'styled-components';
 import { FieldArray, Formik } from 'formik';
-import { AddCircleIcon, Box, Button, CloseIcon, Container, IconButton, ListSubheader, MenuItem, SelectInput, Text, TextInput, TextLink } from '@combase.app/ui';
+import { AddCircleIcon, Box, Button, CloseIcon, Container, GoogleIcon, IconButton, IconLabel, ListSubheader, MenuItem, SelectInput, Text, TextInput, TextLink, ZendeskIcon } from '@combase.app/ui';
 
 import Dialog, { DialogFooter } from 'components/modals/Dialog';
 
@@ -41,7 +41,7 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 			{value.map((v, i) => (
 				<FieldArrayInput key={`${name}-${i}`}>
 					<TextInput label="Email" name={`${name}.${i}.email`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v.email} />
-					<SelectInput label="Role" name={`${name}.${i}.role`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v.role}>
+					<SelectInput label="Access" name={`${name}.${i}.access`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v.access}>
 						<MenuItem label="Super Admin" value="super_admin" />
 						<MenuItem label="Admin" value="admin" />
 						<MenuItem label="Moderator" value="moderator" />
@@ -66,9 +66,9 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 	const initialValues = useMemo(() => ({
 		invitations: [
-			{ email: "", role: "guest" },
-			{ email: "", role: "guest" },
-			{ email: "", role: "guest" }
+			{ email: "", access: "guest" },
+			{ email: "", access: "guest" },
+			{ email: "", access: "guest" }
 		],
 	}), []);
 	return (
@@ -83,17 +83,23 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 									render={renderFieldArray}
 								/>
 								<ListSubheader marginTop={6}>
-									Import Agents
+									Bulk Import
 								</ListSubheader>
 								<ImportBtns paddingY={3}>
 									<Button backgroundColor="background" color="altText" variant="flat">
 										<Text color="altText">Import CSV</Text>
 									</Button>
 									<Button backgroundColor="background" color="altText" variant="flat">
-										<Text color="altText">Import G Suite</Text>
+										<IconLabel>
+											<GoogleIcon />
+											<Text>Import G Suite</Text>
+										</IconLabel>
 									</Button>
 									<Button backgroundColor="background" color="altText" variant="flat">
-										<Text color="altText">Import Zendesk</Text>
+										<IconLabel>
+											<ZendeskIcon />
+											<Text>Import Zendesk</Text>
+										</IconLabel>
 									</Button>
 								</ImportBtns>
 							</Box>

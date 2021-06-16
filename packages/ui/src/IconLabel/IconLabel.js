@@ -13,6 +13,10 @@ const IconLabel = styled(Box).attrs(props => ({
     flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
     align-items: center;
 
+	& svg {
+		flex-shrink: 0;
+	}
+
     & > * + * {
         ${itemGap};
     }
