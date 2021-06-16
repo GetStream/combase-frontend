@@ -31,7 +31,7 @@ export const DialogFooter = styled(Box).attrs({
 
 const Dialog = forwardRef((props, ref) => {
 	return (
-		<Root as={props.as} ref={ref} minWidth={18}>
+		<Root as={props.as} ref={ref} minWidth={props.minWidth}>
 			<Box paddingX={5} paddingTop={7} paddingBottom={4}>
 				<Heading fontSize={5} lineHeight={5}>
 					{props.title}
@@ -41,5 +41,9 @@ const Dialog = forwardRef((props, ref) => {
 		</Root>
 	);
 });
+
+Dialog.defaultProps = {
+	minWidth: 18
+}
 
 export default Dialog;

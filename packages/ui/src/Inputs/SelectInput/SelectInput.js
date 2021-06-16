@@ -125,7 +125,7 @@ const SelectInput = ({ children, multi, value, ...props }) => {
 				open={open}
                 onClose={handleClose}
                 placement="bottom"
-                subheading="Suggestions"
+                subheading={props.label}
             >
                 {children?.length ? children.map(renderChild) : <StateDisplay />}
             </Popover>
