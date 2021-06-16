@@ -24,7 +24,7 @@ export const buttonVisualVariants = props => {
         variants: {
             flat: {
                 transition: ({ easing }) => `80ms background ${easing.move}`,
-                backgroundColor: 'transparent',
+                backgroundColor: props.backgroundColor || 'transparent',
                 boxShadow: 'unset',
                 [`& ${IconLabel} > p`]: {
                     color,

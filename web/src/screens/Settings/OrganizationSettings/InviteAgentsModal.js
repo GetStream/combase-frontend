@@ -1,7 +1,7 @@
 import React, { forwardRef, useMemo } from 'react';
 import styled from 'styled-components';
 import { FieldArray, Formik } from 'formik';
-import { AddCircleIcon, Box, Button, CloseIcon, Container, IconButton, MenuItem, SelectInput, Text, TextInput, TextLink } from '@combase.app/ui';
+import { AddCircleIcon, Box, Button, CloseIcon, Container, IconButton, ListSubheader, MenuItem, SelectInput, Text, TextInput, TextLink } from '@combase.app/ui';
 
 import Dialog, { DialogFooter } from 'components/modals/Dialog';
 
@@ -26,6 +26,12 @@ const ArrayActions = styled(Box)`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+`;
+
+const ImportBtns = styled(Box)`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: ${({ theme }) => theme.space[3]};
 `;
 
 const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, values }, name, push, remove }) => {
@@ -70,17 +76,28 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 			<ScrollContainer paddingTop={4} paddingBottom={6}>
 				<Formik initialValues={initialValues}>
 					{
-						formik => {
-							console.log(formik);
-							return (
-								<Box as="form" onSubmit={formik.handleSubmit}>
-									<FieldArray 
-										name="invitations"
-										render={renderFieldArray}
-									/>
-								</Box>
-							)
-						}
+						formik => (
+							<Box as="form" onSubmit={formik.handleSubmit}>
+								<FieldArray 
+									name="invitations"
+									render={renderFieldArray}
+								/>
+								<ListSubheader marginTop={6}>
+									Import Agents
+								</ListSubheader>
+								<ImportBtns paddingY={3}>
+									<Button backgroundColor="background" color="altText" variant="flat">
+										<Text color="altText">Import CSV</Text>
+									</Button>
+									<Button backgroundColor="background" color="altText" variant="flat">
+										<Text color="altText">Import G Suite</Text>
+									</Button>
+									<Button backgroundColor="background" color="altText" variant="flat">
+										<Text color="altText">Import Zendesk</Text>
+									</Button>
+								</ImportBtns>
+							</Box>
+						)
 					}
 				</Formik>
 			</ScrollContainer>
