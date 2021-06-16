@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Route, Switch } from 'react-router-dom';
-import { Box, PageHeader, ListItem, Menu, PageCard } from '@combase.app/ui';
+import { Box, PageHeader, ListItem, Menu, PageCard, UserIcon, CalendarIcon, QuickResponseIcon, TagIcon, AgentsIcon, SwitchThemeIcon, RoleIcon } from '@combase.app/ui';
 import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
 import { Scrollbars } from 'rc-scrollbars';
 
@@ -23,7 +23,6 @@ const Navigation =  styled(Scrollbars)`
 
 const Settings = () => {
 	const { data } = useQuery(GET_CURRENT_USER);
-
 	return (
 		<PageCard>
 			<SplitView columnTemplate="minmax(25%, 20rem) 1fr">
@@ -40,22 +39,16 @@ const Settings = () => {
 							</ListItem>
 						</Box>
 						<Menu paddingX={[2, 2, 3]}>
-							<NavigationMenuItem label="Edit Profile" to="/dashboard/settings/profile" />
-							<NavigationMenuItem label="Edit Availability" to="/dashboard/settings/availability" />
-						</Menu>
-						<Menu subheading="Preferences" paddingX={[2, 2, 3]}>
-							<NavigationMenuItem label="Appearance" to="/dashboard/settings/appearance" />
+							<NavigationMenuItem icon={UserIcon} label="Edit Profile" to="/dashboard/settings/profile" />
+							<NavigationMenuItem icon={CalendarIcon} label="Edit Availability" to="/dashboard/settings/availability" />
 							<NavigationMenuItem label="Notifications" to="/dashboard/settings/notifications" />
-							<NavigationMenuItem label="Email Settings" to="/dashboard/settings/email" />
 						</Menu>
 						<Menu subheading="Organization" paddingX={[2, 2, 3]}>
-							<NavigationMenuItem label="Manage Agents" to="/dashboard/settings/organization/agents" />
-							<NavigationMenuItem label="Manage Tags" to="/dashboard/settings/organization/tags" />
-							<NavigationMenuItem label="Quick Responses" to="/dashboard/settings/organization/quick-responses" />
-						</Menu>
-						<Menu subheading="Widget" paddingX={[2, 2, 3]}>
-							<NavigationMenuItem label="Display Preferences" to="/dashboard/settings/widget" />
-							<NavigationMenuItem label="Defaults" to="/dashboard/settings/widget" />
+							<NavigationMenuItem icon={AgentsIcon} label="Manage Agents" to="/dashboard/settings/organization/agents" />
+							<NavigationMenuItem icon={TagIcon} label="Manage Tags" to="/dashboard/settings/organization/tags" />
+							<NavigationMenuItem icon={QuickResponseIcon} label="Quick Responses" to="/dashboard/settings/organization/quick-responses" />
+							<NavigationMenuItem icon={RoleIcon} label="Security Preferences" to="/dashboard/settings/organization/security" />
+							<NavigationMenuItem icon={SwitchThemeIcon} label='Theme' to="/dashboard/settings/theme" />
 						</Menu>
 					</Scrollbars>
 				</Navigation>			

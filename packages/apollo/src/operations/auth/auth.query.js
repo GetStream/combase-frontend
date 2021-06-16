@@ -55,18 +55,9 @@ export const GET_ORGANIZATION_PROFILE = gql`
             stream {
                 key
             }
-            faqs {
-                count
-            }
-            groups {
-                count
-            }
             agents {
                 count
             }
-			tags {
-				count
-			}
 			contact {
 				phone
 				email

@@ -63,6 +63,7 @@ export const TextInput = forwardRef(
             name,
             onBlur,
             onChange,
+			onClick,
             onFocus,
             onKeyDown,
             placeholder,
@@ -87,7 +88,7 @@ export const TextInput = forwardRef(
 
         return (
             <>
-                <Root className={className} ref={ref}>
+                <Root className={className} onClick={onClick} ref={ref}>
                     <InputComponent
                         {...inputProps}
                         {...rest}

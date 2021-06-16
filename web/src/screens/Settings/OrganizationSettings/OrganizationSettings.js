@@ -7,6 +7,7 @@ import { GET_ORGANIZATION_PROFILE, useQuery } from '@combase.app/apollo';
 import { AddUsersIcon, Avatar, Box, Container, EditIcon, Modal, PageHeader, MenuItem, Text, TextGroup, TextInput, RoleIcon } from '@combase.app/ui';
 import OrganizationAgentsSettings from './OrganizationAgentsSettings';
 import EditOrganizationModal from './EditOrganizationModal';
+import AddTagModal from './AddTagModal';
 import OrganizationTagsSettings from './OrganizationTagsSettings';
 import OrganizationQuickResponsesSettings from './OrganizationQuickResponsesSettings';
 
@@ -49,8 +50,6 @@ const OrganizationSettings = ({ children }) => {
 								</TextGroup>
 							</Box>
 							<MenuItem icon={EditIcon} label="Edit Organization" color="altText" onClick={toggleModal} />
-							<MenuItem icon={AddUsersIcon} label="Invite Agents" color="altText" onClick={toggleModal} />
-							<MenuItem icon={RoleIcon} label="Security Preferences" color="altText" onClick={toggleModal} />
 							<Modal component={EditOrganizationModal} onClose={() => toggleModal(false)} open={showModal} />
 						</Box>
 					</OrganizationCol>
@@ -58,6 +57,11 @@ const OrganizationSettings = ({ children }) => {
 						<Route path="/dashboard/settings/organization/agents" component={OrganizationAgentsSettings} />
 						<Route path="/dashboard/settings/organization/tags" component={OrganizationTagsSettings} />
 						<Route path="/dashboard/settings/organization/quick-responses" component={OrganizationQuickResponsesSettings} />
+						<Route path="/dashboard/settings/organization/tags/new" exact>
+							{
+								({ history, match }) => <Modal component={AddTagModal} open={match} onClose={history.goBack} />
+							}
+						</Route>
 					</Box>
 				</Wrapper>
 			</Scrollbars>

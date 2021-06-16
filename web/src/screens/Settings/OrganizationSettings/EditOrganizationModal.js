@@ -3,23 +3,11 @@ import styled from 'styled-components';
 import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from '@combase.app/apollo';
 import { useFormik } from 'formik';
 import { useToasts } from 'react-toast-notifications';
-import { Avatar, Box, Button, Card, Container, Heading, Modal, ListSubheader, CloseCircleIcon, Text, TextInput, TextLink } from '@combase.app/ui';
+import { Avatar, Box, Button, Container, Modal, ListSubheader, CloseCircleIcon, Text, TextInput, TextLink } from '@combase.app/ui';
 import { itemGap } from '@combase.app/styles';
 
 import UpdateAvatarDialog from 'components/modals/UpdateAvatarDialog';
-
-const Root = styled(Card).attrs({
-	as: 'form',
-})`
-	max-height: calc(100vh - ${({ theme }) => theme.space[4] } - ${({ theme }) => theme.space[4] });
-	max-width: calc(100vw - ${({ theme }) => theme.space[4] } - ${({ theme }) => theme.space[4] });
-	display: grid;
-	grid-template-rows: min-content 1fr min-content;
-
-	@media (min-height: calc(${({ theme }) => theme.sizes[20]} + 4rem)) {
-		max-height: ${({ theme }) => theme.sizes[20]};
-	}
-`;
+import Dialog, { DialogFooter } from 'components/modals/Dialog';
 
 const AvatarWrapper = styled(Box)`
 	display: flex;
@@ -33,17 +21,6 @@ const ScrollContainer = styled(Container).attrs({
 })`
 	overflow: scroll;
 `
-
-const Footer = styled(Box)`
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	border-top: 1px solid ${({ theme }) => theme.colors.border};
-
-	& button + button {
-		${itemGap}
-	}
-`;
 
 const Fields = styled(Box).attrs({
 	paddingY: 2
@@ -134,12 +111,7 @@ const EditOrganizationModal = forwardRef(({ onClose }, ref) => {
     }, []);
 
 	return (
-		<Root ref={ref} minWidth={18} onSubmit={formik.handleSubmit}>
-			<Box paddingX={5} paddingTop={7} paddingBottom={4}>
-				<Heading fontSize={5} lineHeight={5}>
-					Edit Organization
-				</Heading>
-			</Box>
+		<Dialog as="form" ref={ref} minWidth={18} title="Edit Organization" onSubmit={formik.handleSubmit}>
 			<ScrollContainer>
 				<AvatarWrapper marginY={4}>
 					<Avatar 
@@ -205,15 +177,15 @@ const EditOrganizationModal = forwardRef(({ onClose }, ref) => {
 					</Fields>
 				</Box>
 			</ScrollContainer>
-			<Footer backgroundColor="background" gapLeft={3} padding={4}>
+			<DialogFooter>
 				<Button variant="flat" color="altText" onClick={onClose} type="button">
 					<Text color="altText">Cancel</Text>
 				</Button>
 				<Button loading={loading} type="submit">
 					<Text color="white">Save Changes</Text>
 				</Button>
-			</Footer>
-		</Root>
+			</DialogFooter>
+		</Dialog>
 	)
 });
 

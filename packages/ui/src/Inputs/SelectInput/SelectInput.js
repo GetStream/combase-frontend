@@ -32,7 +32,7 @@ const SelectInput = ({ children, multi, value, ...props }) => {
     const inputRef = useRef();
     const [open, toggleDropdown] = useToggle();
 
-    const handleSelectOption = newValue => {
+    const handleSelectOption = ({target: { value: newValue }}) => {
         if (multi) {
             const idx = value.findIndex(existing => existing === newValue);
 
@@ -119,9 +119,10 @@ const SelectInput = ({ children, multi, value, ...props }) => {
                     : null}
             </TextInput>
             <Popover
-                anchor={open ? anchorRef : undefined}
+                anchor={anchorRef}
                 as={Dropdown}
                 modifiers={popperModifiers}
+				open={open}
                 onClose={handleClose}
                 placement="bottom"
                 subheading="Suggestions"

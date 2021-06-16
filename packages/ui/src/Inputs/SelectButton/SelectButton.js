@@ -13,6 +13,7 @@ import { useInput, InputBase } from '../shared';
 
 export const SelectButton = forwardRef(
     ({ children, multi, name, label: labelProp, maxHeight, onBlur, onChange, onFocus, subheading, value, ...props }, ref) => {
+
         const [anchorRef, setAnchorRef] = useState();
         const inputRef = useRef();
         const [inputProps] = useInput({

@@ -26,6 +26,16 @@ const Input = styled.input`
 `;
 export const InputBase = forwardRef(
     ({ children, id, name, onBlur, onChange, onClick, onFocus, placeholder, textarea, type, value, ...rest }, ref) => {
+		useImperativeHandle(ref, () => ({
+			change: (value) => {
+				onChange({
+					target: {
+						name,
+						value,
+					}
+				})
+			}
+		}))
         return (
             <Input
                 as={textarea ? 'textarea' : undefined}

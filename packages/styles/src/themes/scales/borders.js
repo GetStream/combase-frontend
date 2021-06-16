@@ -1,6 +1,7 @@
 export const borderWidths = [
 	'0.125rem',
 	'0.25rem',
+	'0.3rem',
 	'0.375rem',
 	'0.5rem',
 	'0.625rem', 

@@ -12,7 +12,7 @@ export const buttonSizeVariants = variant({
 			borderRadius: 3,
         },
 		sm: {
-			borderRadius: 1
+			borderRadius: 2
 		}
     },
 });
