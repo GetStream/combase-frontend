@@ -18,7 +18,7 @@ const Container = styled(Box).attrs(props => ({
                     maxWidth: '100%',
                 },
                 contained: {
-                    maxWidth: props.maxWidth || 20,
+                    maxWidth: props.maxWidth || 23,
                 },
             },
         })}

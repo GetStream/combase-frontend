@@ -51,12 +51,14 @@ const PageHeader = forwardRef(
             hideTitle,
             hideLeftAction,
             leftIcon,
+			containerWidth,
             pageTitleStyle,
             reverse,
             onTitleClick,
             showOrganization,
             subtitle,
             title,
+			variant
         },
         ref
     ) => {
@@ -89,8 +91,9 @@ const PageHeader = forwardRef(
                 fluid={fluid}
                 ref={ref}
                 maxWidth={fluid ? undefined : 20}
+				variant={variant}
             >
-                <Wrapper variant="fluid" minHeight={11} style={style}>
+                <Wrapper variant="fluid" minHeight={11} maxWidth={containerWidth} style={style}>
                     <Title>
                         {!hideLeftAction
                             ? leftIcon || (

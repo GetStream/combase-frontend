@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { color, space, system, typography, variant } from '@combase.app/styles';
+import { color, layout, space, system, typography, variant } from '@combase.app/styles';
 
 import Placeholder from '../Placeholder';
 
@@ -8,6 +8,7 @@ const Text = styled.p`
     ${space};
     ${color};
     ${typography};
+	${layout.maxWidth};
     ${system({
         fontWeight: {
             property: 'fontVariationSettings',

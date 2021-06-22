@@ -6,11 +6,11 @@ import IconLabel from '../../IconLabel';
 import Box from '../../Box';
 import Text from '../../Text';
 
-export const Helper = ({ color, icon: Icon = InfoIcon, text, paddingX, paddingY }) => (
+export const Helper = ({ color, colorAlpha, icon: Icon = InfoIcon, text, paddingX, paddingY }) => (
     <Box paddingX={paddingX} paddingY={paddingY}>
         <IconLabel>
             <Icon color={color || 'yellow'} size={1} />
-            <Text as="span" color={color || 'lavenderA.56'} variant="label">
+            <Text as="span" color={color || 'altText'} colorAlpha={colorAlpha}>
                 {text}
             </Text>
         </IconLabel>
@@ -22,6 +22,7 @@ Helper.propTypes = {
 };
 
 Helper.defaultProps = {
+	colorAlpha: .56,
     paddingX: 4,
     paddingY: 1,
 };

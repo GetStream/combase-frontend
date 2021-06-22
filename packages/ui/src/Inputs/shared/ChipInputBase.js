@@ -107,7 +107,7 @@ export const ChipInputBase = forwardRef(
         };
 
         return (
-            <Root>
+            <Root padding={2} paddingX={3} minHeight={10}>
                 {value?.map((item, i) =>
                     renderChip ? renderChip(item, actions, i, deleteCursor) : defaultChip(item, actions, i, deleteCursor)
                 )}
@@ -120,7 +120,7 @@ export const ChipInputBase = forwardRef(
                     paddingLeft={0}
                     paddingY={0}
                     paddingBottom={2}
-                    minHeight={9}
+                    minHeight={5}
                     onBackspace={onBackspace}
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}

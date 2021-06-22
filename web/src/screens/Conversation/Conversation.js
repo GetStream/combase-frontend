@@ -1,5 +1,6 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import { useToggle } from 'react-use';
 import { 
 	Avatar, 
@@ -18,7 +19,8 @@ import {
 	Spinner, 
 	SystemMessage,
 	Text,
-	TicketLabelToggle, 
+	StarToggle,
+	PriorityToggle, 
 	Tooltip 
 } from '@combase.app/ui';
 import { itemGap } from '@combase.app/styles';
@@ -104,13 +106,18 @@ const CombaseMessageInput = () => {
 };
 
 const Conversation = () => {
+	const { channelId } = useParams();
 	const [drawerOpen, toggleDrawer] = useToggle(false);
 	const [_, setTicketToAssign] = useContext(AssignTicketContext);
 
-	const { channel } = useChatContext();
+	const { channel, setActiveChannel } = useChatContext();
 
 	const isSm = useReactiveMedia('sm');
 	const [starTicket, setPriority] = useTicketLabelToggles();
+
+	// useEffect(() => {
+	// 	setActiveChannel(channelId)
+	// }, [channelId, setActiveChannel])
 
 	return (
 		<Root drawer={drawerOpen}>
@@ -128,15 +135,15 @@ const Conversation = () => {
 						isMobile={!isSm?.matches}
 						toggles={[
 							<Tooltip key={0} text="Star Conversation">
-								<TicketLabelToggle type="star" onChange={(e) => starTicket(e, channel.id)} value={channel?.data?.starred || false} />
+								<StarToggle onChange={(e) => starTicket(e, channel.id)} value={channel?.data?.starred || false} />
 							</Tooltip>,
 							<Tooltip key={1} text="Set Priority">
-								<TicketLabelToggle type="priority" onChange={(e) => setPriority(e, channel.id)} value={channel?.data?.priority || 0} />
+								<PriorityToggle onChange={(e) => setPriority(e, channel.id)} value={channel?.data?.priority || 0} />
 							</Tooltip>,
 						]}
 					>
 						{
-							channel?.data.status === 'unassigned' ? (
+							channel?.data?.status === 'unassigned' ? (
 								<Button size="xs" variant="flat" color="altText" onClick={() => setTicketToAssign(channel.id)}>
 									<IconLabel>
 										<Text>Assign Ticket</Text>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import { useToggle } from 'react-use';
 import styled from 'styled-components';
 import { getTimeZones } from '@vvo/tzdb';
@@ -50,7 +50,7 @@ const popperModifiers = [
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 
 const TimezoneInput = ({ onChange, name, value }) => {
-    const [anchorRef, setAnchorRef] = useState();
+    const anchorRef = useRef();
     const [open, toggleDropdown] = useToggle();
     const [internalValue, setInternalValue] = useState(value || '');
 
@@ -62,7 +62,7 @@ const TimezoneInput = ({ onChange, name, value }) => {
     });
 
     const [cursor, { onKeyDown, onBackspace }] = useListCursor(result, true);
-    console.log(cursor);
+
     const handleChange = ({ target }) => {
         if (target.value) {
             console.log(target.value);
@@ -78,13 +78,15 @@ const TimezoneInput = ({ onChange, name, value }) => {
         toggleDropdown(false);
         setInternalValue(value);
         reset();
-        onChange({
-            target: {
-                name,
-                type: 'text',
-                value,
-            },
-        });
+		if (onChange) {
+			onChange({
+				target: {
+					name,
+					type: 'text',
+					value,
+				},
+			});
+		}
     };
 
     const handleClose = () => {
@@ -132,18 +134,19 @@ const TimezoneInput = ({ onChange, name, value }) => {
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
-                ref={setAnchorRef}
+                ref={anchorRef}
                 value={internalValue}
             >
                 <DropdownButton icon={DropdownIcon} onClick={toggleDropdown} open={open} type="button" />
             </TextInput>
             <Popover
-                anchor={open ? anchorRef : undefined}
+                anchor={anchorRef.current}
                 as={Dropdown}
                 modifiers={popperModifiers}
+				open={open}
                 onClose={handleClose}
                 gutters={false}
-                maxHeight={14}
+                maxHeight={16}
                 placement="bottom"
                 subheading="Select your timezone"
             >

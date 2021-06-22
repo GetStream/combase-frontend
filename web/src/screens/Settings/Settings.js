@@ -8,7 +8,7 @@ import { Scrollbars } from 'rc-scrollbars';
 import {AgentEntity} from 'components/Entities';
 import NavigationMenuItem from 'components/NavigationMenuItem';
 
-import ProfileSettings from './ProfileSettings';
+import AccountSettings from './AccountSettings';
 import OrganizationSettings from './OrganizationSettings';
 import WidgetSettings from './WidgetSettings';
 import ManageTags from './ManageTags';
@@ -39,7 +39,7 @@ const Settings = () => {
 							</ListItem>
 						</Box>
 						<Menu paddingX={[2, 2, 3]}>
-							<NavigationMenuItem icon={UserIcon} label="Edit Profile" to="/dashboard/settings/profile" />
+							<NavigationMenuItem icon={UserIcon} label="Account Settings" to="/dashboard/settings/account" />
 							<NavigationMenuItem icon={CalendarIcon} label="Edit Availability" to="/dashboard/settings/availability" />
 							<NavigationMenuItem label="Notifications" to="/dashboard/settings/notifications" />
 						</Menu>
@@ -53,7 +53,7 @@ const Settings = () => {
 					</Scrollbars>
 				</Navigation>			
 				<Switch>
-					<Route path="/dashboard/settings/profile" component={ProfileSettings} />
+					<Route path="/dashboard/settings/account" component={AccountSettings} />
 					<Route path="/dashboard/settings/organization" component={OrganizationSettings} />
 					<Route path="/dashboard/settings/tags" component={ManageTags} />
 					<Route path="/dashboard/settings/users" component={ManageUsers} />

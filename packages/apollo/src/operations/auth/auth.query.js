@@ -1,6 +1,19 @@
 import { gql } from '@apollo/client';
 import { WIDGET_SETTINGS_FRAGMENT } from './auth.mutation';
 
+export const AGENT_PROFILE_FRAGMENT = gql`
+	fragment AgentProfile on Agent {
+		_id
+		avatar
+		name {
+			full
+			display
+		}
+		role
+		timezone
+	}
+`;
+
 export const GET_CURRENT_USER = gql`
     {
         isSmViewport: media(bp: "sm") @client
@@ -68,49 +81,13 @@ export const GET_ORGANIZATION_PROFILE = gql`
 `;
 
 export const GET_MY_PROFILE = gql`
+	${AGENT_PROFILE_FRAGMENT}
     query getMyProfile {
         me {
-            _id
-            name {
-                full
-                display
-            }
-            avatar
-            email
-            role
-            timezone
-			schedule {
-                enabled
-                day
-                time {
-                    start: startTime
-                    end: endTime
-                }
-            }
+            ...AgentProfile
         }
     }
 `;
-
-export const UPDATE_AGENT_PROFILE_FRAGMENT = gql`
-	fragment UpdateAgentProfile on Agent {
-		avatar
-		name {
-			full
-			display
-		}
-		role
-		email
-		schedule {
-			enabled
-			day
-			time {
-				start: startTime
-				end: endTime
-			}
-		}
-		timezone
-	}
-`
 
 export const GET_WIDGET_SETTINGS = gql`
 	${WIDGET_SETTINGS_FRAGMENT}
