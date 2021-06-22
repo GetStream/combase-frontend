@@ -10,7 +10,7 @@ export const Helper = ({ color, colorAlpha, icon: Icon = InfoIcon, text, padding
     <Box paddingX={paddingX} paddingY={paddingY}>
         <IconLabel>
             <Icon color={color || 'yellow'} size={1} />
-            <Text as="span" color={color || 'altText'} colorAlpha={colorAlpha}>
+            <Text fontSize={2} as="span" color={color || 'altText'} colorAlpha={colorAlpha}>
                 {text}
             </Text>
         </IconLabel>

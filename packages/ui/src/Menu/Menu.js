@@ -31,7 +31,7 @@ const Menu = forwardRef(({ children, footer, header, subheading, ...rest }, ref)
     <Root $hasSubheading={subheading} {...rest} ref={ref}>
         {header || null}
         {subheading ? (
-            <Box paddingX={2}>
+            <Box paddingX={4}>
                 <ListSubheader>{subheading}</ListSubheader>
             </Box>
         ) : null}
