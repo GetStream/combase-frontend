@@ -41,7 +41,7 @@ const AccountSettings = () => {
 
 	return (
 		<ScrollbarsWithContext>
-			<PageHeader animated={false} backgroundColor="surface" variant="flat" title="Account Settings" />
+			<PageHeader backgroundColor="surface" variant="flat" title="Account Settings" />
 			<ProfileInformationForm />
 			<Container>
 				{/* <ListDetailSection title="Login Credentials" description="Change your password, and configure how you access your Combase account." /> */}

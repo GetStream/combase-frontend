@@ -9,6 +9,7 @@ import {AgentEntity} from 'components/Entities';
 import NavigationMenuItem from 'components/NavigationMenuItem';
 
 import AccountSettings from './AccountSettings';
+import AvailabilitySettings from './AvailabilitySettings';
 import OrganizationSettings from './OrganizationSettings';
 import WidgetSettings from './WidgetSettings';
 import ManageTags from './ManageTags';
@@ -34,7 +35,7 @@ const Settings = () => {
 							title="Settings"
 						/>
 						<Box paddingX={2}>
-							<ListItem>
+							<ListItem interaction="none">
 								<AgentEntity name={data?.me?.name?.full} meta={data?.me?.email} />
 							</ListItem>
 						</Box>
@@ -54,6 +55,8 @@ const Settings = () => {
 				</Navigation>			
 				<Switch>
 					<Route path="/dashboard/settings/account" component={AccountSettings} />
+					<Route path="/dashboard/settings/availability" component={AvailabilitySettings} />
+					<Route path="/dashboard/settings/organization/agents" component={ManageUsers} />
 					<Route path="/dashboard/settings/organization" component={OrganizationSettings} />
 					<Route path="/dashboard/settings/tags" component={ManageTags} />
 					<Route path="/dashboard/settings/users" component={ManageUsers} />

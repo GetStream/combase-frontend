@@ -38,7 +38,6 @@ const Integrations = () => {
 			<PageHeader 
 				variant="fluid" 
 				title="Integrations" 
-				showOrganization
 			>
 				<TabWrapper variant="fluid">
 					<Tabs onChange={setFilterCategory} value={filterCategory}>

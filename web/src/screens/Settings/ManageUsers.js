@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GET_AGENTS } from '@combase.app/apollo';
 
-import { Box, Button, DropdownIcon, TableHeader, Text, Tooltip, useBulkSelect, useEntities } from '@combase.app/ui';
+import { Box, TableHeader, Text, PageHeader, useBulkSelect, useEntities } from '@combase.app/ui';
 
 import AgentListItem from 'components/AgentListItem';
 import EntityList from 'components/EntityList';
@@ -20,45 +20,25 @@ const ManageUsers = () => {
 
     return (
         <Root>
+			<PageHeader backgroundColor="surface" title="Agents">
 			<TableHeader
-				columnTemplate="1fr 1.5fr 0.5fr 1fr"
+				columnTemplate="1fr 1fr"
 				indeterminate={bulkCheckbox.indeterminate}
 				onBulkSelect={bulkCheckbox.onChange}
 				checked={bulkCheckbox.value}
 				selectable
+				backgroundColor="surface"
 			>
 				<div>
-					<Tooltip text="Sort by Name">
-						<Button size="xs" variant="flat">
-							<Text>{'Name'}</Text>
-						</Button>
-					</Tooltip>
+					<Text>{'Name'}</Text>
 				</div>
 				<div>
-					<Tooltip text="Sort by Group">
-						<Button size="xs" variant="flat">
-							<Text>{'Groups'}</Text>
-						</Button>
-					</Tooltip>
-				</div>
-				<div>
-					<Tooltip text="Sort by Chat Count">
-						<Button size="xs" variant="flat">
-							<Text>{'Chats'}</Text>
-						</Button>
-					</Tooltip>
-				</div>
-				<div>
-					<Tooltip text="Newest First">
-						<Button size="xs" variant="flat">
-							<Text>{'Created'}</Text>
-							<DropdownIcon size={3} />
-						</Button>
-					</Tooltip>
+					<Text>{'Role'}</Text>
 				</div>
 			</TableHeader>
+			</PageHeader>
 			<EntityList
-				columnTemplate="1fr 1.5fr 0.5fr 1fr"
+				columnTemplate="1fr 1fr"
 				data={agents?.edges}
 				ItemContainer={ItemContainer}
 				loading={loading}
