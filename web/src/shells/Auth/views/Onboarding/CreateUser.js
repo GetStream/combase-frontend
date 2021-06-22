@@ -25,7 +25,7 @@ const Actions = styled.div`
     flex-direction: column;
 `;
 
-const CreateUserStep = () => {
+const CreateUserStep = ({ isLastStep }) => {
     const formik = useFormikContext();
 
     return (
@@ -58,7 +58,7 @@ const CreateUserStep = () => {
                     disabled={!formik.dirty || !formik.isValid}
                     type="submit"
                 >
-                    <Text color="white">Next</Text>
+                    <Text color="white">{isLastStep ? 'Finish' : 'Next'}</Text>
                 </Button>
             </Actions>
         </Root>

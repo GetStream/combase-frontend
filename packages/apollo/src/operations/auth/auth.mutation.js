@@ -10,6 +10,7 @@ import { authenticationVar } from '../../variables';
  */
 export const setAuthenticationCredentials = token => {
     localStorage.setItem('token', token);
+	localStorage.removeItem('combase-organization');
 
     return authenticationVar(token);
 };
@@ -17,6 +18,7 @@ export const setAuthenticationCredentials = token => {
 export const LOGIN = gql`
     mutation login($email: String!, $password: String!) {
         agent: agentLogin(email: $email, password: $password) {
+			_id
             token
         }
     }
@@ -25,7 +27,19 @@ export const LOGIN = gql`
 export const ONBOARD_USER_AND_ORG = gql`
     mutation createAgentAndOrganization($agent: AgentInput!, $organization: OrganizationInput!) {
         agent: createAgentAndOrganization(agent: $agent, organization: $organization) {
+			_id
             token
+        }
+    }
+`;
+
+export const CREATE_AGENT = gql`
+    mutation createAgent($record: CreateOneAgentInput!) {
+        agentCreate(record: $record) {
+            record {
+				_id
+				token
+			}
         }
     }
 `;

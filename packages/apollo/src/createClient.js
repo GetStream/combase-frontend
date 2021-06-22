@@ -31,10 +31,20 @@ export default async endpoint => {
 
     const authLink = setContext((_, { headers }) => {
         const token = localStorage.getItem('token');
+        const orgId = localStorage.getItem('combase-organization');
+
+		let additional = {};
+
+		if (orgId) {
+			additional = {
+				'combase-organization': orgId,
+			}
+		}
 
         return {
             headers: {
                 ...headers,
+				...additional,
                 authorization: token ? `Bearer ${token}` : '',
             },
         };

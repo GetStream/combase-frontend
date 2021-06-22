@@ -21,7 +21,7 @@ const Actions = styled.div`
     flex-direction: column;
 `;
 
-const LinkStreamApp = () => {
+const LinkStreamApp = ({ isLastStep }) => {
     const formik = useFormikContext();
 
     return (
@@ -58,7 +58,7 @@ const LinkStreamApp = () => {
                     disabled={!formik.dirty || !formik.isValid}
                     type="submit"
                 >
-                    <Text color="white">{'Finish'}</Text>
+                    <Text color="white">{isLastStep ? 'Finish' : 'Next'}</Text>
                 </Button>
             </Actions>
         </Root>

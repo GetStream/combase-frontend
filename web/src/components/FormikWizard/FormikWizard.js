@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {cloneElement, useCallback, useState} from 'react';
 import styled from 'styled-components';
 import {Formik} from 'formik';
 
@@ -42,7 +42,6 @@ const FormikWizard = ({children, initialValues, onSubmit}) => {
     }, [totalSteps]);
 
     const handleSubmit = useCallback(async (values, form) => {
-		console.log(values, isLastStep);
         if (step.props.onSubmit) {
             await step.props.onSubmit(values, form);
         }
@@ -68,7 +67,7 @@ const FormikWizard = ({children, initialValues, onSubmit}) => {
                     action="#"
                     onSubmit={formik.handleSubmit}
                 >
-                    {step}
+                    {cloneElement(step, { isLastStep })}
                     <Pagination>
                         {children.map((_, i) => (
 							<Dot
