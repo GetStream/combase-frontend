@@ -2,7 +2,7 @@ import {VALIDATION_MSG} from 'constants/forms';
 
 import React from 'react';
 import styled from 'styled-components';
-import {Button, TextInput} from '@combase.app/ui';
+import {Button, TextInput, Text} from '@combase.app/ui';
 import {useFormikContext} from 'formik';
 import * as yup from 'yup';
 
@@ -26,7 +26,6 @@ const LinkStreamApp = () => {
 
     return (
         <Root>
-            <h4>{'Link Your Stream App'}</h4>
             <TextInput
                 error={formik.touched?.organization?.stream?.key && formik.errors?.organization?.stream?.key}
                 label="API Key"
@@ -59,7 +58,7 @@ const LinkStreamApp = () => {
                     disabled={!formik.dirty || !formik.isValid}
                     type="submit"
                 >
-                    {'Finish'}
+                    <Text color="white">{'Finish'}</Text>
                 </Button>
             </Actions>
         </Root>

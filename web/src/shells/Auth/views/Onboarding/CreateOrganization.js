@@ -1,10 +1,10 @@
-import {VALIDATION_MSG} from 'constants/forms';
-
 import React from 'react';
 import styled from 'styled-components';
-import {Avatar, Button, TextInput} from '@combase.app/ui';
+import {Avatar, Button, Text, TextInput} from '@combase.app/ui';
 import {useFormikContext} from 'formik';
 import * as yup from 'yup';
+
+import {VALIDATION_MSG} from 'constants/forms';
 
 const Root = styled.div`
 	display: flex;
@@ -32,7 +32,7 @@ const CreateOrganizationStep = () => {
         <Root>
             <AvatarInput
                 name={formik.values.organization.name || ''}
-                size={4}
+                size={10}
                 src={formik.values.organization.avatar}
             />
             <TextInput
@@ -56,8 +56,9 @@ const CreateOrganizationStep = () => {
             <Actions>
                 <Button
                     disabled={!formik.dirty || !formik.isValid}
+					type='submit'
                 >
-                    {'Next'}
+                    <Text color="white">{'Next'}</Text>
                 </Button>
             </Actions>
         </Root>

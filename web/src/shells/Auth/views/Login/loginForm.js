@@ -20,7 +20,7 @@ const Actions = styled(Box)`
 const loginForm = formik => {
     return (
         <form onSubmit={formik.handleSubmit}>
-            <StreamLogo size={5} />
+            <StreamLogo size={7} />
             <PageTitle subtitle="Welcome to" title="Combase" />
             <Fields gapTop={2} marginTop={4}>
                 <TextInput
@@ -45,10 +45,10 @@ const loginForm = formik => {
             </Fields>
             <Actions marginTop={7} gapTop={3}>
                 <Button type="submit">
-                    <Text>{'Login'}</Text>
+                    <Text color="white">{'Login'}</Text>
                 </Button>
-                <Button variant="flat" size="sm" color="text" as={Link} to="/create-account" type="button">
-                    <Text>{'Create Account'}</Text>
+                <Button variant="flat" size="sm" color="altText" as={Link} to="/create-account" type="button">
+                    <Text color="altText">{'Create Account'}</Text>
                 </Button>
             </Actions>
         </form>

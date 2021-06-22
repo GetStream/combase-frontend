@@ -6,6 +6,7 @@ import { authenticationVar, useReactiveVar } from '@combase.app/apollo';
 
 import Onboarding from './views/Onboarding';
 import Login from './views/Login';
+import Invite from './views/Invite';
 
 const Root = styled.div`
     height: 100%;
@@ -53,8 +54,9 @@ const AuthShell = ({ match }) => {
     return (
         <Root>
             <Page>
-                <Container maxWidth={17}>
+                <Container maxWidth={18}>
                     <Switch>
+                        <Route component={Invite} path={`${match.url}invite`} />
                         <Route component={Onboarding} path={`${match.url}create-account`} />
                         <Route component={Login} path={match.url} />
                     </Switch>

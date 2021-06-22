@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Avatar, Button, TextInput} from '@combase.app/ui';
+import {Avatar, Button, Text, TextInput} from '@combase.app/ui';
 import {useFormikContext} from 'formik';
 import * as yup from 'yup';
 
@@ -32,7 +32,7 @@ const CreateUserStep = () => {
         <Root>
             <AvatarInput
                 name={formik.values.agent.name.first}
-                size={4}
+                size={12}
                 src={formik.values.agent.avatar}
             />
             <TextInput
@@ -58,7 +58,7 @@ const CreateUserStep = () => {
                     disabled={!formik.dirty || !formik.isValid}
                     type="submit"
                 >
-                    {'Next'}
+                    <Text color="white">Next</Text>
                 </Button>
             </Actions>
         </Root>

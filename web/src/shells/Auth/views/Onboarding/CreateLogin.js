@@ -2,7 +2,7 @@ import {VALIDATION_MSG} from 'constants/forms';
 
 import React from 'react';
 import styled from 'styled-components';
-import {Button, TextInput} from '@combase.app/ui';
+import {Button, TextInput, Text} from '@combase.app/ui';
 import {useFormikContext} from 'formik';
 import * as yup from 'yup';
 
@@ -61,7 +61,7 @@ const CreateLoginStep = () => {
                     disabled={!formik.dirty || !formik.isValid}
                     type="submit"
                 >
-                    {'Next'}
+                    <Text color="white">{'Next'}</Text>
                 </Button>
             </Actions>
         </Root>

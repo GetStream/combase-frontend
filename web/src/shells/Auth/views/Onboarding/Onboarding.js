@@ -101,15 +101,12 @@ const OnboardingScreen = ({ history }) => {
 
     return (
         <Root>
-            <Title>
-                <p>{'Combase'}</p>
-                <h3>{'Create Account'}</h3>
-            </Title>
+            <Title subtitle="Combase" title="Create Account" marginBottom={7} />
             <FormikWizard initialValues={initialValues} onSubmit={handleSubmit}>
                 <CreateUser validationSchema={step1Validation} />
                 <CreateLogin validationSchema={step2Validation} />
                 <CreateOrganization validationSchema={step3Validation} />
-                <LinkStreamApp valudationSchema={step4Validation} />
+                <LinkStreamApp validationSchema={step4Validation} />
             </FormikWizard>
         </Root>
     );

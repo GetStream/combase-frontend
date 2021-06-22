@@ -42,6 +42,7 @@ const FormikWizard = ({children, initialValues, onSubmit}) => {
     }, [totalSteps]);
 
     const handleSubmit = useCallback(async (values, form) => {
+		console.log(values, isLastStep);
         if (step.props.onSubmit) {
             await step.props.onSubmit(values, form);
         }
