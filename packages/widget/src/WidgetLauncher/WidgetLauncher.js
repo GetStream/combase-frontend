@@ -24,7 +24,7 @@ export const WidgetLauncher = ({ onMouseOver, size }) => {
 	
     return (
         <Portal>
-            <Root icon={open ? CloseIcon : StreamLogo} onClick={() => setOpen(!open)} onMouseOver={onMouseOver} size={size} />
+            <Root icon={open ? CloseIcon : StreamLogo} onClick={() => setOpen(!open)} iconSize={open ? 6 : 8} onMouseOver={onMouseOver} size={size} />
         </Portal>
     );
 };

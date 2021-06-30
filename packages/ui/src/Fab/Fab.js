@@ -20,19 +20,9 @@ const Root = styled(ButtonBase).attrs({
     cursor: pointer;
 `;
 
-const Icon = styled.svg`
-    ${system({
-        size: {
-            properties: ['width', 'height'],
-            scale: 'sizes',
-            transform: (value, scale) => scale[Math.max(1, value - 4)],
-        },
-    })}
-`;
-
-const Fab = forwardRef(({ icon, size, ...props }, ref) => (
+const Fab = forwardRef(({ icon: Icon, iconSize, size, ...props }, ref) => (
     <Root {...props} interaction="bump" size={size} ref={ref}>
-        <Icon as={icon} color="white" size={size} />
+        <Icon color="white" size={iconSize} />
     </Root>
 ));
 
@@ -43,6 +33,7 @@ Fab.propTypes = {
 
 Fab.defaultProps = {
     backgroundColor: 'primary',
+	iconSize: 7,
     size: 9,
 };
 

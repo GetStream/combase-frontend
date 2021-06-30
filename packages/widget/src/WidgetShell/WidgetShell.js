@@ -43,8 +43,8 @@ const Root = styled(Card).attrs({
     @media (min-width: ${({ theme }) => theme.breakpoints[1]}) {
         top: unset;
         left: unset;
-        width: ${({ theme }) => theme.sizes[17]};
-        max-height: ${({ theme }) => theme.sizes[19]};
+        width: ${({ theme }) => theme.sizes[18]};
+        max-height: ${({ theme }) => theme.sizes[20]};
         height: calc(100vh - (${({ $fabSize, theme: { sizes } }) => sizes[$fabSize]} * 2) - 4rem);
     }
 `;
