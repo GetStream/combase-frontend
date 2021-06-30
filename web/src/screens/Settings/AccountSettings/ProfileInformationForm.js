@@ -1,24 +1,32 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 import { useToasts } from 'react-toast-notifications';
 
-import { 
-	Avatar,
+import {
 	Box,
 	Button,
+	CloseCircleIcon,
 	Container,
 	ListDetailSection,
 	TextInput,
 	TimezoneInput,
 	Text,
+	TextLink,
 } from '@combase.app/ui';
 import { itemGap } from '@combase.app/styles';
 import { gql, useMutation, useQuery, GET_MY_PROFILE, AGENT_PROFILE_FRAGMENT } from '@combase.app/apollo';
 
+import AvatarInput from 'components/AvatarInput';
+
 const AvatarWrapper = styled(Box)`
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	& > * + * {
+		${itemGap}
+	}
 `;
 
 const Fields = styled(Box)`
@@ -48,6 +56,7 @@ const ProfileInformationForm = (props) => {
 	const { data } = useQuery(GET_MY_PROFILE);
 	const [updateUser, { loading }] = useMutation(UPDATE_USER_DATA);
 	const { addToast } = useToasts();
+	const fileInputRef = useRef();
 
 	const initialValues = useMemo(
 		() => ({
@@ -127,8 +136,16 @@ const ProfileInformationForm = (props) => {
 				<Container as={Form} onSubmit={formik.handleSubmit} {...props}>
 					<ListDetailSection title="Your Profile" description="Customize your profile information and how you will appear in conversations with end-users on Combase.">
 						<Fields gapTop={2}>
-							<AvatarWrapper marginBottom={8}>
-								<Avatar src={data?.me.avatar} size={12} />
+							<AvatarWrapper gapTop={3} marginBottom={3}>
+								<AvatarInput ref={fileInputRef} value={data?.me.avatar} size={12} />
+								<Button onClick={() => fileInputRef.current.click()} size="xs" color="altText">
+									<Text color="white">
+										Update Avatar
+									</Text>
+								</Button>
+								<TextLink marginY={2} color="error" icon={CloseCircleIcon} reverse onClick={() => formik.setFieldValue('branding.logo', null)}>
+									Remove Avatar
+								</TextLink>
 							</AvatarWrapper>
 							<TextInput 
 								label="Full Name"

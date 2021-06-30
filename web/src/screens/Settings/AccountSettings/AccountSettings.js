@@ -32,6 +32,7 @@ const PreferenceCard = styled(Card)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	border: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
 const AccountSettings = () => {
@@ -44,7 +45,6 @@ const AccountSettings = () => {
 			<PageHeader backgroundColor="surface" variant="flat" title="Account Settings" />
 			<ProfileInformationForm />
 			<Container>
-				{/* <ListDetailSection title="Login Credentials" description="Change your password, and configure how you access your Combase account." /> */}
 				<Grid paddingY={6}>
 					<PreferenceCard padding={6}>
 						<IconBubble icon={MailIcon} size={10} />

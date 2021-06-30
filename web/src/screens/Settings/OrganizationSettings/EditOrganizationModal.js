@@ -1,12 +1,12 @@
-import React, { forwardRef, useCallback, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useCallback, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { gql, useMutation, useQuery, GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from '@combase.app/apollo';
 import { useFormik } from 'formik';
 import { useToasts } from 'react-toast-notifications';
-import { Avatar, Box, Button, Container, Modal, ListSubheader, CloseCircleIcon, Text, TextInput, TextLink } from '@combase.app/ui';
+import { Box, Button, Container, ListSubheader, CloseCircleIcon, Text, TextInput, TextLink } from '@combase.app/ui';
 import { itemGap } from '@combase.app/styles';
 
-import UpdateAvatarDialog from 'components/modals/UpdateAvatarDialog';
+import AvatarInput from 'components/AvatarInput';
 import Dialog, { DialogFooter } from 'components/modals/Dialog';
 
 const AvatarWrapper = styled(Box)`
@@ -14,6 +14,9 @@ const AvatarWrapper = styled(Box)`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	& > * + * {
+		${itemGap}
+	}
 `;
 
 const ScrollContainer = styled(Container).attrs({
@@ -34,7 +37,7 @@ const queryOpts = { fetchPolicy: 'cache-and-network'};
 
 const EditOrganizationModal = forwardRef(({ onClose }, ref) => {
 	const fileInputRef = useRef();
-	const [avatarFile, setAvatarFile] = useState(null);
+	
 	const { data } = useQuery(GET_ORGANIZATION_PROFILE, queryOpts);
 	const [updateOrganizationProfile, { loading }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
 	const { addToast } = useToasts();
@@ -100,25 +103,17 @@ const EditOrganizationModal = forwardRef(({ onClose }, ref) => {
 		onSubmit: handleSubmit,
 	});
 
-	const handleAvatarChange = useCallback(e => {
-		let [newFile] = e.target.files;
-        if (newFile) {
-			setAvatarFile({
-				...newFile,
-                preview: URL.createObjectURL(newFile),
-            });
-        }
-    }, []);
-
 	return (
 		<Dialog as="form" ref={ref} minWidth={18} title="Edit Organization" onSubmit={formik.handleSubmit}>
 			<ScrollContainer>
-				<AvatarWrapper marginY={4}>
-					<Avatar 
-						src={formik.values.branding.logo} 
-						size={12} 
-						onClick={() => fileInputRef.current.click()} 
+				<AvatarWrapper gapTop={3} marginY={4}>
+					<AvatarInput
+						onChange={formik.handleChange}
+						name="branding.logo"
 						marginBottom={6}
+						size={12}
+						ref={fileInputRef}
+						value={formik.values.branding.logo} 
 					/>
 					<Button onClick={() => fileInputRef.current.click()} size="xs" color="altText">
 						<Text color="white">
@@ -128,15 +123,6 @@ const EditOrganizationModal = forwardRef(({ onClose }, ref) => {
 					<TextLink marginY={2} color="error" icon={CloseCircleIcon} reverse onClick={() => formik.setFieldValue('branding.logo', null)}>
 						Remove Avatar
 					</TextLink>
-					<input ref={fileInputRef} onChange={handleAvatarChange} type="file" style={{display: 'none'}} />
-					<Modal
-						open={!!avatarFile} 
-						file={avatarFile} 
-						name="branding.logo"
-						onSubmit={formik.handleChange}
-						onClose={() => setAvatarFile(null)} 
-						component={UpdateAvatarDialog} 
-					/>
 				</AvatarWrapper>
 				<Box marginY={4}>
 					<ListSubheader>

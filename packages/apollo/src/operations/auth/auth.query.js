@@ -14,6 +14,20 @@ export const AGENT_PROFILE_FRAGMENT = gql`
 	}
 `;
 
+export const AGENT_SCHEDULE_FRAGMENT = gql`
+	fragment AgentSchedule on Agent {
+		_id
+		schedule {
+			enabled
+			day
+			time {
+				end: endTime
+				start: startTime
+			}
+		}
+	}
+`;
+
 export const GET_CURRENT_USER = gql`
     {
         isSmViewport: media(bp: "sm") @client
@@ -82,9 +96,11 @@ export const GET_ORGANIZATION_PROFILE = gql`
 
 export const GET_MY_PROFILE = gql`
 	${AGENT_PROFILE_FRAGMENT}
+	${AGENT_SCHEDULE_FRAGMENT}
     query getMyProfile {
         me {
             ...AgentProfile
+			...AgentSchedule
         }
     }
 `;

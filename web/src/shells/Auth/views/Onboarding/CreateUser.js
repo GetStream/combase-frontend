@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Avatar, Button, Text, TextInput} from '@combase.app/ui';
+import {Box, Button, Text, TextInput} from '@combase.app/ui';
 import {useFormikContext} from 'formik';
 import * as yup from 'yup';
 
 import {VALIDATION_MSG} from '../../../../constants/forms';
+
+import AvatarInput from 'components/AvatarInput';
 
 const Root = styled.div`
     display: flex;
@@ -15,8 +17,9 @@ const Root = styled.div`
     }
 `;
 
-const AvatarInput = styled(Avatar)`
-    align-self: center;
+const AvatarWrapper = styled(Box)`
+	display: flex;
+	justify-content: center;
 `;
 
 const Actions = styled.div`
@@ -30,11 +33,13 @@ const CreateUserStep = ({ isLastStep }) => {
 
     return (
         <Root>
-            <AvatarInput
-                name={formik.values.agent.name.first}
-                size={12}
-                src={formik.values.agent.avatar}
-            />
+            <AvatarWrapper>
+				<AvatarInput
+					name={formik.values.agent.name.first}
+					size={12}
+					value={formik.values.agent.avatar}
+				/>
+			</AvatarWrapper>
             <TextInput
                 error={formik.touched?.agent?.name?.first && formik.errors?.agent?.name?.first}
                 label="First Name"

@@ -1,13 +1,14 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colorAlpha, layout, space } from '@combase.app/styles';
+import { colorAlpha, interactions, layout, space } from '@combase.app/styles';
 
 import Box from '../Box';
 import Container from '../Container';
 import Text from '../Text';
 
 const Root = styled(Box)`
+	${interactions};
     ${layout};
 	${colorAlpha};
     display: flex;
@@ -15,21 +16,22 @@ const Root = styled(Box)`
     justify-content: center;
     align-items: center;
     text-align: center;
+	user-select: none;
+	cursor: ${({ onClick }) => onClick ? 'pointer' : 'default'};
 `;
 
 const Label = styled(Text)`
-	${colorAlpha};
     ${space};
     text-align: center;
     user-select: none;
 `;
 
-const EmptyView = forwardRef(({ backgroundColor, children, colorAlpha, color, error, gap, icon, iconColor, loading, size, title, ...rest }, ref) => (
-    <Root {...rest} backgroundColor={backgroundColor} borderRadius={3} ref={ref}>
+const EmptyView = forwardRef(({ backgroundColor, children, color, error, gap, icon, iconColor, loading, onClick, size, title, ...rest }, ref) => (
+    <Root {...rest} backgroundColor={backgroundColor} interaction={onClick ? 'highlight' : undefined} borderRadius={3} onClick={onClick} ref={ref}>
         <Container maxWidth={17}>
             {icon || null}
             {title ? (
-                <Label color={color} opacity={colorAlpha} fontWeight="600" marginBottom={gap} fontSize={4}>
+                <Label color={color} fontWeight="600" marginBottom={gap} fontSize={4}>
                     {title}
                 </Label>
             ) : null}
@@ -47,7 +49,6 @@ EmptyView.defaultProps = {
     backgroundColor: 'text',
 	backgroundColorAlpha: 0.02,
     color: 'altText',
-	colorAlpha: .56,
     gap: 2,
     minHeight: [14, 16],
     size: 4,

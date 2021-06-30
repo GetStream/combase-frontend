@@ -31,11 +31,11 @@ const Invite = () => {
 
 		if (token) {
 			const payload = jwt(token);
+			if (payload.exp < (Date.now() / 1000)) {
+				return 'expired';
+			}
 			localStorage.setItem('combase-organization', payload.org);
-			// if (payload.exp < (Date.now() / 1000)) {
-			// 	return 'expired';
-			// }
-
+			
 			return payload;
 		}
 		
@@ -78,9 +78,9 @@ const Invite = () => {
 					},
 				}
 			});
-			console.log(agentCreate);
+
 			setAuthenticationCredentials(agentCreate.record.token);
-			// history.push('/dashboard');
+			history.push('/dashboard');
 		} catch (error) {
 			console.log(error);
 		}
