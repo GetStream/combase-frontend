@@ -1,57 +1,107 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { useChannelMessages, useIsMounted } from '@combase.app/chat';
+import React, { useCallback, useRef } from 'react';
+import { 
+	isDate,
+	useChannelActionContext, 
+	useComponentContext, 
+	useChannelStateContext,
+	useEnrichedMessages,
+	Message,
+} from 'stream-chat-react';
 
+import usePrependedMessagesCount from './usePrependedMessagesCount';
 import VirtualizedList from '../VirtualizedList';
 
 const listStyle = {
-    height: '100%',
-    width: '100%',
+	backfaceVisibility: 'hidden',
 };
 
-const START_INDEX = 99;
+const PREPEND_OFFSET = 10 ** 7;
 
-const MessageList = ({ renderItem }) => {
-	const [messages, { loading, loadingMore, loadMore, hasMore }] = useChannelMessages();
-    const [firstItemIndex, setFirstItemIndex] = useState(START_INDEX);
-	
+const OVERSCAN = 500;
+
+const MessageList = ({
+    disableDateSeparator = false,
+	headerPosition,
+    hideDeletedMessages = false,
+    hideNewMessageSeparator = false,
+    messageLimit = 100,
+    overscan = OVERSCAN,
+    shouldGroupByUser = false,
+	threadList = false,
+}) => {
+
+	const { loadMore } = useChannelActionContext();
+  	const { channel, hasMore, loadingMore, messages } = useChannelStateContext();
+
+	const {
+		DateSeparator,
+		EmptyStateIndicator,
+		LoadingIndicator,
+		MessageNotification,
+		MessageSystem,
+		TypingIndicator,
+		Message: MessageUIComponent,
+	} = useComponentContext();
+
     const virtuoso = useRef(undefined);
-    const mounted = useIsMounted();
-    const fetching = useRef(false);
 
-    const itemContent = useCallback(index => renderItem(index - firstItemIndex), [firstItemIndex, renderItem]);
+	const { messageGroupStyles, messages: enrichedMessages } = useEnrichedMessages({
+		channel,
+		disableDateSeparator,
+		headerPosition,
+		hideDeletedMessages,
+		hideNewMessageSeparator,
+		messages,
+		noGroupByUser: !shouldGroupByUser,
+		threadList,
+	});
 
-    const prepend = useCallback(async () => {
-        if (!hasMore || fetching.current || !mounted.current) {
-            return;
-		}
+	const numItemsPrepended = usePrependedMessagesCount(enrichedMessages);
+
+    const itemContent = useCallback((messageList, virtuosoIndex, groupStylesList) => {
+		const streamMessageIndex = virtuosoIndex + numItemsPrepended - PREPEND_OFFSET;
+
+		const message = messageList[streamMessageIndex];
+		const groupStyles = groupStylesList[message?.id] || '';
+
+		if (!message) return <div style={{ height: '1px' }}></div>; // returning null or zero height breaks the virtuoso
 		
-		fetching.current = true;
+		if (message.type === 'message.date' && message.date && isDate(message.date)) {
+			return <DateSeparator date={message.date} unread={message.unread} />;
+		}
 
-		await new Promise((resolve) => {
-			setTimeout(async () => {
-				await loadMore(messages[0], 100, setFirstItemIndex);
-				requestAnimationFrame(resolve);
-			}, 500);
-		});
+		if (message.type === 'system') {
+			return <MessageSystem message={message} />;
+		}
 
-        fetching.current = false;
-	}, [hasMore, loadMore, messages]);
+		return (
+			<Message
+				groupStyles={[groupStyles]}
+				message={message}
+				Message={MessageUIComponent}
+			/>
+		);
+	}, [numItemsPrepended]);
 
-	if (!messages?.length) return <div />
+	const handleStartReached = useCallback(() => {
+		if (hasMore && loadMore) {
+			loadMore(messageLimit);
+		}
+	}, [hasMore, loadMore, messageLimit]);
 
     return (
 		<VirtualizedList
 			alignToBottom
-			firstItemIndex={firstItemIndex}
+			firstItemIndex={PREPEND_OFFSET - numItemsPrepended}
 			followOutput="smooth"
-			initialTopMostItemIndex={messages?.length - 1}
-			itemContent={itemContent}
+			initialTopMostItemIndex={enrichedMessages && enrichedMessages.length > 0 ? enrichedMessages.length - 1 : 0}
+			itemContent={(i) => itemContent(enrichedMessages, i, messageGroupStyles)}
 			loading={hasMore && !messages?.length || loadingMore}
-			overscan={25}
+			overscan={overscan}
 			ref={virtuoso}
-			startReached={prepend}
+			startReached={handleStartReached}
 			style={listStyle}
-			totalCount={messages?.length || 0}
+			totalCount={enrichedMessages?.length || 0}
 		/>
     );
 };
