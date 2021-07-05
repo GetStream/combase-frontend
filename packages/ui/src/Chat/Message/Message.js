@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles'
-import { MessageInput, useComponentContext, useMessageContext, renderText as defaultRenderText } from 'stream-chat-react';
+import { 
+	MessageInput,
+	useComponentContext,
+	useMessageContext,
+	renderText as defaultRenderText
+} from 'stream-chat-react';
 import format from 'date-fns/format';
 
 import Avatar from '../../Avatar';
 import Box from '../../Box';
 import Container from '../../Container';
-import Text from '../../Text';
 
 import MessageActions from './MessageActions';
 import MessageDate from './MessageDate';
@@ -61,6 +65,13 @@ const Root = styled(Container).attrs({
 		overflow: hidden;
 	}
 
+	.str-chat__gallery--square {
+		max-width: 304px;
+		.str-chat__gallery-image:nth-child(even) {
+			margin-right: 0;
+		}
+	}
+
 	.str-chat__gallery-image {
 		width: 150px;
 		height: 150px;
@@ -73,6 +84,31 @@ const Root = styled(Container).attrs({
 		width: inherit;
 		height: inherit;
 		object-fit: cover;
+	}
+
+	.str-chat__gallery-placeholder {
+		position: relative;
+		width: 150px;
+		height: 150px;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-size: cover;
+		background-position: top left;
+		background-repeat: no-repeat;
+		cursor: zoom-in;
+
+		:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.69);
+			z-index: 0;
+		}
 	}
 `;
 
