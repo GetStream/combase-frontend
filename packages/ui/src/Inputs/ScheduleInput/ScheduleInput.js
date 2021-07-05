@@ -1,17 +1,15 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { FieldArray, validateYupSchema } from 'formik';
+import { FieldArray, Field } from 'formik';
 import { capitalCase } from 'change-case';
 
 import Box from '../../Box';
 import Card from '../../Card';
 import EmptyView from '../../EmptyView';
-import IconLabel from '../../IconLabel';
-import Button from '../../Button';
 import IconButton from '../../IconButton';
 import Text, { Heading } from '../../Text';
 import TextGroup from '../../TextGroup';
-import { AddCircleIcon, AddIcon, CalendarIcon, CloseCircleIcon } from '../../icons';
+import { AddCircleIcon, CloseCircleIcon } from '../../icons';
 import ListSubheader from '../../ListSubheader'
 import Tooltip from '../../Tooltip';
 
@@ -88,7 +86,7 @@ const ScheduleInput = ({ onChange, name, value }) => {
 								</Text>
 							</Heading>
 						</TextGroup>
-						<Switch size={2} name={`${name}.${index}.enabled`} onChange={onChange} value={enabled} />
+						<Field type='checkbox' size={2} name={`${name}.${index}.enabled`} />
 					</Header>
 					{index > 0 ? (
 						<Tooltip text="Delete Schedule Entry" placement="left">

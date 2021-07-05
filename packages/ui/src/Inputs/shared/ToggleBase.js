@@ -35,7 +35,6 @@ export const ToggleBase = forwardRef((props, ref) => {
         name,
         onBlur,
         onChange,
-		onClick,
         onFocus,
         readOnly,
         required,
@@ -52,16 +51,6 @@ export const ToggleBase = forwardRef((props, ref) => {
 
     const internalInputRef = useRef();
     const inputRef = useSharedRef(undefined, [internalInputRef, externalInputRef]);
-
-	// useImperativeHandle(ref, () => ({
-	// 	current: iconButtonRef.current,
-	// 	toggle: () => handleInputChange({
-	// 		target: {
-	// 			name,
-	// 			checked: !checked
-	// 		}
-	// 	})
-	// }))
 
     const handleInputChange = event => {
         if (event.nativeEvent.defaultPrevented) {
@@ -93,7 +82,6 @@ export const ToggleBase = forwardRef((props, ref) => {
             ref={ref}
             role={undefined}
             tabIndex={null}
-			value={value}
 			type={type}
 			size={size}
         >
@@ -105,11 +93,9 @@ export const ToggleBase = forwardRef((props, ref) => {
                 onChange={handleInputChange}
                 readOnly={readOnly}
                 ref={inputRef}
-				onClick={onClick}
                 required={required}
                 tabIndex={tabIndex}
                 type="checkbox"
-				value={value}
             />
         </IconButton>
     );

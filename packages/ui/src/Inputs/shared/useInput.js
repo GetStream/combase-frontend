@@ -76,7 +76,7 @@ export const useInput = ({
             onChange,
             onFocus,
             onKeyDown,
-            value
+            [valueSelector]: value
         }),
         [id, name, onBlur, onChange, onFocus, onKeyDown, value]
     );

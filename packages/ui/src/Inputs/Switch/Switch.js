@@ -48,6 +48,7 @@ const Track = styled.div`
 
 export const Switch = ({ disabled, inputRef, name, onBlur, onChange, onFocus, size, value }) => {
     const [inputProps] = useInput({
+		initialValue: false,
         name,
         onBlur,
         onChange,
