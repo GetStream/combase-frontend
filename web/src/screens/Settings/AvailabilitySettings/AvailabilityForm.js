@@ -20,7 +20,7 @@ const AvailabilityForm = () => {
 			},
 		],
 	}), [data]);
-	console.log(initialValues);
+
 	return (
 		<Formik onSubmit={(values) => console.log(values)} initialValues={initialValues}>
 			{
