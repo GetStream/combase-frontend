@@ -20,7 +20,7 @@ const Header = () => {
 };
 
 const RecentConversations = ({ children, loading, LoadingIndicator }) => (
-	<Card boxShadow={2}>
+	<Card variant="border" boxShadow={2}>
 		<Header />
 		<Box paddingX={[1, 1, 2]} paddingBottom={2}>
 			{loading ? <LoadingIndicator /> : children}

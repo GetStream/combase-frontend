@@ -61,7 +61,7 @@ const NewConversation = () => {
 	}, [setActiveChannel]);
 
     return (
-        <Card boxShadow={2}>
+        <Card boxShadow={2} variant="border">
             <Header loading={loading} />
 			<InputWrapper as="form" onSubmit={handleSubmit}>
 				<InputBase name="message" placeholder="Type your message..." minHeight={4} paddingX={5} paddingTop={2} paddingBottom={6} label="Message" />
