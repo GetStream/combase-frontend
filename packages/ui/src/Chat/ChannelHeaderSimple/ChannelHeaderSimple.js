@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { animated } from 'react-spring';
 import { useChatContext, useChannelStateContext } from 'stream-chat-react';
@@ -28,6 +28,7 @@ const Wrapper = styled(Container).attrs({
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+	will-change: height;
 `;
 
 const Name = styled(Text)`
@@ -62,6 +63,7 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
 
 	const { client } = useChatContext();
 	const { members } = useChannelStateContext();
+
 	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
 
     return (
