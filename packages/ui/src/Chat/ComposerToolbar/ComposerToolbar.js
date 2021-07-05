@@ -8,7 +8,6 @@ import Box from '../../Box';
 import IconButton from '../../IconButton';
 import {
 	AttachmentIcon,
-	KnowledgeBaseIcon,
 	QuickResponseIcon,
 	TransferIcon,
 	ReturnIcon,
