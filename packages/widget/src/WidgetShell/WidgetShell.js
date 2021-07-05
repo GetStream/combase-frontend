@@ -39,6 +39,7 @@ const Root = styled(Card).attrs({
     z-index: 999;
     display: grid;
     grid-template-rows: minmax(0, 1fr) ${({ theme }) => theme.space[7]};
+	border: 2px solid ${({ theme }) => theme.colors.border};
 
     @media (min-width: ${({ theme }) => theme.breakpoints[1]}) {
         top: unset;
