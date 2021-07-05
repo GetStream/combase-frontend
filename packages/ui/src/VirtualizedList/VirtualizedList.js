@@ -8,16 +8,18 @@ import { ScrollContext } from '../contexts/Scrollbars';
 import VirtuosoScroller from '../VirtuosoScroller';
 
 const Item = styled.div`
+	display: inline-block;
+	width: 100%;
     overflow: hidden;
 `;
 
 const style = {
     height: '100%',
-    width: '100%',
+    width: '100%'
 };
 
 const VirtualizedList = forwardRef(
-    ({ EmptyPlaceholder, ItemContainer, ListContainer, data, onScroll, endReached, loading, renderItem, totalCount, ...rest }, ref) => {
+    ({ EmptyPlaceholder, ItemContainer, ListContainer, data, onScroll, endReached, loading, overscan, renderItem, totalCount, ...rest }, ref) => {
         const scrollbars = useContext(ScrollContext);
 		
 		const components = useMemo(() => ({
@@ -34,7 +36,7 @@ const VirtualizedList = forwardRef(
                 data={data}
                 endReached={endReached}
                 itemContent={renderItem}
-                overscan={400}
+                overscan={overscan}
                 ref={ref}
                 style={style}
                 onScroll={onScroll || scrollbars?.onScroll}
