@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-react';
+import { Channel, MessageInput, useChatContext } from 'stream-chat-react';
 import { 
 	Avatar,
 	Box,
 	ChannelHeaderSimple,
 	DateSeparator,
+	MessageList,
 	MessageInputSimple,
 	MessageSimple,
 	ScrollContextProvider,
@@ -49,7 +50,7 @@ const ChannelWrapper = styled(Box)`
 
 const ConversationScreen = () => {
     const { setActiveChannel } = useChatContext();
-
+	
     return (
         <ScrollContextProvider type="px">
 			<Root>
