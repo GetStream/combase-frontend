@@ -22,7 +22,8 @@ const WidgetConfig = ({ children, organization, theme }) => {
     const shellRef = useRef();
     const [open, toggleWidgetCard] = useToggle();
     const [chatClient, setChatClient] = useState();
-    const [auth, setAuth] = useLocalStorage('auth', undefined, lsOpts);
+    const [initialAuth, persistAuth] = useLocalStorage('auth', undefined, lsOpts);
+	const [auth, setAuthState] = useState(initialAuth);
 
     const [streamChatKey] = useOrganizationStreamKey(organization);
 
@@ -39,6 +40,11 @@ const WidgetConfig = ({ children, organization, theme }) => {
         }
     }, [streamChatKey]);
 
+	const setAuth = useCallback((data) => {
+		persistAuth(data);
+		setAuthState(data);
+	}, []);
+
     const context = useMemo(
         () => ({
             chatClient,
@@ -50,7 +56,7 @@ const WidgetConfig = ({ children, organization, theme }) => {
             toggleWidgetCard,
             shellRef,
         }),
-        [chatClient, open, toggleWidgetCard]
+        [auth, chatClient, open, toggleWidgetCard]
     );
 
 	const handleClickAway = useCallback(() => toggleWidgetCard(open ? false : open), [open]);
