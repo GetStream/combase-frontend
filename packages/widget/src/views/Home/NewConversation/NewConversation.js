@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useChatContext } from 'stream-chat-react';
 import {
@@ -45,9 +45,16 @@ const Header = ({ loading }) => (
 const NewConversation = () => {
 	const [{ loading }, createTicket] = useCreateTicket();
 	const { setActiveChannel } = useChatContext();
+	const [disabled, setDisabled] = useState(true);
+	
+	const handleChange = useCallback(e => setDisabled(!e.target.value), []);
 
 	const handleSubmit = useCallback(async (e) => {
 		e.preventDefault();
+		
+		if (disabled) {
+			return;
+		}
 		
 		const [{ value: message }] = e.target;
 		const variables = {
@@ -58,16 +65,18 @@ const NewConversation = () => {
 	
 		const channel = await createTicket(variables)
 		setActiveChannel(channel);
-	}, [setActiveChannel]);
+	}, [disabled, setActiveChannel]);
 
     return (
         <Card boxShadow={2} variant="border">
             <Header loading={loading} />
 			<InputWrapper as="form" onSubmit={handleSubmit}>
-				<InputBase name="message" placeholder="Type your message..." minHeight={4} paddingX={5} paddingTop={2} paddingBottom={6} label="Message" />
+				<InputBase autoComplete="off" onChange={handleChange} name="message" placeholder="Type your message..." minHeight={4} paddingX={5} paddingTop={2} paddingBottom={6} label="Message" />
 				<SendWrapper minWidth={9} paddingBottom={6}>
 					<IconButton
+						disabled={disabled}
 						type="submit"
+						color="primary"
 						icon={SendIcon}
 					/>
 				</SendWrapper>

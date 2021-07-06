@@ -15,5 +15,9 @@ export const space = [
 	'6rem',
 	'8rem',
 	'10rem',
+	'10.5rem',
+	'11rem',
+	'11.5rem',
+	'12rem',
 ];
 space.small = '0.125rem';

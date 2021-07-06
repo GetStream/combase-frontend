@@ -29,9 +29,9 @@ const StyledIconLabel = styled(IconLabel)`
 	}
 `;
 
-const Label = forwardRef(({ children, color, reverseLabel, size, variant, ...props }, ref) => (
+const Label = forwardRef(({ children, color, gap, reverseLabel, size, variant, ...props }, ref) => (
     <Root {...props} color={color} ref={ref} variant={variant}>
-        <StyledIconLabel color={color} variant={variant} gap={1} reverse={reverseLabel}>
+        <StyledIconLabel color={color} variant={variant} gap={gap} reverse={reverseLabel}>
             {children}
         </StyledIconLabel>
     </Root>
@@ -47,6 +47,7 @@ Label.propTypes = {
 Label.defaultProps = {
     color: 'red',
     fontFamily: 'text',
+	gap: 1,
 	textColor: 'white',
 	variant: 'filled'
 };

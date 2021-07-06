@@ -25,7 +25,7 @@ const Input = styled.input`
     }
 `;
 export const InputBase = forwardRef(
-    ({ children, id, name, onBlur, onChange, onClick, onFocus, placeholder, textarea, type, value, ...rest }, ref) => {
+    ({ autoComplete, children, id, name, onBlur, onChange, onClick, onFocus, placeholder, textarea, type, value, ...rest }, ref) => {
 		useImperativeHandle(ref, () => ({
 			change: (value) => {
 				onChange({
@@ -39,6 +39,7 @@ export const InputBase = forwardRef(
         return (
             <Input
                 as={textarea ? 'textarea' : undefined}
+				autoComplete={autoComplete}
                 color="text"
                 fontFamily="text"
                 fontSize={3}

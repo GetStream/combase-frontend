@@ -17,7 +17,7 @@ const listStyle = {
 
 const PREPEND_OFFSET = 10 ** 7;
 
-const OVERSCAN = 500;
+const OVERSCAN = 100;
 
 const MessageList = ({
     disableDateSeparator = false,

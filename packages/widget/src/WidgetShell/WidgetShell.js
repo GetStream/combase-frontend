@@ -1,13 +1,26 @@
 import React, { Suspense, useMemo } from 'react';
 import { useContextSelector } from 'use-context-selector';
-import { useTransition } from 'react-spring';
+import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
 import { position, system } from '@combase.app/styles';
-import { Card, LoadingScreen, Portal } from '@combase.app/ui';
-import { animated } from 'react-spring';
+import { 
+	Box,
+	Card, 
+	CloseIcon,
+	IconButton,
+	LoadingScreen, 
+	Portal 
+} from '@combase.app/ui';
 
 import { PoweredBy } from './PoweredBy';
 import { WidgetContext, useWidgetIsContained } from '../WidgetConfig/index';
+
+const CloseWrapper = styled(Box)`
+	position: absolute;
+	top: ${({ theme }) => theme.space[5]};
+	right: ${({ theme }) => theme.space[5]};
+	z-index: 1;
+`;
 
 const widgetSpacingSystem = system({
     right: {
@@ -31,7 +44,7 @@ const Root = styled(Card).attrs({
     borderRadius: ['unset', 'unset', 4],
 })`
     ${position};
-    ${widgetSpacingSystem}
+    ${widgetSpacingSystem};
     position: fixed;
     top: 0;
     left: 0;
@@ -40,6 +53,7 @@ const Root = styled(Card).attrs({
     display: grid;
     grid-template-rows: minmax(0, 1fr) ${({ theme }) => theme.space[7]};
 	border: 2px solid ${({ theme }) => theme.colors.border};
+	transform: translate3d(0px, 0px, 1px);
 
     @media (min-width: ${({ theme }) => theme.breakpoints[1]}) {
         top: unset;
@@ -52,11 +66,12 @@ const Root = styled(Card).attrs({
 
 const shellRefSelector = ({ shellRef }) => shellRef;
 const isOpenSelector = ({ open }) => open;
+const setOpenSelector = ({ toggleWidgetCard }) => toggleWidgetCard;
 
 export const WidgetShell = ({ fabSize, children }) => {
     const shellRef = useContextSelector(WidgetContext, shellRefSelector);
     const isOpen = useContextSelector(WidgetContext, isOpenSelector);
-
+	const setOpen = useContextSelector(WidgetContext, setOpenSelector);
     const isContained = useWidgetIsContained();
 
     const transitionConfig = useMemo(
@@ -92,6 +107,13 @@ export const WidgetShell = ({ fabSize, children }) => {
     return transition((anim, show) => (
 		<Portal unmount={!show}>
 			<Root $fabSize={fabSize} boxShadow={['unset', 'unset', 9]} ref={shellRef} right={[0, 0, 7]} style={anim}>
+				<CloseWrapper>
+					<IconButton 
+						icon={CloseIcon} 
+						onClick={() => setOpen(false)} 
+						variant="filled" 
+					/>
+				</CloseWrapper>
 				<Suspense fallback={<LoadingScreen />}>{children}</Suspense>
 				<PoweredBy />
 			</Root>
