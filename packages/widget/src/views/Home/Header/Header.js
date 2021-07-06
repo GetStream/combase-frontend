@@ -79,7 +79,7 @@ const Header = () => {
 						</Text>
 						<Label color="altText" gap={2} variant="ghost">
 							<Badge color="green" />
-							<Text>5 agents online</Text>
+							<Text>{organization?.availableAgents?.length || 0} agents online</Text>
 						</Label>
 					</TextGroup>
 				</Wrapper>
