@@ -62,25 +62,25 @@ const Home = () => {
 	const { filters, sort, options } = useMemo(
         () => ({
             filters: {
-                // type: 'combase',
+                type: 'combase',
                 members: { $in: [client?.userID] },
-				// $or: [
-				// 	{
-				// 		status: { $eq: 'open' }
-				// 	},
-				// 	{
-				// 		status: { $eq: 'unassigned' }
-				// 	},
-				// 	{
-				// 		status: { $eq: 'new' }
-				// 	},
-				// ]
+				$or: [
+					{
+						status: { $eq: 'open' }
+					},
+					{
+						status: { $eq: 'unassigned' }
+					},
+					{
+						status: { $eq: 'new' }
+					},
+				]
             },
             sort: {
                 last_message_at: -1,
             },
 			options: {
-				limit: 10,
+				limit: 3,
 			}
         }),
         [client]
