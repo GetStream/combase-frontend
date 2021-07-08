@@ -19,7 +19,7 @@ const Chip = styled(Box)`
 
 const DateSeparator = (props) => {
 	const date = useMemo(() => formatDateFull(props.date), [props.date]);
-	
+
 	return (
 		<Root paddingY={3}>
 			<Chip backgroundColor="surface" boxShadow={0} borderRadius={12} paddingY={2} paddingX={4}>

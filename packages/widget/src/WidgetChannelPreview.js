@@ -4,6 +4,7 @@ import { getMessagePreview, useChannelPartner, useChannelPreview } from '@combas
 import { ChannelPreview } from '@combase.app/ui';
 
 export const WidgetChannelPreview = ({ compact, channel, selectable, ...rest }) => {
+	console.log(compact);
     const partner = useChannelPartner(channel?.state?.members);
     const [unread, latestMessage] = useChannelPreview(channel, false);
 
@@ -21,7 +22,7 @@ export const WidgetChannelPreview = ({ compact, channel, selectable, ...rest }) 
 
         return null;
     }, [channel, latestMessage, partner]);
-
+	
     return (
         <ChannelPreview
             compact={compact}

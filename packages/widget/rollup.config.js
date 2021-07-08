@@ -57,7 +57,7 @@ const generateHtmlTemplate = (props) => {
 };
 
 const config = {
-    external: [],
+    external: [''],
     input: './src/index.js',
     output: { 
 		dir: 'dist',
@@ -99,7 +99,7 @@ const config = {
 			title: 'Combase Widget',
 		}),
 		image(),
-        // terser(),
+		// terser(),
         filesize(),
         replace({
 			'process.env.NODE_ENV': JSON.stringify('development'),

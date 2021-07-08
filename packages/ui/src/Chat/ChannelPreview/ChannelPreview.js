@@ -56,7 +56,6 @@ const ChannelPreview = ({
 	displayImage, 
 	displayTitle, 
 	lastMessage, 
-	latestMessage, 
 	onSelectChannel,
 	setActiveChannel, 
 	watchers, 
@@ -64,7 +63,6 @@ const ChannelPreview = ({
 }) => {
 	const buttonRef = useRef();
 
-	const { status } = channel?.data || {};
 	const { updated_at } = lastMessage || {};
 
 	const fromNow = useMemo(
@@ -92,7 +90,7 @@ const ChannelPreview = ({
 							{displayTitle}
 						</Text>
 						<IconLabel>
-							{unread ? <Badge color={(compact && !latestMessage) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
+							{unread ? <Badge color={(compact && !lastMessage?.text) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
 							<Text
 								color={unread ? 'primary' : 'altText'}
 								as={!fromNow ? Placeholder : null}
@@ -107,13 +105,13 @@ const ChannelPreview = ({
 					</Header>
 					<Text
 						marginTop={1}
-						as={!latestMessage ? Placeholder : null}
+						as={!lastMessage?.text ? Placeholder : null}
 						placeholderWidth={10}
 						opacity={unread ? 1 : 0.5}
 						variant="clamped"
 						fontWeight="400"
 					>
-						{latestMessage}
+						{lastMessage?.text}
 					</Text>
 					{children}
 				</Content>

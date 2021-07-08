@@ -16,7 +16,6 @@ const listStyle = {
 };
 
 const PREPEND_OFFSET = 10 ** 7;
-
 const OVERSCAN = 100;
 
 const MessageList = ({
@@ -29,7 +28,6 @@ const MessageList = ({
     shouldGroupByUser = false,
 	threadList = false,
 }) => {
-
 	const { loadMore } = useChannelActionContext();
   	const { channel, hasMore, loadingMore, messages } = useChannelStateContext();
 
@@ -66,7 +64,7 @@ const MessageList = ({
 
 		if (!message) return <div style={{ height: '1px' }}></div>; // returning null or zero height breaks the virtuoso
 		
-		if (message.type === 'message.date' && message.date && isDate(message.date)) {
+		if (message.customType === 'message.date' && message.date && isDate(message.date)) {
 			return <DateSeparator date={message.date} unread={message.unread} />;
 		}
 

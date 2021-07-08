@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { layout, themes } from '@combase.app/styles';
 import { animated, to } from 'react-spring';
-import { useContextSelector } from 'use-context-selector';
 
 import {
 	Avatar,
@@ -16,6 +15,8 @@ import {
 } from '@combase.app/ui';
 
 import { useOrganization, useAuth } from '../../../WidgetConfig';
+
+import WelcomeMessage from './WelcomeMessage';
 
 const Root = styled(Box)`
     & ${TextGroup} {
@@ -73,9 +74,7 @@ const Header = () => {
 					</Brand>
 					<TextGroup gapTop={0} marginY={2} >
 						<Text fontSize={6} lineHeight={9}>
-							{
-								auth ? "Welcome back, Luke! 👋" : "Hi! 👋"
-							}
+							<WelcomeMessage />
 						</Text>
 						<Label color="altText" gap={2} variant="ghost">
 							<Badge color="green" />
