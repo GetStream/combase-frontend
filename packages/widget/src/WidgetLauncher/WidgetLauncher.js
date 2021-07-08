@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useContextSelector } from 'use-context-selector';
+import { useChatContext } from 'stream-chat-react';
 import styled from 'styled-components';
 
 import {
@@ -21,10 +22,16 @@ const Root = styled(Fab)`
 const selector = ({ open, toggleWidgetCard }) => [open, toggleWidgetCard];
 export const WidgetLauncher = ({ onMouseOver, size }) => {
     const [open, setOpen] = useContextSelector(WidgetContext, selector);
-	
+	const { setActiveChannel } = useChatContext();
+
+	const handleClick = useCallback(() => {
+		setOpen();
+		setActiveChannel(null);
+	}, []);
+
     return (
         <Portal>
-            <Root icon={open ? CloseIcon : StreamLogo} onClick={() => setOpen(!open)} iconSize={open ? 6 : 8} onMouseOver={onMouseOver} size={size} />
+            <Root icon={open ? CloseIcon : StreamLogo} onClick={handleClick} iconSize={open ? 6 : 8} onMouseOver={onMouseOver} size={size} />
         </Portal>
     );
 };
