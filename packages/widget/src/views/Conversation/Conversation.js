@@ -20,6 +20,12 @@ const Root  = styled(Box)`
 	grid-template-rows: minmax(0, 1fr);
 	grid-template-columns: 1fr ${({ drawer }) => (drawer ? `minmax(20%, 20rem)` : '')};
 	
+	input, textarea {
+		margin: 0;
+		outline: 0;
+		border: 0;
+	}
+
 	& > div, .str-chat__container {
 		height: 100%;
 	}
