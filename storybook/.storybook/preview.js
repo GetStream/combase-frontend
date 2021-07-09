@@ -16,7 +16,7 @@ const Global = createGlobalStyle`
         background-color: ${({ theme }) => theme.colors.background};
     }
 
-    input, textarea{
+    input, textarea {
         outline: 0;
         border: 0;
     }
