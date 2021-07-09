@@ -114,7 +114,7 @@ const config = {
 			'window.ICAL=window.ICAL||{};',
 		),
 		image(),
-		// terser(),
+		terser(),
         filesize(),
         replace({
 			'process.env.NODE_ENV': JSON.stringify('production'),
