@@ -3,6 +3,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
+import styles from 'rollup-plugin-styles';
 import html from '@rollup/plugin-html';
 import replace from '@rollup/plugin-replace';
 import image from '@rollup/plugin-image';
@@ -11,6 +12,8 @@ import url from '@rollup/plugin-url'
 import { visualizer } from 'rollup-plugin-visualizer';
 import filesize from 'rollup-plugin-filesize';
 import progress from 'rollup-plugin-progress';
+import globals from 'rollup-plugin-node-globals';
+import { prepend } from 'rollup-plugin-insert';
 // import analyze from 'rollup-plugin-analyzer';
 
 const generateHtmlTemplate = (props) => {
@@ -65,10 +68,12 @@ const config = {
 		format: 'umd',
 		name: 'CombaseWidget',
 		sourcemap: false,
+		inlineDynamicImports: true,
 	},
     onwarn: (warning, onwarn) => warning.code === 'CIRCULAR_DEPENDENCY',
     plugins: [
 		progress(),
+		styles(),
 		url({
 			// by default, rollup-plugin-url will not handle font files
 			include: ['**/*.woff', '**/*.woff2'],
@@ -98,12 +103,22 @@ const config = {
 			template: generateHtmlTemplate,
 			title: 'Combase Widget',
 		}),
+		globals({
+			buffer: false,
+			dirname: false,
+			filename: false,
+			globals: false,
+			process: true,
+		}),
+		prepend(
+			'window.ICAL=window.ICAL||{};',
+		),
 		image(),
 		// terser(),
         filesize(),
         replace({
-			'process.env.NODE_ENV': JSON.stringify('development'),
-			'process.env.BABEL_ENV': JSON.stringify('development'),
+			'process.env.NODE_ENV': JSON.stringify('production'),
+			'process.env.BABEL_ENV': JSON.stringify('production'),
         }),
 		visualizer({
 			open: false,
