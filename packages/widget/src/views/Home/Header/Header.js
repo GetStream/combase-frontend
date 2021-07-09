@@ -59,8 +59,10 @@ const Header = () => {
 			], (y, scale) => `translate3d(0px, ${y}px, 0px) scale(${scale})`),
 		}
 	}) : ({}), [scrollbars]);
-
-    return (
+	
+	const agentCount = organization?.availableAgents?.length || 0;
+    
+	return (
         <ThemeProvider theme={themes.dark}>
 			<Root backgroundColor="primary" borderBottomLeftRadius={3} borderBottomRightRadius={3} minHeight={16}>
 				<Wrapper style={styles.wrapper} padding={7}>
@@ -77,8 +79,8 @@ const Header = () => {
 							<WelcomeMessage />
 						</Text>
 						<Label color="altText" gap={2} variant="ghost">
-							<Badge color="green" />
-							<Text>{organization?.availableAgents?.length || 0} agents online</Text>
+							<Badge color={agentCount ? "green" : "border"} />
+							<Text>{agentCount} agent{agentCount === 1 ? '' : 's'} online</Text>
 						</Label>
 					</TextGroup>
 				</Wrapper>
