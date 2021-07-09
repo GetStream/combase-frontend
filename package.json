@@ -57,9 +57,11 @@
         "babel-plugin-import": "^1.13.3",
         "babel-plugin-module-resolver": "^4.1.0",
         "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+        "css-loader": "^5.2.6",
         "dotenv": "^9.0.2",
         "eslint": "^7.25.0",
         "fast-glob": "^3.2.5",
+        "file-loader": "^6.2.0",
         "fs-extra": "^10.0.0",
         "husky": "^6.0.0",
         "jest": "^26.6.3",
@@ -67,6 +69,10 @@
         "jest-resolve": "^26.6.2",
         "jest-styled-components": "^7.0.4",
         "lerna": "^4.0.0",
-        "lint-staged": "^11.0.0"
+        "lint-staged": "^11.0.0",
+        "postcss-preset-env": "^6.7.0",
+        "sass": "^1.35.2",
+        "sass-loader": "^12.1.0",
+        "style-loader": "^3.0.0"
     }
 }
