@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useChatContext } from 'stream-chat-react';
 
-import GlobalStyle from './globalStyle';
-
 import { WidgetConfig } from './WidgetConfig';
 import { WidgetLauncher } from './WidgetLauncher';
 import { WidgetShell } from './WidgetShell';
@@ -22,7 +20,6 @@ const CombaseWidget = ({ fabSize, organization, theme }) => (
         	<Router />
         </WidgetShell>
         <WidgetLauncher size={fabSize} />
-		<GlobalStyle />
     </WidgetConfig>
 );
 
