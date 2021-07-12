@@ -1,9 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const entry = path.resolve(__dirname, 'src', 'index.js');
+const outputPath = path.resolve(__dirname, 'dist');
+
 module.exports = {
-	entry: path.resolve(__dirname, 'src', 'index.js'),
+	entry,
 	module: {
 		rules: [
 			{
@@ -32,12 +36,20 @@ module.exports = {
 			resourceRegExp: /^\.\/styles$/,
 			contextRegExp: /react-file-utils$/,
 		}),
-		new BundleAnalyzerPlugin()
+		new BundleAnalyzerPlugin(),
+		new HtmlWebpackPlugin({
+			template: './template.html'
+		}),
 	],
+	optimization: {
+		splitChunks: {
+			name: false,
+		}
+	},
 	output: {
 		library: 'CombaseWidget',
     	libraryTarget: 'umd',
-		filename: 'combase-widget.js',
-		path: path.resolve(__dirname, 'dist'),
+		filename: '[name].[contenthash].js',
+		path: outputPath,
 	},
 };
