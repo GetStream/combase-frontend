@@ -8,7 +8,7 @@ import IconLabel from '../../IconLabel';
 import Text from '../../Text';
 import { AttachmentIcon, CommandIcon } from '../../icons';
 
-import { DeliveryStatus } from '../DeliveryStatus';
+// import { DeliveryStatus } from '../DeliveryStatus';
 import { EphemeralNotice } from '../EphemeralNotice';
 
 export const Root = styled(Box)`
@@ -29,7 +29,7 @@ export const MessageMeta = ({ args, attachments, className, command, date, ours,
     return (
         <>
             <Root $ours={ours} className={className} gapLeft={2} paddingY={1}>
-                {!isEphemeral && ours ? <DeliveryStatus read={isRead} /> : null}
+                {/* {!isEphemeral && ours ? <DeliveryStatus read={isRead} /> : null} */}
                 {!isEphemeral && date ? (
                     <Box paddingX={1}>
                         <Text color="altText" fontSize={2} lineHeight={2}>

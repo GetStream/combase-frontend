@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useUserTypingIndicator } from '@combase.app/chat';
 import { useTypingContext } from 'stream-chat-react';
 import parseISO from 'date-fns/parseISO';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';

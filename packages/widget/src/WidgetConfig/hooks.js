@@ -1,9 +1,7 @@
 import { useTheme } from 'styled-components';
 import { useAsyncFn, useMedia } from 'react-use';
-import { useHistory } from 'react-router-dom';
 import useSWR from 'swr';
-import { getChannel } from '@combase.app/chat';
-import { useChatContext } from 'stream-chat-react';
+import { getChannel, useChatContext } from 'stream-chat-react';
 import { GraphQLClient } from 'graphql-request';
 import { useContextSelector } from 'use-context-selector';
 

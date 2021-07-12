@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, Suspense } from 'react';
 import { useContextSelector } from 'use-context-selector';
 import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import {
 	Card, 
 	CloseIcon,
 	IconButton,
+	LoadingScreen,
 	Portal 
 } from '@combase.app/ui';
 
@@ -113,7 +114,7 @@ export const WidgetShell = ({ fabSize, children }) => {
 						variant="filled" 
 					/>
 				</CloseWrapper>
-				{children}
+				<Suspense fallback={<LoadingScreen />}>{children}</Suspense>
 				<PoweredBy />
 			</Root>
 		</Portal>

@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -31,6 +32,7 @@ module.exports = {
 			resourceRegExp: /^\.\/styles$/,
 			contextRegExp: /react-file-utils$/,
 		}),
+		new BundleAnalyzerPlugin()
 	],
 	output: {
 		library: 'CombaseWidget',

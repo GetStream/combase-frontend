@@ -1,1 +1,0 @@
-export const getPreviousIndex = (i, max) => i <= 0 ? max : i - 1;

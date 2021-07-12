@@ -1,5 +1,4 @@
 import React from 'react';
-import { useChannelManager } from '@combase.app/chat';
 import { useToggle } from 'react-use';
 
 import {
@@ -20,7 +19,7 @@ import { WidgetChannelPreview } from '../../WidgetChannelPreview';
 
 const getSelectionValue = channel => channel.id;
 const ChannelsScreen = () => {
-    const { channels } = useChannelManager();
+	const channels = [];
     const [editMode, toggleEditMode] = useToggle();
     const [selectableListItemProps, bulkCheckboxProps, selected] = useBulkSelect(channels, getSelectionValue);
 

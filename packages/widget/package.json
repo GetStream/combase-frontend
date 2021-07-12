@@ -5,13 +5,12 @@
   "module": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npx webpack --config webpack.config.js --mode production",
+    "build": "rm -rf dist && npx webpack --config webpack.config.js --mode production",
     "build:rollup": "rm -rf dist && BABEL_ENV=production NODE_ENV=production rollup -c",
     "build:watch": "rollup -c -w",
     "start": "serve ."
   },
   "dependencies": {
-    "@combase.app/chat": "*",
     "@combase.app/styles": "*",
     "@combase.app/ui": "*",
     "graphql-request": "^3.4.0",
@@ -44,6 +43,7 @@
     "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-styles": "^3.14.1",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-visualizer": "^5.5.0"
+    "rollup-plugin-visualizer": "^5.5.0",
+    "webpack-bundle-analyzer": "^4.4.2"
   }
 }
