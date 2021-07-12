@@ -1,10 +1,9 @@
 import React from 'react';
-import {
-	Box,
-	Card,
-	CardHeader,
-	ConversationsIcon,
-} from '@combase.app/ui';
+
+import Box from '@combase.app/ui/build/Box';
+import Card from '@combase.app/ui/build/Card';
+import CardHeader from '@combase.app/ui/build/CardHeader';
+import {ConversationsIcon} from '@combase.app/ui/build/icons';
 
 const Header = () => {
     return (

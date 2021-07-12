@@ -9,6 +9,7 @@ const Input = styled.input`
     ${layout};
     ${space};
     ${typography};
+	box-sizing: border-box;
     background-color: transparent;
     padding-right: ${({ $trailingIcon }) => ($trailingIcon ? 2.5 : 0.75)}rem;
     color: ${({ theme }) => theme.colors.text};

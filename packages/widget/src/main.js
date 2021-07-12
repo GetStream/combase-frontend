@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { useChatContext } from 'stream-chat-react';
+
+import lazyPreload from './lazyPreload';
 
 import { WidgetConfig } from './WidgetConfig';
 import { WidgetLauncher } from './WidgetLauncher';
 import { WidgetShell } from './WidgetShell';
 
-import Conversation from './views/Conversation';
-import Home from './views/Home';
+const Conversation = lazyPreload(() => import(/* webpackChunkName: "conversation" */'./views/Conversation'));
+const Home = lazyPreload(() => import(/* webpackChunkName: "home" */'./views/Home'));
 
 const Router = () => {
 	const { channel } = useChatContext();
-	return !channel ? <Home /> : <Conversation />;
+	return (
+		<Suspense fallback={() => <p>Loading...</p>}>
+			{!channel ? <Home /> : <Conversation />}
+		</Suspense>
+	);
 };
 
 const CombaseWidget = ({ fabSize, organization, theme }) => (
@@ -19,7 +25,7 @@ const CombaseWidget = ({ fabSize, organization, theme }) => (
         <WidgetShell fabSize={fabSize} open={open}>
         	<Router />
         </WidgetShell>
-        <WidgetLauncher size={fabSize} />
+        <WidgetLauncher onMouseOver={Home.preload} size={fabSize} />
     </WidgetConfig>
 );
 

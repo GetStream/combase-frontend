@@ -2,11 +2,9 @@ import React from 'react';
 import { interactions, layout } from '@combase.app/styles';
 import styled from 'styled-components';
 
-import {
-	Box,
-	StreamLogo,
-	Text
-} from '@combase.app/ui';
+import Box from '@combase.app/ui/build/Box';
+import StreamLogo from '@combase.app/ui/build/StreamLogo';
+import Text from '@combase.app/ui/build/Text';
 
 const Root = styled(Box)`
     ${layout};

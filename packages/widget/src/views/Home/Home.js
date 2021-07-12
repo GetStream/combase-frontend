@@ -1,8 +1,16 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { Box, Card, CardHeader, ChannelPreview, EmptyView, InboxIcon, ScrollContextProvider, useScrollbars, Text, ConversationsIcon } from '@combase.app/ui';
 import { Scrollbars } from 'rc-scrollbars';
 import { ChannelList, useChatContext } from 'stream-chat-react';
+
+import Box from '@combase.app/ui/build/Box';
+import Card from '@combase.app/ui/build/Card';
+import CardHeader from '@combase.app/ui/build/CardHeader';
+import ChannelPreview from '@combase.app/ui/build/Chat/ChannelPreview';
+import EmptyView from '@combase.app/ui/build/EmptyView';
+import { ConversationsIcon, InboxIcon } from '@combase.app/ui/build/icons';
+import { ScrollContextProvider, useScrollbars } from '@combase.app/ui/build/contexts/Scrollbars';
+import Text from '@combase.app/ui/build/Text';
 
 import Header from './Header';
 import NewConversation from './NewConversation';

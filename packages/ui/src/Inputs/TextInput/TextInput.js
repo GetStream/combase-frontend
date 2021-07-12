@@ -11,6 +11,7 @@ import InputBase from '../shared/InputBase';
 import { useInput } from '../shared/useInput';
 
 const Root = styled(Box)`
+	box-sizing: border-box;
     position: relative;
     display: flex;
     justify-content: flex-start;
@@ -29,6 +30,7 @@ const Root = styled(Box)`
 `;
 
 const Label = styled(Text)`
+	box-sizing: border-box;
     transform-origin: left center;
     position: absolute;
     left: 12px;

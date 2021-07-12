@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Channel, MessageInput, useChatContext } from 'stream-chat-react';
-import { 
-	Avatar,
-	Box,
+
+import Avatar from '@combase.app/ui/build/Avatar';
+import Box from '@combase.app/ui/build/Box';
+import {ScrollContextProvider} from '@combase.app/ui/build/contexts/Scrollbars';
+import {
 	ChannelHeaderSimple,
 	DateSeparator,
 	MessageList,
 	MessageInputSimple,
 	MessageSimple,
-	ScrollContextProvider,
 	SystemMessage,
-} from '@combase.app/ui';
+} from '@combase.app/ui/build/Chat';
 
 const Root  = styled(Box)`
 	height: 100%;

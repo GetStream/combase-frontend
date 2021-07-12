@@ -3,12 +3,10 @@ import { useContextSelector } from 'use-context-selector';
 import { useChatContext } from 'stream-chat-react';
 import styled from 'styled-components';
 
-import {
-	CloseIcon,
-	Fab,
-	Portal,
-	StreamLogo,
-} from '@combase.app/ui';
+import { CloseIcon } from '@combase.app/ui/build/icons';
+import Fab from '@combase.app/ui/build/Fab';
+import Portal from '@combase.app/ui/build/Portal';
+import StreamLogo from '@combase.app/ui/build/StreamLogo';
 
 import { WidgetContext } from '../WidgetConfig';
 

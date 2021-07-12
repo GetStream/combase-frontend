@@ -3,14 +3,13 @@ import { useContextSelector } from 'use-context-selector';
 import { animated, useTransition } from 'react-spring';
 import styled from 'styled-components';
 import { position, system } from '@combase.app/styles';
-import { 
-	Box,
-	Card, 
-	CloseIcon,
-	IconButton,
-	LoadingScreen,
-	Portal 
-} from '@combase.app/ui';
+
+import Box from '@combase.app/ui/build/Box';
+import Card from '@combase.app/ui/build/Card';
+import {CloseIcon} from '@combase.app/ui/build/icons';
+import IconButton from '@combase.app/ui/build/IconButton';
+import {LoadingScreen} from '@combase.app/ui/build/EmptyView';
+import Portal from '@combase.app/ui/build/Portal';
 
 import { PoweredBy } from './PoweredBy';
 import { WidgetContext, useWidgetIsContained } from '../WidgetConfig/index';

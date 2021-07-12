@@ -1,9 +1,13 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
+import { itemGap } from '@combase.app/styles';
 import { useChatContext } from 'stream-chat-react';
 
-import { Box, Container, Button, Text, TextInput } from '@combase.app/ui';
-import { itemGap } from '@combase.app/styles';
+import Box from '@combase.app/ui/build/Box';
+import Button from '@combase.app/ui/build/Button';
+import Container from '@combase.app/ui/build/Container';
+import { TextInput } from '@combase.app/ui/build/Inputs';
+import Text from '@combase.app/ui/build/Text';
 
 import { initialState, reducer } from './state';
 import { useCreateTicket } from '../../../WidgetConfig';

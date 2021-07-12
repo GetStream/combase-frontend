@@ -3,16 +3,14 @@ import styled, { ThemeProvider } from 'styled-components';
 import { layout, themes } from '@combase.app/styles';
 import { animated, to } from 'react-spring';
 
-import {
-	Avatar,
-	Badge,
-	Box,
-	Label,
-	Text,
-	TextGroup,
-	Entity,
-	useScrollbars,
-} from '@combase.app/ui';
+import Avatar from '@combase.app/ui/build/Avatar';
+import Box from '@combase.app/ui/build/Box';
+import Badge from '@combase.app/ui/build/Badge';
+import Label from '@combase.app/ui/build/Label';
+import Text from '@combase.app/ui/build/Text';
+import TextGroup from '@combase.app/ui/build/TextGroup';
+import Entity from '@combase.app/ui/build/Entity';
+import {useScrollbars} from '@combase.app/ui/build/contexts/Scrollbars';
 
 import { useOrganization, useAuth } from '../../../WidgetConfig';
 
@@ -79,7 +77,7 @@ const Header = () => {
 							<WelcomeMessage />
 						</Text>
 						<Label color="altText" gap={2} variant="ghost">
-							<Badge color={agentCount ? "green" : "border"} />
+							<Badge color={agentCount ? "green" : "white"} />
 							<Text>{agentCount} agent{agentCount === 1 ? '' : 's'} online</Text>
 						</Label>
 					</TextGroup>

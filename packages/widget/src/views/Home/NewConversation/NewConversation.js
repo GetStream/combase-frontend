@@ -1,16 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useChatContext } from 'stream-chat-react';
-import {
-	Box,
-	Card,
-	CardHeader,
-	IconButton,
-	Spinner,
-	AddIcon,
-	SendIcon,
-} from '@combase.app/ui';
-import { InputBase } from '@combase.app/ui/src/Inputs';
+
+import Box from '@combase.app/ui/build/Box';
+import Card from '@combase.app/ui/build/Card';
+import CardHeader from '@combase.app/ui/build/CardHeader';
+import { AddIcon, SendIcon } from '@combase.app/ui/build/icons';
+import IconButton from '@combase.app/ui/build/IconButton';
+import { InputBase } from '@combase.app/ui/build/Inputs';
+import Spinner from '@combase.app/ui/build/Spinner';
 
 import { useCreateTicket } from '../../../WidgetConfig';
 
