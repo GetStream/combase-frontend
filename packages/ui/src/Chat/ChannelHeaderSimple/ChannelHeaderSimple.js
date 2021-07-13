@@ -64,17 +64,23 @@ export const ChannelHeaderSimple = ({ onBackClick }) => {
 	const { client } = useChatContext();
 	const { members } = useChannelStateContext();
 
-	const [partner] = useMemo(() => Object.values(members).filter(({ user_id }) => user_id !== client.userID), [client, members]);
+	const partner = useMemo(() => {
+		const [partner] = Object.values(members).filter(({ user_id }) => user_id !== client.userID);
+		if (partner) {
+			return client.state.users[partner.user_id];
+		}
+		return undefined;
+	}, [client, members]);
 
     return (
         <Root maxWidth={20} minHeight={9}>
             <Wrapper maxWidth={20} style={style}>
                 <IconButton icon={ArrowBackIcon} onClick={onBackClick} size={5} />
                 <TextGroup variant="centered">
-                    <Name as={!partner?.user?.name ? Placeholder : 'p'}>{partner?.user?.name}</Name>
-                    <PartnerStatus user={partner?.user} />
+                    <Name as={!partner?.name ? Placeholder : 'p'}>{partner?.name}</Name>
+                    <PartnerStatus user={partner} />
                 </TextGroup>
-                <Avatar name={partner?.user?.name} size={7} src={partner?.user?.image} />
+                <Avatar name={partner?.name} size={7} src={partner?.image} />
             </Wrapper>
         </Root>
     );

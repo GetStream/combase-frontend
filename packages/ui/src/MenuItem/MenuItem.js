@@ -79,8 +79,8 @@ const MenuItem = ({
                 minHeight={sm ? 6 : 8}
                 onClick={handleClick}
             >
-                <IconLabel iconColor={iconColor || color} color={color} gap={sm ? 2 : 3}>
-                    {Icon ? <Icon {...iconProps} color={iconColor || color} size={iconSize || sm ? 3 : 4} /> : null}
+                <IconLabel iconSize={iconSize || sm ? 3 : 4} iconColor={iconColor || color} color={color} gap={sm ? 2 : 3}>
+                    {Icon ? <Icon {...iconProps} color={iconColor || color} /> : null}
                     <Text color={color} fontSize={sm ? 3 : 4} lineHeight={sm ? 3 : 4}>
                         {label}
                     </Text>

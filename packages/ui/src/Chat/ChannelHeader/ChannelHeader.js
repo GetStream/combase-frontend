@@ -73,7 +73,7 @@ const BackBtn = styled(IconButton)`
     margin-right: 1rem;
 `;
 
-export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackClick, onTitleClick, showBackBtn, toggles, user }) => {
+export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackClick, onTitleClick, showBackBtn, toggles }) => {
     const theme = useTheme();
     const scrollbars = useScrollbars();
 
@@ -103,7 +103,7 @@ export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackCli
                     {!isMobile ? (
 						<Entity>
 							<Text as={!partner?.user?.name ? Placeholder : undefined} fontSize={4} lineHeight={6} fontWeight="600" placeholderWidth={11}>{partner?.user?.name}</Text>
-							<PartnerStatus lastActive={lastActive} user={user} />
+							<PartnerStatus lastActive={lastActive} user={partner?.user} />
 						</Entity>
 					) : null}
                 </Main>
@@ -111,7 +111,7 @@ export const ChannelHeader = ({ children, isMobile = true, lastActive, onBackCli
 					isMobile ? (
 						<PartnerDetails variant="centered" onClick={onTitleClick}>
 							<Text as={!partner?.user?.name ? Placeholder : undefined} fontSize={4} lineHeight={5} fontWeight="600" placeholderWidth={11}>{partner?.user?.name}</Text>
-							<PartnerStatus lastActive={lastActive} showBadge={false} user={user} />
+							<PartnerStatus lastActive={lastActive} showBadge={false} user={partner?.user} />
 						</PartnerDetails>
 					) : null
 				}

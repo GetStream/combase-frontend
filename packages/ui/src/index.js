@@ -32,7 +32,7 @@ export { default as PageCard } from './PageCard';
 export { default as PageHeader } from './PageHeader';
 export { default as PageTitle } from './PageTitle';
 export { default as Placeholder } from './Placeholder';
-export { default as Popover } from './Popover';
+export { default as Popover, usePopoverState } from './Popover';
 export { default as Portal } from './Portal';
 export { default as Snackbar } from './Snackbar';
 export { default as SidebarHeader } from './SidebarHeader';

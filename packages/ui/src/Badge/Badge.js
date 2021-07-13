@@ -14,6 +14,7 @@ const iconSize = system({
         },
     },
 });
+
 const Badge = styled(Box)`
     ${iconSize};
     border-radius: 50%;

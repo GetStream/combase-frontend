@@ -129,6 +129,9 @@ const ConversationMenu = () => {
 								setActiveChannelOnMount={false}
 								customActiveChannel={match.params.channelId}
 								filters={filters}
+								options={{
+									presence: true
+								}}
 								onChannelUpdated={onChannelUpdated}
 								EmptyStateIndicator={EmptyState}
 								List={CombaseChannelList}

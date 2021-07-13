@@ -106,18 +106,13 @@ const CombaseMessageInput = () => {
 };
 
 const Conversation = () => {
-	const { channelId } = useParams();
 	const [drawerOpen, toggleDrawer] = useToggle(false);
 	const [_, setTicketToAssign] = useContext(AssignTicketContext);
 
-	const { channel, setActiveChannel } = useChatContext();
+	const { channel } = useChatContext();
 
 	const isSm = useReactiveMedia('sm');
 	const [starTicket, setPriority] = useTicketLabelToggles();
-
-	// useEffect(() => {
-	// 	setActiveChannel(channelId)
-	// }, [channelId, setActiveChannel])
 
 	return (
 		<Root drawer={drawerOpen}>

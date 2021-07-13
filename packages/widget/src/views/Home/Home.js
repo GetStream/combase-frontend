@@ -71,7 +71,9 @@ const Home = () => {
         () => ({
             filters: {
                 type: 'combase',
-                members: { $in: [client?.userID] },
+                members: {
+					$in: [client?.userID] 
+				},
 				$or: [
 					{
 						status: { $eq: 'open' }
@@ -89,6 +91,7 @@ const Home = () => {
             },
 			options: {
 				limit: 3,
+				presence: true, 
 			}
         }),
         [client]
