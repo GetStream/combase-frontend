@@ -30,6 +30,8 @@ const WidgetConfig = ({ children, organization, theme }) => {
     useEffect(() => {
         if (!chatClient && streamChatKey) {
             const client = new StreamChat(streamChatKey);
+			client.setBaseURL('https://chat.stream-io-api.com');
+
             if (auth) {
                 const { token, user } = auth;
                 client.connectUser({ id: user }, token);
