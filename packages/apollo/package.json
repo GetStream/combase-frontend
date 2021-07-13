@@ -10,14 +10,14 @@
         "watch": "rollup -c -w"
     },
     "dependencies": {
-        "@apollo/client": "^3.3.19",
+        "@apollo/client": "^3.3.21",
         "apollo-link-queue": "^3.1.0",
-        "apollo-link-serialize": "^3.1.2",
-        "apollo3-cache-persist": "^0.9.1",
-        "graphql": "^15.5.0",
+        "apollo-link-serialize": "^4.0.0",
+        "apollo3-cache-persist": "^0.10.0",
+        "graphql": "^15.5.1",
         "lodash.orderby": "^4.6.0",
         "react-use": "^17.2.4",
-        "subscriptions-transport-ws": "^0.9.18"
+        "subscriptions-transport-ws": "^0.9.19"
     },
     "peerDependencies": {
         "@combase.app/styles": "*"
