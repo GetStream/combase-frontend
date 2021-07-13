@@ -6,7 +6,6 @@ import { authenticationVar, useReactiveVar, useQuery, GET_ORGANIZATION } from '@
 import { Box } from '@combase.app/ui';
 
 import { ShellProvider } from 'contexts/Shell';
-import { TicketManager } from 'contexts/TicketManager';
 import { useReactiveMedia } from 'hooks';
 import { Conversations, Integration, Integrations, Settings, Tickets } from 'screens';
 

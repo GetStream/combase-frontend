@@ -44,41 +44,41 @@ module.exports = {
 			scriptLoading: 'blocking',
 			templateContent: ({ htmlWebpackPlugin }) => `
 			<!DOCTYPE html>
-			<html lang="en">
-				<head>
-				<meta charset="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<meta name="theme-color" content="#000000" />
-				<meta name="description" content="Combase Widget Test" />
-				<title>title</title>
-			
-				<style>
-					html,
-					body {
-					width: 100%;
-					height: 100%;
-					overflow: hidden;
-					margin: 0;
-					background-color: #fcfcfc;
-					}
-				</style>
-				${htmlWebpackPlugin.tags.headTags}
-				</head>
-				<body>
-				<noscript>You need to enable JavaScript to run this app.</noscript>
-				<div id="root">
-					<div id="combase_widget"></div>
-				</div>
-				${htmlWebpackPlugin.tags.bodyTags}
-				<script type="text/javascript">
-					window.CombaseWidget.init({
-						el: '#combase_widget', // <-- TODO
-						organization: "60b0c9215716b8022249ed7e", // <-- replace this with your Organization ID
-						theme: 'light',
-					});
-				</script>
-				</body>
-			</html>
+				<html lang="en">
+					<head>
+					<meta charset="utf-8" />
+					<meta name="viewport" content="width=device-width, initial-scale=1" />
+					<meta name="theme-color" content="#000000" />
+					<meta name="description" content="Combase Widget Test" />
+					<title>title</title>
+				
+					<style>
+						html,
+						body {
+						width: 100%;
+						height: 100%;
+						overflow: hidden;
+						margin: 0;
+						background-color: #fcfcfc;
+						}
+					</style>
+					${htmlWebpackPlugin.tags.headTags}
+					</head>
+					<body>
+					<noscript>You need to enable JavaScript to run this app.</noscript>
+					<div id="root">
+						<div id="combase_widget"></div>
+					</div>
+					${htmlWebpackPlugin.tags.bodyTags}
+					<script type="text/javascript">
+						window.CombaseWidget.init({
+							el: '#combase_widget', // <-- TODO
+							organization: "60b0c9215716b8022249ed7e", // <-- replace this with your Organization ID
+							theme: 'light',
+						});
+					</script>
+					</body>
+				</html>
 			`,
 		}),
 	],
