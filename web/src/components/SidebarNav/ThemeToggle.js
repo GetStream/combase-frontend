@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { setUITheme, themeVar, useReactiveVar } from '@combase.app/apollo';
-import { CheckCircleIcon, Dropdown, IconButton, MenuItem, Popover, SwitchThemeIcon, Tooltip } from '@combase.app/ui';
+import { CheckCircleIcon, Dropdown, IconButton, MenuItem, Popover, SwitchThemeIcon, Tooltip, usePopoverState } from '@combase.app/ui';
 
 const popperModifiers = [
     {
@@ -19,19 +19,22 @@ const themeOpts = [
 ];
 
 const ThemeToggle = ({ size }) => {
-    const [anchorRef, setAnchorRef] = useState();
+    const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
     const themeMode = useReactiveVar(themeVar);
 
     return (
         <>
-            <Tooltip text="Switch Theme" placement="right">
-                <IconButton size={size} icon={SwitchThemeIcon} onClick={(_, e) => setAnchorRef(e.nativeEvent.target)} />
-            </Tooltip>
+            <div ref={anchorRef}>
+				<Tooltip text="Switch Theme" placement="right">
+					<IconButton size={size} icon={SwitchThemeIcon} onClick={toggleOpen} />
+				</Tooltip>
+			</div>
             <Popover
-                anchor={anchorRef}
+                anchor={anchorRef.current}
                 as={Dropdown}
+				open={open}
                 modifiers={popperModifiers}
-                onClose={() => setAnchorRef(false)}
+                onClose={() => toggleOpen(false)}
                 placement="right-end"
                 subheading="UI Theme"
             >

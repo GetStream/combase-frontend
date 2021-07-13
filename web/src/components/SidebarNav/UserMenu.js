@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { GET_CURRENT_USER, useQuery } from '@combase.app/apollo';
-import { UserIcon, Avatar, Box, Dropdown, LockIcon, MenuItem, Popover, SupportIcon } from '@combase.app/ui';
+import { UserIcon, Avatar, Box, Dropdown, LockIcon, MenuItem, Popover, SupportIcon, usePopoverState } from '@combase.app/ui';
 
 import {AgentEntity} from 'components/Entities';
 
@@ -15,7 +15,7 @@ const popperModifiers = [
 ];
 
 const ThemeToggle = ({ size }) => {
-    const [anchorRef, setAnchorRef] = useState();
+    const [anchorRef, { open, toggle: toggleOpen }] = usePopoverState();
     const { data } = useQuery(GET_CURRENT_USER);
     const me = data?.me;
 
@@ -25,14 +25,16 @@ const ThemeToggle = ({ size }) => {
                 name={me?.name?.full}
                 src={me?.avatar}
                 size={7}
-                onClick={e => setAnchorRef(e.nativeEvent.target)}
+                onClick={toggleOpen}
+				ref={anchorRef}
                 style={{ cursor: 'pointer' }}
             />
             <Popover
-                anchor={anchorRef}
+                anchor={anchorRef.current}
                 as={Dropdown}
+				open={open}
                 modifiers={popperModifiers}
-                onClose={() => setAnchorRef(false)}
+                onClose={() => toggleOpen(false)}
                 placement="right-end"
                 subheading="Your Combase"
                 header={
