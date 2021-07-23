@@ -28,7 +28,7 @@ const Root = styled(Box)`
 
 function App() {
 	return (
-		<ApolloProvider endpoint="localhost:8080/graphql">
+		<ApolloProvider endpoint={import.meta.env.VITE_APP_API_URL}>
 			<ThemeSwitcher>
 				<StreamContextProvider>
 					<Router>
