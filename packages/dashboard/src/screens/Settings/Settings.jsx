@@ -7,7 +7,7 @@ import Box from '@combase.app/ui/Box';
 import Card from '@combase.app/ui/Card';
 import Container from '@combase.app/ui/Container';
 import IconButton from '@combase.app/ui/IconButton';
-import { CalendarIcon, CloseIcon, OrganizationIcon, SettingsIcon, SwitchThemeIcon, UserIcon } from '@combase.app/ui/icons';
+import { CalendarIcon, CloseIcon, OrganizationIcon, SettingsIcon, SwitchThemeIcon, UserIcon, WidgetIcon } from '@combase.app/ui/icons';
 import Text from '@combase.app/ui/Text';
 
 import HeaderBase from 'components/HeaderBase';
@@ -17,6 +17,7 @@ import Availability from './views/Availability';
 import Organization from './views/Organization';
 import Theme from './views/Theme';
 import YourProfile from './views/YourProfile';
+import Widget from './views/Widget';
 
 const Root = styled(Card)`
 	width: 100%;
@@ -29,15 +30,15 @@ const Root = styled(Card)`
 	transform: translateZ(0);
 
 	@media (min-height: ${({ theme }) => theme.breakpoints.sm}) {
-		max-width: ${({ theme }) => theme.sizes[23]};
-		max-height: ${({ theme }) => theme.sizes[21]};
+		max-width: ${({ theme }) => theme.sizes[24]};
+		max-height: ${({ theme }) => theme.sizes[22]};
 		margin-left: ${({theme }) => theme.space[4]};
 		margin-right: ${({theme }) => theme.space[4]};
 	}
 
 	@media (min-height: ${({ theme }) => theme.breakpoints.md}) {
-		max-width: ${({ theme }) => theme.sizes[23]};
-		max-height: ${({ theme }) => theme.sizes[21]};
+		max-width: ${({ theme }) => theme.sizes[24]};
+		max-height: ${({ theme }) => theme.sizes[22]};
 	}
 `;
 
@@ -70,7 +71,7 @@ const Settings = forwardRef(({ onClose }, ref) => {
 					<NavigationMenuItem icon={SettingsIcon} label="Preferences" to="/settings/preferences" navigationMethod="replace" />
 					<NavigationMenuItem icon={SwitchThemeIcon} label="Theme" to="/settings/theme" navigationMethod="replace" />
 					<NavigationMenuItem icon={OrganizationIcon} label="Organization" to="/settings/organization" navigationMethod="replace" />
-					<NavigationMenuItem icon={UserIcon} label="Widget" to="/settings/widget" navigationMethod="replace" />
+					<NavigationMenuItem icon={WidgetIcon} label="Widget" to="/settings/widget" navigationMethod="replace" />
 				</Container>
 			</Box>
 			<Scrollbars>
@@ -80,6 +81,7 @@ const Settings = forwardRef(({ onClose }, ref) => {
 					<Route path="/settings/availability" component={Availability} />
 					<Route path="/settings/theme" component={Theme} />
 					<Route path="/settings/organization" component={Organization} />
+					<Route path="/settings/widget" component={Widget} />
 				</Switch>
 			</Scrollbars>
 		</Root>

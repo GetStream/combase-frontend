@@ -8,7 +8,7 @@ const SvgEl = styled.svg`
 	${fill};
 `;
 
-const ThemeSelectorIllustration = ({ theme }) => (
+const DashboardThemeIllustration = ({ theme }) => (
 	<ThemeProvider theme={themes[theme]}>
 		<Box borderRadius={2} as="svg" viewBox="0 0 160 112" overflow="hidden">
 			<SvgEl as="rect" width="160" height="112" fill={theme === 'dark' ? "background" : "border"} />
@@ -30,8 +30,8 @@ const ThemeSelectorIllustration = ({ theme }) => (
 	</ThemeProvider>
 )
 
-ThemeSelectorIllustration.defaultProps = {
+DashboardThemeIllustration.defaultProps = {
 	theme: 'light'
 }
 
-export default ThemeSelectorIllustration;
+export default DashboardThemeIllustration;

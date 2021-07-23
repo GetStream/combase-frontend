@@ -13,9 +13,9 @@ const Root = styled(Card)`
 	display: grid;
 	grid-template-rows: min-content 1fr min-content;
 
-	@media (min-height: calc(${({ theme }) => theme.sizes[22]} + 4rem)) {
-		max-width: ${({ theme }) => theme.sizes[20]};
-		max-height: ${({ theme }) => theme.sizes[22]};
+	@media (min-height: calc(${({ theme }) => theme.sizes[23]} + 4rem)) {
+		max-width: ${({ theme }) => theme.sizes[21]};
+		max-height: ${({ theme }) => theme.sizes[23]};
 	}
 `;
 

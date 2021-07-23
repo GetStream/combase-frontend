@@ -4,10 +4,9 @@ import { interactions } from '@combase.app/styles';
 
 import Box from '@combase.app/ui/Box';
 import ButtonBase from '@combase.app/ui/ButtonBase';
-import {useControlledValue} from '@combase.app/ui/shared/useControlledValue';
 import Text from '@combase.app/ui/Text';
 
-import ThemeSelectorIllustration from './ThemeSelectorIllustration';
+import { DashboardThemeIllustration, WidgetThemeIllustration } from './illustrations';
 
 const Root = styled(Box)`
 	display: grid;
@@ -23,23 +22,28 @@ const Button = styled(ButtonBase)`
 	text-align: center;
 `;
 
-const ThemeSelector = ({ onChange, value }) => {
+const ThemeSelector = ({ mode, onChange, value }) => {
+	const Illustration = mode === 'dashboard' ? DashboardThemeIllustration : WidgetThemeIllustration;
 	return (
 		<Root>
 			<Button active={value === 'system'} type="button" interaction="bump" onClick={onChange} value="system">
-				<ThemeSelectorIllustration />
+				<Illustration />
 				<Text color={value === 'system' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>System (auto)</Text>
 			</Button>
 			<Button active={value === 'light'} type="button" interaction="bump" onClick={onChange} value="light">
-				<ThemeSelectorIllustration theme="light" />
+				<Illustration theme="light" />
 				<Text color={value === 'light' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>Light</Text>
 			</Button>
 			<Button active={value === 'dark'} type="button" interaction="bump" onClick={onChange} value="dark">
-				<ThemeSelectorIllustration theme="dark" />
+				<Illustration theme="dark" />
 				<Text color={value === 'dark' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>Dark</Text>
 			</Button>
 		</Root>
 	);
 };
+
+ThemeSelector.defaultProps = {
+	mode: "dashboard"
+}
 
 export default ThemeSelector;
