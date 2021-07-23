@@ -1,12 +1,15 @@
 import React, { useCallback, useMemo } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Form, Formik } from 'formik';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
 import Container from '@combase.app/ui/Container';
 import Text from '@combase.app/ui/Text';
+
+import { setUITheme } from 'apollo/operations/ui';
+import { themeVar } from 'apollo/variables';
 
 import { GET_MY_PROFILE } from 'apollo/operations/auth';
 import { UPDATE_AGENT } from 'apollo/operations/agent';
@@ -35,6 +38,7 @@ const Theme = () => {
 	const theme = useTheme();
 	const {data} = useQuery(GET_MY_PROFILE);
 	const [updateAgent, { loading }] = useMutation(UPDATE_AGENT);
+	const themeMode = useReactiveVar(themeVar);
 
 	const initialValues = useMemo(() => ({
 		theme: {
@@ -71,7 +75,7 @@ const Theme = () => {
 							<Text marginBottom={4} color="altText" fontSize={4} fontWeight="400" lineHeight={4}>
 								UI Theme
 							</Text>
-							<ThemeSelector name="uitheme" />
+							<ThemeSelector name="uitheme" onChange={setUITheme} value={themeMode} />
 							<Text marginTop={10} marginBottom={4} color="altText" fontSize={4} fontWeight="400" lineHeight={4}>
 								Accent Color
 							</Text>
