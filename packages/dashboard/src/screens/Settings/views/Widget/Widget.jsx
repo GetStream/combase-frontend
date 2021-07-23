@@ -1,19 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Form, Formik } from 'formik';
-import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
 import Container from '@combase.app/ui/Container';
 import TextGroup from '@combase.app/ui/TextGroup';
 import Text from '@combase.app/ui/Text';
-
-import { setUITheme } from 'apollo/operations/ui';
-import { themeVar } from 'apollo/variables';
-
-import { GET_MY_PROFILE } from 'apollo/operations/auth';
-import { UPDATE_AGENT } from 'apollo/operations/agent';
 
 import {DialogFooter} from 'components/Dialog';
 import HeaderBase from 'components/HeaderBase';
