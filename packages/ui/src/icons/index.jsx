@@ -87,4 +87,5 @@ export * from './unpublished';
 export * from './user';
 export * from './users';
 export * from './warning';
+export * from './widget';
 export * from './zendesk';

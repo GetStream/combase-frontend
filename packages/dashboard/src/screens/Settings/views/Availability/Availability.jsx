@@ -112,7 +112,7 @@ const Availability = () => {
 		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 			{
 				(formik) => (
-					<Box as={Form} onSubmit={formik.handleSubmit}>
+					<Box height="100%" as={Form} onSubmit={formik.handleSubmit}>
 						<Header paddingX={7} height="headerLg">
 							<Text fontSize={5} lineHeight={7} fontWeight={600}>
 								Availability

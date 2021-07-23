@@ -19,6 +19,10 @@ import HeaderBase from 'components/HeaderBase';
 import AccentSelector from 'components/AccentSelector';
 import ThemeSelector from 'components/ThemeSelector';
 
+const Root = styled(Box)`
+	height: 100%;
+`;
+
 const Header = styled(HeaderBase)`
 	display: flex;
 	align-items: center;
@@ -65,7 +69,7 @@ const Theme = () => {
 		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 			{
 				(formik) => (
-					<Box as={Form} onSubmit={formik.handleSubmit}>
+					<Root as={Form} onSubmit={formik.handleSubmit}>
 						<Header paddingX={7} height="headerLg">
 							<Text fontSize={5} lineHeight={7} fontWeight={600}>
 								Theme
@@ -81,7 +85,7 @@ const Theme = () => {
 							</Text>
 							<AccentSelector name="theme.color" onChange={formik.handleChange} value={formik.values.theme.color} />
 						</Container>
-						<Footer>
+						<Footer marginTop="auto">
 							<Button color="altText" variant="flat">
 								<Text color="altText">Cancel</Text>
 							</Button>
@@ -89,7 +93,7 @@ const Theme = () => {
 								<Text color="white">Save</Text>
 							</Button>
 						</Footer>
-					</Box>
+					</Root>
 				)
 			}
 		</Formik>
