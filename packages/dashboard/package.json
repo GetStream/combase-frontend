@@ -1,0 +1,42 @@
+{
+  "name": "dashboard",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.21",
+    "@combase.app/styles": "0.1.0",
+    "algoliasearch": "^4.10.3",
+    "apollo-link-queue": "^3.1.0",
+    "apollo-link-serialize": "^4.0.0",
+    "apollo3-cache-persist": "^0.10.0",
+    "formik": "^2.2.9",
+    "getstream": "^7.2.10",
+    "graphql": "^15.5.1",
+    "humanify-numbers": "^1.1.5",
+    "lodash.orderby": "^4.6.0",
+    "lodash.uniqby": "^4.7.0",
+    "rc-scrollbars": "^1.1.3",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-instantsearch-dom": "^6.12.0",
+    "react-router-dom": "^5.2.0",
+    "react-use": "^17.2.4",
+    "react-use-fuse": "^0.5.2",
+    "slugify": "^1.6.0",
+    "stream-chat": "^3.12.1",
+    "stream-chat-react": "^6.4.2",
+    "styled-components": "^5.3.0",
+    "subscriptions-transport-ws": "^0.9.19",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^1.4.4",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "regenerator-runtime": "^0.13.7",
+    "vite": "^2.4.2"
+  }
+}

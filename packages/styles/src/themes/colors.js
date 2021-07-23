@@ -14,8 +14,8 @@ const colors = {
 	pink: '#f92673',
     teal: '#41E9F3',
     lightSlate: '#181A24',
-    slate: '#0A0D14',
-    darkSlate: '#0E1118',
+    darkSlate: '#0A0D14',
+    slate: '#0E1118',
     trueBlack: '#000000',
     white: '#ffffff',
 };
@@ -35,6 +35,12 @@ colors.ticketStatus = {
 	archived: colors.lightSlate,
 	unassigned: colors.red,
 	new: colors.blue,
+}
+
+colors.access = {
+	guest: colors.green,
+	moderator: colors.altText,
+	admin: colors.blue,
 }
 
 export default colors;

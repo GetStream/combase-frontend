@@ -32,8 +32,8 @@ Container.propTypes = {
 Container.defaultProps = {
     centered: true,
     gutter: true,
-    paddingX: [3, 4, 5],
-    variant: 'contained',
+    paddingX: [3, 4],
+    variant: 'fluid',
 };
 
 export default Container;

@@ -16,7 +16,7 @@ const Text = styled.p`
             transform: (v, scale) => `'wght' ${scale[v]}`,
         },
     })}
-    ${({ lineClamp }) =>
+    ${({ fontSize, lineClamp }) =>
         variant({
             variants: {
                 clamped: {
@@ -26,9 +26,9 @@ const Text = styled.p`
                     overflow: 'hidden',
                 },
                 label: {
-                    fontSize: [2, 2, 2, 2, 2, 2, 3],
+                    fontSize: fontSize || 2,
                     letterSpacing: 0.5,
-                    lineHeight: [2, 2, 2, 2, 2, 2, 3],
+                    lineHeight: fontSize || 2,
                 },
             },
         })}
@@ -42,10 +42,9 @@ Text.defaultProps = {
     as: 'p',
     color: 'text',
     fontFamily: 'text',
-    fontSize: 3,
+    fontSize: 4,
     fontWeight: 500,
     placeholderWidth: 6,
-    lineHeight: 4,
 };
 
 export default Text;

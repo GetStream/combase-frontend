@@ -6,13 +6,16 @@ export const buttonSizeVariants = variant({
     prop: 'size',
     variants: {
         xs: {
-            minHeight: 7,
+            minHeight: 8,
             paddingX: 3,
             paddingY: 0,
-			borderRadius: 3,
+			borderRadius: 2,
         },
 		sm: {
-			borderRadius: 2
+			minHeight: 9,
+            paddingX: 4,
+            paddingY: 0,
+			borderRadius: 2,
 		}
     },
 });

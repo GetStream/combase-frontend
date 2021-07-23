@@ -8,11 +8,11 @@ export const dark = {
 	colors: {
 		...base.colors,
 		primary: base.colors.blue,
-		background: base.colors.slate,
+		background: base.colors.darkSlate,
 		border: base.colors.lightSlate,
 		disabled: base.utils.colors.fade(base.colors.white, 0.04),
 		shadow,
-		surface: base.colors.darkSlate,
+		surface: base.colors.slate,
 		text: base.colors.white,
 		altText: base.utils.colors.fade(base.colors.white, 0.24),
 	},

@@ -1,1 +1,0 @@
-export {createChatPlugin} from './ChatPlugin';

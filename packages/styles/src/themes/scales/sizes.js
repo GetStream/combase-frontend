@@ -11,6 +11,7 @@ export const sizes = [
 	'3rem',
 	'3.5rem',
 	'4rem',
+	'4.5rem',
 	'5rem',
 	'7rem',
 	'9rem',
@@ -28,4 +29,7 @@ export const sizes = [
 ];
 sizes.small = '0.5rem';
 sizes.sidenav = '4rem';
-sizes.drawer = '18rem';
+sizes.sidebar = '17rem';
+sizes.drawer = '20rem';
+sizes.header = '4.5rem';
+sizes.headerLg = '5.5rem';

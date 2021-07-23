@@ -46,13 +46,13 @@ const Placeholder = styled(Box).attrs({
 
 	@keyframes placeholder-${({ placeholderId }) => placeholderId} {
 		0% {
-			background-color: ${({ placeholderColor, color = 'text', theme }) => theme.utils.colors.fade(theme.colors[placeholderColor || color], 0.02)};
+			background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors['text'], 0.02)};
 		}
 		50% {
-			background-color: ${({ placeholderColor, color = 'text', theme }) => theme.utils.colors.fade(theme.colors[placeholderColor || color], 0.08)};
+			background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors['text'], 0.08)};
 		}
 		100% {
-			background-color: ${({ placeholderColor, color = 'text', theme }) => theme.utils.colors.fade(theme.colors[placeholderColor || color], 0.02)};
+			background-color: ${({ theme }) => theme.utils.colors.fade(theme.colors['text'], 0.02)};
 		}
 	}
 `;

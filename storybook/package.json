@@ -1,18 +1,20 @@
 {
   "name": "storybook",
-  "version": "0.1.0",
-  "main": "src/index.js",
+  "version": "1.0.0",
+  "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "start": "start-storybook -p 9009",
-    "build": "build-storybook -s public"
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.4.0-alpha.18",
+    "@storybook/addon-essentials": "^6.4.0-alpha.18",
+    "@storybook/addon-links": "^6.4.0-alpha.18",
+    "@storybook/react": "^6.4.0-alpha.18",
+    "babel-loader": "^8.2.2",
+    "storybook-builder-vite": "^0.0.12"
   },
-  "dependencies": {
-    "@combase.app/apollo": "*",
-    "@combase.app/styles": "*",
-    "@combase.app/ui": "*",
-    "@storybook/addon-essentials": "^6.3.4",
-    "@storybook/addon-links": "^6.3.4",
-    "@storybook/react": "^6.3.4"
+  "dependencies": {},
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
