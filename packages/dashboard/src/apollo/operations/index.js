@@ -3,6 +3,7 @@ export * from './auth';
 export * from './faq';
 export * from './group';
 export * from './integration';
+export * from './invitation';
 export * from './tag';
 export * from './ticket';
 export * from './ui';

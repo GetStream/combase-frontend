@@ -9,7 +9,7 @@ import Tooltip from '../Tooltip';
 const ListSubheader = ({ children, infoText, ...rest }) => (
     <Box {...rest}>
         <IconLabel>
-			<Text color="altText" fontSize={2} fontWeight="600" lineHeight={4}>
+			<Text color="altText" fontSize={3} fontWeight="600" lineHeight={4}>
 				{children}
 			</Text>
 			{

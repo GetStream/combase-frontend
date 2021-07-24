@@ -1,6 +1,10 @@
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
-import { FieldArray, Formik } from 'formik';
+import { FieldArray, Form, Formik } from 'formik';
+
+import { useMutation } from '@apollo/client';
+
+import useCurrentUser from 'hooks/useCurrentUser';
 
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
@@ -14,6 +18,8 @@ import SelectInput from '@combase.app/ui/SelectInput';
 import Text from '@combase.app/ui/Text';
 import TextInput from '@combase.app/ui/TextInput';
 import TextLink from '@combase.app/ui/TextLink';
+
+import { CREATE_INVITATION } from 'apollo/operations';
 
 import Dialog, { DialogFooter } from 'components/Dialog';
 
@@ -61,7 +67,7 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 					</SelectInput>
 					<ArrayActions padding={2}>
 						{i > 0 || (i === 0 && value.length > 1) ? (
-							<IconButton color={'altText'} size={3} icon={CloseIcon} onClick={() => remove(i)} />
+							<IconButton color={'altText'} size={3} icon={CloseIcon} type="button" onClick={() => remove(i)} />
 						) : null}
 					</ArrayActions>
 				</FieldArrayInput>
@@ -76,6 +82,11 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 }
 
 const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
+	const { data } = useCurrentUser();
+	const [createInvitations] = useMutation(CREATE_INVITATION)
+	const me = data?.me;
+	const organization = data?.organization;
+
 	const initialValues = useMemo(() => ({
 		invitations: [
 			{ email: "", access: "guest" },
@@ -83,13 +94,34 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 			{ email: "", access: "guest" }
 		],
 	}), []);
+
+	const handleSubmit = useCallback(async (values) => {
+		try {
+			const invitations = values.invitations.map(({ email, access }) => email ? ({
+				to: email,
+				access,
+				from: me?._id,
+				organization: organization?._id,
+			}) : undefined).filter(invt => !!invt);
+	
+			await createInvitations({
+				variables: {
+					records: invitations,
+				}
+			});
+			onClose();
+		} catch (error) {
+			console.error(error.message);
+		}
+	}, [me, organization, onClose]);
+
 	return (
-		<Dialog ref={ref} minWidth={22} title="Invite Agents">
-			<ScrollContainer paddingTop={4} paddingBottom={6}>
-				<Formik initialValues={initialValues}>
-					{
-						formik => (
-							<Box as="form" onSubmit={formik.handleSubmit}>
+		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+			{
+				formik => (
+					<Dialog as={Form} ref={ref} minWidth={22} title="Invite Agents" onSubmit={formik.handleSubmit}>
+						<ScrollContainer paddingTop={4} paddingBottom={6}>
+							<Box as="form" >
 								<FieldArray 
 									name="invitations"
 									render={renderFieldArray}
@@ -99,7 +131,7 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 								</ListSubheader>
 								<ImportBtns paddingY={3}>
 									<Button backgroundColor="background" color="altText" variant="flat">
-										<Text color="altText">Import CSV</Text>
+										<Text fontSize={4} color="altText">Import CSV</Text>
 									</Button>
 									<Button backgroundColor="background" color="altText" variant="flat">
 										<IconLabel>
@@ -115,19 +147,19 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 									</Button>
 								</ImportBtns>
 							</Box>
-						)
-					}
-				</Formik>
-			</ScrollContainer>
-			<DialogFooter>
-				<Button variant="flat" color="altText" onClick={onClose}>
-					<Text color="altText">Cancel</Text>
-				</Button>
-				<Button>
-					<Text color="white">Send Invites</Text>
-				</Button>
-			</DialogFooter>
-		</Dialog>
+						</ScrollContainer>
+						<DialogFooter>
+							<Button variant="flat" color="altText" onClick={onClose}>
+								<Text color="altText">Cancel</Text>
+							</Button>
+							<Button type="submit">
+								<Text color="white">Send Invites</Text>
+							</Button>
+						</DialogFooter>
+					</Dialog>
+				)
+			}
+		</Formik>
 	)
 });
 
