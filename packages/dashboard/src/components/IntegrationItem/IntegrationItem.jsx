@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { interactions } from '@combase.app/styles';
 
 import Avatar from '@combase.app/ui/Avatar';
@@ -21,9 +22,9 @@ const Header = styled(Box)`
 	justify-content: space-between;
 `;
 
-const IntegrationItem = ({	description, name }) => {
+const IntegrationItem = ({	id, description, name }) => {
 	return (
-		<Root borderRadius={3} paddingX={7} paddingY={8} interaction="bump">
+		<Root as={Link} to={`/integrations/${id}`} borderRadius={3} paddingX={7} paddingY={8} interaction="bump">
 			<Header>
 				<Avatar variant="circle" size={13} />
 			</Header>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'rc-scrollbars';
 import { interactions } from '@combase.app/styles';
+import { Route } from 'react-router-dom';
 import useFuse from 'react-use-fuse';
 
 import Box from "@combase.app/ui/Box";
@@ -9,11 +10,14 @@ import Container from '@combase.app/ui/Container';
 import EmptyView from '@combase.app/ui/EmptyView';
 import IconLabel from "@combase.app/ui/IconLabel";
 import { PluginsIcon } from "@combase.app/ui/icons";
+import Modal from "@combase.app/ui/Modal";
 import {SearchToolbar} from "@combase.app/ui/SearchToolbar";
 import Text from "@combase.app/ui/Text";
 
 import HeaderBase from 'components/HeaderBase';
 import IntegrationItem from 'components/IntegrationItem';
+
+import ConfigureIntegrationModal from './ConfigureIntegrationModal';
 
 import useIntegrationDefinitions from 'hooks/useIntegrationDefinitions';
 
@@ -93,14 +97,21 @@ const Integrations = () => {
 					<GridList variant="contained" maxWidth={25}>
 						{
 							items?.length ?
-								items?.map(({ name }) => (
-									<IntegrationItem name={name} description={'Track events triggered in Combase through Google Analytics.'} />	
+								items?.map(({ id, name }) => (
+									<IntegrationItem 
+										id={id}
+										name={name} 
+										description={'Track events triggered in Combase through Google Analytics.'} 
+									/>	
 								))
 							: <EmptyView title={term ? "No integrations match your search." : "No Available Integrations."} />
 						}
 					</GridList>
 				</Page>
 			</Scrollbars>
+			<Route path="/integrations/:integrationId">
+				{({ history, match }) => <Modal component={ConfigureIntegrationModal} open={match} onClose={history.goBack} />}
+			</Route>
 		</Root>
 	);
 };
