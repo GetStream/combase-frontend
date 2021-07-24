@@ -110,7 +110,7 @@ const Integrations = () => {
 				</Page>
 			</Scrollbars>
 			<Route path="/integrations/:integrationId">
-				{({ history, match }) => <Modal component={ConfigureIntegrationModal} open={match} onClose={history.goBack} />}
+				{({ history, match }) => <Modal component={ConfigureIntegrationModal} id={match?.params.integrationId} open={match} onClose={history.goBack} />}
 			</Route>
 		</Root>
 	);
