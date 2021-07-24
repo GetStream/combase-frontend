@@ -113,7 +113,7 @@ const Widget = () => {
 							<Text marginTop={10} marginBottom={4} color="altText" fontSize={4} fontWeight="400" lineHeight={4}>
 								Accent Color
 							</Text>
-							<AccentSelector name="accent" onChange={formik.handleChange} />
+							<AccentSelector name="accent" onChange={formik.handleChange} value={formik.values.accent} />
 							<TextGroup marginTop={8}>
 								<Text fontSize={4} lineHeight={7} fontWeight={500}>
 									Unassigned Message Flow

@@ -188,7 +188,7 @@ const Availability = () => {
 							<Button color="altText" variant="flat">
 								<Text color="altText">Cancel</Text>
 							</Button>
-							<Button loading={loading} type="submit">
+							<Button disabled={!formik.dirty || !formik.isValid} loading={loading} type="submit">
 								<Text color="white">Save</Text>
 							</Button>
 						</Footer>
