@@ -3,10 +3,11 @@ import { layout } from '@combase.app/styles';
 import styled from 'styled-components';
 import { useList } from 'react-use';
 
-import Box from '../../Box';
-import Chip from '../../Chip';
-import { CloseCircleIcon, TagIcon } from '../../icons';
-import { useListCursor, useSharedRef } from '../../hooks';
+import Box from '../Box';
+import Chip from '../Chip';
+import { CloseCircleIcon, TagIcon } from '../icons';
+import useListCursor from '../hooks/useListCursor';
+import useSharedRef from '../hooks/useSharedRef';
 
 import InputBase from './InputBase';
 
@@ -102,6 +103,7 @@ export const ChipInputBase = forwardRef(
             onKeyDown(e);
 
             if (e.key === 'Enter') {
+				e.stopPropagation();
                 setInternalValue('');
             }
         };

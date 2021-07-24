@@ -66,7 +66,9 @@ export const WIDGET_SETTINGS_FRAGMENT = gql`
 	fragment WidgetSettings on Organization {
 		widget {
 			domains
-			defaultTheme
+			paths
+			uitheme
+			accent
 			home {
 				title
 				tagline

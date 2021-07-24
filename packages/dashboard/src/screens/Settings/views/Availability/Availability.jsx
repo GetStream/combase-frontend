@@ -12,11 +12,13 @@ import add from 'date-fns/add';
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
 import Container from '@combase.app/ui/Container';
-import { AddCircleIcon } from '@combase.app/ui/icons';
+import IconButton from '@combase.app/ui/IconButton';
+import { AddCircleIcon, DeleteIcon } from '@combase.app/ui/icons';
 import MenuItem from '@combase.app/ui/MenuItem';
 import SelectButton from '@combase.app/ui/SelectButton';
 import Text from '@combase.app/ui/Text';
 import TextLink from '@combase.app/ui/TextLink';
+import Tooltip from '@combase.app/ui/Tooltip';
 
 import { GET_MY_PROFILE } from 'apollo/operations/auth';
 import { UPDATE_AGENT } from 'apollo/operations/agent';
@@ -171,6 +173,9 @@ const Availability = () => {
 															return <MenuItem key={i} label={hr12} value={hr24} />
 														})}
 													</SelectButton>
+													<Tooltip text="Delete Schedule Entry">
+														<IconButton color="border" type="button" size={4} icon={DeleteIcon} onClick={() => arrayHelpers.remove(index)} />
+													</Tooltip>
 												</Entry>
 											))}
 											<TextLink marginY={4} onClick={() => arrayHelpers.push(emptySchedule)} color="primary" icon={AddCircleIcon}>Add Schedule Entry</TextLink>
