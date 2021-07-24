@@ -93,7 +93,7 @@ const AssignTicketModalInner = forwardRef((props, ref) => {
 
 	return (
 		<InstantSearch indexName="AGENTS" searchClient={algolia}>
-			<Root ref={ref} boxShadow={8} role="dialog" width={19}>
+			<Root ref={ref} boxShadow={8} role="dialog" width={21}>
 				<CardHeader paddingX={5} paddingY={5} icon={<AssignIcon size={5} />}>Assign Ticket</CardHeader>
 				<Container>
 					<AlgoliaSearchToolbar />

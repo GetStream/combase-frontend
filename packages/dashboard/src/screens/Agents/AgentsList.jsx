@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'rc-scrollbars';
 
@@ -17,10 +17,12 @@ import Container from '@combase.app/ui/Container';
 import EmptyView from '@combase.app/ui/EmptyView';
 import IconLabel from "@combase.app/ui/IconLabel";
 import { AddUsersIcon, AgentsIcon } from "@combase.app/ui/icons";
+import Modal from "@combase.app/ui/Modal";
 import {AlgoliaSearchToolbar} from "@combase.app/ui/SearchToolbar";
 import Text from "@combase.app/ui/Text";
 
 import HeaderBase from 'components/HeaderBase';
+import InviteAgentsDialog from 'components/InviteAgentsDialog';
 import AgentItem from 'components/AgentItem';
 import useAgents from 'hooks/useAgents';
 
@@ -97,6 +99,7 @@ const List = algoliaListProps(({ currentRefinement, agents, hits }) => {
 });
 
 const AgentsList = () => {
+	const [openInvitationModal, toggleInvitationModal] = useState();
 	const {data} = useAgents();
 	const organization = data?.organization;
 	const agents = data?.organization.agents;
@@ -110,7 +113,7 @@ const AgentsList = () => {
 							<AgentsIcon color="primary" size={6} />
 							<Text fontSize={5} fontWeight={600} lineHeight={7}>Agents</Text>
 						</IconLabel>
-						<Button size="xs">
+						<Button size="xs" onClick={() => toggleInvitationModal(true)}>
 							<IconLabel gap={2}>
 								<Text color="white" fontWeight="600">Invite Agents</Text>
 								<AddUsersIcon size={4} />
@@ -123,6 +126,7 @@ const AgentsList = () => {
 					</SearchWrapper>
 					<List agents={agents} />
 				</Scrollbars>
+				<Modal component={InviteAgentsDialog} open={openInvitationModal} onClose={() => toggleInvitationModal(false)} />
 			</Root>
 		</InstantSearch>
 	);

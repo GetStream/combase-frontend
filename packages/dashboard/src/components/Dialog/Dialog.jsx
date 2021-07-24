@@ -37,7 +37,7 @@ export const DialogFooter = styled(Box).attrs({
 const Dialog = forwardRef((props, ref) => {
 	const Icon = props.icon;
 	return (
-		<Root variant="border" as={props.as} className={props.className} ref={ref}>
+		<Root variant="border" as={props.as} minWidth={props.minWidth} className={props.className} ref={ref}>
 			<Box paddingX={5} paddingTop={7} paddingBottom={4}>
 				<IconLabel gap={2}>
 					{Icon ? <Icon color='primary' size={5} /> : null}
