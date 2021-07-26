@@ -2,6 +2,7 @@ import React, { forwardRef, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { Form, Formik } from 'formik';
+import * as yup from 'yup';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
@@ -79,6 +80,7 @@ const SubmitWrapper = styled(Container)`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
+	background: linear-gradient(to top, ${({ theme }) => theme.colors.surface} 50%, ${({ theme }) => theme.utils.colors.fade(theme.colors.surface, 0)} 100%);
 `;
 
 const initialValues = {};
@@ -105,15 +107,39 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 		}))
 	}, [configuration]);
 
+	const validationSchema = useMemo(() => {
+		let fields = Object.entries(configuration || {});
+		let obj = {};
+		
+		if (!fields.length) {
+			return undefined;
+		}
+
+		fields.forEach(([name, { required, type }]) => {
+			switch (type) {
+				case 'String':
+				default:
+					if (required) {
+						obj[name] = yup.string().required();
+					} else {
+						obj[name] = yup.string();
+					}
+			}
+		});
+
+		return yup.object().shape(obj);
+	}, [configuration]);
+	console.log(validationSchema)
 	const handleSubmit = useCallback(async (values) => {
 		try {
-			await createIntegration({
-				refetchQueries: [{ query: GET_INTEGRATION_DEFINITION, variables: { id: props.id } }],
-				variables: {
-					uid: props.id,
-					credentials: Object.entries(values).map(([name, value]) => ({ name, value })),
-				}
-			});
+			console.log(values);
+			// await createIntegration({
+			// 	refetchQueries: [{ query: GET_INTEGRATION_DEFINITION, variables: { id: props.id } }],
+			// 	variables: {
+			// 		uid: props.id,
+			// 		credentials: Object.entries(values).map(([name, value]) => ({ name, value })),
+			// 	}
+			// });
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -171,7 +197,7 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 				<Text marginTop={8} color="primary" fontSize={4} lineHeight={6}>Sync Combase events with Google Analytics and track visits, and widget interactions in your reports.</Text>
 			</Header>
 			{
-				integrationData ? (
+				integrationData || fields.length === 0 ? (
 					<>
 						<Content paddingX={7}>
 							<TextGroup gapTop={3} variant="centered">
@@ -181,11 +207,15 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 										{integrationData?.enabled ? "Enabled" : "Disabled"}
 									</Text>
 								</IconLabel>
-								<Text color="altText" fontSize={3} lineHeight={4}>
-									Activated on: {formatDateFromNow(integrationData?.updatedAt)}
-								</Text>
+								{
+									integrationData?.updatedAt ? (
+										<Text color="altText" fontSize={3} lineHeight={4}>
+											Activated on: {formatDateFromNow(integrationData?.updatedAt)}
+										</Text>
+									) : null
+								}
 							</TextGroup>
-							{!integrationData?.enabled ? (
+							{!integrationData?.enabled && fields.length ? (
 								<Centered marginBottom={6}>
 									<TextLink 
 										reverse 
@@ -198,7 +228,7 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 								</Centered>
 							) : null}
 						</Content>
-						<SubmitWrapper marginTop={6} paddingX={7} paddingBottom={7}>
+						<SubmitWrapper paddingY={7} paddingX={7}>
 							<Button 
 								color={!integrationData?.enabled ? "green" : "red"} 
 								loading={toggling} 
@@ -214,11 +244,11 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 						</SubmitWrapper>
 					</>
 				) : (
-					<Formik initialValues={initialValues} onSubmit={handleSubmit}>
+					<Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
 						{
 							formik => (
 								<>
-									<Content as={Form} onSubmit={formik.handleSubmit} paddingX={7} paddingBottom={7}>
+									<Content as={Form} onSubmit={formik.handleSubmit} paddingX={7}>
 										{
 											fields?.length ? (
 												<>
@@ -235,8 +265,8 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 											)
 										}
 									</Content>
-									<SubmitWrapper marginTop={6} paddingX={7} paddingBottom={7}>
-										<Button loading={loading} width="100%" color="primary" type="submit">
+									<SubmitWrapper paddingY={7} paddingX={7}>
+										<Button disabled={validationSchema ? (!formik.dirty || !formik.isValid) : false} loading={loading} width="100%" color="primary" type="submit">
 											<Text color="white">
 												{fields?.length ? `Save and Enable` : `Enable`}
 											</Text>
