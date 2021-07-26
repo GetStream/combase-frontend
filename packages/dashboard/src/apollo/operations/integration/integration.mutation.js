@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_INTEGRATION = gql`
-	mutation createIntegration($uid: String!, $credentials: [IntegrationCredentialsInput!]) {
-		integrationCreate(uid: $uid credentials: $credentials) {
+	mutation createIntegration($uid: String!, $credentials: [IntegrationCredentialsInput!], $enabled: Boolean!) {
+		integrationCreate(uid: $uid credentials: $credentials, enabled: $enabled) {
 			record {
 				_id
 				enabled

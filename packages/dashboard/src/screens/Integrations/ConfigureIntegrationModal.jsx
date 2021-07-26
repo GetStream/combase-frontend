@@ -129,17 +129,18 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 
 		return yup.object().shape(obj);
 	}, [configuration]);
-	console.log(validationSchema)
-	const handleSubmit = useCallback(async (values) => {
+
+	const handleSubmit = useCallback(async (values = {}) => {
 		try {
-			console.log(values);
-			// await createIntegration({
-			// 	refetchQueries: [{ query: GET_INTEGRATION_DEFINITION, variables: { id: props.id } }],
-			// 	variables: {
-			// 		uid: props.id,
-			// 		credentials: Object.entries(values).map(([name, value]) => ({ name, value })),
-			// 	}
-			// });
+			const creds = Object.entries(values)
+			await createIntegration({
+				refetchQueries: [{ query: GET_INTEGRATION_DEFINITION, variables: { id: props.id } }],
+				variables: {
+					uid: props.id,
+					credentials: creds.length ? creds.map(([name, value]) => ({ name, value })) : undefined,
+					enabled: !creds.length
+				}
+			});
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -197,7 +198,7 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 				<Text marginTop={8} color="primary" fontSize={4} lineHeight={6}>Sync Combase events with Google Analytics and track visits, and widget interactions in your reports.</Text>
 			</Header>
 			{
-				integrationData || fields.length === 0 ? (
+				integrationData ? (
 					<>
 						<Content paddingX={7}>
 							<TextGroup gapTop={3} variant="centered">
@@ -266,7 +267,14 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 										}
 									</Content>
 									<SubmitWrapper paddingY={7} paddingX={7}>
-										<Button disabled={validationSchema ? (!formik.dirty || !formik.isValid) : false} loading={loading} width="100%" color="primary" type="submit">
+										<Button 
+											disabled={validationSchema ? (!formik.dirty || !formik.isValid) : false} 
+											loading={loading} 
+											width="100%" 
+											color="primary" 
+											type="submit"
+											onClick={formik.handleSubmit}
+										>
 											<Text color="white">
 												{fields?.length ? `Save and Enable` : `Enable`}
 											</Text>
