@@ -47,13 +47,13 @@ const Popover = ({ anchor, as, disablePortal, modifiers, open, placement: placem
                 {
                     name: 'preventOverflow',
                     options: {
-                        altBoundary: disablePortal,
+                        altBoundary: true,
                     },
                 },
                 {
                     name: 'flip',
                     options: {
-                        altBoundary: disablePortal,
+                        altBoundary: true,
                     },
                 },
                 {
