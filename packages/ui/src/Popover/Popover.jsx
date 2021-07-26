@@ -82,7 +82,7 @@ const Popover = ({ anchor, as, disablePortal, modifiers, open, placement: placem
     });
 
     return transition(({ value }, mount) => (
-        <Portal disable={disablePortal} unmount={!mount}>
+        <Portal disabled unmount={!mount}>
             <Presentation zIndex={11}>
                 {createElement(as, {
                     animatedValue: value,

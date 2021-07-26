@@ -21,7 +21,7 @@ const Root = styled(Box)`
 
 const Modal = ({ backdrop, children, component, onClose, open, ...rest }) => {
     const ref = useRef();
-    // useClickAway(ref, onClose);
+    useClickAway(ref, onClose);
 
     return (
         <Portal unmount={!open}>
