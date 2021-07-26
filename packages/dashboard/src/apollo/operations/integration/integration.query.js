@@ -31,7 +31,7 @@ export const GET_INTEGRATION_DEFINITIONS = gql`
 `;
 
 export const GET_INTEGRATION_DEFINITION = gql`
-    query getIntegrationDefinitions($id: String!) {
+    query getIntegrationDefinition($id: String!) {
         integrationDefinition(id: $id) {
 			configuration
             id
@@ -48,6 +48,7 @@ export const GET_INTEGRATION_DEFINITION = gql`
 				credentials {
 					name
 				}
+				updatedAt
 			}
         }
     }

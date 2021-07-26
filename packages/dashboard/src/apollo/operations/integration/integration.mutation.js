@@ -24,6 +24,17 @@ export const TOGGLE_INTEGRATION = gql`
 	}
 `;
 
+export const UNLINK_INTEGRATION = gql`
+	mutation unlinkIntegration($_id: MongoID!) {
+		integrationRemove(_id: $_id) {
+			record {
+				_id
+				enabled
+			}
+		}
+	}
+`;
+
 export const INTEGRATION_ACTION = gql`
 	mutation fireIntegrationAction($trigger: String!, $payload: JSON) {
 		integrationAction(trigger: $trigger, payload: $payload)

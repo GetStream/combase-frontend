@@ -94,11 +94,12 @@ const Integrations = () => {
 							</Box>
 						</StickyWrapper>
 					</Container>
-					<GridList variant="contained" maxWidth={25}>
+					<GridList variant="contained" maxWidth={26}>
 						{
 							items?.length ?
-								items?.map(({ id, name }) => (
+								items?.map(({ id, name, integrationData }) => (
 									<IntegrationItem 
+										enabled={integrationData?.enabled}
 										id={id}
 										name={name} 
 										description={'Track events triggered in Combase through Google Analytics.'} 

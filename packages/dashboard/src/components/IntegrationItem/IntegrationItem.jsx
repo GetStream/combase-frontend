@@ -5,6 +5,8 @@ import { interactions } from '@combase.app/styles';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
+import Chip from '@combase.app/ui/Chip';
+import { BadgeIcon } from '@combase.app/ui/icons';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 import TextLink from '@combase.app/ui/TextLink';
@@ -22,12 +24,32 @@ const Header = styled(Box)`
 	justify-content: space-between;
 `;
 
-const IntegrationItem = ({	id, description, name }) => {
+const EnabledChip= styled(Chip)`
+	position: absolute;
+	top: ${({ theme }) => theme.space[5]};
+	right: ${({ theme }) => theme.space[5]};
+`;
+
+const badgeIconProps = { color: 'green' };
+
+const IntegrationItem = ({ enabled,	id, description, name }) => {
 	return (
 		<Root as={Link} to={`/integrations/${id}`} borderRadius={3} paddingX={7} paddingY={8} interaction="bump">
 			<Header>
 				<Avatar variant="circle" size={13} />
 			</Header>
+			{
+				enabled ? (
+					<EnabledChip 
+						color="green"
+						icon={BadgeIcon} 
+						label="Enabled"
+						iconProps={badgeIconProps}
+						reverse
+						variant="ghost"
+					/>
+				) : null
+			}
 			<TextGroup gapTop={2} marginTop={6}>
 				<Text fontSize={5} lineHeight={5} fontWeight={600}>{name}</Text>
 				<Text fontSize={4} lineHeight={6} fontWeight={400} opacity={0.56}>{description}</Text>
