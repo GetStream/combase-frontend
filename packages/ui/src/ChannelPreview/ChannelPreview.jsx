@@ -90,7 +90,7 @@ const ChannelPreview = ({
 							{displayTitle}
 						</Text>
 						<IconLabel>
-							{unread ? <Badge color={(compact && !lastMessage?.text) || (!compact && !fromNow) ? 'border' : undefined} /> : null}
+							{unread ? <Badge color={(compact && !lastMessage?.text) || (!compact && !fromNow) ? 'border' : 'primary'} /> : null}
 							<Text
 								color={unread ? 'primary' : 'altText'}
 								as={!fromNow ? Placeholder : null}
