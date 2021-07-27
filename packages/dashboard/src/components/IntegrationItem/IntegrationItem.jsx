@@ -36,7 +36,7 @@ const IntegrationItem = ({ enabled,	id, description, name }) => {
 	return (
 		<Root as={Link} to={`/integrations/${id}`} borderRadius={3} paddingX={7} paddingY={8} interaction="bump">
 			<Header>
-				<Avatar variant="circle" size={13} />
+				<Avatar name={name} variant="circle" size={13} />
 			</Header>
 			{
 				enabled ? (

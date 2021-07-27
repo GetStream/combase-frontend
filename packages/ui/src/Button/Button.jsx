@@ -58,7 +58,7 @@ const Button = forwardRef(({ children, loading, reverseLabel, ...props }, ref) =
 		{children}
 		{loading ? (
 			<LoadingWrapper>
-				<Spinner color={variant === 'raised' ? "white" : props.color} size={4} />
+				<Spinner color={props.variant === 'raised' ? "white" : props.color} size={4} />
 			</LoadingWrapper>
 		) : null}
 	</Root>

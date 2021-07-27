@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
 import { useToggle } from 'react-use';
 
@@ -25,6 +25,7 @@ const AccessChip = styled(Chip)`
 `;
 
 const AgentItem = ({ access, active, avatar, _id, meta, name }) => {
+	const theme = useTheme();
 	const history = useHistory();
 	const { agentId } = useParams();
 
@@ -61,7 +62,7 @@ const AgentItem = ({ access, active, avatar, _id, meta, name }) => {
 				!agentId ? (
 					<Box>
 						<Chip 
-							backgroundColor="offWhite"
+							backgroundColor={theme.dark ? "surface" : "offWhite"}
 							color="text"
 							icon={BadgeIcon} 
 							label={active ? "Active Account" : "Deactivated"}

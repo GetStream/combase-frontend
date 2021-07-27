@@ -32,7 +32,7 @@ export const buttonVisualVariants = props => {
                 [`& ${IconLabel} > p`]: {
                     color,
                 },
-                [`svg path`]: {
+                [`& path`]: {
                     fill: color,
                 },
                 '&:hover': {
@@ -49,7 +49,7 @@ export const buttonVisualVariants = props => {
                 [`& ${IconLabel} > p`]: {
                     color: 'white',
                 },
-                [`svg path`]: {
+                [`& path`]: {
                     fill: 'white',
                 },
                 '&:hover': {
