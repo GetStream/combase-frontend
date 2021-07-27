@@ -111,7 +111,7 @@ const emptySchedule = {
 
 const Availability = () => {
 	const [updateAgent, { loading }] = useMutation(UPDATE_AGENT);
-	const {data} = useQuery(GET_MY_PROFILE, { fetchPolicy: 'cache-and-network' });
+	const { data } = useQuery(GET_MY_PROFILE, { fetchPolicy: 'cache-and-network' });
 
 	const initialValues = useMemo(() => ({
 		schedule: data?.me?.schedule?.length ? data.me.schedule.map(({
