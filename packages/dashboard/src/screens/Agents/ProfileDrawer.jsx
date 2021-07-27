@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Scrollbars } from 'rc-scrollbars';
 import { Numbers } from 'humanify-numbers';
+import { useChatContext } from 'stream-chat-react';
+import { useAsyncFn } from 'react-use';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
@@ -13,6 +15,7 @@ import ListSubheader from '@combase.app/ui/ListSubheader';
 import { BadgeIcon, CalendarIcon, CloseIcon, MailIcon, UserIcon } from '@combase.app/ui/icons';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
+import Tooltip from '@combase.app/ui/Tooltip';
 
 import HeaderBase from 'components/HeaderBase';
 
@@ -70,9 +73,45 @@ const Statistic = styled(Text).attrs({ as: "blockquote" })`
 `;
 
 const ProfileDrawer = ({ history }) => {
+	const { client } = useChatContext();
+	
 	const { agentId } = useParams();
 	const {data} = useAgent(agentId);
 	const agent = data?.organization?.agent;
+	
+	const getUser = useCallback(async (id) => {
+		try {
+			const data = await client.queryUsers({ 
+				id: { 
+					$in: [id] 
+				}},  
+				{ id: -1 },  
+				{ presence: true } 
+			);
+			const user = data.users[0];
+
+			setOnlineStatus(user.online);
+			return user;
+		} catch (error) {
+			console.error(error);
+		}
+	}, []);
+		
+	const [{ value: streamUser }, doGetUser] = useAsyncFn(getUser);
+	const [isOnline, setOnlineStatus] = useState();
+
+	const handleEvent = useCallback(({ user }) => {
+		if (user.id === streamUser.id) {
+			setOnlineStatus(user.online);
+		}
+	}, [streamUser]);
+
+	useEffect(() => {
+		doGetUser(agentId);
+		client.on('user.presence.changed', handleEvent);
+		
+		return () => client.off('user.presence.changed', handleEvent);
+	}, [agentId]);
 
 	return (
 		<Root>
@@ -89,10 +128,16 @@ const ProfileDrawer = ({ history }) => {
 								<Text fontSize={5} lineHeight={5} fontWeight={700}>
 									{agent?.name.display}
 								</Text>
-								<BadgeIcon color="green" size={4} />
+								{
+									isOnline ? (
+										<Tooltip placement="top" text="Online Now">
+											<BadgeIcon color="green" size={4} />
+										</Tooltip>
+									) : null
+								}
 							</IconLabel>
 							<Text color='altText' fontSize={4} fontWeight={400} lineHeight={4}>
-								{agent?.role ?? "-"}
+								{agent?.role ? agent.role : "-"}
 							</Text>
 						</TextGroup>
 					</UserProfile>

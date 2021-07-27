@@ -11,7 +11,7 @@ const prepareTheme = (theme, overrides) => ({
 	...theme,
 	colors: {
 		...theme.colors,
-		primary: overrides.color,
+		primary: overrides?.color ?? theme.colors.primary,
 	}
 });
 
