@@ -1,10 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Scrollbars } from 'rc-scrollbars';
 import { Numbers } from 'humanify-numbers';
-import { useChatContext } from 'stream-chat-react';
-import { useAsyncFn } from 'react-use';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
@@ -20,6 +18,7 @@ import Tooltip from '@combase.app/ui/Tooltip';
 import HeaderBase from 'components/HeaderBase';
 
 import useAgent from 'hooks/useAgent';
+import useChatUserPresence from 'hooks/useChatUserPresence';
 
 const Root = styled(Box)`
 	width: ${({  theme }) => theme.sizes.drawer};
@@ -72,46 +71,11 @@ const Statistic = styled(Text).attrs({ as: "blockquote" })`
 	}
 `;
 
-const ProfileDrawer = ({ history }) => {
-	const { client } = useChatContext();
-	
+const ProfileDrawer = ({ history }) => {	
 	const { agentId } = useParams();
 	const {data} = useAgent(agentId);
+	const isOnline = useChatUserPresence(agentId);
 	const agent = data?.organization?.agent;
-	
-	const getUser = useCallback(async (id) => {
-		try {
-			const data = await client.queryUsers({ 
-				id: { 
-					$in: [id] 
-				}},  
-				{ id: -1 },  
-				{ presence: true } 
-			);
-			const user = data.users[0];
-
-			setOnlineStatus(user.online);
-			return user;
-		} catch (error) {
-			console.error(error);
-		}
-	}, []);
-		
-	const [{ value: streamUser }, doGetUser] = useAsyncFn(getUser);
-	const [isOnline, setOnlineStatus] = useState();
-
-	const handleEvent = useCallback(({ user }) => {
-		if (user.id === streamUser.id) {
-			setOnlineStatus(user.online);
-		}
-	}, [streamUser]);
-
-	useEffect(() => {
-		doGetUser(agentId);
-		client.on('user.presence.changed', handleEvent);
-		
-		return () => client.off('user.presence.changed', handleEvent);
-	}, [agentId]);
 
 	return (
 		<Root>
