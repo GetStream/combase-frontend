@@ -86,6 +86,7 @@ const List = algoliaListProps(({ currentRefinement, agents, hits }) => {
 					: agents.edges.map(({ node: agent }) => (
 						<AgentItem
 							_id={agent?._id} 
+							avatar={agent?.avatar}
 							access={agent?.access}
 							active={agent?.active}
 							meta={agent?.email} 

@@ -109,7 +109,26 @@ export const GET_MY_PROFILE = gql`
 				color
 			}
         }
+
+		organization {
+			stream {
+				key
+			}
+		}
     }
+`;
+
+export const GET_UPLOAD_CREDENTIALS = gql`
+	query getUploadCredentials {
+		me {
+			streamToken
+		}
+		organization {
+			stream {
+				key
+			}
+		}
+	}
 `;
 
 export const GET_WIDGET_SETTINGS = gql`

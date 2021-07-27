@@ -24,7 +24,7 @@ const AccessChip = styled(Chip)`
 	text-transform: capitalize;
 `;
 
-const AgentItem = ({ access, active, _id, meta, name }) => {
+const AgentItem = ({ access, active, avatar, _id, meta, name }) => {
 	const history = useHistory();
 	const { agentId } = useParams();
 
@@ -47,7 +47,7 @@ const AgentItem = ({ access, active, _id, meta, name }) => {
 			interaction="highlight"
 			onClick={() => _id ? history[agentId ? 'replace' : 'push'](`/agents/${_id}`) : null} 
 		>
-			<AgentEntity meta={meta} name={name} />
+			<AgentEntity avatar={avatar} meta={meta} name={name} />
 			<Box>
 				<AccessChip color={`access.${access}`} icon={RoleIcon} label={access} reverse variant="ghost" />
 			</Box>

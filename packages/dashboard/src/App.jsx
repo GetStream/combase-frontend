@@ -17,6 +17,7 @@ import Agents from 'screens/Agents';
 import Integrations from 'screens/Integrations';
 
 import Sidenav from 'components/Sidenav';
+import CropImageDialog from 'components/CropImageDialog/CropImageDialog';
 
 import Box from '@combase.app/ui/Box';
 
@@ -42,6 +43,9 @@ function App() {
 						</Root>
 						<Route path="/settings">
 							{({ history, match }) => <Modal component={Settings} open={match} onClose={history.goBack} />}
+						</Route>
+						<Route path="/crop-image">
+							{({ history, match }) => <Modal component={CropImageDialog} open={match} onClose={history.goBack} />}
 						</Route>
 					</Router>
 				</StreamContextProvider>

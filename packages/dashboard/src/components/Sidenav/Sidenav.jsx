@@ -25,6 +25,10 @@ const Main = styled(Box)`
 	width: 100%;
 `;
 
+const SettingsAvatar = styled(Avatar)`
+	border: 2px solid ${({ theme }) => theme.colors.border};
+`;
+
 const linkStyle = {
 	textDecoration: 'none',
 };
@@ -43,9 +47,9 @@ const Sidenav = () => {
 				</Box>
 			</Main>
 			<Link to="/settings/your-profile" style={linkStyle}>
-				<Avatar 
+				<SettingsAvatar 
 					name={currentUser.data?.me.name.full} 
-					// src={currentUser.data?.me.avatar} 
+					src={currentUser.data?.me.avatar} 
 				/>
 			</Link>
 		</Root>
