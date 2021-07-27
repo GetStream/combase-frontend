@@ -14,8 +14,8 @@ export const LOOKUP_INTEGRATION = gql`
 `;
 
 export const GET_INTEGRATION_DEFINITIONS = gql`
-    query getIntegrationDefinitions {
-        integrationDefinitions {
+    query getIntegrationDefinitions($filter: IntegrationDefinitionFilterInput) {
+        integrationDefinitions(filter: $filter) {
             icon
             id
             name

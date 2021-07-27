@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'rc-scrollbars';
 import { interactions } from '@combase.app/styles';
@@ -53,14 +53,41 @@ const GridList = styled(Container)`
 const CategoryLink = styled(Text)`
 	${interactions};
 	user-select: none;
+	color: ${({ active, theme }) => active ? theme.colors.primary : theme.colors.text};
+	font-weight: ${({ active, theme }) => theme.fontWeights[active ? '800' : '400']};
 `;
 
 const fuseOpts = {
 	keys: ['name'],
 }
 
+const OPTS = [
+	{
+		name: 'CRM',
+		value: "crm"
+	},
+	{
+		name: 'Analytics',
+		value: "analytics"
+	},
+	{
+		name: 'Tickets',
+		value: "tickets"
+	},
+	{
+		name: 'Email',
+		value: "email",
+	},
+]
+
 const Integrations = () => {
-	const { data } = useIntegrationDefinitions();
+	const [category, setCategory] = useState();
+
+	const filter = useMemo(() => category ? ({
+		category,
+	}) : undefined, [category]);
+
+	const { data } = useIntegrationDefinitions(filter);
 	const { integrationDefinitions } = data || {}
 
 	const { result, search, term, reset } = useFuse({
@@ -87,10 +114,9 @@ const Integrations = () => {
 								<Text marginBottom={5} fontSize={5} lineHeight={5} fontWeight={600}>
 									Categories
 								</Text>
-								<CategoryLink interaction="opacity" marginY={2} fontSize={4} lineHeight={6}>CRM</CategoryLink>
-								<CategoryLink interaction="opacity" marginY={2} fontSize={4} lineHeight={6}>Email</CategoryLink>
-								<CategoryLink interaction="opacity" marginY={2} fontSize={4} lineHeight={6}>Analytics</CategoryLink>
-								<CategoryLink interaction="opacity" marginY={2} fontSize={4} lineHeight={6}>Automation</CategoryLink>
+								{
+									OPTS.map(({ name, value }) => <CategoryLink active={category === value} onClick={() => setCategory(category === value ? undefined : value)} interaction="opacity" marginY={2} fontSize={4} lineHeight={6}>{name}</CategoryLink>)
+								}
 							</Box>
 						</StickyWrapper>
 					</Container>

@@ -37,7 +37,7 @@ function App() {
 							<Switch>
 								<Route path="/agents" component={Agents} />
 								<Route path="/chats" component={Chats} />
-								<Route path="/integrations" component={Integrations} />
+								<Route path="/integrations/:category?" component={Integrations} />
 							</Switch>
 						</Root>
 						<Route path="/settings">
