@@ -1,15 +1,12 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useChatContext } from 'stream-chat-react';
-import { interactions } from '@combase.app/styles';
 import { Scrollbars } from 'rc-scrollbars';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
 import Container from '@combase.app/ui/Container';
 import Dropdown from '@combase.app/ui/Dropdown';
-import EmptyView from '@combase.app/ui/EmptyView';
-import IconBubble from '@combase.app/ui/IconBubble';
 import IconButton from '@combase.app/ui/IconButton';
 import IconLabel from '@combase.app/ui/IconLabel';
 import { BadgeIcon, ClockIcon, CloseIcon, DropdownIcon, MailIcon, PinIcon, ZendeskIcon } from '@combase.app/ui/icons';
@@ -19,8 +16,11 @@ import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
 import HeaderBase from 'components/HeaderBase';
+import useChatUserPresence from 'hooks/useChatUserPresence';
 import useTicket from 'hooks/useTicket';
 import useUserCurrentTime from 'hooks/useUserCurrentTime';
+
+import DynamicActionsGrid from './DynamicActionsGrid';
 
 const Root = styled(Box)`
     width: ${({ theme }) => theme.sizes.drawer};
@@ -51,23 +51,6 @@ const UserProfile = styled(Box)`
 	align-items: center;
 `;
 
-const ActionsGrid = styled(Box)`
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: ${({theme}) => theme.space[1]};
-`;
-
-const ActionItem = styled(Box)`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	user-select: none;
-	cursor: pointer;
-	${interactions};
-`;
-
-const actions = true;
 const ChatDrawer = ({ onClose }) => {
 	const { channel } = useChatContext();
 	const [headerMenuAnchorRef, { open: headerMenuOpen, toggle: toggleHeaderMenu }] = usePopoverState();
@@ -75,6 +58,7 @@ const ChatDrawer = ({ onClose }) => {
 	
 	const ticket = data?.organization?.ticket;
 	const currentTime = useUserCurrentTime(ticket?.user?.timezone);
+	const isOnline = useChatUserPresence(ticket?.user?._id);
 
 	const userLoc = useMemo(() => {
 		if (!ticket?.user?.timezone) return '-';
@@ -103,7 +87,13 @@ const ChatDrawer = ({ onClose }) => {
 								<Text fontSize={5} lineHeight={5} fontWeight={700}>
 									{ticket?.user?.name}
 								</Text>
-								<BadgeIcon color="green" size={4} />
+								{
+									isOnline ? (
+										<Tooltip text="Online Now" placement="top">
+											<BadgeIcon color="green" size={4} />
+										</Tooltip>
+									) : null
+								}
 							</IconLabel>
 							<IconLabel>
 								{ticket?.user?.timezone ? <PinIcon color="altText" /> : null}
@@ -132,23 +122,7 @@ const ChatDrawer = ({ onClose }) => {
 								{currentTime}
 							</Text>
 						</TextGroup>
-						<Box marginTop={8}>
-							<Text fontSize={5} lineHeight={5} fontWeight={600}>
-								Actions
-							</Text>
-							{actions ? (
-								<ActionsGrid paddingY={4}>
-									<ActionItem interaction="highlight" padding={2} borderRadius={3}>
-										<IconBubble size={12} icon={ZendeskIcon} />
-										<Text marginTop={1} textAlign="center" fontSize={2} fontWeight="600">Escalate to Zendesk</Text>
-									</ActionItem>
-								</ActionsGrid>
-							) : (
-								<EmptyView marginTop={4} title="No Actions Available">
-									<Text color="altText">Configure integrations to add new actions.</Text>
-								</EmptyView>
-							)}
-						</Box>
+						<DynamicActionsGrid />
 					</Container>
 				</Box>
 			</Scrollbars>

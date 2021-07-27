@@ -128,7 +128,7 @@ export const GET_TICKET = gql`
 `;
 
 export const GET_TICKET_DRAWER_ACTIONS = gql`
-    query getTicketDrawer($_id: MongoID!) {
+    query getTicketDrawer {
         organization {
 			_id
 			integrations(filter: {

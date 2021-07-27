@@ -125,8 +125,8 @@ const List = React.forwardRef(({ children, loading, LoadingIndicator }, ref) => 
 	</ChannelListRoot>
 ));
 
-const ChatList = ({ match }) => {
-	const {channel, client, setActiveChannel} = useChatContext();
+const ChatList = () => {
+	const {channel, client} = useChatContext();
 	const currentUser = useCurrentUser();
 
 	const [sortValue, setSort] = useState(-1);
@@ -215,7 +215,7 @@ const ChatList = ({ match }) => {
 					<DropdownIcon size={4} />
 				</MenuButton>
 				<Popover anchor={scopeMenuRef.current} as={Dropdown} open={scopeMenuOpen} placement="bottom-start" onClose={() => toggleScopeMenu(false)}>
-					{SCOPE.map((props) => <MenuItem {...props} active={props.value === scopeValue} onClick={handleSetScope} />)}
+					{SCOPE.map((props) => <MenuItem {...props} key={props.value} active={props.value === scopeValue} onClick={handleSetScope} />)}
 				</Popover>
 			</Header>
 			<Header paddingX={4} height={8}>
@@ -227,7 +227,7 @@ const ChatList = ({ match }) => {
 					</IconLabel>
 				</MenuButton>
 				<Popover anchor={inboxMenuRef.current} as={Dropdown} open={inboxMenuOpen} placement="bottom-start" subheading="Select Inbox:" onClose={() => toggleInboxMenu(false)}>
-					{STATUS.map((props) => <MenuItem {...props} active={props.value === inbox} onClick={handleSetInbox} />)}
+					{STATUS.map((props) => <MenuItem {...props} key={props.value} active={props.value === inbox} onClick={handleSetInbox} />)}
 				</Popover>
 				<FilterButton ref={sortAnchorRef} onClick={toggleSortMenu} paddingY="small" paddingLeft={2} paddingRight="small" borderRadius={1}>
 					<IconLabel gap={2}>
@@ -236,7 +236,7 @@ const ChatList = ({ match }) => {
 					</IconLabel>
 				</FilterButton>
 				<Popover anchor={sortAnchorRef.current} as={Dropdown} open={sortMenuOpen} placement="bottom-end" onClose={() => toggleSortMenu(false)}>
-					{SORT.map(props => <MenuItem {...props} active={props.value === sortValue} onClick={handleSetSort} />)}
+					{SORT.map(props => <MenuItem {...props} key={props.value} active={props.value === sortValue} onClick={handleSetSort} />)}
 				</Popover>
 			</Header>
 			<ChannelList 
