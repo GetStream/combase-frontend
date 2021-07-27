@@ -4,6 +4,7 @@ export * from './addCircle';
 export * from './addGroup';
 export * from './addImage';
 export * from './addLink';
+export * from './addSplit';
 export * from './addTag';
 export * from './addUsers';
 export * from './agents';

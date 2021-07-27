@@ -13,7 +13,7 @@ import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
 import Container from '@combase.app/ui/Container';
 import IconButton from '@combase.app/ui/IconButton';
-import { AddCircleIcon, DeleteIcon } from '@combase.app/ui/icons';
+import { AddCircleIcon, AddSplitIcon, DeleteIcon, CloseCircleIcon } from '@combase.app/ui/icons';
 import MenuItem from '@combase.app/ui/MenuItem';
 import SelectButton from '@combase.app/ui/SelectButton';
 import Text from '@combase.app/ui/Text';
@@ -43,9 +43,23 @@ const Footer = styled(DialogFooter)`
 
 const Entry = styled(Box)`
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
+	& > ${Text} {
+		align-self: center;
+	}
+
 	& > * + * {
 		${itemGap};
+	}
+`;
+
+const TimeEntry = styled(Entry)`
+	& + & {
+		margin-top: ${({ theme }) => theme.space[2]};
+	}
+
+	& button {
+		align-self: center;
 	}
 `;
 
@@ -58,18 +72,46 @@ do {
 	current = add(current, step);
 } while (isSameDay(start, current));
 
+const getLabelProp = (value, children) => {
+	return children?.find(({ props }) => props.value === value)?.props.label;
+};
+
+const getDayLabel = (value, children) => {
+	if (value.length > 1) {
+		if (value.length === 5 && !value.includes('saturday') && !value.includes('sunday')) {
+			return 'Weekdays';
+		} else if (value.length === 2 && value.includes('saturday') && value.includes('sunday')) {
+			return 'Weekends';
+		} else if (value.length === 7) {
+			return 'Everyday';
+		} else {
+			let labels = value.map((val) => getLabelProp(val, children)?.slice(0, 3));
+			if (value.length < 5) {
+				return labels.join(',');
+			}
+			return `${labels.length} days`
+		}
+	} else {
+		return getLabelProp(value[0], children);
+	}
+};
+
+const emptyTime = [
+	{
+		start: '',
+		end: '',
+	}
+];
+
 const emptySchedule = {
 	enabled: true,
 	day: [],
-	time: {
-		end: '',
-		start: '',
-	}
+	time: emptyTime
 };
 
 const Availability = () => {
 	const [updateAgent, { loading }] = useMutation(UPDATE_AGENT);
-	const {data} = useQuery(GET_MY_PROFILE);
+	const {data} = useQuery(GET_MY_PROFILE, { fetchPolicy: 'cache-and-network' });
 
 	const initialValues = useMemo(() => ({
 		schedule: data?.me?.schedule?.length ? data.me.schedule.map(({
@@ -79,29 +121,44 @@ const Availability = () => {
 		}) => ({
 			enabled,
 			day,
-			time: {
-				start: time.start,
-				end: start.end
-			},
+			time: time.map((t) => ({
+				start: t.start,
+				end: t.end,
+			})),
 		})) : [
 			{
 				enabled: true,
 				day: [],
-				time: {
-					start: '',
-					end: '',
-				}
+				time: emptyTime
 			}
 		]
 	}), []);
 
 	const handleSubmit = useCallback(async (values) => {
 		try {
+			console.log(values.schedule);
 			await updateAgent({
 				variables: {
 					_id: data.me._id,
 					record: {
-						schedule: values.schedule,
+						schedule: values.schedule.map(s => ({
+							...s,
+							time: s.time.map(({ start, end }) => {
+								const [startHour, startMinute] = start.split(':');
+								const [endHour, endMinute] = end.split(':');
+			
+								return {
+									start: {
+										hour: parseInt(startHour, 10),
+										minute: parseInt(startMinute, 10),
+									},
+									end: {
+										hour: parseInt(endHour, 10),
+										minute: parseInt(endMinute, 10),
+									},
+								};
+							})
+						})),
 					}
 				}
 			})
@@ -109,7 +166,7 @@ const Availability = () => {
 			console.error(error.message);
 		}
 	}, [data]);
-
+	console.log(initialValues);
 	return (
 		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 			{
@@ -129,13 +186,14 @@ const Availability = () => {
 									return (
 										<>
 											{formik.values.schedule.map((entry, index) => (
-												<Entry gapRight={4} paddingY={2}>
+												<Entry gapRight={2} paddingY={2}>
 													<SelectButton 
 														label="Day" 
 														multi 
+														getLabel={getDayLabel}
 														name={`schedule.${index}.day`} 
 														onChange={formik.handleChange}
-														value={formik.values.schedule[index].day}
+														value={entry.day}
 													>
 														<MenuItem label="Monday" value="monday" />
 														<MenuItem label="Tuesday" value="tuesday" />
@@ -145,37 +203,68 @@ const Availability = () => {
 														<MenuItem label="Saturday" value="saturday" />
 														<MenuItem label="Sunday" value="sunday" />
 													</SelectButton>
-													<Text>from</Text>
-													<SelectButton 
-														label="Start" 
-														maxHeight={19} 
-														name={`schedule.${index}.time.start`} 
-														onChange={formik.handleChange}
-														value={formik.values.schedule[index].time.start}
-													>
-														{steps.map((step, i) => {
-															const hr12 = format(step, 'hh:mm a');
-															const hr24 = format(step, 'H:mm');
-															return <MenuItem key={i} label={hr12} value={hr24} />
-														})}
-													</SelectButton>
-													<Text>to</Text>
-													<SelectButton 
-														label="End" 
-														maxHeight={19} 
-														name={`schedule.${index}.time.end`} 
-														onChange={formik.handleChange}
-														value={formik.values.schedule[index].time.end}
-													>
-														{steps.map((step, i) => {
-															const hr12 = format(step, 'hh:mm a');
-															const hr24 = format(step, 'H:mm');
-															return <MenuItem key={i} label={hr12} value={hr24} />
-														})}
-													</SelectButton>
-													<Tooltip text="Delete Schedule Entry">
-														<IconButton color="border" type="button" size={4} icon={DeleteIcon} onClick={() => arrayHelpers.remove(index)} />
-													</Tooltip>
+													<Box>
+														<FieldArray 
+															name={`schedule.${index}.time`}
+															render={arrayHelpers => entry.time.map((_, timeIndex) => (
+																<TimeEntry gapLeft={2}>
+																	<Text>from</Text>
+																	<SelectButton 
+																		label="Start" 
+																		maxHeight={19} 
+																		name={`schedule.${index}.time.${timeIndex}.start`} 
+																		onChange={formik.handleChange}
+																		value={entry.time[timeIndex].start}
+																	>
+																		{steps.map((step, i) => {
+																			const hr12 = format(step, 'hh:mm a');
+																			const hr24 = format(step, 'H:mm');
+																			return <MenuItem key={i} label={hr12} value={hr24} />
+																		})}
+																	</SelectButton>
+																	<Text>to</Text>
+																	<SelectButton 
+																		label="End" 
+																		maxHeight={19} 
+																		name={`schedule.${index}.time.${timeIndex}.end`} 
+																		onChange={formik.handleChange}
+																		value={entry.time[timeIndex].end}
+																	>
+																		{steps.map((step, i) => {
+																			const hr12 = format(step, 'hh:mm a');
+																			const hr24 = format(step, 'H:mm');
+																			return <MenuItem key={i} label={hr12} value={hr24} />
+																		})}
+																	</SelectButton>
+																	{
+																		timeIndex !== 0 ? (
+																			<Tooltip text="Remove Split">
+																				<IconButton color="text" type="button" size={4} icon={CloseCircleIcon} onClick={() => arrayHelpers.remove(timeIndex)} />
+																			</Tooltip>
+																		) : null
+																	}
+																	{
+																		timeIndex === entry.time.length - 1 ? (
+																			<Tooltip text="Split Time">
+																				<IconButton color="text" type="button" size={4} icon={AddSplitIcon} onClick={() => arrayHelpers.push(emptyTime)} />
+																			</Tooltip>
+																		) : null
+																	}
+																</TimeEntry>
+															))}
+														/>
+													</Box>
+													<Box paddingTop={3}>
+														<Tooltip text="Delete Schedule Entry">
+															<IconButton 
+																color="error" 
+																type="button" 
+																size={4} 
+																icon={DeleteIcon} 
+																onClick={() => arrayHelpers.remove(index)} 
+															/>
+														</Tooltip>
+													</Box>
 												</Entry>
 											))}
 											<TextLink marginY={4} onClick={() => arrayHelpers.push(emptySchedule)} color="primary" icon={AddCircleIcon}>Add Schedule Entry</TextLink>

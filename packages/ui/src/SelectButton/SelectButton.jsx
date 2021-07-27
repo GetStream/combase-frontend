@@ -12,8 +12,23 @@ import Dropdown from '../Dropdown';
 import {useInput} from '../shared/useInput';
 import {InputBase} from '../shared/InputBase';
 
+const defaultGetLabel = (value, children) => {
+	if (!Array.isArray(value) && !!value) {
+		return children?.find(({ props }) => props.value === value)?.props.label;
+	} else if (Array.isArray(value)) {
+		const labels = children?.filter(({ props }) => value.includes(props.value));
+		if (labels?.length > 1) {
+			return labels.map(({ props }) => props.label).join(', ');
+		} else if (labels?.length === 1) {
+			return labels[0].props.label;
+		}
+	}
+
+	return undefined;
+};
+
 const SelectButton = forwardRef(
-    ({ children, multi, name, label: labelProp, maxHeight, onBlur, onChange, onFocus, subheading, value, ...props }, ref) => {
+    ({ children, multi, name, label: labelProp, maxHeight, onBlur, onChange, onFocus, getLabel, subheading, value, ...props }, ref) => {
 		const [anchorRef, { open, toggle }] = usePopoverState();
 
         const inputRef = useRef();
@@ -28,7 +43,7 @@ const SelectButton = forwardRef(
         const handleSelectOption = ({ target: { value: newValue }}) => {
             if (multi) {
 				const idx = value.findIndex(existing => existing === newValue);
-				console.log(newValue, idx);
+
                 if (idx === -1) {
                     inputProps.onChange({
 						target: {
@@ -87,18 +102,9 @@ const SelectButton = forwardRef(
 
         const label = useMemo(() => {
 			const { value } = inputProps; 
-            if (!Array.isArray(value) && !!value) {
-                return children?.find(({ props }) => props.value === inputProps.value)?.props.label;
-            } else if (Array.isArray(value)) {
-				const labels = children?.filter(({ props }) => inputProps.value.includes(props.value));
-				if (labels?.length > 1) {
-					return labels.map(({ props }) => props.label).join(', ');
-				} else if (labels?.length === 1) {
-					return labels[0].props.label;
-				}
-			}
+            const label = getLabel(value, children);
 
-            return labelProp || '';
+            return label || labelProp || '';
         }, [inputProps, labelProp]);
 
         return (
@@ -136,6 +142,7 @@ SelectButton.defaultProps = {
     color: 'primary',
     type: 'button',
     variant: 'flat',
+	getLabel: defaultGetLabel,
     size: 'sm',
 };
 
