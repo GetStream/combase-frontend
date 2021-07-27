@@ -191,7 +191,7 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 		<Root variant="border" ref={ref}>
 			<CloseButton variant="filled" onClick={props.onClose} icon={CloseIcon} />
 			<Header paddingX={7} paddingY={10}>
-				<Avatar size={13} variant="circle" />
+				<Avatar name={data?.integrationDefinition?.name} size={13} variant="circle" />
 				<Text fontSize={5} lineHeight={7} marginTop={5} maxWidth={18}>
 					Connect {data?.integrationDefinition?.name} to your Combase Organization.
 				</Text>
