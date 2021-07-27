@@ -193,16 +193,13 @@ const ChatList = ({ match }) => {
 		// 	}
 		// }
 
-		if (scopeValue === 'yours') {
-			const me = updated.channel.members.find(({ user_id }) => user_id === client.userID);
-			if (!me) {
-				removeChannelFromList(setChannels, updated);
-			}
+		const me = updated.channel.members.find(({ user_id }) => user_id === client.userID);
+		if (!me) {
+			removeChannelFromList(setChannels, updated);
 		} else {
 			if (updated.channel.status !== inbox) {
 				removeChannelFromList(setChannels, updated);
 			} else if (inbox !== 'unassigned' && updated.channel.status === inbox) {
-				console.log('add', inbox, updated);
 				const channel = await getChannel(client, ...updated.cid.split(":"));
 				setChannels(prev => uniqBy([channel, ...prev], ({cid}) => cid));
 			}
