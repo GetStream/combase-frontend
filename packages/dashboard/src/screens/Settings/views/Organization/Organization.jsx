@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 import { Form, Formik } from 'formik';
@@ -12,8 +12,8 @@ import Text from '@combase.app/ui/Text';
 import TextInput from '@combase.app/ui/TextInput';
 
 import { GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from 'apollo/operations/auth';
-import { UPDATE_AGENT } from 'apollo/operations/agent';
 
+import AvatarInput from 'components/AvatarInput';
 import {DialogFooter} from 'components/Dialog';
 import HeaderBase from 'components/HeaderBase';
 
@@ -53,6 +53,8 @@ const Footer = styled(DialogFooter)`
 `;
 
 const Organization = () => {
+	const avatarInputRef = useRef();
+
 	const { data } = useQuery(GET_ORGANIZATION_PROFILE);
 	const [updateOrganization, { loading }] = useMutation(UPDATE_ORGANIZATION_PROFILE);
 	const organization = data?.organization;
@@ -127,12 +129,18 @@ const Organization = () => {
 							</Box>
 							<Box>
 								<StickyWrapper>
-									<Avatar src={formik.values.branding.logo} name={formik.values.name} size={15} />
+									<AvatarInput 
+										ref={avatarInputRef} 
+										src={formik.values.branding.logo} 
+										name={formik.values.name} 
+										onChange={(avatar) => formik.setFieldValue('branding.logo', avatar)}
+										size={15} 
+									/>
 									<InputGroup marginTop={4} gapTop={2}>
-										<Button color="primary" variant="flat">
+										<Button onClick={() => avatarInputRef.current.click()} color="primary" variant="flat">
 											<Text color="primary">Change Photo</Text>
 										</Button>
-										<Button color="red" variant="flat">
+										<Button color="red" variant="flat" onClick={() => formik.setFieldValue('branding.logo', null)}>
 											<Text color="red">Remove Photo</Text>
 										</Button>
 									</InputGroup>
