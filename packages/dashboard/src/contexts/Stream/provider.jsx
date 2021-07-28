@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Chat } from 'stream-chat-react';
 
+import { LoadingScreen } from '@combase.app/ui/EmptyView';
+
 import useCurrentUser from 'hooks/useCurrentUser';
 
 import { createAuthedChatClient } from './utils';
@@ -21,7 +23,7 @@ const StreamContextProvider = ({ children }) => {
 	 }, [currentUser]);
 	 
 	 if (!chatClient) {
-		 return <p>Loading...</p>;
+		 return <LoadingScreen />;
 	 }
 
 	 return (
