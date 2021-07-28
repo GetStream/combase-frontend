@@ -76,10 +76,17 @@ const LoginForm = () => {
 						/>
 						<Button 
 							loading={loading}
-							marginTop={8}
 							type="submit"
 						>
 							<Text color="white">Log in</Text>
+						</Button>
+						<Button 
+							disabled={loading}
+							color="altText"
+							onClick={() => history.push('/auth/signup')}
+							variant="flat"
+						>
+							<Text color="altText">Create Account</Text>
 						</Button>
 					</Root>
 				)

@@ -24,7 +24,7 @@ const Login = () => {
 				fontSize={5} 
 				fontWeight={700}
 				lineHeight={5} 
-				marginBottom={5} 
+				marginBottom={8} 
 			>
 				Welcome to Combase
 			</Heading>

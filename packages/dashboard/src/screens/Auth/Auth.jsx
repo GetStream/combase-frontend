@@ -14,6 +14,7 @@ import TextGroup from '@combase.app/ui/TextGroup';
 import useCurrentUser from 'hooks/useCurrentUser';
 
 import Login from './views/Login';
+import Onboarding from './views/Onboarding';
 
 const Root = styled(Box)`
 	display: grid;
@@ -87,8 +88,9 @@ const Auth = () => {
 				</Box>
 			</ThemeProvider>
 			<Switch>
-				<Route path="/auth/login" component={Login} />
-				<Route path="/auth" render={() => <Redirect replace to='/auth/login' />} />
+				<Route exact path="/auth/signup" component={Onboarding} />
+				<Route exact path="/auth/login" component={Login} />
+				<Route exact path="/auth" render={() => <Redirect replace to='/auth/login' />} />
 			</Switch>
 		</Root>
 	);

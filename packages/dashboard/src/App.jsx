@@ -32,7 +32,7 @@ const Root = styled(Box)`
 
 function Dashboard() {
 	const {data, loading} = useCurrentUser();
-	
+
 	if (!loading && !data?.me) {
 		return <Redirect replace to='/auth/login' />
 	}
