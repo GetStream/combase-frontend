@@ -27,8 +27,8 @@ const Root = styled(ButtonBase)`
 
     & > div:before {
         content: '';
-        ${({ color, disabled, interaction, theme, variant }) =>
-		!disabled && interaction === 'bubble' || variant === 'filled'
+        ${({ active, color, disabled, interaction, theme, variant }) =>
+		!disabled && interaction === 'bubble' || variant === 'filled' || active
                 ? `
 		width: 150%;
 		height: 150%;
@@ -36,7 +36,7 @@ const Root = styled(ButtonBase)`
 		background-color: ${variant === 'filled' ? theme.colors.surface : theme.utils.colors.fade(theme.colors[color], color === 'border' ? .16 : .08)};
 		border-radius: 50%;
 		z-index: 0;
-		transform: scale(${variant === 'filled' ? 1 : 0});
+		transform: scale(${variant === 'filled' || active ? 1 : 0});
 		transition: 200ms transform ${theme.easing.snapPing}, 160ms background ${theme.easing.move};
 		`
                 : null};

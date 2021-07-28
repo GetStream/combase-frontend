@@ -16,6 +16,7 @@ const Root = styled(Container).attrs({
     paddingBottom: [3, 3, 5],
 	maxWidth: 21
 })`
+	min-width: 0;
     min-height: 3.5rem;
     background: transparent;
 `;
