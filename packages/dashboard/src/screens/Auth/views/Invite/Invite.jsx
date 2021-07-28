@@ -41,9 +41,9 @@ const Invite = () => {
 
 		if (token) {
 			const payload = jwt(token);
-			// if (payload.exp < (Date.now() / 1000)) {
-			// 	return 'expired';
-			// }
+			if (payload.exp < (Date.now() / 1000)) {
+				return 'expired';
+			}
 			localStorage.setItem('combase-organization', payload.org);
 			
 			return payload;
