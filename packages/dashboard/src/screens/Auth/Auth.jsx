@@ -28,6 +28,18 @@ const Logo = styled(Box)`
 	align-items: center;
 `;
 
+const Page = styled(Box)`
+	height: 100%;
+	display: grid;
+	grid-template-rows: 1fr min-content;
+`;
+
+const Credit = styled(Box)`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
 const Auth = () => {
 	const { data, loading } = useCurrentUser();
 	
@@ -87,11 +99,22 @@ const Auth = () => {
 					</Box>
 				</Box>
 			</ThemeProvider>
-			<Switch>
-				<Route exact path="/auth/signup" component={Onboarding} />
-				<Route exact path="/auth/login" component={Login} />
-				<Route exact path="/auth" render={() => <Redirect replace to='/auth/login' />} />
-			</Switch>
+			<Page>
+				<Switch>
+					<Route exact path="/auth/signup" component={Onboarding} />
+					<Route exact path="/auth/login" component={Login} />
+					<Route exact path="/auth" render={() => <Redirect replace to='/auth/login' />} />
+				</Switch>
+				<Credit paddingY={7}>
+					<Text 
+						color="altText"
+						fontSize={3}
+						lineHeight={5}
+					>
+						© 2021 • Stream.io Inc. All Rights Reserved.
+					</Text>
+				</Credit>
+			</Page>
 		</Root>
 	);
 };
