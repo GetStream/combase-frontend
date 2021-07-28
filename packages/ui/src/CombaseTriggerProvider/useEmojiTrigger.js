@@ -8,7 +8,7 @@ const useEmojiTrigger = (emojiIndex) => ({
 		}
 		const emojis = emojiIndex?.search(query) || [];
 		// emojiIndex.search sometimes returns undefined values, so filter those out first
-		const result = emojis.filter(Boolean).slice(0, 30);
+		const result = emojis.filter(Boolean).slice(0, 50);
 		if (onReady) onReady(result, query);
 
 		return result;

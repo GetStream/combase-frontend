@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { 
 	Channel, 
@@ -43,6 +43,25 @@ const EmojiRow = styled(Box)`
 	}
 `;
 
+const scrollToItem = (container, item) => {
+	if (!item) return;
+
+	const itemWidth = parseInt(getComputedStyle(item).getPropertyValue('width'), 10);
+
+	const containerWidth = parseInt(getComputedStyle(container).getPropertyValue('width'), 10) - itemWidth;
+
+	const actualScrollLeft = container.scrollLeft;
+	const itemOffsetLeft = item.offsetLeft;
+	const itemOffsetWidth = item.offsetWidth;
+
+	if (itemOffsetLeft < actualScrollLeft + containerWidth && actualScrollLeft < (itemOffsetLeft - itemOffsetWidth)) {
+		return;
+	}
+
+	// eslint-disable-next-line
+	container.scrollLeft = itemOffsetLeft;
+};
+
 const SuggestionList = (props) => {
 	const { 
 		component: Component, 
@@ -51,6 +70,8 @@ const SuggestionList = (props) => {
 		onSelect,
 		values 
 	} = props;
+	const scrollRef = useRef();
+	const itemsRef = [];
 
 	const [selectedItem, setSelectedItem] = useState(undefined);
 
@@ -74,6 +95,7 @@ const SuggestionList = (props) => {
 			setSelectedItem((prevSelected) => {
 			  if (prevSelected === undefined) return 0;
 			  const newID = prevSelected === 0 ? values.length - 1 : prevSelected - 1;
+			  scrollToItem(scrollRef.current, itemsRef[newID]);
 			  return newID;
 			});
 		  }
@@ -82,6 +104,7 @@ const SuggestionList = (props) => {
 			setSelectedItem((prevSelected) => {
 			  if (prevSelected === undefined) return 0;
 			  const newID = prevSelected === values.length - 1 ? 0 : prevSelected + 1;
+			  scrollToItem(scrollRef.current, itemsRef[newID]);
 			  return newID;
 			});
 		  }
@@ -125,14 +148,17 @@ const SuggestionList = (props) => {
 			<ListSubheader>
 				Suggestions:
 			</ListSubheader>
-			<EmojiRow padding={2} gapLeft={3}>
+			<EmojiRow ref={scrollRef} padding={2} gapLeft={3}>
 				{values.map((item, i) => (
 					<Component 
 						onClick={handleClick}
 						onFocus={() => selectItem(item)}
 						onMouseEnter={() => selectItem(item)}
 						key={i} 
-						entity={item} 
+						entity={item}
+						ref={(ref) => {
+							itemsRef[i] = ref;
+						}} 
 						selected={isSelected(item)}
 					/>
 				))}
