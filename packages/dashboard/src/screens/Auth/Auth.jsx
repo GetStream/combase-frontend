@@ -11,6 +11,8 @@ import StreamLogo from '@combase.app/ui/StreamLogo';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
+import useCurrentUser from 'hooks/useCurrentUser';
+
 import Login from './views/Login';
 
 const Root = styled(Box)`
@@ -26,6 +28,12 @@ const Logo = styled(Box)`
 `;
 
 const Auth = () => {
+	const { data, loading } = useCurrentUser();
+	
+	if (!loading && data?.me) {
+		return <Redirect replace to='/' />
+	}
+
 	return (
 		<Root>
 			<ThemeProvider theme={themes.dark}>
