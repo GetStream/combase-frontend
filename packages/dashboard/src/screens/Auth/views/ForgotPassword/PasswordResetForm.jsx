@@ -30,19 +30,13 @@ const initialValues = {
 	password: "",
 };
 
-const LoginForm = () => {
+const PasswordResetForm = () => {
 	const history = useHistory();
 	const [handleLogin, { loading } ] = useMutation(LOGIN);
 
 	const handleSubmit = useCallback(async (variables) => {
 		try {
-			await handleLogin({
-				variables,
-				update: (_, { data: { agent } }) => {
-					setAuthenticationCredentials(agent.token);
-					history.push('/');
-				}
-			})
+			// MUTATION HERE
 		} catch (error) {
 			console.error(error.message);
 		}
@@ -66,34 +60,12 @@ const LoginForm = () => {
 							onFocus={formik.handleFocus} 
 							value={formik.values.email} 
 						/>
-						<TextInput 
-							label="Password" 
-							name="password" 
-							type="password"
-							onBlur={formik.handleBlur} 
-							onChange={formik.handleChange} 
-							onFocus={formik.handleFocus} 
-							value={formik.values.password} 
-						/>
 						<Button 
 							loading={loading}
 							type="submit"
 						>
-							<Text color="white">Log in</Text>
+							<Text color="white">Send Email</Text>
 						</Button>
-						<Button 
-							disabled={loading}
-							color="altText"
-							onClick={() => history.push('/auth/signup')}
-							variant="flat"
-						>
-							<Text color="altText">Create Account</Text>
-						</Button>
-						<Box marginTop={4} style={{ textAlign: 'center' }}>
-							<TextLink color="red" onClick={() => history.push('/auth/reset')}>
-								Forgot Password?
-							</TextLink>
-						</Box>
 					</Root>
 				)
 			}
@@ -101,4 +73,4 @@ const LoginForm = () => {
 	);
 };
 
-export default LoginForm 
+export default PasswordResetForm 
