@@ -53,9 +53,9 @@ export const childColorVariants = ({ color, invert }) => variant({
 			color: ({ colors }) => get(colors, color),
 		},
 		filled: {
-			color: invert ? ({ colors }) => get(colors, color) : 'surface',
+			color: 'white',
 			'& path': {
-				fill: invert ? ({ colors }) => get(colors, color) : 'surface'
+				fill: 'white'
 			}
 		},
 	}

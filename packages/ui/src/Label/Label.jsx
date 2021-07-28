@@ -41,7 +41,6 @@ const Label = forwardRef(({ children, color, gap, reverseLabel, size, variant, .
 Label.propTypes = {
     color: PropTypes.string,
     reverseLabel: PropTypes.bool,
-    textColor: PropTypes.string,
 	variant: PropTypes.oneOf(['ghost', 'filled', 'border'])
 };
 
@@ -49,7 +48,6 @@ Label.defaultProps = {
     color: 'red',
     fontFamily: 'text',
 	gap: 1,
-	textColor: 'white',
 	variant: 'filled'
 };
 

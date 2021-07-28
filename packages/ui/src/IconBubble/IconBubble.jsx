@@ -41,7 +41,7 @@ const Initials = styled(Text)`
 		size: {
 			properties: ['font-size', 'line-height'],
 			scale: 'fontSizes',
-			transform: (value, scale) => scale[Math.max(value - 2, 0)]
+			transform: (value, scale) => scale[Math.max(value - 4, 0)]
 		},
 	})}
 	${

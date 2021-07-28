@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { color, fill, itemGap } from '@combase.app/styles';
 
 import Box from '../Box';
-import Text from '../Text';
+// import Text from '../Text';
 
 const IconLabel = styled(Box).attrs(props => ({
     gapRight: props.reverse ? props.gap : 0,
@@ -13,9 +13,9 @@ const IconLabel = styled(Box).attrs(props => ({
     flex-direction: ${({ reverse }) => (reverse ? 'row-reverse' : 'row')};
     align-items: center;
 
-	& ${Text} {
+	${'' /* & ${Text} {
 		${color};
-	}
+	} */}
 
 	& svg {
 		flex-shrink: 0;
