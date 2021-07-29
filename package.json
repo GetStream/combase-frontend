@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
 	"build:web": "yarn workspace dashboard build",
+	"build:widget": "yarn workspace @combase.app/widget build",
 	"start:web": "yarn workspace dashboard dev",
 	"storybook": "yarn workspace storybook storybook"
   },

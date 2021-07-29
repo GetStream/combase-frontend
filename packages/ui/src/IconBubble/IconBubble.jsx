@@ -16,19 +16,28 @@ const Root = styled(Box)`
     justify-content: center;
     align-items: center;
 	${parentColorVariants};
-`;
-
-const Icon = styled.svg`
 	${
 		system({
 			size: {
 				properties: ['width', 'height'],
-				scale: 'sizes',
-				transform: (value, scale) => scale[Math.max(0, value - 4)],
+				scale: 'fontSizes',
+				transform: (value, scale) => scale[value],
 			}
 		})
 	};
+`;
+
+const Icon = styled.svg`
 	${childColorVariants};
+	${
+		system({
+			size: {
+				properties: ['width', 'height'],
+				scale: 'fontSizes',
+				transform: (value, scale) => scale[Math.max(0, value - 2)],
+			}
+		})
+	};
 `;
 
 const Initials = styled(Text)`
@@ -41,7 +50,7 @@ const Initials = styled(Text)`
 		size: {
 			properties: ['font-size', 'line-height'],
 			scale: 'fontSizes',
-			transform: (value, scale) => scale[Math.max(value - 4, 0)]
+			transform: (value, scale) => scale[Math.max(value - 2, 0)]
 		},
 	})}
 	${
@@ -68,8 +77,8 @@ const Emoji = styled(Box)`
 		system({
 			size: {
 				properties: ['font-size', 'line-height'],
-				scale: 'sizes',
-				transform: (value, scale) => scale[Math.max(0, value - 4)],
+				scale: 'fontSizes',
+				transform: (value, scale) => scale[Math.max(0, value - 2)],
 			}
 		})
 	};
@@ -78,7 +87,16 @@ const Emoji = styled(Box)`
 
 const IconBubble = memo(({ emoji, icon, name, ...props }) => (
 	<Root as={!icon && !name && !emoji ? Placeholder : 'div'} {...props}>
-		{emoji || icon  ? <Icon as={emoji ? Emoji : icon} emoji={emoji} color={props.color} invert={props.invert} variant={props.variant} size={props.size} /> : null}
+		{emoji || icon  ? (
+			<Icon 
+				as={emoji ? Emoji : icon} 
+				color={props.color} 
+				emoji={emoji} 
+				invert={props.invert} 
+				size={props.size} 
+				variant={props.variant} 
+			/>
+		) : null}
 		{!icon && !emoji && name ? (
 			<Initials color={props.color} size={props.size} fontWeight="700"  variant={props.variant}>
 				{name.charAt(0)}

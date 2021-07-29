@@ -207,7 +207,7 @@ const ChatList = () => {
 	}, [channel, client, removeChannelFromList, inbox]);
 	
 	return (
-		<Root>
+		<Root backgroundColor="surface">
 			<Header paddingX={3}>
 				<MenuButton as={IconLabel} ref={scopeMenuRef} onClick={toggleScopeMenu} gap={2}>
 					<ScopeIcon color="primary" size={6} />

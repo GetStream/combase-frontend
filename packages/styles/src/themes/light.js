@@ -8,7 +8,7 @@ export const light = {
 	colors: {
 		...base.colors,
 		primary: base.colors.blue,
-		background: base.colors.white,
+		background: base.colors.offWhite,
 		border:base.colors.gray,
 		disabled: base.colors.gray,
 		shadow,

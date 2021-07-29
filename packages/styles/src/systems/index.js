@@ -28,23 +28,23 @@ export const colorAlpha = system({
     },
 });
 
-export const parentColorVariants = ({ color, invert }) => variant({
+export const parentColorVariants = ({ color }) => variant({
 	variants: {
 		ghost: {
 			backgroundColor: ({ colors, utils }) => utils.colors.fade(color.startsWith('#') ? color : get(colors, color), 0.08),
 		},
 		filled: {
-			backgroundColor: invert ? 'surface' : color
+			backgroundColor: ({ colors }) => get(colors, color)
 		},
 		border: {
 			borderWidth: 'thin',
 			borderStyle: 'solid',
-			borderColor: color,
+			borderColor: ({ colors }) => get(colors, color),
 		},
 	}
 });
 
-export const childColorVariants = ({ color, invert }) => variant({
+export const childColorVariants = ({ color }) => variant({
 	variants: {
 		ghost: {
 			color: ({ colors }) => get(colors, color),
@@ -53,7 +53,7 @@ export const childColorVariants = ({ color, invert }) => variant({
 			color: ({ colors }) => get(colors, color),
 		},
 		filled: {
-			color: 'white',
+			color: 'white !important',
 			'& path': {
 				fill: 'white'
 			}

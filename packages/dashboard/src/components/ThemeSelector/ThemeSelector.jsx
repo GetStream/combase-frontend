@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
+import { useMedia } from 'react-use';
 
 import Box from '@combase.app/ui/Box';
 import ButtonBase from '@combase.app/ui/ButtonBase';
@@ -24,10 +25,11 @@ const Button = styled(ButtonBase)`
 
 const ThemeSelector = ({ mode, onChange, value }) => {
 	const Illustration = mode === 'dashboard' ? DashboardThemeIllustration : WidgetThemeIllustration;
+	const systemDarkMode = useMedia(`(prefers-color-scheme: dark)`);
 	return (
 		<Root>
 			<Button active={value === 'system'} type="button" interaction="bump" onClick={onChange} value="system">
-				<Illustration />
+				<Illustration theme={systemDarkMode ? 'dark' : "light"} />
 				<Text color={value === 'system' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>System (auto)</Text>
 			</Button>
 			<Button active={value === 'light'} type="button" interaction="bump" onClick={onChange} value="light">
