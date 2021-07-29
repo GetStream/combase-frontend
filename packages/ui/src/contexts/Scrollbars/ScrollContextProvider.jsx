@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useSpring } from 'react-spring';
 import Context from './ScrollbarsContext';
 
