@@ -77,10 +77,10 @@ const Auth = () => {
 							<IconBubble icon={ChatsIcon} size={8} color="text" />
 							<TextGroup marginTop={2}>
 								<Text fontSize={5} lineHeight={5} fontWeight={700}>
-									Realtime Conversations
+									Real-time Conversations
 								</Text>
 								<Text fontSize={3} lineHeight={5} opacity={0.64}>
-									Build & nurture customer relationships through 1:1 realtime conversations with Combase, powered by Stream Chat.
+									Chat with your customers in real-time to provide on-the-spot assistance and advanced support.
 								</Text>
 							</TextGroup>
 						</Box>
@@ -91,7 +91,7 @@ const Auth = () => {
 									Integrations
 								</Text>
 								<Text fontSize={3} lineHeight={5} opacity={0.64}>
-									Build & nurture customer relationships through 1:1 realtime conversations with Combase, powered by Stream Chat.
+									Easily connect your favorite tools to improve your team’s efficiency and decrease your time to market.
 								</Text>
 							</TextGroup>
 						</Box>
@@ -102,7 +102,7 @@ const Auth = () => {
 									Powered By Stream
 								</Text>
 								<Text fontSize={3} lineHeight={5} opacity={0.64}>
-									Build & nurture customer relationships through 1:1 realtime conversations with Combase, powered by Stream Chat.
+									Build a customizable and reliable customer support experience using Stream’s state-of-the-art Chat APIs and SDKs.
 								</Text>
 							</TextGroup>
 						</Box>
