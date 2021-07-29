@@ -6,7 +6,7 @@ import { useMutation } from '@apollo/client';
 import { itemGap } from '@combase.app/styles';
 import { useHistory } from 'react-router-dom';
 
-import { LOGIN, setAuthenticationCredentials } from 'apollo/operations';
+import { REQUEST_PASSWORD_RESET } from 'apollo/operations';
 
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
@@ -32,11 +32,17 @@ const initialValues = {
 
 const PasswordResetForm = () => {
 	const history = useHistory();
-	const [handleLogin, { loading } ] = useMutation(LOGIN);
+	const [requestPasswordReset, { loading } ] = useMutation(REQUEST_PASSWORD_RESET);
 
 	const handleSubmit = useCallback(async (variables) => {
 		try {
 			// MUTATION HERE
+			await requestPasswordReset({
+				variables,
+				update: (_, { data: { agent } }) => {
+					history.push('/');
+				}
+			})
 		} catch (error) {
 			console.error(error.message);
 		}
