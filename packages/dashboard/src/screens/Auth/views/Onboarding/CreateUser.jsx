@@ -38,6 +38,7 @@ const CreateUserStep = ({ isLastStep }) => {
         <Root maxWidth={19}>
             <AvatarWrapper>
 				<AvatarInput
+					borderRadius="squircle"
 					name={formik.values.agent.name.first}
 					size={12}
 					value={formik.values.agent.avatar}

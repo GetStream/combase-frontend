@@ -72,11 +72,6 @@ const Auth = () => {
 							</Text>
 						</Label>
 					</Logo>
-					{/* <Box marginTop={8}>
-						<Text fontSize={4} fontWeight={500} lineHeight={6} opacity={0.64}>
-							Build & nurture customer relationships through 1:1 realtime conversations with Combase, powered by Stream Chat.
-						</Text>
-					</Box> */}
 					<VerticalCenter>
 						<Box marginY={8}>
 							<IconBubble icon={ChatsIcon} size={8} color="text" />

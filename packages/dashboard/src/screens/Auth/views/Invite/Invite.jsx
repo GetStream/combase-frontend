@@ -10,6 +10,7 @@ import { CREATE_AGENT, setAuthenticationCredentials } from 'apollo/operations';
 import Box from '@combase.app/ui/Box';
 import Container from '@combase.app/ui/Container';
 import EmptyView from '@combase.app/ui/EmptyView';
+import StreamLogo from '@combase.app/ui/StreamLogo';
 import Text, { Heading } from '@combase.app/ui/Text';
 
 import FormikWizard from 'components/FormikWizard';
@@ -98,21 +99,28 @@ const Invite = () => {
 
 	if (!invitation || isExpired) {
 		return (
-			<EmptyView title={isExpired ? "Invitation Expired." : "Something went wrong!"} />
+			<Root>
+				<EmptyView
+					width="100%"
+					maxWidth={22}
+					title={isExpired ? "Invitation Expired." : "Something went wrong!"}
+				/>
+			</Root>
 		);
 	}
 
 	return (
 		<Root>
-			<Heading
+			<StreamLogo size={8} />
+			<Heading 
 				fontSize={5} 
 				fontWeight={700}
 				lineHeight={5} 
-				marginBottom={8} 	
+				marginBottom={2} 
 			>
 				Invitation
 			</Heading>
-			<Text color="altText" marginY={2}>You've been invited to join <Text as="span" color="primary">Stream</Text> on Combase.</Text>
+			<Text color="altText" marginBottom={8} >You've been invited to join <Text as="span" color="primary">Stream</Text> on Combase.</Text>
 			<FormikWizard maxWidth={19} initialValues={initialValues} onSubmit={handleSubmit}>
 				<CreateUser validationSchema={step1Validation} />
 				<CreateLogin validationSchema={step2Validation} />
