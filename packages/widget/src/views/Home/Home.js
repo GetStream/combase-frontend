@@ -27,7 +27,7 @@ const Root = styled(Box)`
 
 const Widgets = styled(Box)`
 	& > * + * {
-		margin-top: 1rem;
+		margin-top: .5rem;
 	}
 `;
 
@@ -102,7 +102,7 @@ const Home = () => {
 			<Header />
             <Scrollbars onScrollFrame={scrollbars.onScroll} style={scrollStyle}>
 				{!auth ? (
-					<Widgets paddingX={3} paddingTop={19} paddingBottom={3}>
+					<Widgets paddingX={3} paddingTop={18} paddingBottom={3}>
 						<Card paddingBottom={5} boxShadow={2} variant="border">
 						<CardHeader
 							icon={<ChatsIcon color="blue" size={4} />}
