@@ -3,20 +3,19 @@ import styled from 'styled-components';
 import { useChatContext } from 'stream-chat-react';
 import { Scrollbars } from 'rc-scrollbars';
 
-import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
 import Container from '@combase.app/ui/Container';
 import Dropdown from '@combase.app/ui/Dropdown';
 import IconButton from '@combase.app/ui/IconButton';
 import IconLabel from '@combase.app/ui/IconLabel';
-import { BadgeIcon, ClockIcon, CloseIcon, DropdownIcon, MailIcon, PinIcon, ZendeskIcon } from '@combase.app/ui/icons';
+import { ClockIcon, CloseIcon, DropdownIcon, MailIcon, PinIcon } from '@combase.app/ui/icons';
 import MenuItem from '@combase.app/ui/MenuItem';
 import Popover, { usePopoverState } from '@combase.app/ui/Popover';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
 import HeaderBase from 'components/HeaderBase';
-import useChatUserPresence from 'hooks/useChatUserPresence';
+import UserDisplay from 'components/UserDisplay';
 import useTicket from 'hooks/useTicket';
 import useUserCurrentTime from 'hooks/useUserCurrentTime';
 
@@ -45,20 +44,13 @@ const Header = styled(HeaderBase)`
 	z-index: 1;
 `;
 
-const UserProfile = styled(Box)`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`;
-
 const ChatDrawer = ({ onClose }) => {
 	const { channel } = useChatContext();
 	const [headerMenuAnchorRef, { open: headerMenuOpen, toggle: toggleHeaderMenu }] = usePopoverState();
-	const { data } = useTicket(channel?.id);
+	const { data, loading } = useTicket(channel?.id);
 	
 	const ticket = data?.organization?.ticket;
 	const currentTime = useUserCurrentTime(ticket?.user?.timezone);
-	const isOnline = useChatUserPresence(ticket?.user?._id);
 
 	const userLoc = useMemo(() => {
 		if (!ticket?.user?.timezone) return '-';
@@ -80,29 +72,15 @@ const ChatDrawer = ({ onClose }) => {
 					<IconButton variant="filled" icon={CloseIcon} onClick={onClose} />
 				</Header>
 				<Box>
-					<UserProfile paddingY={4}>
-						<Avatar name={ticket?.user?.name} variant={null} borderRadius={5} size={16} />
-						<TextGroup paddingY={3} variant="centered">
-							<IconLabel>
-								<Text fontSize={5} lineHeight={5} fontWeight={700}>
-									{ticket?.user?.name}
-								</Text>
-								{
-									isOnline ? (
-										<Tooltip text="Online Now" placement="top">
-											<BadgeIcon color="green" size={4} />
-										</Tooltip>
-									) : null
-								}
-							</IconLabel>
-							<IconLabel>
-								{ticket?.user?.timezone ? <PinIcon color="altText" /> : null}
-								<Text color='altText' fontSize={4} fontWeight={400} lineHeight={4}>
-									{userLoc}
-								</Text>
-							</IconLabel>
-						</TextGroup>
-					</UserProfile>
+					<UserDisplay 
+						_id={ticket?.user?._id}
+						avatar={ticket?.user?.avatar}
+						name={ticket?.user?.name}
+						loading={loading}
+						meta={userLoc}
+						metaIcon={PinIcon}
+						paddingY={4} 	
+					/>
 					<Container paddingX={6}>
 						<TextGroup marginY={6}>
 							<IconLabel>

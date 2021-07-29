@@ -4,22 +4,19 @@ import { useParams } from 'react-router-dom';
 import { Scrollbars } from 'rc-scrollbars';
 import { Numbers } from 'humanify-numbers';
 
-import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
 import Container from '@combase.app/ui/Container';
 import IconButton from '@combase.app/ui/IconButton';
 import IconLabel from '@combase.app/ui/IconLabel';
 import ListSubheader from '@combase.app/ui/ListSubheader';
 import { BadgeIcon, CalendarIcon, CloseIcon, MailIcon, UserIcon } from '@combase.app/ui/icons';
-import Placeholder from '@combase.app/ui/Placeholder';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
-import Tooltip from '@combase.app/ui/Tooltip';
 
 import HeaderBase from 'components/HeaderBase';
+import UserDisplay from 'components/UserDisplay';
 
 import useAgent from 'hooks/useAgent';
-import useChatUserPresence from 'hooks/useChatUserPresence';
 
 const Root = styled(Box)`
 	width: ${({  theme }) => theme.sizes.drawer};
@@ -42,12 +39,6 @@ const Header = styled(HeaderBase)`
 	border: none;
 	background-color: ${({ theme }) => theme.colors.background};
 	z-index: 1;
-`;
-
-const UserProfile = styled(Box)`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 `;
 
 const Statistics = styled(Container)`
@@ -75,7 +66,6 @@ const Statistic = styled(Text).attrs({ as: "blockquote" })`
 const ProfileDrawer = ({ history }) => {	
 	const { agentId } = useParams();
 	const {data, loading} = useAgent(agentId);
-	const isOnline = useChatUserPresence(agentId);
 	const agent = data?.organization?.agent;
 
 	return (
@@ -86,26 +76,14 @@ const ProfileDrawer = ({ history }) => {
 					<IconButton variant="filled" icon={CloseIcon} onClick={history.goBack} />
 				</Header>
 				<Box>
-					<UserProfile paddingY={4}>
-						<Avatar src={agent?.avatar} name={agent?.name.full} variant={null} borderRadius={5} size={16} />
-						<TextGroup paddingY={3} variant="centered">
-							<IconLabel>
-								<Text as={agent?.name.display ? undefined : Placeholder} fontSize={5} lineHeight={5} fontWeight={700} placeholderWidth={14}>
-									{agent?.name.display}
-								</Text>
-								{
-									isOnline ? (
-										<Tooltip placement="top" text="Online Now">
-											<BadgeIcon color="green" size={4} />
-										</Tooltip>
-									) : null
-								}
-							</IconLabel>
-							<Text as={loading && !agent?.role ? Placeholder : undefined} color='altText' fontSize={4} fontWeight={400} lineHeight={4} placeholderWidth={12}>
-								{agent?.role ? agent.role : "-"}
-							</Text>
-						</TextGroup>
-					</UserProfile>
+					<UserDisplay 
+						_id={agent?._id}
+						avatar={agent?.avatar}
+						loading={loading}
+						meta={agent?.role}
+						name={agent?.name.display}
+						paddingY={4}
+					/>
 					<ListSubheader paddingX={6}>
 						Ticket Statistics
 					</ListSubheader>
