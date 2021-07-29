@@ -9,6 +9,7 @@ import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
 import Card from '@combase.app/ui/Card';
 import Container from '@combase.app/ui/Container';
+import { LoadingScreen } from '@combase.app/ui/EmptyView';
 import { CheckCircleIcon, CloseIcon, CloseCircleIcon, InfoIcon } from '@combase.app/ui/icons';
 import IconButton from '@combase.app/ui/IconButton';
 import IconLabel from '@combase.app/ui/IconLabel';
@@ -86,8 +87,8 @@ const SubmitWrapper = styled(Container)`
 const initialValues = {};
 
 const ConfigureIntegrationModal = forwardRef((props, ref) => {
-	const { data } = useIntegrationDefinition(props.id);
-	const [createIntegration, { loading }] = useMutation(CREATE_INTEGRATION);
+	const { data, loading } = useIntegrationDefinition(props.id);
+	const [createIntegration, { loading: creating }] = useMutation(CREATE_INTEGRATION);
 	const [toggleIntegration, { loading: toggling }] = useMutation(TOGGLE_INTEGRATION);
 	const [unlinkIntegration, { loading: deleting }] = useMutation(UNLINK_INTEGRATION);
 
@@ -187,6 +188,14 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 		}
 	}, [props.id, integrationData]);
 
+	if (loading) {
+		return (
+			<Root height="100%" variant="border" ref={ref}>
+				<LoadingScreen height="100%" />		
+			</Root>
+		);
+	}
+
 	return (
 		<Root variant="border" ref={ref}>
 			<CloseButton variant="filled" onClick={props.onClose} icon={CloseIcon} />
@@ -269,7 +278,7 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 									<SubmitWrapper paddingY={7} paddingX={7}>
 										<Button 
 											disabled={validationSchema ? (!formik.dirty || !formik.isValid) : false} 
-											loading={loading} 
+											loading={creating} 
 											width="100%" 
 											color="primary" 
 											type="submit"
