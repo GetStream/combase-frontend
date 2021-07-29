@@ -10,15 +10,14 @@ import { WidgetConfig } from './WidgetConfig';
 import { WidgetLauncher } from './WidgetLauncher';
 import { WidgetShell } from './WidgetShell';
 
-// const Conversation = lazyPreload(() => import(/* webpackChunkName: "conversation" */'./views/Conversation'));
+const Conversation = lazyPreload(() => import(/* webpackChunkName: "conversation" */'./views/Conversation'));
 const Home = lazyPreload(() => import(/* webpackChunkName: "home" */'./views/Home'));
 
 const Router = () => {
 	const { channel } = useChatContext();
 	return (
 		<Suspense fallback={() => <LoadingScreen />}>
-			{/* {!channel ? <Home /> : <Conversation />} */}
-			<Home />
+			{!channel ? <Home /> : <Conversation />}
 		</Suspense>
 	);
 };

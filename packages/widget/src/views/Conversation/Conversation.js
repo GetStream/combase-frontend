@@ -4,15 +4,13 @@ import { Channel, MessageInput, useChatContext } from 'stream-chat-react';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
+import ChannelHeaderSimple from '@combase.app/ui/ChannelHeaderSimple';
+import DateSeparator from '@combase.app/ui/DateSeparator';
+import MessageInputSimple from '@combase.app/ui/MessageInputSimple';
+import MessageList from '@combase.app/ui/MessageList';
+import MessageSimple from '@combase.app/ui/MessageSimple';
 import {ScrollContextProvider} from '@combase.app/ui/contexts/Scrollbars';
-import {
-	ChannelHeaderSimple,
-	DateSeparator,
-	MessageList,
-	MessageInputSimple,
-	MessageSimple,
-	SystemMessage,
-} from '@combase.app/ui/Chat';
+import SystemMessage from '@combase.app/ui/SystemMessage';
 
 const Root  = styled(Box)`
 	height: 100%;

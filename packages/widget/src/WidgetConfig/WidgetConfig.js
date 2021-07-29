@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components';
 import { StreamChat } from 'stream-chat';
 import { Chat } from 'stream-chat-react';
-import { useClickAway, useLocalStorage, useToggle } from 'react-use';
+import { useLocalStorage, useToggle } from 'react-use';
 import { themes } from '@combase.app/styles';
 
 import WidgetContext from './context';
@@ -61,9 +61,9 @@ const WidgetConfig = ({ children, organization, theme }) => {
         [auth, chatClient, open, toggleWidgetCard]
     );
 
-	const handleClickAway = useCallback(() => toggleWidgetCard(open ? false : open), [open]);
+	// const handleClickAway = useCallback(() => toggleWidgetCard(open ? false : open), [open]);
 
-    useClickAway(shellRef, handleClickAway);
+    // useClickAway(shellRef, handleClickAway);
 
     if (context.loading || !chatClient?.user) {
         return null;
