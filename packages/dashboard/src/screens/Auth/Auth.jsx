@@ -80,7 +80,7 @@ const Auth = () => {
 									Real-time Conversations
 								</Text>
 								<Text fontSize={3} lineHeight={5} opacity={0.64}>
-									Chat with your customers in real-time to provide on-the-spot assistance and advanced support.
+									Chat with your customers in real-time to provide on-the-spot assistance and advanced support. 
 								</Text>
 							</TextGroup>
 						</Box>
@@ -102,7 +102,7 @@ const Auth = () => {
 									Powered By Stream
 								</Text>
 								<Text fontSize={3} lineHeight={5} opacity={0.64}>
-									Build a customizable and reliable customer support experience using Stream’s state-of-the-art Chat APIs and SDKs.
+									Reliable customer support experience using Stream’s state-of-the-art Chat and Feeds APIs.
 								</Text>
 							</TextGroup>
 						</Box>
