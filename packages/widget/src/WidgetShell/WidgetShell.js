@@ -8,7 +8,7 @@ import Box from '@combase.app/ui/Box';
 import Card from '@combase.app/ui/Card';
 import {CloseIcon} from '@combase.app/ui/icons';
 import IconButton from '@combase.app/ui/IconButton';
-import {LoadingScreen} from '@combase.app/ui/EmptyView';
+import { LoadingScreen } from '@combase.app/ui/EmptyView';
 import Portal from '@combase.app/ui/Portal';
 
 import { PoweredBy } from './PoweredBy';
