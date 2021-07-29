@@ -11,6 +11,7 @@ import IconButton from '@combase.app/ui/IconButton';
 import IconLabel from '@combase.app/ui/IconLabel';
 import ListSubheader from '@combase.app/ui/ListSubheader';
 import { BadgeIcon, CalendarIcon, CloseIcon, MailIcon, UserIcon } from '@combase.app/ui/icons';
+import Placeholder from '@combase.app/ui/Placeholder';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 import Tooltip from '@combase.app/ui/Tooltip';
@@ -73,7 +74,7 @@ const Statistic = styled(Text).attrs({ as: "blockquote" })`
 
 const ProfileDrawer = ({ history }) => {	
 	const { agentId } = useParams();
-	const {data} = useAgent(agentId);
+	const {data, loading} = useAgent(agentId);
 	const isOnline = useChatUserPresence(agentId);
 	const agent = data?.organization?.agent;
 
@@ -89,7 +90,7 @@ const ProfileDrawer = ({ history }) => {
 						<Avatar src={agent?.avatar} name={agent?.name.full} variant={null} borderRadius={5} size={16} />
 						<TextGroup paddingY={3} variant="centered">
 							<IconLabel>
-								<Text fontSize={5} lineHeight={5} fontWeight={700}>
+								<Text as={agent?.name.display ? undefined : Placeholder} fontSize={5} lineHeight={5} fontWeight={700} placeholderWidth={14}>
 									{agent?.name.display}
 								</Text>
 								{
@@ -100,7 +101,7 @@ const ProfileDrawer = ({ history }) => {
 									) : null
 								}
 							</IconLabel>
-							<Text color='altText' fontSize={4} fontWeight={400} lineHeight={4}>
+							<Text as={loading && !agent?.role ? Placeholder : undefined} color='altText' fontSize={4} fontWeight={400} lineHeight={4} placeholderWidth={12}>
 								{agent?.role ? agent.role : "-"}
 							</Text>
 						</TextGroup>
