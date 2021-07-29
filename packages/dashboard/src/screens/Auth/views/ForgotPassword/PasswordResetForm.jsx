@@ -36,7 +36,6 @@ const PasswordResetForm = () => {
 
 	const handleSubmit = useCallback(async (variables) => {
 		try {
-			// MUTATION HERE
 			await requestPasswordReset({
 				variables,
 				update: (_, { data: { agent } }) => {
