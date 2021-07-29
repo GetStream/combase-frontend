@@ -46,7 +46,7 @@ const List = styled(Box)`
 
 const HitList = connectHits(({ onClickHit, hits }) => {
 	return (
-		<List height={18} paddingY="small" paddingX={1}>
+		<List height={20} paddingY="small" paddingX={1}>
 			{
 				hits.map((hit = {}) => {
 					return (

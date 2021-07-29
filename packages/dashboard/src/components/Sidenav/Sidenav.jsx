@@ -36,7 +36,7 @@ const linkStyle = {
 const Sidenav = () => {
 	const currentUser = useCurrentUser();
 	return (
-		<Root width={13} paddingY={4}>
+		<Root backgroundColor="surface" width={13} paddingY={4}>
 			<Main>
 				<StreamLogo size={7} />
 				<Box marginY={0} width="100%">

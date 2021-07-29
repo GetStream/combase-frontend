@@ -161,14 +161,14 @@ const CombaseChannelHeader = ({ onInfoClick }) => {
 								</Popover>
 							</>
 						) : null}
-					<AssignedButton paddingY="small" paddingLeft={1} paddingRight="small" borderRadius={1}>
+					<AssignedButton paddingY="small" paddingLeft={1} paddingRight="small" borderRadius={1} onClick={() => setToAssign(channel?.id)}>
 						{channel.data.status === 'unassigned' ? (
 							<IconLabel gap={1}>
 								<Text color="primary" fontSize={3} fontWeight={600} lineHeight={5}>Assign</Text>
 								<ChevronRightIcon color="primary" size={3} />
 							</IconLabel>
 						) : (
-							<IconLabel gap={2} onClick={() => setToAssign(channel?.id)}>
+							<IconLabel gap={2}>
 								<Avatar size={3} name={agent?.user.name} />
 								<Text fontSize={3} fontWeight={600} lineHeight={4}>{currentUser.data?.me?._id && agent?.user?.id === currentUser.data.me._id ? 'You' : agent?.user.name}</Text>
 								<DropdownIcon size={4} />
