@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useChatContext } from 'stream-chat-react';
 
 import useCurrentUser from 'hooks/useCurrentUser';
 
@@ -35,13 +36,28 @@ const linkStyle = {
 
 const Sidenav = () => {
 	const currentUser = useCurrentUser();
+	
+	const { client } = useChatContext();
+	const [totalUnread, setTotalUnread] = useState(client.user.total_unread_count ?? 0);
+
+	const handleEvent = useCallback((event) => {
+		if (event.total_unread_count !== undefined) { 
+			setTotalUnread(event.total_unread_count); 
+		} 
+	}, [])
+
+	useEffect(() => {
+		client.on(handleEvent);
+		return () => client.off(handleEvent);
+	}, []);
+
 	return (
 		<Root backgroundColor="surface" width={13} paddingY={4}>
 			<Main>
 				<StreamLogo size={7} />
 				<Box marginY={0} width="100%">
 					<SidenavItem icon={DashboardIcon} label="Home" exact to="/" path="/" />
-					<SidenavItem icon={InboxIcon} label="Chats" to="/chats" path="/chats" />
+					<SidenavItem icon={InboxIcon} label="Chats" to="/chats" path="/chats" badge={totalUnread} />
 					<SidenavItem icon={AgentsIcon} label="Agents" to="/agents" path="/agents" />
 					<SidenavItem icon={PluginsIcon} label="Integrations" to="/integrations" path="/integrations" />
 				</Box>
