@@ -100,10 +100,11 @@ export const ChipInputBase = forwardRef(
         };
 
         const handleKeyDown = e => {
-            onKeyDown(e);
-
+			e.stopPropagation();
+			onKeyDown(e);
+			
             if (e.key === 'Enter') {
-				e.stopPropagation();
+				e.preventDefault();
                 setInternalValue('');
             }
         };

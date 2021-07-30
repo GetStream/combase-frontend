@@ -169,7 +169,8 @@ const Widget = () => {
 							<PathsInput marginY={4}>
 								<ChipInputBase 
 									name="paths" 
-									placeholder="e.g. /contact" 
+									placeholder="e.g. /contact"
+									transformValue={value => value.startsWith('/') ? value : `/${value}`}
 									onBlur={formik.handleBlur} 
 									onChange={formik.handleChange} 
 									onFocus={formik.handleFocus} 
