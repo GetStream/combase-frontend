@@ -161,11 +161,11 @@ const YourProfile = () => {
 				<Box>
 					<StickyWrapper>
 						<AvatarInput 
-							borderRadius={7} 
+							borderRadius={[7, 7, 7, 8]} 
 							name={formik.values.name.display} 
 							onChange={avatar => formik.setFieldValue('avatar', avatar)} 
 							ref={avatarInputRef}
-							size={15} 
+							size={[15, 15, 15, 16]} 
 							src={formik.values.avatar} 
 						/>
 						<InputGroup marginTop={4} gapTop={2}>
