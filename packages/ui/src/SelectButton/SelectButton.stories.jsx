@@ -5,7 +5,7 @@ import { itemGap } from '@combase.app/styles';
 import Box from '../Box';
 import MenuItem from '../MenuItem';
 
-import { SelectButton } from '.';
+import SelectButton from '.';
 
 const Grid = styled.div`
     display: grid;

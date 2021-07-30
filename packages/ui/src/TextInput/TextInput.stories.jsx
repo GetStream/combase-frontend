@@ -13,7 +13,7 @@ import StateDisplay from '../StateDisplay';
 import { CloseCircleIcon, DropdownIcon, TagIcon } from '../icons';
 
 import { ChipInputBase, InputBase, transformToTag } from '../shared';
-import { TextInput } from '.';
+import TextInput from '.';
 
 export const Default = () => <TextInput label="First Name" />;
 export const Base = () => <InputBase placeholder="Type something..." />;

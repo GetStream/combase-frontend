@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ConversationsIcon } from "../icons";
+import { ChatsIcon } from "../icons";
 import IconBubble from "./IconBubble";
 
 export default {
@@ -8,7 +8,7 @@ export default {
   title: "shared/IconBubble",
 };
 
-export const Filled = () => <IconBubble icon={ConversationsIcon} variant="filled" />;
-export const Border = () => <IconBubble icon={ConversationsIcon} variant="border" />;
-export const Ghost = () => <IconBubble icon={ConversationsIcon} variant="ghost" />;
+export const Filled = () => <IconBubble icon={ChatsIcon} variant="filled" />;
+export const Border = () => <IconBubble icon={ChatsIcon} variant="border" />;
+export const Ghost = () => <IconBubble icon={ChatsIcon} variant="ghost" />;
 export const Empty = () => <IconBubble />;

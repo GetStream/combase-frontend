@@ -8,7 +8,7 @@ import Box from '../Box';
 import Container from '../Container';
 import Entity from '../Entity';
 import ListItem from '../ListItem';
-import { Checkbox } from '../Inputs';
+import Checkbox from '../Checkbox';
 import CardHeader from '../CardHeader';
 import Text from '../Text';
 import VirtualizedList from '../VirtualizedList';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Box from '../Box';
 import IconButton from '../IconButton';
-import { AddIcon, AllInboxesIcon, ChevronRightIcon, InboxIcon, PriorityIcon, SearchIcon, StarIcon, TagIcon, UnassignedIcon } from '../icons';
+import { AddIcon, AllInboxesIcon, ChevronRightIcon, InboxIcon, PriorityIcon, SearchIcon, StarIcon, TagIcon, ChatUnassignedIcon } from '../icons';
 import Menu from '../Menu';
 
 import MenuItem from './MenuItem';
@@ -22,7 +22,7 @@ export const MenuItems = () => (
             />
             <MenuItem
                 actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
-                icon={UnassignedIcon}
+                icon={ChatUnassignedIcon}
                 iconColor="lavender"
                 label="Unassigned"
                 onClick={noop}

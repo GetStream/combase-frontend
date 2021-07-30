@@ -15,7 +15,7 @@ import {
     AllInboxesIcon,
     InboxIcon,
     ChevronRightIcon,
-    UnassignedIcon,
+    ChatUnassignedIcon,
     StarIcon,
     PriorityIcon,
     LockIcon,
@@ -223,7 +223,7 @@ export const InboxMenu = () => {
                         />
                         <MenuItem
                             actions={[<ChevronRightIcon color="border" key={0} size={4} />]}
-                            icon={UnassignedIcon}
+                            icon={ChatUnassignedIcon}
                             iconColor="lavender"
                             label="Unassigned"
                             onClick={noop}

@@ -5,7 +5,7 @@ import { useToggle } from 'react-use';
 import IconButton from '../IconButton';
 import { PriorityIcon, StarIcon } from '../icons';
 
-import { ChannelPreview } from './ChannelPreview';
+import ChannelPreview from './ChannelPreview';
 
 const Root = styled.div`
     max-width: 280px;
