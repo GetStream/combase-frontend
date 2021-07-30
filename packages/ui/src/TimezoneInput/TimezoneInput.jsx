@@ -3,6 +3,7 @@ import { useToggle } from 'react-use';
 import styled from 'styled-components';
 import { getTimeZones } from '@vvo/tzdb';
 import useFuse from 'react-use-fuse';
+import { Virtuoso } from 'react-virtuoso';
 
 import IconButton from '../IconButton';
 import { DropdownIcon } from '../icons';
@@ -49,6 +50,8 @@ const popperModifiers = [
 
 const ItemContainer = props => <Box {...props} paddingX={1} />;
 
+const virtuosoStyle = {width: '100%', height: '15rem'};
+
 const TimezoneInput = ({ onChange, name, value }) => {
     const anchorRef = useRef();
     const [open, toggleDropdown] = useToggle();
@@ -65,7 +68,6 @@ const TimezoneInput = ({ onChange, name, value }) => {
 
     const handleChange = ({ target }) => {
         if (target.value) {
-            console.log(target.value);
             search(target.value);
         } else {
             reset();
@@ -151,15 +153,14 @@ const TimezoneInput = ({ onChange, name, value }) => {
 				open={open}
                 onClose={handleClose}
                 gutters={false}
-                minHeight={16}
-                maxHeight={16}
+                height={16}
                 placement="bottom"
                 subheading="Select your timezone"
             >
-				<VirtualizedList
+				<Virtuoso
 					data={result}
-					ItemContainer={ItemContainer}
-					renderItem={renderChild}
+					itemContent={renderChild}
+					style={virtuosoStyle}
 				/>
             </Popover>
         </>
