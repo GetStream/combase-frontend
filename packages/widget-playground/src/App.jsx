@@ -4,7 +4,7 @@ import CombaseWidget from '@combase.app/widget/src/main';
 function App() {
   return (
     <div className="App">
-	  <CombaseWidget organization="60b0c9215716b8022249ed7e" theme="light" />
+	  <CombaseWidget organization={import.meta.env.VITE_APP_ORGANIZATION_ID} theme="light" />
     </div>
   )
 }
