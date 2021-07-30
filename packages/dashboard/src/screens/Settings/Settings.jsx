@@ -1,13 +1,15 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { Scrollbars } from 'rc-scrollbars';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import { useApolloClient } from '@apollo/client';
 
 import Box from '@combase.app/ui/Box';
 import Card from '@combase.app/ui/Card';
 import Container from '@combase.app/ui/Container';
 import IconButton from '@combase.app/ui/IconButton';
-import { CalendarIcon, CloseIcon, OrganizationIcon, SettingsIcon, SwitchThemeIcon, UserIcon, WidgetIcon } from '@combase.app/ui/icons';
+import { CalendarIcon, CloseIcon, LockIcon, OrganizationIcon, SettingsIcon, SwitchThemeIcon, UserIcon, WidgetIcon } from '@combase.app/ui/icons';
+import MenuItem from '@combase.app/ui/MenuItem';
 import Text from '@combase.app/ui/Text';
 
 import HeaderBase from 'components/HeaderBase';
@@ -37,9 +39,14 @@ const Root = styled(Card)`
 	}
 
 	@media (min-height: ${({ theme }) => theme.breakpoints.md}) {
-		max-width: ${({ theme }) => theme.sizes[24]};
+		max-width: ${({ theme }) => theme.sizes[25]};
 		max-height: ${({ theme }) => theme.sizes[22]};
 	}
+`;
+
+const Sidenav = styled(Box)`
+	display: grid;
+	grid-template-rows: min-content 1fr;
 `;
 
 const Header = styled(HeaderBase)`
@@ -56,24 +63,42 @@ const CloseButton = styled(IconButton)`
 	z-index: 99;
 `;
 
+const Menu = styled(Container)`
+	display: flex;
+	flex-direction: column; 
+	align-items: stretch;
+	justify-content: space-between;
+`;
+
 const Settings = forwardRef(({ onClose }, ref) => {
+	const history = useHistory();
+	const apollo = useApolloClient();
+	const handleLogout = useCallback(() => {
+		apollo.cache.reset();
+		localStorage.clear();
+		history.push('/auth/login');
+	}, []);
+
 	return (
 		<Root variant="border" ref={ref}>
-			<Box>
+			<Sidenav>
 				<Header paddingX={7} height="headerLg">
 					<Text fontSize={6} lineHeight={7} fontWeight={600}>
 						Settings
 					</Text>
 				</Header>
-				<Container paddingX={6}>
-					<NavigationMenuItem icon={UserIcon} label="Your Profile" to="/settings/your-profile" navigationMethod="replace" />
-					<NavigationMenuItem icon={CalendarIcon} label="Availability" to="/settings/availability" navigationMethod="replace" />
-					<NavigationMenuItem icon={SettingsIcon} label="Preferences" to="/settings/preferences" navigationMethod="replace" />
-					<NavigationMenuItem icon={SwitchThemeIcon} label="Theme" to="/settings/theme" navigationMethod="replace" />
-					<NavigationMenuItem icon={OrganizationIcon} label="Organization" to="/settings/organization" navigationMethod="replace" />
-					<NavigationMenuItem icon={WidgetIcon} label="Widget" to="/settings/widget" navigationMethod="replace" />
-				</Container>
-			</Box>
+				<Menu paddingX={6} paddingBottom={6}>
+					<Box>
+						<NavigationMenuItem icon={UserIcon} label="Your Profile" to="/settings/your-profile" navigationMethod="replace" />
+						<NavigationMenuItem icon={CalendarIcon} label="Availability" to="/settings/availability" navigationMethod="replace" />
+						<NavigationMenuItem icon={SettingsIcon} label="Preferences" to="/settings/preferences" navigationMethod="replace" />
+						<NavigationMenuItem icon={SwitchThemeIcon} label="Theme" to="/settings/theme" navigationMethod="replace" />
+						<NavigationMenuItem icon={OrganizationIcon} label="Organization" to="/settings/organization" navigationMethod="replace" />
+						<NavigationMenuItem icon={WidgetIcon} label="Widget" to="/settings/widget" navigationMethod="replace" />
+					</Box>
+					<MenuItem color="red" icon={LockIcon} label="Log out" onClick={handleLogout} />
+				</Menu>
+			</Sidenav>
 			<Scrollbars>
 				<CloseButton variant="filled" onClick={onClose} icon={CloseIcon} />
 				<Switch>
