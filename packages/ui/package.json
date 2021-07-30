@@ -6,6 +6,7 @@
   "dependencies": {
     "@combase.app/styles": "*",
     "@juggle/resize-observer": "^3.3.1",
+    "@vvo/tzdb": "^6.8.0",
     "date-fns": "^2.22.1",
     "nanoid": "^3.1.23",
     "react-popper": "^2.2.5",

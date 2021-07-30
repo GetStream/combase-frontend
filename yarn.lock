@@ -2944,6 +2944,13 @@
     "@rollup/pluginutils" "^4.1.0"
     react-refresh "^0.10.0"
 
+"@vvo/tzdb@^6.8.0":
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/@vvo/tzdb/-/tzdb-6.8.0.tgz#65fd8f4fbf207fd6f639071e65712f16829ff252"
+  integrity sha512-Huj081ldJcUoRSDWN5CmPwgXSFnk1LSUzg8eth8dz1pjurz1DZTvQmQ3cQMnCyqGkSTDk7MvMmhPC7BBqtERyg==
+  dependencies:
+    luxon "1.26.0"
+
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.1.tgz#2bfd767eae1a6996f432ff7e8d7fc75679c0b6a7"
@@ -7886,6 +7893,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+luxon@1.26.0:
+  version "1.26.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.26.0.tgz#d3692361fda51473948252061d0f8561df02b578"
+  integrity sha512-+V5QIQ5f6CDXQpWNICELwjwuHdqeJM1UenlZWx5ujcRMc9venvluCjFb4t5NYLhb6IhkbMVOxzVuOqkgMxee2A==
 
 magic-string@^0.25.7:
   version "0.25.7"

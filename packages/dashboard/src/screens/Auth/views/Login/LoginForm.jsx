@@ -90,7 +90,7 @@ const LoginForm = () => {
 							<Text color="altText">Create Account</Text>
 						</Button>
 						<Box marginTop={4} style={{ textAlign: 'center' }}>
-							<TextLink color="red" onClick={() => history.push('/auth/reset')}>
+							<TextLink color="red" onClick={() => history.push('/auth/forgot')}>
 								Forgot Password?
 							</TextLink>
 						</Box>

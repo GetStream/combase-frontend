@@ -13,6 +13,7 @@ import TextGroup from '@combase.app/ui/TextGroup';
 
 import useCurrentUser from 'hooks/useCurrentUser';
 
+import ResetPassword from './views/ResetPassword';
 import ForgotPassword from './views/ForgotPassword';
 import Invite from './views/Invite';
 import Login from './views/Login';
@@ -111,7 +112,8 @@ const Auth = () => {
 			</ThemeProvider>
 			<Page>
 				<Switch>
-					<Route path="/auth/reset" component={ForgotPassword} />
+					<Route path="/auth/reset-password" component={ResetPassword} />
+					<Route path="/auth/forgot" component={ForgotPassword} />
 					<Route path="/auth/invite" component={Invite} />
 					<Route exact path="/auth/signup" component={Onboarding} />
 					<Route exact path="/auth/login" component={Login} />

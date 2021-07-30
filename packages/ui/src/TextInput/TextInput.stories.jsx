@@ -3,16 +3,15 @@ import styled from 'styled-components';
 import { useToggle } from 'react-use';
 import useFuse from 'react-use-fuse';
 
-import IconButton from '../../IconButton';
-import Chip from '../../Chip';
-import { useListCursor } from '../../hooks';
-import Popover from '../../Popover';
-import Dropdown from '../../Dropdown';
-import MenuItem from '../../MenuItem';
-import StateDisplay from '../../StateDisplay';
-import { CloseCircleIcon, DropdownIcon, TagIcon } from '../../icons';
+import IconButton from '../IconButton';
+import Chip from '../Chip';
+import useListCursor from '../hooks/useListCursor';
+import Popover from '../Popover';
+import Dropdown from '../Dropdown';
+import MenuItem from '../MenuItem';
+import StateDisplay from '../StateDisplay';
+import { CloseCircleIcon, DropdownIcon, TagIcon } from '../icons';
 
-import ColorInput from '../ColorInput';
 import { ChipInputBase, InputBase, transformToTag } from '../shared';
 import { TextInput } from '.';
 
@@ -28,8 +27,6 @@ export const ChipBase = () => {
     return <ChipInputBase transformValue={transformToTag} onChange={handleChange} placeholder="+ Add Tags" value={value} />;
 };
 export const WithError = () => <TextInput error="This is required." touched label="First Name" />;
-
-export const Color = () => <ColorInput label="Primary Color" />;
 
 const initialChips = ['Important'];
 

@@ -54,6 +54,7 @@ const TextInput = forwardRef(
     (
         {
             as: InputComponent = InputBase,
+			autoComplete,
             children,
             className,
             error,
@@ -94,6 +95,7 @@ const TextInput = forwardRef(
                     <InputComponent
                         {...inputProps}
                         {...rest}
+						autoComplete={autoComplete}
                         ref={inputRef}
                         $hasValue={hasValue}
                         paddingX={3}

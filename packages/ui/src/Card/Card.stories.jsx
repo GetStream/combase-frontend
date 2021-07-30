@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import { ScrollContextProvider, useScrollbars } from '../contexts/Scrollbars';
 
-import { useBulkSelect } from '../hooks';
+import useBulkSelect from '../hooks/useBulkSelect';
 import Box from '../Box';
 import Container from '../Container';
 import Entity from '../Entity';

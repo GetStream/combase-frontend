@@ -21,7 +21,6 @@ const Root = styled(Box)`
 			size: {
 				properties: ['width', 'height'],
 				scale: 'fontSizes',
-				transform: (value, scale) => scale[value],
 			}
 		})
 	};

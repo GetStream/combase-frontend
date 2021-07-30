@@ -57,6 +57,10 @@ const CategoryLink = styled(Text)`
 	font-weight: ${({ active, theme }) => theme.fontWeights[active ? '800' : '400']};
 `;
 
+const EmptyWrapper = styled(Box)`
+	grid-column: span 3;
+`;
+
 const fuseOpts = {
 	keys: ['name'],
 }
@@ -131,7 +135,11 @@ const Integrations = () => {
 										description={'Track events triggered in Combase through Google Analytics.'} 
 									/>	
 								))
-							: <EmptyView title={term ? "No integrations match your search." : "No Available Integrations."} />
+							: (
+								<EmptyWrapper>
+									<EmptyView title={term ? "No integrations match your search." : "No Available Integrations."} />
+								</EmptyWrapper>
+							)
 						}
 					</GridList>
 				</Page>

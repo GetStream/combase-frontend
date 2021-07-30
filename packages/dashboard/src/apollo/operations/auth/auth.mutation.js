@@ -32,6 +32,16 @@ export const REQUEST_PASSWORD_RESET = gql`
   }
 `;
 
+export const RESET_PASSWORD = gql`
+	mutation resetAgentPassword($_id: MongoID!, $password: String!) {
+		agentResetPassword(_id:$_id, password:$password) {
+			record {
+				_id
+			}
+		}
+	}
+`;
+
 export const ONBOARD_USER_AND_ORG = gql`
   mutation createAgentAndOrganization(
     $agent: AgentInput!

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Avatar from '../Avatar';
-import Badge from '../Badge';
+import {BadgeIcon as Badge} from '../icons';
 import Entity from '../Entity';
 import IconLabel from '../IconLabel';
 import Text from '../Text';

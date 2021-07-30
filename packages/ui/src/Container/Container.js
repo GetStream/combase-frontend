@@ -32,7 +32,7 @@ Container.propTypes = {
 Container.defaultProps = {
     centered: true,
     gutter: true,
-    paddingX: [3, 4],
+    paddingX: [3, 6],
     variant: 'fluid',
 };
 

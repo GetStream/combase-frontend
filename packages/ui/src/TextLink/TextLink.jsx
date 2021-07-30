@@ -2,14 +2,21 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 
-import IconLabel from '../IconLabel';
+import Box from '../Box';
 import Text from '../Text';
 import { ChevronRightIcon } from '../icons';
 
-const Root = styled(IconLabel)`
+const Root = styled(Box)`
     ${interactions};
+	position: relative;
     text-decoration: none;
     user-select: none;
+	display: inline-flex;
+	align-items: center;
+	& svg {
+		position: absolute;
+		right: -1rem;
+	}
 `;
 
 const TextLink = forwardRef(({ as, className, color, children, reverse, icon: Icon, onClick, size, ...rest }, ref) => (

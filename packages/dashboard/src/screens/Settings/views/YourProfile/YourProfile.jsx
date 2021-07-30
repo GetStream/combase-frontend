@@ -10,6 +10,7 @@ import Button from '@combase.app/ui/Button';
 import Container from '@combase.app/ui/Container';
 import Text from '@combase.app/ui/Text';
 import TextInput from '@combase.app/ui/TextInput';
+import TimezoneInput from '@combase.app/ui/TimezoneInput';
 
 import { GET_MY_PROFILE } from 'apollo/operations/auth';
 import { UPDATE_AGENT } from 'apollo/operations/agent';
@@ -132,7 +133,7 @@ const YourProfile = () => {
 							value={formik.values.role}
 						/>
 						<Box>
-							<TextInput 
+							<TimezoneInput 
 								label="Timezone"
 								name="timezone"
 								onBlur={formik.handleBlur}
