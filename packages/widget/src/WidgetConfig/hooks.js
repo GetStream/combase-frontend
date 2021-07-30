@@ -8,7 +8,7 @@ import { useContextSelector } from 'use-context-selector';
 import WidgetContext from './context';
 
 // const client = new GraphQLClient(process.env.STORYBOOK_API_URL || 'http://localhost:8080/graphql');
-const client = new GraphQLClient('http://localhost:8080/graphql');
+const client = new GraphQLClient(import.meta.env.VITE_APP_API_URL);
 const getOrg = (query, _id) =>
     client.request(query, {}, { ['combase-organization']: _id, ['combase-timezone']: Intl.DateTimeFormat().resolvedOptions().timeZone });
 const selector = ({ organization }) => organization;
