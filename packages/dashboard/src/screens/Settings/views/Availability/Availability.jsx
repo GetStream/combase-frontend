@@ -166,7 +166,7 @@ const Availability = () => {
 			console.error(error.message);
 		}
 	}, [data]);
-	console.log(initialValues);
+
 	return (
 		<Formik initialValues={initialValues} onSubmit={handleSubmit}>
 			{
@@ -178,8 +178,8 @@ const Availability = () => {
 							</Text>
 						</Header>
 						<Container paddingX={7}>
-							<Text maxWidth={19} fontSize={4} lineHeight={6} fontWeight={400}>Set your availability to be added to the routing pool during your available work hours.</Text>
-							<Text marginY={7} maxWidth={19} fontSize={4} lineHeight={6} fontWeight={400}>Your timezone is curently set to <Text as="span" fontSize={4} lineHeight={4} fontWeight={800}>Amsterdam (CEST)</Text></Text>
+							<Text maxWidth={20} fontSize={4} lineHeight={6} fontWeight={400}>Set your availability to be added to the routing pool during your available work hours.</Text>
+							<Text marginY={7} maxWidth={20} fontSize={4} lineHeight={6} fontWeight={400}>Your timezone is currently set to <Text as="span" fontSize={4} lineHeight={4} fontWeight={800}>{data?.me?.timezone}</Text></Text>
 							<FieldArray
 								name="schedule"
 								render={arrayHelpers => {
