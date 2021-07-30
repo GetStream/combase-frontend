@@ -136,7 +136,6 @@ const Availability = () => {
 
 	const handleSubmit = useCallback(async (values) => {
 		try {
-			console.log(values.schedule);
 			await updateAgent({
 				variables: {
 					_id: data.me._id,

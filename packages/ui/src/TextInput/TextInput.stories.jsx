@@ -169,7 +169,7 @@ export const AutocompleteExample = () => {
     const handleFocus = () => {
         toggleDropdown(true);
     };
-	console.log(open)
+
     return (
         <>
             <TextInput

@@ -72,7 +72,6 @@ const Widget = () => {
 	
 	const organization = data?.organization;
 	const widget = data?.organization.widget;
-	console.log(widget);
 	const initialValues = useMemo(() => ({
 		uitheme: widget?.uitheme || 'system',
 		accent: widget?.accent || theme.colors.primary,
