@@ -14,6 +14,7 @@ import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
 import HeaderBase from 'components/HeaderBase';
+import InfoItem from 'components/InfoItem';
 import UserDisplay from 'components/UserDisplay';
 
 import useAgent from 'hooks/useAgent';
@@ -106,35 +107,32 @@ const ProfileDrawer = ({ history }) => {
 						</Statistic>
 					</Statistics>
 					<Container paddingX={6}>
-						<TextGroup marginY={6}>
-							<IconLabel>
-								<UserIcon size={5} />
-								<Text fontSize={4} fontWeight={700} lineHeight={4}>Full Name</Text>
-							</IconLabel>
-							<Text opacity={0.56} fontWeight={400}>
-								{agent?.name.full}
-							</Text>
-						</TextGroup>
-						<TextGroup marginY={6}>
-							<IconLabel>
-								<MailIcon size={5} />
-								<Text fontSize={4} fontWeight={700} lineHeight={4}>Email Address</Text>
-							</IconLabel>
-							<Text opacity={0.56} fontWeight={400}>
-								{agent?.email}
-							</Text>
-						</TextGroup>
-						<TextGroup marginY={6}>
-							<IconLabel>
-								<CalendarIcon size={5} />
-								<Text fontSize={4} fontWeight={700} lineHeight={4}>Availability</Text>
-							</IconLabel>
+						<InfoItem 
+							marginY={6}
+							icon={UserIcon}
+							label="Full Name"
+							value={agent?.name.full}
+						/>
+						<InfoItem 
+							marginY={6}
+							icon={MailIcon}
+							label="Email Address"
+							value={agent?.email}
+						/>
+						<InfoItem 
+							marginY={6}
+							icon={CalendarIcon}
+							label="Availability"
+							value="todo"
+						>
 							<Text opacity={0.56} fontWeight={400}>
 								TODO
 							</Text>
-						</TextGroup>
-						<TextGroup marginY={6}>
-							<Text marginBottom={3} fontSize={4} fontWeight={700} lineHeight={4}>Account Status</Text>
+						</InfoItem>
+						<InfoItem 
+							marginY={6}
+							label="Account Status"
+						>
 							<Box marginY={3}>
 								<IconLabel>	
 									<Text opacity={0.56} fontWeight={400}>
@@ -159,7 +157,7 @@ const ProfileDrawer = ({ history }) => {
 									<BadgeIcon color="altText" />
 								</IconLabel>
 							</Box>
-						</TextGroup>
+						</InfoItem>
 					</Container>
 				</Box>
 			</Scrollbars>

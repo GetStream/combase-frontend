@@ -15,6 +15,7 @@ import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
 import HeaderBase from 'components/HeaderBase';
+import InfoItem from 'components/InfoItem';
 import UserDisplay from 'components/UserDisplay';
 import useTicket from 'hooks/useTicket';
 import useUserCurrentTime from 'hooks/useUserCurrentTime';
@@ -82,24 +83,18 @@ const ChatDrawer = ({ onClose }) => {
 						paddingY={4} 	
 					/>
 					<Container paddingX={6}>
-						<TextGroup marginY={6}>
-							<IconLabel>
-								<MailIcon size={5} />
-								<Text fontSize={4} fontWeight={700} lineHeight={4}>Email Address</Text>
-							</IconLabel>
-							<Text opacity={0.56} fontWeight={400}>
-								{ticket?.user?.email}
-							</Text>
-						</TextGroup>
-						<TextGroup marginY={6}>
-							<IconLabel>
-								<ClockIcon size={5} />
-								<Text fontSize={4} fontWeight={700} lineHeight={4}>Current Time</Text>
-							</IconLabel>
-							<Text opacity={0.56} fontWeight={400}>
-								{currentTime}
-							</Text>
-						</TextGroup>
+						<InfoItem 
+							marginY={6}
+							icon={MailIcon}
+							label="Email Address"
+							value={ticket?.user?.email}
+						/>
+						<InfoItem 
+							marginY={6}
+							icon={ClockIcon}
+							label="Current Time"
+							value={currentTime}
+						/>
 						<DynamicActionsGrid />
 					</Container>
 				</Box>
