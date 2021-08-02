@@ -12,6 +12,7 @@ export default defineConfig({
 			additionalLegacyPolyfills: ['regenerator-runtime/runtime']
 		})
 	],
+	assetsInclude: ['_redirects'],
 	resolve: {
 		alias: {
 			'@combase.app/ui': '@combase.app/ui/src',
