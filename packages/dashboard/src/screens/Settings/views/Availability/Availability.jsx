@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FieldArray, Form, Formik } from 'formik';
 import { itemGap } from '@combase.app/styles';
 import { useMutation, useQuery } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import format from 'date-fns/format';
 import startOfDay from 'date-fns/startOfDay';
@@ -160,9 +161,10 @@ const Availability = () => {
 						})),
 					}
 				}
-			})
+			});
+			toast.dark(`Availability schedule saved.`)
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	}, [data]);
 

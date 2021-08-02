@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Form, Formik } from 'formik';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
@@ -60,8 +61,9 @@ const Theme = () => {
 					}
 				}
 			})
+			toast.dark('Theme preferences updated.');
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	}, [data]);
 

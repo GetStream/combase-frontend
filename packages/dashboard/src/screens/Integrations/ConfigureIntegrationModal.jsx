@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
@@ -143,7 +144,7 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 				}
 			});
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	}, [props.id]);
 
@@ -156,8 +157,9 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 					_id: integrationData?._id
 				}
 			});
+			toast.dark('Plugin activated');
 		} catch (error) {
-			console.error('failed to activate', error.message);
+			toast.error('Failed to activate plugin.');
 		}
 	}, [props.id, integrationData]);
 
@@ -170,8 +172,9 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 					_id: integrationData?._id
 				}
 			});
+			toast.dark('Plugin deactivated');
 		} catch (error) {
-			console.error('failed to deactivate', error.message);
+			toast.error('Failed to deactivate plugin.');
 		}
 	}, [props.id, integrationData]);
 	
@@ -183,8 +186,9 @@ const ConfigureIntegrationModal = forwardRef((props, ref) => {
 					_id: integrationData?._id
 				}
 			});
+			toast.dark('Plugin credentials unlinked.');
 		} catch (error) {
-			console.error('failed to deactivate', error.message);
+			toast.error('failed to unlink plugin credentials.');
 		}
 	}, [props.id, integrationData]);
 

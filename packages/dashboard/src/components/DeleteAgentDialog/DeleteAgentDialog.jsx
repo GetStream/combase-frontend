@@ -2,6 +2,7 @@ import React, { forwardRef, useCallback, useMemo } from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import { UPDATE_AGENT } from 'apollo/operations/agent';
 
@@ -42,11 +43,13 @@ const DeleteAgentDialog = forwardRef(({ agentId, onClose }, ref) => {
 				update: (cache, { data }) => {
 					const agent = data.agentUpdate.agent;
 					const agentRef = cache.identify(agent);
+					toast.dark(`${agent.name.display} deleted.`);
 					cache.evict(agentRef);
 				}
 			});
 			onClose();
 		} catch (error) {
+			toast.error(error.message);
 			console.log(error.message);
 		}
 	}, [agentId])

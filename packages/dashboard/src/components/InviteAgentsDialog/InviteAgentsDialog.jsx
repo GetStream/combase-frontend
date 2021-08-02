@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { FieldArray, Form, Formik } from 'formik';
+import { toast } from 'react-toastify';
 
 import { useMutation } from '@apollo/client';
 
@@ -109,9 +110,10 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 					records: invitations,
 				}
 			});
+			toast.dark(`${invitations.length} invitation${invitations.length === 1 ? '' : 's'} sent.`);
 			onClose();
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	}, [me, organization, onClose]);
 

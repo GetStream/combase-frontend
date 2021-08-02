@@ -2,6 +2,7 @@ import React, { forwardRef, useCallback, useMemo } from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import { UPDATE_AGENT } from 'apollo/operations/agent';
 
@@ -40,8 +41,10 @@ const DeactivateAgentDialog = forwardRef(({ agentId, onClose }, ref) => {
 					},
 				},
 			});
+			toast.dark(`${agent?.name.display} ${agent?.active ? 'Deactivated' : 'Activated'}.`);
 			onClose();
 		} catch (error) {
+			toast.error(error.message);
 			console.log(error.message);
 		}
 	}, [agent]);

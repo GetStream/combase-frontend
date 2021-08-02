@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { FieldArray, Form, Formik } from 'formik';
 import { useMutation, useQuery } from "@apollo/client";
+import { toast } from 'react-toastify';
 
 import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
@@ -89,8 +90,9 @@ const Widget = () => {
 					}
 				}
 			});
+			toast.dark('Widget settings updated.');
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	}, [organization]);
 

@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { itemGap } from '@combase.app/styles';
 import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { REQUEST_PASSWORD_RESET } from 'apollo/operations';
 
@@ -42,8 +43,9 @@ const PasswordResetForm = () => {
 			await requestPasswordReset({
 				variables
 			});
+			toast.success(`Password reset email sent.`);
 		} catch (error) {
-			console.error(error.message);
+			toast.error(error.message);
 		}
 	}, []);
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { itemGap } from '@combase.app/styles';
 import { Form, Formik } from 'formik';
 import { useMutation, useQuery } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
@@ -78,8 +79,9 @@ const Organization = () => {
 					record: values
 				},
 			});
+			toast.dark(`Organization settings updated.`);
 		} catch (error) {
-			console.error(error);
+			toast.error(error);
 		}
 	}, [organization])
 
