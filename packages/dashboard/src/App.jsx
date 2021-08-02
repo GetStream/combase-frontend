@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Redirect, Route } from 'react-router-dom';
+import { Zoom as ToastTransition, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import GlobalStyle from 'styles/global';
 
@@ -68,6 +70,7 @@ function App() {
 					</Switch>
 				</Router>
 				<GlobalStyle />
+				<ToastContainer autoClose={2000} transition={ToastTransition} closeButton={false} />
 			</ThemeSwitcher>
 		</ApolloProvider>
 	);

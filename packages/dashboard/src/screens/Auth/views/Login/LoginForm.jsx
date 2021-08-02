@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
-import * as yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { itemGap } from '@combase.app/styles';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { LOGIN, setAuthenticationCredentials } from 'apollo/operations';
 
@@ -40,10 +40,12 @@ const LoginForm = () => {
 				variables,
 				update: (_, { data: { agent } }) => {
 					setAuthenticationCredentials(agent.token);
+					toast.dark(`Welcome back, ${agent.name.display}! 👋`);
 					history.push('/');
 				}
-			})
+			});
 		} catch (error) {
+			toast.error(error.message);
 			console.error(error.message);
 		}
 	}, []);

@@ -27,6 +27,7 @@
     "react-easy-crop": "^3.5.2",
     "react-instantsearch-dom": "^6.12.0",
     "react-router-dom": "^5.2.0",
+    "react-toastify": "^7.0.4",
     "react-use": "^17.2.4",
     "react-use-fuse": "^0.5.2",
     "slugify": "^1.6.0",

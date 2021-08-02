@@ -19,6 +19,9 @@ export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
     agent: agentLogin(email: $email, password: $password) {
       _id
+	  name {
+		display
+	  }	
       token
     }
   }
@@ -51,8 +54,8 @@ export const ONBOARD_USER_AND_ORG = gql`
       agent: $agent
       organization: $organization
     ) {
-      _id
-      token
+		_id
+		token
     }
   }
 `;

@@ -53,6 +53,21 @@ export default createGlobalStyle`
     }
 
 	/**
+		Toast
+	**/
+	.Toastify__toast--error {
+		background-color: ${({ theme }) => theme.colors.error} !important;
+	}
+
+	.Toastify__toast--dark {
+		background-color: ${({ theme }) => theme.colors.black} !important;
+	}
+
+	.Toastify__progress-bar--dark {
+		background-color: ${({ theme }) => theme.colors.primary} !important;
+	}
+
+	/**
 	 RFU
 	**/
 	[class*=" rfu-"],

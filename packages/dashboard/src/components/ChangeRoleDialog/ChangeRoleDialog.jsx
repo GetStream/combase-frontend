@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 import { UPDATE_AGENT } from 'apollo/operations/agent';
 
@@ -71,10 +72,13 @@ const ChangeRoleDialog = forwardRef(({ agentId, onClose }, ref) => {
 					_id: agentId,
 					record: variables,
 				},
+				update: (_, { data: { agentUpdate: { agent } } }) => {
+					toast.dark(`${agent.name.display} changed to: ${variables.access}`);
+				}
 			});
 			onClose();
 		} catch (error) {
-			console.log(error.message);
+			toast.error(error.message);
 		}
 	}, [agentId])
 
