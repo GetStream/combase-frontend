@@ -43,6 +43,12 @@ const InputGroup = styled(Box)`
 	}
 `;
 
+const ButtonGroup = styled(InputGroup)`
+	& button {
+		width: 100%;
+	}
+`;
+
 const Footer = styled(DialogFooter)`
 	position: sticky;
 	bottom: 0;
@@ -168,14 +174,14 @@ const YourProfile = () => {
 							size={[15, 15, 15, 16]} 
 							src={formik.values.avatar} 
 						/>
-						<InputGroup marginTop={4} gapTop={2}>
-							<Button onClick={() => avatarInputRef.current.click()} color="primary" variant="flat">
+						<ButtonGroup marginTop={4} gapTop={2}>
+							<Button width="100%" onClick={() => avatarInputRef.current.click()} color="primary" variant="flat">
 								<Text color="primary">Change Photo</Text>
 							</Button>
-							<Button onClick={() => formik.setFieldValue('avatar', null)} color="red" variant="flat">
+							<Button width="100%" onClick={() => formik.setFieldValue('avatar', null)} color="red" variant="flat">
 								<Text color="red">Remove Photo</Text>
 							</Button>
-						</InputGroup>
+						</ButtonGroup>
 					</StickyWrapper>
 				</Box>
 			</FormWrapper>
