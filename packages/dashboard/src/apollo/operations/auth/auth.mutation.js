@@ -47,7 +47,7 @@ export const ONBOARD_USER_AND_ORG = gql`
     $agent: AgentInput!
     $organization: OrganizationInput!
   ) {
-    agent: createAgentAndOrganization(
+    agent: agentOnboard(
       agent: $agent
       organization: $organization
     ) {
