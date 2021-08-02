@@ -164,7 +164,7 @@ const Widget = () => {
 									Restrict Paths
 								</Text>
 								<Text fontSize={3} lineHeight={6} fontWeight={400} maxWidth={19} opacity={0.56}>
-									Restrict the widget to only display on certain paths. If empty the widget will show for all paths. You can leave this blank to allow all paths
+									Restrict the widget to only display on certain paths. If the below input is empty, the widget will show for all paths when embedded on your site.
 								</Text>
 							</TextGroup>
 							<PathsInput marginY={4}>
