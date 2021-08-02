@@ -6,7 +6,7 @@ import { themes } from '@combase.app/styles';
 import Box from '@combase.app/ui/Box';
 import IconBubble from '@combase.app/ui/IconBubble';
 import Label from '@combase.app/ui/Label';
-import { ChatsIcon, PluginsIcon } from '@combase.app/ui/icons';
+import { ChatsIcon, PluginsIcon, StreamIcon } from '@combase.app/ui/icons';
 import StreamLogo from '@combase.app/ui/StreamLogo';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
@@ -21,7 +21,7 @@ import Onboarding from './views/Onboarding';
 
 const Root = styled(Box)`
 	display: grid;
-	grid-template-columns: 0.5fr 1fr;
+	grid-template-columns: minmax(365px, 0.33fr) 1fr;
 	height: 100vh;
 	overflow: hidden;
 `;
@@ -97,7 +97,7 @@ const Auth = () => {
 							</TextGroup>
 						</Box>
 						<Box marginY={8}>
-							<IconBubble icon={StreamLogo} size={8} color="text" />
+							<IconBubble icon={StreamIcon} size={8} color="text" />
 							<TextGroup marginTop={2}>
 								<Text fontSize={5} lineHeight={5} fontWeight={700}>
 									Powered By Stream

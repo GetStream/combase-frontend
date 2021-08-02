@@ -79,6 +79,7 @@ export * from './send';
 export * from './settings';
 export * from './sort';
 export * from './star';
+export * from './stream';
 export * from './support';
 export * from './switchTheme';
 export * from './tag';
