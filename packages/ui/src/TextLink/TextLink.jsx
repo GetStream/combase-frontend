@@ -13,9 +13,12 @@ const Root = styled(Box)`
     user-select: none;
 	display: inline-flex;
 	align-items: center;
+	margin-right: 1rem;
 	& svg {
 		position: absolute;
 		right: -1rem;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 `;
 

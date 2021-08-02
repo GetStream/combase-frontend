@@ -12,6 +12,7 @@ import {AllInboxesIcon, ChatClosedIcon, ChatOpenIcon, ChatUnassignedIcon, Dropdo
 import Popover, { usePopoverState } from '@combase.app/ui/Popover';
 import IconLabel from '@combase.app/ui/IconLabel';
 import MenuItem from '@combase.app/ui/MenuItem';
+import StateDisplay from '@combase.app/ui/StateDisplay';
 import Text from '@combase.app/ui/Text';
 
 import HeaderBase from 'components/HeaderBase';
@@ -118,6 +119,10 @@ const LoadingChannels = () => (
 		<CombaseChannelPreview />
 	</>
 );
+
+const EmptyState = () => (
+	<StateDisplay text="No Channels" />
+)
 
 const List = React.forwardRef(({ children, loading, LoadingIndicator }, ref) => (
 	<ChannelListRoot as={Scrollbars} $loading={loading} ref={ref}>
@@ -247,7 +252,7 @@ const ChatList = () => {
 				options={options}
 				onChannelUpdated={onChannelUpdated}
 				LoadingIndicator={LoadingChannels}
-				// EmptyStateIndicator={EmptyState}
+				EmptyStateIndicator={EmptyState}
 				Paginator={Paginator}
 				List={List}
 				Preview={CombaseChannelPreview}
