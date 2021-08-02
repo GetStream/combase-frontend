@@ -6,7 +6,7 @@ import { useLocalStorage, useToggle } from 'react-use';
 import { themes } from '@combase.app/styles';
 
 import WidgetContext from './context';
-import { useOrganizationStreamKey } from './hooks';
+import { useOrganizationStreamKey, useWidgetPathRestrictions } from './hooks';
 
 const lsOpts = {
     raw: false,
@@ -27,8 +27,11 @@ const WidgetConfig = ({ children, organization, theme }) => {
 
     const [streamChatKey] = useOrganizationStreamKey(organization);
 
+	// check the widget should be displayed based on org.widget.paths...
+	const show = useWidgetPathRestrictions(organization);
+
     useEffect(() => {
-        if (!chatClient && streamChatKey) {
+        if (show && !chatClient && streamChatKey) {
             const client = new StreamChat(streamChatKey);
 			client.setBaseURL('https://chat.stream-io-api.com');
 
@@ -40,7 +43,7 @@ const WidgetConfig = ({ children, organization, theme }) => {
             }
             setChatClient(client);
         }
-    }, [streamChatKey]);
+    }, [show, streamChatKey]);
 
 	const setAuth = useCallback((data) => {
 		persistAuth(data);
@@ -62,10 +65,9 @@ const WidgetConfig = ({ children, organization, theme }) => {
     );
 
 	// const handleClickAway = useCallback(() => toggleWidgetCard(open ? false : open), [open]);
-
     // useClickAway(shellRef, handleClickAway);
 
-    if (context.loading || !chatClient?.user) {
+    if (!show || (context.loading || !chatClient?.user)) {
         return null;
     }
 

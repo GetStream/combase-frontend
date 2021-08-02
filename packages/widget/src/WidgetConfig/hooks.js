@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTheme } from 'styled-components';
 import { useAsyncFn, useMedia } from 'react-use';
 import useSWR from 'swr';
@@ -13,8 +14,8 @@ const getOrg = (query, _id) =>
     client.request(query, {}, { ['combase-organization']: _id, ['combase-timezone']: Intl.DateTimeFormat().resolvedOptions().timeZone });
 const selector = ({ organization }) => organization;
 
-export const useOrganization = () => {
-    const organization = useContextSelector(WidgetContext, selector);
+export const useOrganization = (orgId) => {
+    const organization = orgId || useContextSelector(WidgetContext, selector);
 
     const { data, error, loading } = useSWR(
         organization
@@ -30,6 +31,7 @@ export const useOrganization = () => {
 								title
 								tagline
 							}
+							paths
 						}
 						name
 						stream {
@@ -139,3 +141,26 @@ export const useWidgetIsContained = () => {
     const theme = useTheme();
     return useMedia(`(min-width: ${theme.breakpoints[1]})`);
 };
+
+
+export const useWidgetPathRestrictions = (orgId) => {
+	const [organization] = useOrganization(orgId);
+
+	const show = useMemo(() => {
+		if (!organization) {
+			return false;
+		}
+
+		const { paths } = organization.widget;
+
+		if (!paths.length) {
+			return true;
+		}
+
+		const {pathname} = window.location;
+
+		return paths.includes(pathname);
+	}, [organization]);
+
+	return show;
+}
