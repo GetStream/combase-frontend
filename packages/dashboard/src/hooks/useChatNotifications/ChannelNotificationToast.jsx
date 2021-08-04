@@ -6,7 +6,7 @@ import useUser from '../useUser';
 
 import {ChevronRightIcon} from '@combase.app/ui/icons';
 import Label from '@combase.app/ui/Label';
-import IconLabl from '@combase.app/ui/IconLabl';
+import IconLabel from '@combase.app/ui/IconLabel';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
