@@ -32,10 +32,12 @@ const useChatUserPresence = id => {
 	}, [streamUser]);
 
 	useEffect(() => {
-		doGetUser(id);
-		client.on('user.presence.changed', handleEvent);
-		
-		return () => client.off('user.presence.changed', handleEvent);
+		if (id) {
+			doGetUser(id);
+			client.on('user.presence.changed', handleEvent);
+			
+			return () => client.off('user.presence.changed', handleEvent);
+		}
 	}, [id]);
 
 	return isOnline;
