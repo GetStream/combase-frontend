@@ -84,7 +84,7 @@ const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, value
 
 const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 	const { data } = useCurrentUser();
-	const [createInvitations] = useMutation(CREATE_INVITATION)
+	const [createInvitations, { loading }] = useMutation(CREATE_INVITATION)
 	const me = data?.me;
 	const organization = data?.organization;
 
@@ -154,7 +154,7 @@ const InviteAgentsModal = forwardRef(({ onClose }, ref) => {
 							<Button variant="flat" color="altText" onClick={onClose}>
 								<Text color="altText">Cancel</Text>
 							</Button>
-							<Button type="submit">
+							<Button loading={loading} type="submit">
 								<Text color="white">Send Invites</Text>
 							</Button>
 						</DialogFooter>

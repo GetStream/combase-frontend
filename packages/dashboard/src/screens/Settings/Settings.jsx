@@ -91,7 +91,7 @@ const Settings = forwardRef(({ onClose }, ref) => {
 					<Box>
 						<NavigationMenuItem icon={UserIcon} label="Your Profile" to="/settings/your-profile" navigationMethod="replace" />
 						<NavigationMenuItem icon={CalendarIcon} label="Availability" to="/settings/availability" navigationMethod="replace" />
-						<NavigationMenuItem icon={SettingsIcon} label="Preferences" to="/settings/preferences" navigationMethod="replace" />
+						{/* <NavigationMenuItem icon={SettingsIcon} label="Preferences" to="/settings/preferences" navigationMethod="replace" /> */}
 						<NavigationMenuItem icon={SwitchThemeIcon} label="Theme" to="/settings/theme" navigationMethod="replace" />
 						<NavigationMenuItem icon={OrganizationIcon} label="Organization" to="/settings/organization" navigationMethod="replace" />
 						<NavigationMenuItem icon={WidgetIcon} label="Widget" to="/settings/widget" navigationMethod="replace" />

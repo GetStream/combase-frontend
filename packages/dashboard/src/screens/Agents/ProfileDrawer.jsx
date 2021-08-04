@@ -119,7 +119,7 @@ const ProfileDrawer = ({ history }) => {
 							label="Email Address"
 							value={agent?.email}
 						/>
-						<InfoItem 
+						{/* <InfoItem 
 							marginY={6}
 							icon={CalendarIcon}
 							label="Availability"
@@ -128,7 +128,7 @@ const ProfileDrawer = ({ history }) => {
 							<Text opacity={0.56} fontWeight={400}>
 								TODO
 							</Text>
-						</InfoItem>
+						</InfoItem> */}
 						<InfoItem 
 							marginY={6}
 							label="Account Status"

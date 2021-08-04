@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_INVITATION = gql`
-	mutation createIntegration($records: [CreateManyInvitationInput!]!) {
+	mutation createInvitation($records: [CreateManyInvitationInput!]!) {
 		invitationCreate(records: $records) {
 			records {
 				_id
