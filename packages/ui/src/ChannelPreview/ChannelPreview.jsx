@@ -72,8 +72,8 @@ const ChannelPreview = ({
 
 	const handleSelectChannel = () => {
 		if (setActiveChannel) {
-		  setActiveChannel(channel, watchers);
-		  onSelectChannel?.(channel);
+			setActiveChannel(channel, watchers);
+			onSelectChannel?.(channel);
 		}
 		if (buttonRef.current) {
 			buttonRef.current.blur();

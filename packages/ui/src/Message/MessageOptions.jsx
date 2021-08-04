@@ -56,7 +56,7 @@ const Root = (props) => {
 
 	return (
 		<Box backgroundColor="surface" boxShadow={0} className={className} paddingX="small">
-			{shouldShowReplies && (
+			{/* {shouldShowReplies && (
 				<Action interaction="opacity" onClick={handleOpenThread}>
 					<ChatOpenIcon />
 				</Action>
@@ -65,7 +65,7 @@ const Root = (props) => {
 				<Action interaction="opacity" onClick={onReactionListClick}>
 					<EmojiIcon />
 				</Action>
-			)}
+			)} */}
 			{showActionsBox ? (
 				<MessageActions>
 					<Action interaction="opacity">

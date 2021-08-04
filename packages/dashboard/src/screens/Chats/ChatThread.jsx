@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useChatContext } from 'stream-chat-react';
 import { Route } from 'react-router-dom';
 import Box from '@combase.app/ui/Box';
 
@@ -27,11 +26,6 @@ const Root = styled(Box)`
 
 const ChatThread = () => {
 	const [showDrawer, setShowDrawer] = useState(false);
-	const {setActiveChannel} = useChatContext();
-
-	useEffect(() => {
-		return () => setActiveChannel(null);
-	}, [])
 
 	return (
 		<Root $drawerOpen={showDrawer}>

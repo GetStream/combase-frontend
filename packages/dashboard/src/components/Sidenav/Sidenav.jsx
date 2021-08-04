@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useChatContext } from 'stream-chat-react';
 
 import useCurrentUser from 'hooks/useCurrentUser';
+import useChatNotifications from 'hooks/useChatNotifications';
 
 import Avatar from '@combase.app/ui/Avatar';
 import Box from '@combase.app/ui/Box';
@@ -36,6 +37,7 @@ const linkStyle = {
 
 const Sidenav = () => {
 	const currentUser = useCurrentUser();
+	useChatNotifications();
 	
 	const { client } = useChatContext();
 	const [totalUnread, setTotalUnread] = useState(client.user.total_unread_count ?? 0);
