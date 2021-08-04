@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Scrollbars } from 'rc-scrollbars';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import { useApolloClient } from '@apollo/client';
+import { setAuthenticationCredentials } from 'apollo/operations';
 
 import Box from '@combase.app/ui/Box';
 import Card from '@combase.app/ui/Card';
@@ -75,6 +76,7 @@ const Settings = forwardRef(({ onClose }, ref) => {
 	const apollo = useApolloClient();
 	const handleLogout = useCallback(() => {
 		apollo.cache.reset();
+		setAuthenticationCredentials(null);
 		localStorage.clear();
 		history.push('/auth/login');
 	}, []);

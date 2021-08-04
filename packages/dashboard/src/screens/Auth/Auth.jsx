@@ -2,16 +2,16 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import { themes } from '@combase.app/styles';
+import { useReactiveVar } from "@apollo/client";
 
 import Box from '@combase.app/ui/Box';
 import IconBubble from '@combase.app/ui/IconBubble';
 import Label from '@combase.app/ui/Label';
 import { ChatsIcon, PluginsIcon, StreamIcon } from '@combase.app/ui/icons';
-import StreamLogo from '@combase.app/ui/StreamLogo';
 import Text from '@combase.app/ui/Text';
 import TextGroup from '@combase.app/ui/TextGroup';
 
-import useCurrentUser from 'hooks/useCurrentUser';
+import { authenticationVar } from 'apollo/variables';
 
 import ResetPassword from './views/ResetPassword';
 import ForgotPassword from './views/ForgotPassword';
@@ -55,11 +55,11 @@ const Credit = styled(Box)`
 `;
 
 const Auth = () => {
-	const { data, loading } = useCurrentUser();
-	
-	if (!loading && data?.me) {
-		return <Redirect replace to='/' />
-	}
+	const authed = useReactiveVar(authenticationVar);
+
+    if (authed) {
+        return <Redirect replace to="/" />;
+    }
 
 	return (
 		<Root>

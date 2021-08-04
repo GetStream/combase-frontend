@@ -16,6 +16,7 @@ const StreamContextProvider = ({ children }) => {
 	const [chatClient, setChatClient] = useState();
 
 	useEffect(() => {
+		console.log(currentUser, initialized.current);
 		if (currentUser?.data?.me && !initialized.current) {
 			initialized.current = true;
 			setChatClient(() => createAuthedChatClient(currentUser?.data));

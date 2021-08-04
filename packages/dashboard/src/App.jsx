@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Redirect, Route } from 'react-router-dom';
 import { Zoom as ToastTransition, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { useReactiveVar } from '@apollo/client';
 
 import GlobalStyle from 'styles/global';
 
 import Modal from '@combase.app/ui/Modal';
 
 import {ApolloProvider} from 'apollo/provider';
+import {authenticationVar} from 'apollo/variables';
 
 import StreamContextProvider from 'contexts/Stream/provider';
 import { ThemeSwitcher } from 'contexts/ThemeSwitcher';
@@ -33,11 +35,11 @@ const Root = styled(Box)`
 `;
 
 function Dashboard() {
-	const {data, loading} = useCurrentUser();
+	const authed = useReactiveVar(authenticationVar);
 
-	if (!loading && !data?.me) {
-		return <Redirect replace to='/auth/login' />
-	}
+    if (!authed) {
+        return <Redirect replace to="/auth/login" />;
+    }
 
 	return (
 		<StreamContextProvider>

@@ -8,6 +8,7 @@ import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist';
 import QueueLink from 'apollo-link-queue';
 
 import { cache } from './cache';
+import { authenticationVar } from './variables';
 
 let client = null;
 
@@ -41,12 +42,12 @@ export default async endpoint => {
 				'combase-organization': orgId,
 			}
 		}
-
+		console.log('req: Authorization', token, authenticationVar())
         return {
             headers: {
                 ...headers,
 				...additional,
-                authorization: token ? `Bearer ${token}` : '',
+                Authorization: token ? `Bearer ${token}` : '',
             },
         };
     });

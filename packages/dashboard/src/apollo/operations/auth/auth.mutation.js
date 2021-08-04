@@ -9,10 +9,15 @@ import { authenticationVar } from "../../variables";
  * @return {string} the latest token
  */
 export const setAuthenticationCredentials = (token) => {
-  localStorage.setItem("token", token);
-  localStorage.removeItem("combase-organization");
+	localStorage.removeItem("combase-organization");
 
-  return authenticationVar(token);
+	if (!token) {
+		localStorage.removeItem('token')
+	} else {
+		localStorage.setItem("token", token);
+	}
+
+  	return authenticationVar(token);
 };
 
 export const LOGIN = gql`
