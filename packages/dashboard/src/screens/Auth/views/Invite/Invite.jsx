@@ -63,6 +63,20 @@ const Invite = () => {
 					first: '',
 					last: '',
 				},
+				schedule: [{
+					enabled: true,
+					day: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
+					time: [{
+						start: {
+							hour: 9,
+							minute: 0,
+						},
+						end: {
+							hour: 17,
+							minute: 30,
+						},
+					}]
+				}],
 				password: '',
 				organization: invitation?.org ?? '',
 				access: invitation?.access ?? '',

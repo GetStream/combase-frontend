@@ -33,6 +33,20 @@ const initialValues = {
         },
         password: '',
     },
+	schedule: [{
+		enabled: true,
+		day: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
+		time: [{
+			start: {
+				hour: 9,
+				minute: 0,
+			},
+			end: {
+				hour: 17,
+				minute: 30,
+			},
+		}]
+	}],
     organization: {
         color: '',
         name: '',
