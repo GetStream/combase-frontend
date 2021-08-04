@@ -27,9 +27,9 @@ const StreamContextProvider = ({ children }) => {
 	}
 
 	return (
-	<Chat client={chatClient}>
-		{children}
-	</Chat>
+		<Chat client={chatClient}>
+			{children}
+		</Chat>
 	);
 };
 export default StreamContextProvider;
