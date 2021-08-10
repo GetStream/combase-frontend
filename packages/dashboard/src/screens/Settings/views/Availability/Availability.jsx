@@ -27,6 +27,7 @@ import { UPDATE_AGENT } from 'apollo/operations/agent';
 
 import {DialogFooter} from 'components/Dialog';
 import HeaderBase from 'components/HeaderBase';
+import FormikCancelButton from 'components/FormikCancelButton';
 
 const Header = styled(HeaderBase)`
 	display: flex;
@@ -286,9 +287,7 @@ const Availability = () => {
 							/>
 						</Container>
 						<Footer>
-							<Button color="altText" variant="flat">
-								<Text color="altText">Cancel</Text>
-							</Button>
+							<FormikCancelButton cancelMsg="Availability changes reset." />
 							<Button disabled={!formik.dirty || !formik.isValid} loading={loading} type="submit">
 								<Text color="white">Save</Text>
 							</Button>

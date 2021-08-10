@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { itemGap } from '@combase.app/styles';
-import { useFormik } from 'formik';
+import { Formik, Form } from 'formik';
 import { useMutation, useQuery } from '@apollo/client';
 
 import Box from '@combase.app/ui/Box';
@@ -17,6 +17,7 @@ import { UPDATE_AGENT } from 'apollo/operations/agent';
 
 import AvatarInput from 'components/AvatarInput';
 import {DialogFooter} from 'components/Dialog';
+import FormikCancelButton from 'components/FormikCancelButton';
 import HeaderBase from 'components/HeaderBase';
 
 const Header = styled(HeaderBase)`
@@ -92,111 +93,109 @@ const YourProfile = () => {
 			console.error(error);
 		}
 	}, [me]);
-	
-	const formik = useFormik({
-		enableReinitialize: true,
-		initialValues,
-		onSubmit: handleSubmit,
-	});
 
 	return (
-		<Box as="form" onSubmit={formik.handleSubmit}>
-			<Header paddingX={7} height="headerLg">
-				<Text fontSize={5} lineHeight={7} fontWeight={600}>
-					Your Profile
-				</Text>
-			</Header>
-			<FormWrapper paddingX={7} paddingBottom={5}>
-				<Box>
-					<InputGroup gapTop={6}>
-						<TextInput 
-							label="Full Name" 
-							name="name.full"
-							onBlur={formik.handleBlur}
-							onChange={formik.handleChange}
-							onFocus={formik.handleFocus}
-							value={formik.values.name.full}
-						/>
-						<Box>
-							<TextInput 
-								label="Display Name"
-								name="name.display"
-								onBlur={formik.handleBlur}
-								onChange={formik.handleChange}
-								onFocus={formik.handleFocus}
-								value={formik.values.name.display}
-							/>
-							<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>This is the name that will appear for you when in conversation with end-users, and around the Combase Interface.</Text>
-						</Box>
-					</InputGroup>
-					<InputGroup marginY={9} gapTop={6}>
-						<Box>
-							<TextInput 
-								label="Role" 
-								name="role"
-								onBlur={formik.handleBlur}
-								onChange={formik.handleChange}
-								onFocus={formik.handleFocus}
-								value={formik.values.role}
-							/>
-							<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Let end-users know what you do at {organization?.name}.</Text>
-						</Box>
-						<Box>
-							<TimezoneInput 
-								label="Timezone"
-								name="timezone"
-								onBlur={formik.handleBlur}
-								onChange={formik.handleChange}
-								onFocus={formik.handleFocus}
-								value={formik.values.timezone}
-							/>
-							<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Setting your timezone allows Combase to accurately route chats for your <Link to="/settings/availability">Availability Schedule</Link>.</Text>
-						</Box>
-					</InputGroup>
-					<InputGroup marginY={9} gapTop={6}>
-						<Box>
-							<TextInput 
-								label="Email" 
-								name="email"
-								onBlur={formik.handleBlur}
-								onChange={formik.handleChange}
-								onFocus={formik.handleFocus}
-								value={formik.values.email}
-							/>
-							<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Changing your email address requires verification, check your inbox after hitting save.</Text>
-						</Box>
-					</InputGroup>
-				</Box>
-				<Box>
-					<StickyWrapper>
-						<AvatarInput 
-							borderRadius={[7, 7, 7, 8]} 
-							name={formik.values.name.display} 
-							onChange={avatar => formik.setFieldValue('avatar', avatar)} 
-							ref={avatarInputRef}
-							size={[15, 15, 15, 16]} 
-							src={formik.values.avatar} 
-						/>
-						<ButtonGroup marginTop={4} gapTop={2}>
-							<Button width="100%" onClick={() => avatarInputRef.current.click()} color="primary" variant="flat">
-								<Text color="primary">Change Photo</Text>
+		<Formik enableReinitialize initialValues={initialValues} onSubmit={handleSubmit}>
+			{
+				formik => (
+					<Box as={Form} onSubmit={formik.handleSubmit}>
+						<Header paddingX={7} height="headerLg">
+							<Text fontSize={5} lineHeight={7} fontWeight={600}>
+								Your Profile
+							</Text>
+						</Header>
+						<FormWrapper paddingX={7} paddingBottom={5}>
+							<Box>
+								<InputGroup gapTop={6}>
+									<TextInput 
+										label="Full Name" 
+										name="name.full"
+										onBlur={formik.handleBlur}
+										onChange={formik.handleChange}
+										onFocus={formik.handleFocus}
+										value={formik.values.name.full}
+									/>
+									<Box>
+										<TextInput 
+											label="Display Name"
+											name="name.display"
+											onBlur={formik.handleBlur}
+											onChange={formik.handleChange}
+											onFocus={formik.handleFocus}
+											value={formik.values.name.display}
+										/>
+										<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>This is the name that will appear for you when in conversation with end-users, and around the Combase Interface.</Text>
+									</Box>
+								</InputGroup>
+								<InputGroup marginY={9} gapTop={6}>
+									<Box>
+										<TextInput 
+											label="Role" 
+											name="role"
+											onBlur={formik.handleBlur}
+											onChange={formik.handleChange}
+											onFocus={formik.handleFocus}
+											value={formik.values.role}
+										/>
+										<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Let end-users know what you do at {organization?.name}.</Text>
+									</Box>
+									<Box>
+										<TimezoneInput 
+											label="Timezone"
+											name="timezone"
+											onBlur={formik.handleBlur}
+											onChange={formik.handleChange}
+											onFocus={formik.handleFocus}
+											value={formik.values.timezone}
+										/>
+										<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Setting your timezone allows Combase to accurately route chats for your <Link to="/settings/availability">Availability Schedule</Link>.</Text>
+									</Box>
+								</InputGroup>
+								<InputGroup marginY={9} gapTop={6}>
+									<Box>
+										<TextInput 
+											label="Email" 
+											name="email"
+											onBlur={formik.handleBlur}
+											onChange={formik.handleChange}
+											onFocus={formik.handleFocus}
+											value={formik.values.email}
+										/>
+										<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Changing your email address requires verification, check your inbox after hitting save.</Text>
+									</Box>
+								</InputGroup>
+							</Box>
+							<Box>
+								<StickyWrapper>
+									<AvatarInput 
+										borderRadius={[7, 7, 7, 8]} 
+										name={formik.values.name.display} 
+										onChange={avatar => formik.setFieldValue('avatar', avatar)} 
+										ref={avatarInputRef}
+										size={[15, 15, 15, 16]} 
+										src={formik.values.avatar} 
+									/>
+									<ButtonGroup marginTop={4} gapTop={2}>
+										<Button width="100%" onClick={() => avatarInputRef.current.click()} color="primary" variant="flat">
+											<Text color="primary">Change Photo</Text>
+										</Button>
+										<Button width="100%" onClick={() => formik.setFieldValue('avatar', null)} color="red" variant="flat">
+											<Text color="red">Remove Photo</Text>
+										</Button>
+									</ButtonGroup>
+								</StickyWrapper>
+							</Box>
+						</FormWrapper>
+						<Footer>
+							<FormikCancelButton cancelMsg="Profile changes reset." />
+							<Button disabled={!formik.dirty || !formik.isValid} loading={loading} type="submit">
+								<Text color="white">Save</Text>
 							</Button>
-							<Button width="100%" onClick={() => formik.setFieldValue('avatar', null)} color="red" variant="flat">
-								<Text color="red">Remove Photo</Text>
-							</Button>
-						</ButtonGroup>
-					</StickyWrapper>
-				</Box>
-			</FormWrapper>
-			<Footer>
-				<Button color="altText" variant="flat">
-					<Text color="altText">Cancel</Text>
-				</Button>
-				<Button disabled={!formik.dirty || !formik.isValid} loading={loading} type="submit">
-					<Text color="white">Save</Text>
-				</Button>
-			</Footer>
-		</Box>
+						</Footer>
+					</Box>
+				)
+			}
+		</Formik>
 	)
 };
 

@@ -17,6 +17,7 @@ import { GET_ORGANIZATION_PROFILE, UPDATE_ORGANIZATION_PROFILE } from 'apollo/op
 import AvatarInput from 'components/AvatarInput';
 import {DialogFooter} from 'components/Dialog';
 import HeaderBase from 'components/HeaderBase';
+import FormikCancelButton from 'components/FormikCancelButton';
 
 const Header = styled(HeaderBase)`
 	display: flex;
@@ -150,9 +151,7 @@ const Organization = () => {
 							</Box>
 						</FormWrapper>
 						<Footer>
-							<Button color="altText" variant="flat">
-								<Text color="altText">Cancel</Text>
-							</Button>
+							<FormikCancelButton cancelMsg="Organization changes reset." />
 							<Button disabled={!formik.dirty || !formik.isValid} loading={loading} type="submit">
 								<Text color="white">Save</Text>
 							</Button>

@@ -19,6 +19,7 @@ import {DialogFooter} from 'components/Dialog';
 import HeaderBase from 'components/HeaderBase';
 import AccentSelector from 'components/AccentSelector';
 import ThemeSelector from 'components/ThemeSelector';
+import FormikCancelButton from 'components/FormikCancelButton';
 
 const Root = styled(Box)`
 	height: 100%;
@@ -88,9 +89,7 @@ const Theme = () => {
 							<AccentSelector name="theme.color" onChange={formik.handleChange} value={formik.values.theme.color} />
 						</Container>
 						<Footer marginTop="auto">
-							<Button color="altText" variant="flat">
-								<Text color="altText">Cancel</Text>
-							</Button>
+							<FormikCancelButton cancelMsg="Theme changes reset." />
 							<Button disabled={!formik.dirty || !formik.isValid} loading={loading} type="submit">
 								<Text color="white">Save</Text>
 							</Button>
