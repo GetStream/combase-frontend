@@ -61,29 +61,27 @@ const Header = () => {
 	const agentCount = organization?.availableAgents?.length || 0;
     
 	return (
-        <ThemeProvider theme={themes.dark}>
-			<Root backgroundColor="primary" borderBottomLeftRadius={3} borderBottomRightRadius={3} minHeight={16}>
-				<Wrapper style={styles.wrapper} padding={7}>
-					<Brand>
-						<Entity icon={<Avatar name={organization?.name} size={10} src={organization?.branding?.logo} />}>
-							<TextGroup gapTop={0}>
-								<Text  fontSize={6} lineHeight={6} fontWeight="600">Stream</Text>
-								<Text  opacity={.56}>Boulder, CO • Amsterdam, NL</Text>
-							</TextGroup>
-						</Entity>
-					</Brand>
-					<TextGroup gapTop={0} marginY={2} >
-						<Text fontSize={6} lineHeight={9}>
-							<WelcomeMessage />
-						</Text>
-						<Label color="altText" gap={2} variant="ghost">
-							<Badge color={agentCount ? "green" : "white"} />
-							<Text>{agentCount} agent{agentCount === 1 ? '' : 's'} online</Text>
-						</Label>
-					</TextGroup>
-				</Wrapper>
-			</Root>
-		</ThemeProvider>
+		<Root backgroundColor="primary" borderBottomLeftRadius={3} borderBottomRightRadius={3} minHeight={16}>
+			<Wrapper style={styles.wrapper} padding={7}>
+				<Brand>
+					<Entity icon={<Avatar name={organization?.name} size={10} src={organization?.branding?.logo} />}>
+						<TextGroup gapTop={0}>
+							<Text color="white" fontSize={6} lineHeight={6} fontWeight="600">Stream</Text>
+							<Text color="white" opacity={.56}>Boulder, CO • Amsterdam, NL</Text>
+						</TextGroup>
+					</Entity>
+				</Brand>
+				<TextGroup gapTop={0} marginY={2} >
+					<Text color="white" fontSize={6} lineHeight={9}>
+						<WelcomeMessage />
+					</Text>
+					<Label color="white" gap={2} variant="ghost">
+						<Badge color={agentCount ? "green" : "white"} />
+						<Text>{agentCount} agent{agentCount === 1 ? '' : 's'} online</Text>
+					</Label>
+				</TextGroup>
+			</Wrapper>
+		</Root>
     );
 };
 

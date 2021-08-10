@@ -22,8 +22,8 @@ const Router = () => {
 	);
 };
 
-const CombaseWidget = ({ fabSize, organization, theme }) => (
-    <WidgetConfig organization={organization} theme={theme}>
+const CombaseWidget = ({ fabSize, organization }) => (
+    <WidgetConfig organization={organization}>
         <WidgetShell fabSize={fabSize} open={open}>
         	<Router />
         </WidgetShell>

@@ -164,3 +164,27 @@ export const useWidgetPathRestrictions = (orgId) => {
 
 	return show;
 }
+
+export const useWidgetThemeSettings = (orgId) => {
+    const organization = orgId || useContextSelector(WidgetContext, selector);
+
+    const { data, error, loading } = useSWR(
+        organization
+            ? [
+                  `query getWidgetThemeSettings {
+					organization {
+						_id
+						widget {
+							accent
+							uitheme
+						}
+					}
+				}`,
+                organization,
+              ]
+            : null,
+        getOrg
+    );
+
+    return [data?.organization?.widget, loading, error];
+};

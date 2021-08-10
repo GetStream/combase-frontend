@@ -8,7 +8,7 @@ import {ChatsIcon} from '@combase.app/ui/icons';
 const Header = () => {
     return (
         <CardHeader
-            icon={<ChatsIcon color="blue" size={4} />}
+            icon={<ChatsIcon color="primary" size={4} />}
             minHeight={9}
             paddingX={[4, 4, 5]}
             paddingTop={4}
