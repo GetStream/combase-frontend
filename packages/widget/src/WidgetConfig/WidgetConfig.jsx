@@ -49,7 +49,6 @@ const WidgetConfig = ({ children, organization }) => {
  
 		return prepareTheme(themes[themeSettings.uitheme], themeSettings);
 	}, [themeSettings, systemDarkMode]);
-	console.log(theme);
 
     useEffect(() => {
         if (show && !chatClient && streamChatKey) {

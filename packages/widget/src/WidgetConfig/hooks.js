@@ -27,10 +27,6 @@ export const useOrganization = (orgId) => {
 							logo
 						}
 						widget {
-							home {
-								title
-								tagline
-							}
 							paths
 						}
 						name
