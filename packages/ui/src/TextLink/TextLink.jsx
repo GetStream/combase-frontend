@@ -22,8 +22,8 @@ const Root = styled(Box)`
 	}
 `;
 
-const TextLink = forwardRef(({ as, className, color, children, reverse, icon: Icon, onClick, size, ...rest }, ref) => (
-    <Root as={as} className={className} interaction="opacity" onClick={onClick} ref={ref} reverse={reverse} {...rest}>
+const TextLink = forwardRef(({ as, className, color, children, icon: Icon, onClick, size, ...rest }, ref) => (
+    <Root as={as} className={className} interaction="opacity" onClick={onClick} ref={ref} {...rest}>
         <Text color={color} fontSize={size} lineHeight={size}>{children}</Text>
         <Icon color={color} size={size} />
     </Root>
