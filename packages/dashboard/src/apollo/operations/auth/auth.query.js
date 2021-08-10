@@ -111,6 +111,7 @@ export const GET_MY_PROFILE = gql`
         }
 
 		organization {
+			name
 			stream {
 				key
 			}

@@ -27,7 +27,6 @@ export const DialogFooter = styled(Box).attrs({
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	border-top: 1px solid ${({ theme }) => theme.colors.border};
 
 	& button + button {
 		${itemGap}

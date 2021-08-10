@@ -65,10 +65,10 @@ const YourProfile = () => {
 	const [updateAgent, { loading }] = useMutation(UPDATE_AGENT);
 	
 	const me = data?.me;
-	const stream = data?.organization?.stream;
+	const organization = data?.organization;
 	
 	const avatarInputRef = useRef(null);
-
+	console.log(organization);
 	const initialValues = useMemo(() => ({
 		avatar: me?.avatar ?? "",
 		name: {
@@ -130,14 +130,17 @@ const YourProfile = () => {
 						</Box>
 					</InputGroup>
 					<InputGroup marginY={9} gapTop={6}>
-						<TextInput 
-							label="Role" 
-							name="role"
-							onBlur={formik.handleBlur}
-							onChange={formik.handleChange}
-							onFocus={formik.handleFocus}
-							value={formik.values.role}
-						/>
+						<Box>
+							<TextInput 
+								label="Role" 
+								name="role"
+								onBlur={formik.handleBlur}
+								onChange={formik.handleChange}
+								onFocus={formik.handleFocus}
+								value={formik.values.role}
+							/>
+							<Text color="altText" paddingY={2} fontSize={2} fontWeight={400} lineHeight={3}>Let end-users know what you do at {organization?.name}.</Text>
+						</Box>
 						<Box>
 							<TimezoneInput 
 								label="Timezone"
