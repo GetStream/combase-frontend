@@ -55,6 +55,7 @@ const virtuosoStyle = {width: '100%', height: '15rem'};
 const TimezoneInput = ({ onChange, name, value }) => {
     const anchorRef = useRef();
     const [open, toggleDropdown] = useToggle();
+	const previousValue = useRef();
     const [internalValue, setInternalValue] = useState(value || '');
 
     const { reset, result, search } = useFuse({
@@ -104,7 +105,15 @@ const TimezoneInput = ({ onChange, name, value }) => {
         }
     };
 
+	const handleBlur = () => {
+		if (!internalValue) {
+			setInternalValue(previousValue.current);
+		}
+	};
+
     const handleFocus = () => {
+		previousValue.current = internalValue;
+		setInternalValue('');
         toggleDropdown(true);
     };
 
@@ -133,6 +142,7 @@ const TimezoneInput = ({ onChange, name, value }) => {
             <TextInput
                 label="Timezone"
                 onBackspace={onBackspace}
+				onBlur={handleBlur}
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onKeyDown={handleKeyDown}
@@ -159,6 +169,7 @@ const TimezoneInput = ({ onChange, name, value }) => {
             >
 				<Virtuoso
 					data={result}
+					components={{ Item: ItemContainer }}
 					itemContent={renderChild}
 					style={virtuosoStyle}
 				/>
