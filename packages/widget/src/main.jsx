@@ -4,8 +4,6 @@ import { useChatContext } from 'stream-chat-react';
 
 import lazyPreload from './lazyPreload';
 
-import {LoadingScreen} from '@combase.app/ui/EmptyView';
-
 import { WidgetConfig } from './WidgetConfig';
 import { WidgetLauncher } from './WidgetLauncher';
 import { WidgetShell } from './WidgetShell';
@@ -15,11 +13,7 @@ const Home = lazyPreload(() => import(/* webpackChunkName: "home" */'./views/Hom
 
 const Router = () => {
 	const { channel } = useChatContext();
-	return (
-		<Suspense fallback={() => <LoadingScreen />}>
-			{!channel ? <Home /> : <Conversation />}
-		</Suspense>
-	);
+	return !channel ? <Home /> : <Conversation />;
 };
 
 const CombaseWidget = ({ fabSize, organization }) => (

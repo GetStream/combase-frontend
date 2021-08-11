@@ -113,7 +113,7 @@ export const WidgetShell = ({ fabSize, children }) => {
 						variant="filled" 
 					/>
 				</CloseWrapper>
-				<Suspense fallback={<LoadingScreen />}>{children}</Suspense>
+				<Suspense  fallback={<LoadingScreen />}>{children}</Suspense>
 				<PoweredBy />
 			</Root>
 		</Portal>
