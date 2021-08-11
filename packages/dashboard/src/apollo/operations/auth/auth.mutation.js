@@ -104,10 +104,6 @@ export const WIDGET_SETTINGS_FRAGMENT = gql`
       paths
       uitheme
       accent
-      home {
-        title
-        tagline
-      }
       welcomeMessages
       unassignedMessages
     }
