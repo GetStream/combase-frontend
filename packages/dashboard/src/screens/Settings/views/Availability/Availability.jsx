@@ -15,7 +15,8 @@ import Box from '@combase.app/ui/Box';
 import Button from '@combase.app/ui/Button';
 import Container from '@combase.app/ui/Container';
 import IconButton from '@combase.app/ui/IconButton';
-import { AddCircleIcon, AddSplitIcon, DeleteIcon, CloseCircleIcon, PublicIcon } from '@combase.app/ui/icons';
+import IconLabel from '@combase.app/ui/IconLabel';
+import { AddCircleIcon, AddSplitIcon, DeleteIcon, ChevronRightIcon, CloseCircleIcon, PublicIcon } from '@combase.app/ui/icons';
 import MenuItem from '@combase.app/ui/MenuItem';
 import SelectButton from '@combase.app/ui/SelectButton';
 import Text from '@combase.app/ui/Text';
@@ -182,17 +183,15 @@ const Availability = () => {
 						</Header>
 						<Container paddingX={7}>
 							<Text maxWidth={20} fontSize={4} lineHeight={6} fontWeight={400}>Set your availability to be added to the routing pool during your available work hours.</Text>
-							<Text marginY={5} maxWidth={20} fontSize={4} lineHeight={6} fontWeight={400}>Your timezone is currently set to <Text as={Link} color="primary" to="/settings/your-profile" fontSize={4} lineHeight={4} fontWeight={800}>{data?.me?.timezone}</Text></Text>
-							<TextLink 
-								as={Link}
-								color="primary" 
-								marginBottom={7} 
-								icon={PublicIcon} 
-								to="/settings/your-profile" 
-								reverse
-							>
-								Change Timezone
-							</TextLink>
+							<Text marginY={5} maxWidth={21} fontSize={4} lineHeight={6} fontWeight={400}>
+								Your timezone is currently set to 
+								<Link to="/settings/your-profile">
+									<IconLabel marginLeft={2} color="primary">
+										<Text fontSize={4} lineHeight={4} fontWeight={800}>{data?.me?.timezone}</Text>
+										<ChevronRightIcon />
+									</IconLabel>
+								</Link>
+							</Text>
 							<FieldArray
 								name="schedule"
 								render={arrayHelpers => {

@@ -33,15 +33,10 @@ const Root = styled(Card)`
 	transform: translateZ(0);
 
 	@media (min-height: ${({ theme }) => theme.breakpoints.sm}) {
-		max-width: ${({ theme }) => theme.sizes[24]};
+		max-width: ${({ theme }) => theme.sizes[25]};
 		max-height: ${({ theme }) => theme.sizes[22]};
 		margin-left: ${({theme }) => theme.space[4]};
 		margin-right: ${({theme }) => theme.space[4]};
-	}
-
-	@media (min-height: ${({ theme }) => theme.breakpoints.md}) {
-		max-width: ${({ theme }) => theme.sizes[25]};
-		max-height: ${({ theme }) => theme.sizes[22]};
 	}
 `;
 

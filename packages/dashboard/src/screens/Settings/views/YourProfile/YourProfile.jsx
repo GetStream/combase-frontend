@@ -69,7 +69,7 @@ const YourProfile = () => {
 	const organization = data?.organization;
 	
 	const avatarInputRef = useRef(null);
-	console.log(organization);
+
 	const initialValues = useMemo(() => ({
 		avatar: me?.avatar ?? "",
 		name: {
@@ -168,11 +168,11 @@ const YourProfile = () => {
 							<Box>
 								<StickyWrapper>
 									<AvatarInput 
-										borderRadius={[7, 7, 7, 8]} 
+										borderRadius={[7, 7, 8]} 
 										name={formik.values.name.display} 
 										onChange={avatar => formik.setFieldValue('avatar', avatar)} 
 										ref={avatarInputRef}
-										size={[15, 15, 15, 16]} 
+										size={[15, 15, 16]} 
 										src={formik.values.avatar} 
 									/>
 									<ButtonGroup marginTop={4} gapTop={2}>
