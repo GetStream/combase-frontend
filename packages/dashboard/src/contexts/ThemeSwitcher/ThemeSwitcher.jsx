@@ -1,11 +1,9 @@
 import React, {useMemo} from 'react';
 import { useMedia } from 'react-use';
 import { ThemeProvider } from 'styled-components';
-import { useReactiveVar } from '@apollo/client';
 import { themes } from '@combase.app/styles';
 
 import useCurrentUser from 'hooks/useCurrentUser';
-import { themeVar } from 'apollo/variables';
 
 const prepareTheme = (theme, overrides) => ({
 	...theme,
@@ -18,20 +16,21 @@ const prepareTheme = (theme, overrides) => ({
 const ThemeSwitcher = ({ children }) => {
 	const { data } = useCurrentUser();
 	const overrides = data?.me?.theme || {};
+	const preferences = data?.me?.preferences || {};
+	
 	/**
      * @name Theme
      */
-	const themeMode = useReactiveVar(themeVar);
 	const systemDarkMode = useMedia(`(prefers-color-scheme: dark)`);
 
 	const theme = useMemo(() => {
-		if (themeMode === 'system') {
+		if (!preferences?.uitheme || preferences?.uitheme === 'system') {
 			const themeObj = systemDarkMode ? themes.dark : themes.light;
 			return prepareTheme(themeObj, overrides);
 		}
  
-		return prepareTheme(themes[themeMode], overrides);
-	}, [overrides, themeMode, systemDarkMode]);
+		return prepareTheme(themes[preferences?.uitheme], overrides);
+	}, [preferences, overrides, systemDarkMode]);
  
 	return (
 		<ThemeProvider theme={theme}>

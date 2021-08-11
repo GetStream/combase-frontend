@@ -1,16 +1,4 @@
-import { listModeVar, themeVar } from '../../variables';
-
-/**
- * Set the UI Theme.
- * Can be dark, light, or system.
- * @param {string} [theme='system']
- * @return {string} - returns the theme value.
- */
-export const setUITheme = (theme = 'system') => {
-    localStorage.setItem('combase-uitheme', theme);
-
-    return themeVar(theme);
-};
+import { listModeVar } from '../../variables';
 
 /**
  * Toggle the Global List Mode Preference.

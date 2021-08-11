@@ -2,7 +2,7 @@ import { InMemoryCache, makeVar } from '@apollo/client';
 import { breakpoints } from '@combase.app/styles';
 import orderBy from 'lodash.orderby';
 
-import { authenticationVar, themeVar } from './variables';
+import { authenticationVar } from './variables';
 
 let bpMap = {};
 
@@ -31,9 +31,6 @@ export const cache = new InMemoryCache({
                 },
                 flatFeed: {
                     keyArgs: ['id'],
-                },
-                theme: {
-                    read: () => themeVar(),
                 },
                 me: {
                     fields: {

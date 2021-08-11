@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { interactions } from '@combase.app/styles';
 import { useMedia } from 'react-use';
@@ -23,20 +23,32 @@ const Button = styled(ButtonBase)`
 	text-align: center;
 `;
 
-const ThemeSelector = ({ mode, onChange, value }) => {
+const ThemeSelector = ({ name, mode, onChange, value }) => {
 	const Illustration = mode === 'dashboard' ? DashboardThemeIllustration : WidgetThemeIllustration;
 	const systemDarkMode = useMedia(`(prefers-color-scheme: dark)`);
+
+	const handleChange = useCallback((value) => {
+		if (onChange) {
+			onChange({
+				target: {
+					name,
+					value,
+				}
+			})
+		}
+	}, [onChange, name]);
+
 	return (
 		<Root>
-			<Button active={value === 'system'} type="button" interaction="bump" onClick={onChange} value="system">
+			<Button active={value === 'system'} type="button" interaction="bump" onClick={handleChange} value="system">
 				<Illustration theme={systemDarkMode ? 'dark' : "light"} />
 				<Text color={value === 'system' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>System (auto)</Text>
 			</Button>
-			<Button active={value === 'light'} type="button" interaction="bump" onClick={onChange} value="light">
+			<Button active={value === 'light'} type="button" interaction="bump" onClick={handleChange} value="light">
 				<Illustration theme="light" />
 				<Text color={value === 'light' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>Light</Text>
 			</Button>
-			<Button active={value === 'dark'} type="button" interaction="bump" onClick={onChange} value="dark">
+			<Button active={value === 'dark'} type="button" interaction="bump" onClick={handleChange} value="dark">
 				<Illustration theme="dark" />
 				<Text color={value === 'dark' ? 'primary' : 'text'} fontSize={3} lineHeight={4} fontWeight={500} marginTop={2}>Dark</Text>
 			</Button>

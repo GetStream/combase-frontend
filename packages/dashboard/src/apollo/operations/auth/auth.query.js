@@ -12,6 +12,9 @@ export const AGENT_PROFILE_FRAGMENT = gql`
 		email
 		role
 		timezone
+		preferences {
+			uitheme
+		}
 	}
 `;
 
@@ -30,22 +33,21 @@ export const AGENT_SCHEDULE_FRAGMENT = gql`
 `;
 
 export const GET_CURRENT_USER = gql`
+	${AGENT_PROFILE_FRAGMENT}
     {
         isSmViewport: media(bp: "sm") @client
 
         me {
             _id
-            name {
-                full
-                display
-            }
-			email
-            avatar
             streamToken
+			preferences {
+				uitheme
+			}
 			theme {
 				color
 			}
 			online @client
+			...AgentProfile
         }
 
         organization {
