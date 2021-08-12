@@ -131,7 +131,7 @@ const List = React.forwardRef(({ children, loading, LoadingIndicator }, ref) => 
 ));
 
 const ChatList = () => {
-	const {channel, client} = useChatContext();
+	const {channel, client, setActiveChannel} = useChatContext();
 	const currentUser = useCurrentUser();
 
 	const [sortValue, setSort] = useState(-1);
@@ -191,14 +191,15 @@ const ChatList = () => {
 	}, [currentUser, inbox, scopeValue, sortValue]);
 
 	const onChannelUpdated = useCallback(async (setChannels, updated) => {
-		// if (updated.channel_id === channel.id) {
-		// 	// if update is on the active channel.
-		// 	if (updated.channel.status !== inbox) {
-		// 		setActiveChannel(null);
-		// 	}
-		// }
-
 		const me = updated.channel.members.find(({ user_id }) => user_id === client.userID);
+		
+		if (updated.channel_id === channel.id) {
+			// if update is on the active channel.
+			if (!me) {
+				setActiveChannel(null);
+			}
+		}
+
 		if (!me) {
 			removeChannelFromList(setChannels, updated);
 		} else {

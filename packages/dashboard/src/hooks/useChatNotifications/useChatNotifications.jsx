@@ -31,7 +31,7 @@ const useChatNotifications = () => {
 	}, []);
 	
 	const handleNewMessage = useCallback((e) => {
-		if (e.message.user.id !== client.userID && e.channel_id !== activeChannel) {
+		if (e.message.user.id !== client.userID && e.channel_id !== activeChannel && e.message.type !== 'system') {
 			play();
 			toast.dark(<MessageNotificationToast user={e.message.user.id} text={e.message.text} />, {
 				position: toast.POSITION.BOTTOM_LEFT,

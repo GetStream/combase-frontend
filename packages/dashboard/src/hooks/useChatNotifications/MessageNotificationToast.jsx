@@ -16,7 +16,7 @@ const MessageNotificationToast = ({ text, user }) => {
 				<Label color="primary"><Text>New Message</Text></Label>
 				<TextGroup paddingY={2}>
 					<Text fontSize={4} lineHeight={5}>{text}</Text>
-					<Text fontSize={3} lineHeight={3} opacity={0.56}>from {data?.user.name}</Text>
+					<Text fontSize={3} lineHeight={3} opacity={0.56}>from {data?.user?.name}</Text>
 				</TextGroup>
 			</TextGroup>
 		</ThemeProvider>
