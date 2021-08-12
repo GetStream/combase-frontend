@@ -39,10 +39,17 @@ const Header = styled(HeaderBase)`
 
 const Footer = styled(DialogFooter)`
 	position: sticky;
+	left: 0;
+	right: 0;
 	bottom: 0;
 	border: 0;
 	padding: ${({ theme }) => theme.space[7]};
-	background-color: ${({ theme }) => theme.colors.surface};
+	background-color: transparent;
+	pointer-events: none;
+
+	& button {
+		pointer-events: auto;
+	}
 `;
 
 const Entry = styled(Box)`
@@ -181,7 +188,7 @@ const Availability = () => {
 								Availability
 							</Text>
 						</Header>
-						<Container paddingX={7}>
+						<Container minHeight="calc(100% - 200px)" paddingX={7}>
 							<Text maxWidth={20} fontSize={4} lineHeight={6} fontWeight={400}>Set your availability to be added to the routing pool during your available work hours.</Text>
 							<Text marginY={5} maxWidth={21} fontSize={4} lineHeight={6} fontWeight={400}>
 								Your timezone is currently set to 

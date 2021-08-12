@@ -53,12 +53,19 @@ const ButtonGroup = styled(InputGroup)`
 const Footer = styled(DialogFooter)`
 	position: sticky;
 	bottom: 0;
+	right: 0;
+	left: 0;
 	border: 0;
 	padding-top: ${({ theme }) => theme.space[5]};
-	padding-bottom: ${({ theme }) => theme.space[5]};
+	padding-bottom: ${({ theme }) => theme.space[7]};
 	padding-left: ${({ theme }) => theme.space[7]};
 	padding-right: ${({ theme }) => theme.space[7]};
 	background-color: transparent;
+	pointer-events: none;
+
+	& button {
+		pointer-events: auto;
+	}
 `;
 
 const YourProfile = () => {
@@ -104,7 +111,7 @@ const YourProfile = () => {
 								Your Profile
 							</Text>
 						</Header>
-						<FormWrapper paddingX={7} paddingBottom={5}>
+						<FormWrapper minHeight="calc(100% - 200px)" paddingX={7} paddingBottom={5}>
 							<Box>
 								<InputGroup gapTop={6}>
 									<TextInput 

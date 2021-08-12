@@ -58,6 +58,11 @@ const Footer = styled(DialogFooter)`
 	border: 0;
 	padding: ${({ theme }) => theme.space[7]};
 	background: transparent; 
+	pointer-events: none;
+
+	& button {
+		pointer-events: auto;
+	}
 `;
 
 const PathsInput = styled(Box)`
@@ -107,7 +112,7 @@ const Widget = () => {
 								Widget
 							</Text>
 						</Header>
-						<Container paddingX={7}>
+						<Container minHeight="calc(100% - 200px)" paddingX={7}>
 							<Text marginBottom={4} color="altText" fontSize={4} fontWeight="400" lineHeight={4}>
 								Customize
 							</Text>

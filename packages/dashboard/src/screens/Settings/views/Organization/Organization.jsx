@@ -43,15 +43,28 @@ const InputGroup = styled(Box)`
 	}
 `;
 
+const ButtonGroup = styled(InputGroup)`
+	& button {
+		width: 100%;
+	}
+`;
+
 const Footer = styled(DialogFooter)`
 	position: sticky;
+	left: 0;
+	right: 0;
 	bottom: 0;
 	border: 0;
-	padding-top: ${({ theme }) => theme.space[5]};
-	padding-bottom: ${({ theme }) => theme.space[5]};
+	padding-top: ${({ theme }) => theme.space[7]};
+	padding-bottom: ${({ theme }) => theme.space[7]};
 	padding-left: ${({ theme }) => theme.space[7]};
 	padding-right: ${({ theme }) => theme.space[7]};
 	background-color: ${({ theme }) => theme.colors.surface};
+	pointer-events: none;
+
+	& button {
+		pointer-events: auto;
+	}
 `;
 
 const Organization = () => {
@@ -90,13 +103,13 @@ const Organization = () => {
 		<Formik enableReinitialize initialValues={initialValues} onSubmit={handleSubmit}>
 			{
 				formik => (
-					<Box as={Form} onSubmit={formik.handleSubmit}>
+					<Box height="100%" as={Form} onSubmit={formik.handleSubmit}>
 						<Header paddingX={7} height="headerLg">
 							<Text fontSize={5} lineHeight={7} fontWeight={600}>
 								Organization
 							</Text>
 						</Header>
-						<FormWrapper as={Form} onSubmit={formik.handleSubmit} paddingX={7} paddingBottom={5}>
+						<FormWrapper minHeight="calc(100% - 200px)" as={Form} onSubmit={formik.handleSubmit} paddingX={7} paddingBottom={5}>
 							<Box>
 								<InputGroup gapTop={6}>
 									<TextInput 
@@ -133,20 +146,21 @@ const Organization = () => {
 							<Box>
 								<StickyWrapper>
 									<AvatarInput 
+										borderRadius={[7, 7, 8]} 
 										ref={avatarInputRef} 
 										src={formik.values.branding.logo} 
 										name={formik.values.name} 
 										onChange={(avatar) => formik.setFieldValue('branding.logo', avatar)}
-										size={15} 
+										size={[15, 15, 16]} 
 									/>
-									<InputGroup marginTop={4} gapTop={2}>
+									<ButtonGroup marginTop={4} gapTop={2}>
 										<Button onClick={() => avatarInputRef.current.click()} color="primary" variant="flat">
 											<Text color="primary">Change Photo</Text>
 										</Button>
 										<Button color="red" variant="flat" onClick={() => formik.setFieldValue('branding.logo', null)}>
 											<Text color="red">Remove Photo</Text>
 										</Button>
-									</InputGroup>
+									</ButtonGroup>
 								</StickyWrapper>
 							</Box>
 						</FormWrapper>
