@@ -53,19 +53,52 @@ const ImportBtns = styled(Box)`
 	grid-gap: ${({ theme }) => theme.space[3]};
 `;
 
+const RoleSelector = ({ index, name, onBlur, onChange, onFocus, value }) => {
+	const {data} = useCurrentUser();
+	const myAccess = data?.me?.access;
+	
+	const options = useMemo(() => {
+		const opts = [
+			{
+				label: 'Super Admin',
+				value: 'super_admin'
+			},
+			{
+				label: 'Admin',
+				value: 'admin',
+			},
+			{
+				label: 'Moderator',
+				value: 'moderator',
+			},
+			{
+				label: 'Guest',
+				value: 'guest',
+			}
+		];
+
+		const idx = opts.findIndex(({ value }) => myAccess === value);
+		return opts.slice(idx);
+	}, [myAccess]);
+
+	return (
+		<SelectInput label="Access" name={`${name}.${index}.access`} onBlur={onBlur} onChange={onChange} onFocus={onFocus} value={value.access}>
+			{
+				options.map((props) => <MenuItem {...props} key={props.value} />)
+			}
+		</SelectInput>
+	);
+}
+
 const renderFieldArray = ({ form: { handleBlur, handleChange, handleFocus, values }, name, push, remove }) => {
 	const value = values[name];
+
 	return (
 		<Box maxWidth={21}>
 			{value.map((v, i) => (
 				<FieldArrayInput key={`${name}-${i}`}>
 					<TextInput label="Email" name={`${name}.${i}.email`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v.email} />
-					<SelectInput label="Access" name={`${name}.${i}.access`} onBlur={handleBlur} onChange={handleChange} onFocus={handleFocus} value={v.access}>
-						<MenuItem label="Super Admin" value="super_admin" />
-						<MenuItem label="Admin" value="admin" />
-						<MenuItem label="Moderator" value="moderator" />
-						<MenuItem label="Guest" value="guest" />
-					</SelectInput>
+					<RoleSelector index={i} name={name} value={v} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} />
 					<ArrayActions padding={2}>
 						{i > 0 || (i === 0 && value.length > 1) ? (
 							<IconButton color={'altText'} size={3} icon={CloseIcon} type="button" onClick={() => remove(i)} />

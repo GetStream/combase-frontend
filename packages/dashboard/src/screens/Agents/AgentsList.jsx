@@ -24,7 +24,9 @@ import Text from "@combase.app/ui/Text";
 import HeaderBase from 'components/HeaderBase';
 import InviteAgentsDialog from 'components/InviteAgentsDialog';
 import AgentItem from 'components/AgentItem';
+
 import useAgents from 'hooks/useAgents';
+import useCurrentUser from 'hooks/useCurrentUser';
 
 const Root = styled(Box)`
 	display: grid;
@@ -101,7 +103,9 @@ const List = algoliaListProps(({ currentRefinement, agents, hits }) => {
 
 const AgentsList = () => {
 	const [openInvitationModal, toggleInvitationModal] = useState();
+	const {data: currentUser} = useCurrentUser();
 	const {data} = useAgents();
+	const access = currentUser?.me?.access;
 	const organization = data?.organization;
 	const agents = data?.organization.agents;
 
@@ -114,12 +118,16 @@ const AgentsList = () => {
 							<AgentsIcon color="primary" size={6} />
 							<Text fontSize={5} fontWeight={600} lineHeight={7}>Agents</Text>
 						</IconLabel>
-						<Button size="xs" onClick={() => toggleInvitationModal(true)}>
-							<IconLabel gap={2}>
-								<Text color="white" fontWeight="600">Invite Agents</Text>
-								<AddUsersIcon size={4} />
-							</IconLabel>
-						</Button>
+						{
+							access !== 'guest' ? (
+								<Button size="xs" onClick={() => toggleInvitationModal(true)}>
+									<IconLabel gap={2}>
+										<Text color="white" fontWeight="600">Invite Agents</Text>
+										<AddUsersIcon size={4} />
+									</IconLabel>
+								</Button>
+							) : null
+						}
 					</Header>
 					<SearchWrapper paddingY={2}>
 						<AlgoliaSearchToolbar />

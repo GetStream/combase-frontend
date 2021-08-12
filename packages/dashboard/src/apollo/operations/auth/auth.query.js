@@ -47,6 +47,7 @@ export const GET_CURRENT_USER = gql`
 				color
 			}
 			online @client
+			access
 			...AgentProfile
         }
 
