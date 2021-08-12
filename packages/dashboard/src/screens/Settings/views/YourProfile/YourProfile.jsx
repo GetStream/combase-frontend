@@ -58,7 +58,7 @@ const Footer = styled(DialogFooter)`
 	padding-bottom: ${({ theme }) => theme.space[5]};
 	padding-left: ${({ theme }) => theme.space[7]};
 	padding-right: ${({ theme }) => theme.space[7]};
-	background-color: ${({ theme }) => theme.colors.surface};
+	background-color: transparent;
 `;
 
 const YourProfile = () => {

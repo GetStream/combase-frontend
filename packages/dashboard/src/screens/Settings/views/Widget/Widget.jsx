@@ -57,7 +57,7 @@ const Footer = styled(DialogFooter)`
 	bottom: 0;
 	border: 0;
 	padding: ${({ theme }) => theme.space[7]};
-	background-color: ${({ theme }) => theme.colors.surface};
+	background: transparent; 
 `;
 
 const PathsInput = styled(Box)`
@@ -168,7 +168,7 @@ const Widget = () => {
 									Restrict the widget to only display on certain paths. If the below input is empty, the widget will show for all paths when embedded on your site.
 								</Text>
 							</TextGroup>
-							<PathsInput marginY={4}>
+							<PathsInput maxWidth={20} marginY={4}>
 								<ChipInputBase 
 									name="paths" 
 									placeholder="e.g. /contact"
