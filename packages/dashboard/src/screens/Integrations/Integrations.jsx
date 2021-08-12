@@ -127,12 +127,12 @@ const Integrations = () => {
 					<GridList variant="contained" maxWidth={26}>
 						{
 							items?.length ?
-								items?.map(({ id, name, integrationData }) => (
+								items?.map(({ id, description, name, integrationData }) => (
 									<IntegrationItem 
 										enabled={integrationData?.enabled}
 										id={id}
 										name={name} 
-										description={'Track events triggered in Combase through Google Analytics.'} 
+										description={description} 
 									/>	
 								))
 							: (

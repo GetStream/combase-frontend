@@ -18,6 +18,7 @@ export const GET_INTEGRATION_DEFINITIONS = gql`
         integrationDefinitions(filter: $filter) {
             icon
             id
+			description
             name
             internal {
                 version
