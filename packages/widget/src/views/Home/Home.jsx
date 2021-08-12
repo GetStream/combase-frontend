@@ -105,7 +105,7 @@ const Home = () => {
 					<Widgets paddingX={3} paddingTop={18} paddingBottom={3}>
 						<Card paddingBottom={5} boxShadow={2} variant="border">
 						<CardHeader
-							icon={<ChatsIcon color="blue" size={4} />}
+							icon={<ChatsIcon color="primary" size={4} />}
 							minHeight={9}
 							paddingX={[4, 4, 5]}
 						>
