@@ -116,7 +116,7 @@ const Widget = () => {
 							<Text marginBottom={4} color="altText" fontSize={4} fontWeight="400" lineHeight={4}>
 								Customize
 							</Text>
-							<ThemeSelector mode="widget" onChange={(value) => formik.setFieldValue('uitheme', value)} value={formik.values.uitheme} />
+							<ThemeSelector mode="widget" name="uitheme" onChange={formik.handleChange} value={formik.values.uitheme} />
 							<Text marginTop={10} marginBottom={4} color="altText" fontSize={4} fontWeight="400" lineHeight={4}>
 								Accent Color
 							</Text>
