@@ -177,7 +177,7 @@ const ChatList = () => {
 			presence: true,
 		};
 
-		if (scopeValue === 'yours' && inbox !== 'unassigned') {
+		if (scopeValue === 'yours' && inbox !== 'unassigned' && currentUser.data) {
 			filters.members = {
 				$in: [currentUser.data.me._id],
 			};

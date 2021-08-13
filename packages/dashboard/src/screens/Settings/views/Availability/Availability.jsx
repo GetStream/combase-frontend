@@ -237,7 +237,7 @@ const Availability = () => {
 																	>
 																		{steps.map((step, i) => {
 																			const hr12 = format(step, 'hh:mm a');
-																			const hr24 = format(step, 'H:mm');
+																			const hr24 = format(step, 'HH:mm');
 																			return <MenuItem key={i} label={hr12} value={hr24} />
 																		})}
 																	</SelectButton>
