@@ -91,7 +91,7 @@ const Integrations = () => {
 		category,
 	}) : undefined, [category]);
 
-	const { data } = useIntegrationDefinitions(filter);
+	const { data, loading } = useIntegrationDefinitions(filter);
 	const { integrationDefinitions } = data || {}
 
 	const { result, search, term, reset } = useFuse({
@@ -137,7 +137,7 @@ const Integrations = () => {
 								))
 							: (
 								<EmptyWrapper>
-									<EmptyView title={term ? "No integrations match your search." : "No Available Integrations."} />
+									<EmptyView loading={loading} title={term ? "No integrations match your search." : "No Available Integrations."} />
 								</EmptyWrapper>
 							)
 						}

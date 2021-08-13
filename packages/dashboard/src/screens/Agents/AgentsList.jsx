@@ -55,11 +55,11 @@ const SearchWrapper = styled(Container)`
 
 const algoliaListProps = (Component) => connectSearchBox(connectHits(Component))
 
-const List = algoliaListProps(({ currentRefinement, agents, hits }) => {
+const List = algoliaListProps(({ currentRefinement, agents, hits, loading }) => {
 	if (currentRefinement && !hits.length) {
 		return (
 			<Container>
-				<EmptyView minHeight={19} title="No agents match your search." />
+				<EmptyView loading={loading} minHeight={19} title="No agents match your search." />
 			</Container>
 		)
 	}
@@ -67,7 +67,7 @@ const List = algoliaListProps(({ currentRefinement, agents, hits }) => {
 	if (!agents?.edges.length) {
 		return (
 			<Container>
-				<EmptyView minHeight={19} title="No agents." />
+				<EmptyView loading={loading} minHeight={19} title="No agents." />
 			</Container>
 		)
 	}
@@ -104,7 +104,7 @@ const List = algoliaListProps(({ currentRefinement, agents, hits }) => {
 const AgentsList = () => {
 	const [openInvitationModal, toggleInvitationModal] = useState();
 	const {data: currentUser} = useCurrentUser();
-	const {data} = useAgents();
+	const {data, loading} = useAgents();
 	const access = currentUser?.me?.access;
 	const organization = data?.organization;
 	const agents = data?.organization.agents;
@@ -133,7 +133,7 @@ const AgentsList = () => {
 						<AlgoliaSearchToolbar />
 						<AlgoliaConfig filters={`organization:${organization?._id}`} />
 					</SearchWrapper>
-					<List agents={agents} />
+					<List agents={agents} loading={loading} />
 				</Scrollbars>
 				<Modal component={InviteAgentsDialog} open={openInvitationModal} onClose={() => toggleInvitationModal(false)} />
 			</Root>

@@ -5,6 +5,7 @@ import { colorAlpha, interactions, layout, space } from '@combase.app/styles';
 
 import Box from '../Box';
 import Container from '../Container';
+import Spinner from '../Spinner';
 import Text from '../Text';
 
 const Root = styled(Box)`
@@ -29,8 +30,8 @@ const Label = styled(Text)`
 const EmptyView = forwardRef(({ backgroundColor, children, color, error, gap, icon, iconColor, loading, onClick, size, title, ...rest }, ref) => (
     <Root {...rest} backgroundColor={backgroundColor} interaction={onClick ? 'highlight' : undefined} borderRadius={3} onClick={onClick} ref={ref}>
         <Container maxWidth={17}>
-            {icon || null}
-            {title ? (
+            {!loading ? icon : <Spinner color="text" />}
+            {!loading && title ? (
                 <Label color={color} fontWeight="600" marginBottom={gap} fontSize={4}>
                     {title}
                 </Label>
